@@ -13,9 +13,9 @@ export default async function Page() {
         <Search placeholder="Search products..." />
         <CreateProduct />
       </div>
-      <Suspense>
+      {/* <Suspense>
         <h1>Cards Products</h1>
-      </Suspense>
+      </Suspense> */}
       <div className="mt-5 flex w-full justify-center">
         <h1>Paginations</h1>
       </div>
