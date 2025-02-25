@@ -6,6 +6,7 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: "class",
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -17,6 +18,8 @@ const config: Config = {
           500: '#0070F3',
           600: '#2F6FEB',
         },
+        dark: "#111111",
+        yellow: "#ffc727",
       },
     },
     keyframes: {
