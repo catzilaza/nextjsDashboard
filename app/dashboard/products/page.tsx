@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import Search from "@/app/ui/search";
 import { CreateProduct } from "@/app/ui/products/button";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import Card from "@/app/ui/products/card";
+
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;
@@ -22,7 +24,7 @@ export default async function Page(props: {
         <CreateProduct />
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
-        <h1>Cards Products</h1>
+        <Card query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
         <h1>Paginations</h1>
