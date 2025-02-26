@@ -1,8 +1,14 @@
-// import bcrypt from "bcrypt";
-// import postgres from "postgres";
-// import { invoices, customers, revenue, users } from "../lib/placeholder-data";
+import bcrypt from "bcrypt";
+import postgres from "postgres";
+import {
+  invoices,
+  customers,
+  revenue,
+  users,
+  products,
+} from "../lib/placeholder-data";
 
-// const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 // async function seedUsers() {
 //   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -101,21 +107,50 @@
 //   return insertedRevenue;
 // }
 
-export async function GET() {
-  return Response.json({
-    message:
-      "Uncomment this file and remove this line. You can delete this file when you are finished.",
-  });
-  //   try {
-  //     const result = await sql.begin((sql) => [
-  //       seedUsers(),
-  //       seedCustomers(),
-  //       seedInvoices(),
-  //       seedRevenue(),
-  //     ]);
+async function seedProducts() {
+  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
-  //     return Response.json({ message: "Database seeded successfully" });
-  //   } catch (error) {
-  //     return Response.json({ error }, { status: 500 });
-  //   }
+  await sql`
+    CREATE TABLE IF NOT EXISTS products (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      image_url VARCHAR(255) NOT NULL,
+      price VARCHAR(255) NOT NULL,
+      amount INT NOT NULL,
+      status VARCHAR(15),
+      date DATE NOT NULL
+    );
+  `;
+
+  const insertedProducts = await Promise.all(
+    products.map(
+      (product) => sql`
+        INSERT INTO products (id, name, image_url, price, amount, status, date)
+        VALUES (${product.id}, ${product.name}, ${product.image_url}, ${product.price}, ${product.amount}, ${product.status}, ${product.date})
+        ON CONFLICT (id) DO NOTHING;
+      `
+    )
+  );
+
+  return insertedProducts;
+}
+
+export async function GET() {
+  // return Response.json({
+  //   message:
+  //     "Uncomment this file and remove this line. You can delete this file when you are finished.",
+  // });
+  try {
+    const result = await sql.begin((sql) => [
+      seedProducts(),
+      // seedUsers(),
+      // seedCustomers(),
+      // seedInvoices(),
+      // seedRevenue(),
+    ]);
+
+    return Response.json({ message: "Database seeded successfully" });
+  } catch (error) {
+    return Response.json({ error }, { status: 500 });
+  }
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { UpdateInvoice, DeleteInvoice } from "@/app/ui/invoices/buttons";
 import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredInvoices } from "@/app/lib/data";
+import { fetchFilteredInvoices, fetchProducts } from "@/app/lib/data";
 
 export default async function ProductCard({
   query,
@@ -12,43 +12,44 @@ export default async function ProductCard({
   currentPage: number;
 }) {
   const invoices = await fetchFilteredInvoices(query, currentPage);
+  const products = await fetchProducts(query, currentPage);
 
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
-            {invoices?.map((invoice) => (
+            {products?.map((product) => (
               <div
-                key={invoice.id}
+                key={product.id}
                 className="mb-2 w-full rounded-md bg-white p-4"
               >
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
                       <Image
-                        src={invoice.image_url}
+                        src={product.image_url}
                         className="mr-2 rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${invoice.name}'s profile picture`}
+                        width={50}
+                        height={50}
+                        alt={`${product.name}'s profile picture`}
                       />
-                      <p>{invoice.name}</p>
+                      <p>{product.name}</p>
                     </div>
-                    <p className="text-sm text-gray-500">{invoice.email}</p>
+                    <p className="text-sm text-gray-500">{product.name}</p>
                   </div>
-                  <InvoiceStatus status={invoice.status} />
+                  {/* <InvoiceStatus status={product.status} /> */}
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
                     <p className="text-xl font-medium">
-                      {formatCurrency(invoice.amount)}
+                      {formatCurrency(product.amount)}
                     </p>
-                    <p>{formatDateToLocal(invoice.date)}</p>
+                    <p>{formatDateToLocal(product.date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
+                    <UpdateInvoice id={product.id} />
+                    <DeleteInvoice id={product.id} />
                   </div>
                 </div>
               </div>
@@ -119,39 +120,39 @@ export default async function ProductCard({
           </table> */}
           <div className="hidden min-w-full text-gray-900 md:table">
             <div className="grid grid-cols-4 gap-4">
-              {invoices?.map((invoice) => (
+              {products?.map((product) => (
                 <div
-                  key={invoice.id}
+                  key={product.id}
                   className="card lg:card-side bg-base-100 shadow-xl"
                 >
                   <figure>
                     <Image
-                      src={invoice.image_url}
+                      src={product.image_url}
                       className="rounded-full"
                       width={400}
                       height={400}
-                      alt={`${invoice.name}'s profile picture`}
+                      alt={`${product.name}'s profile picture`}
                     />
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">New album is released!</h2>
                     <p className="text-sm text-gray-500">
-                      Name : {invoice.name}
+                      Name : {product.name}
                     </p>
                     <p className="text-sm text-gray-500">
-                      E-mail : {invoice.email}
+                      E-mail : {product.name}
                     </p>
-                    <InvoiceStatus status={invoice.status} />
+                    {/* <InvoiceStatus status={invoice.status} /> */}
                     <div className="flex w-full items-center justify-between pt-4">
                       <div>
                         <p className="text-xl font-medium">
-                          {formatCurrency(invoice.amount)}
+                          {formatCurrency(product.amount)}
                         </p>
-                        <p>{formatDateToLocal(invoice.date)}</p>
+                        <p>{formatDateToLocal(product.date)}</p>
                       </div>
                       <div className="flex justify-end gap-2">
-                        <UpdateInvoice id={invoice.id} />
-                        <DeleteInvoice id={invoice.id} />
+                        <UpdateInvoice id={product.id} />
+                        <DeleteInvoice id={product.id} />
                       </div>
                     </div>
                     <div className="card-actions justify-end">
