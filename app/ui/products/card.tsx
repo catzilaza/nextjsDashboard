@@ -44,6 +44,7 @@ export default async function ProductCard({
                         alt={`${product.name}'s profile picture`}
                       />
                       <p>{product.name}</p>
+                      <p>{product.name_eng}</p>
                     </div>
                     <p className="text-sm text-gray-500">{product.name}</p>
                   </div>
