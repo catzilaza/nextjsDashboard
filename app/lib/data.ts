@@ -243,3 +243,19 @@ export async function fetchProducts(query: string, currentPage: number) {
     throw new Error("Failed to fetch products data.");
   }
 }
+
+export async function fetchProductsPages(query: string) {
+  try {
+    const data = await sql`SELECT COUNT(*)
+    FROM products
+  `;
+
+    const totalPages = Math.ceil(
+      Number(data[0].count) / ITEMS_PER_PAGE_PRODUCT
+    );
+    return totalPages;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of products.");
+  }
+}

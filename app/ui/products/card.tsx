@@ -22,7 +22,7 @@ export default async function ProductCard({
   // const invoices = await fetchFilteredInvoices(query, currentPage);
   const products = await fetchProducts(query, currentPage);
 
-  console.log("Products ===> : ", products);
+  // console.log("Products ===> : ", products);
 
   return (
     <div className="mt-6 flow-root">

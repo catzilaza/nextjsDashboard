@@ -2,7 +2,11 @@ import { lusitana } from "@/app/ui/fonts";
 import { Suspense } from "react";
 import Search from "@/app/ui/search";
 import { CreateProduct } from "@/app/ui/products/button";
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import {  
+  ProductsCardSkeleton,
+} from "@/app/ui/skeletons";
+import { fetchProductsPages } from "@/app/lib/data";
+import Pagination from "@/app/ui/invoices/pagination";
 import Card from "@/app/ui/products/card";
 
 export default async function Page(props: {
@@ -14,6 +18,7 @@ export default async function Page(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
+  const totalPages = await fetchProductsPages(query);
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -23,11 +28,11 @@ export default async function Page(props: {
         <Search placeholder="Search products..." />
         <CreateProduct />
       </div>
-      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+      <Suspense key={query + currentPage} fallback={<ProductsCardSkeleton />}>
         <Card query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        <h1>Paginations</h1>
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );
