@@ -145,6 +145,9 @@ export default async function ProductCard({
                       <p className="text-sm text-gray-500">
                         Name : {product.name}
                       </p>
+                      <p className="text-sm text-gray-500">
+                        Name_eng : {product.name_eng}
+                      </p>
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
