@@ -22,6 +22,8 @@ export default async function ProductCard({
   // const invoices = await fetchFilteredInvoices(query, currentPage);
   const products = await fetchProducts(query, currentPage);
 
+  console.log("Products ===> : ", products);
+
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -127,7 +129,7 @@ export default async function ProductCard({
             </tbody>
           </table> */}
           <div className="hidden min-w-full text-gray-900 md:table">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-5 gap-4">
               {products?.map((product) => (
                 <Card key={product.id}>
                   <CardHeader>
