@@ -87,8 +87,9 @@ export type InvoiceForm = {
   status: "pending" | "paid";
 };
 
-export type Product = {
+export type ProductTableType = {
   id: string;
+  name_eng: string;
   name: string;
   image_url: string;
   price: string;
@@ -99,6 +100,7 @@ export type Product = {
 
 export type ProductCardProps = {
   id: string;
+  name_eng: string,
   name: string;
   image_url: string;
   price: string;

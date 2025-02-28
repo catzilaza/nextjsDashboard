@@ -147,6 +147,7 @@ const revenue = [
 const products = [
   {
     id: "d6e15727-9fe1-0001-8c5b-ea44a9bd81aa",
+    name_eng: "Banana Egg Cake",
     name: "ขนมไข่กล้วยหอม",
     image_url: "/products/product-001.jpg",
     price: "30",
@@ -156,6 +157,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0002-8c5b-ea44a9bd81aa",
+    name_eng: "Lamphun Flower Pastry",
     name: "ขนมดอกลำพูน",
     image_url: "/products/product-002.jpg",
     price: "30",
@@ -165,6 +167,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0003-8c5b-ea44a9bd81aa",
+    name_eng: "Raisin Bread",
     name: "ขนมปังลูกเกด",
     image_url: "/products/product-003.jpg",
     price: "30",
@@ -174,6 +177,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0004-8c5b-ea44a9bd81aa",
+    name_eng: "Pandan Custard Bread",
     name: "ขนมปังสังขยา",
     image_url: "/products/product-004-ขนมปังสังขยา.jpg",
     price: "30",
@@ -183,6 +187,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0005-8c5b-ea44a9bd81aa",
+    name_eng: "Tuna and Chicken Stuffed Bread",
     name: "ขนมปังไส้ทูน่าและไส้ไก่",
     image_url: "/products/product-005-ขนมปังไส้ทูน่า.jpg",
     price: "30",
@@ -192,6 +197,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0006-8c5b-ea44a9bd81aa",
+    name_eng: "Mochi",
     name: "ขนมโมจิ",
     image_url: "/products/product-006-ขนมโมจิ.jpg",
     price: "30",
@@ -201,6 +207,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0007-8c5b-ea44a9bd81aa",
+    name_eng: "Thai Custard",
     name: "ขนมหม้อแกง",
     image_url: "/products/product-007-ขนมหม้อแกง.jpg",
     price: "30",
@@ -210,6 +217,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0008-8c5b-ea44a9bd81aa",
+    name_eng: "Eclair",
     name: "ขนมเอแคล",
     image_url: "/products/product-008-ขนมเอแคล.jpg",
     price: "30",
@@ -219,6 +227,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0009-8c5b-ea44a9bd81aa",
+    name_eng: "Blacl Sesame Cookie",
     name: "ขนมคุ๊กกี้งาดำ",
     image_url: "/products/product-009-คุ๊กกี้งาดำ.jpg",
     price: "30",
@@ -228,6 +237,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0010-8c5b-ea44a9bd81aa",
+    name_eng: "Chocolate Chip Cookie",
     name: "ขนมคุ๊กกี้ช็อกโกแลตชิฟ",
     image_url: "/products/product-010-คุ๊กกี้ช็อกโกแลตชิฟ.jpg",
     price: "30",
@@ -237,6 +247,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0011-8c5b-ea44a9bd81aa",
+    name_eng: "Viennese Cookie",
     name: "ขนมคุ๊กกี้เวียนนา",
     image_url: "/products/product-011-คุ๊กกี้เวียนนา.jpg",
     price: "30",
@@ -246,6 +257,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0012-8c5b-ea44a9bd81aa",
+    name_eng: "Singapore Cookie",
     name: "ขนมคุ๊กกี้สิงคโปร์",
     image_url: "/products/product-012-คุ๊กกี้สิงคโปร์.jpg",
     price: "30",
@@ -255,6 +267,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0013-8c5b-ea44a9bd81aa",
+    name_eng: "Fortune Cookie",
     name: "ขนมคุ๊กกี้เสี่ยงทาย",
     image_url: "/products/product-013-คุ๊กกี้เสี่ยงทาย.jpg",
     price: "30",
@@ -264,6 +277,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0014-8c5b-ea44a9bd81aa",
+    name_eng: "Swiss Roll Cake",
     name: "ขนมเค้กโรล",
     image_url: "/products/product-014-เค้กโรล.jpg",
     price: "30",
@@ -273,6 +287,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0015-8c5b-ea44a9bd81aa",
+    name_eng: "Young Coconut Chiffon",
     name: "ขนมชิฟฟรอนมะพร้าวอ่อน",
     image_url: "/products/product-015-ชิฟฟรอนมะพร้าวอ่อน.jpg",
     price: "30",
@@ -282,6 +297,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0016-8c5b-ea44a9bd81aa",
+    name_eng: "Brownie",
     name: "ขนมบราวนี่",
     image_url: "/products/product-016-ขนมบราวนี่.jpg",
     price: "30",
@@ -291,6 +307,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0017-8c5b-ea44a9bd81aa",
+    name_eng: "Pineapple Pie",
     name: "ขนมพายสับปะรด",
     image_url: "/products/product-017-พายสับปะรด.jpg",
     price: "30",
@@ -300,6 +317,7 @@ const products = [
   },
   {
     id: "d6e15727-9fe1-0018-8c5b-ea44a9bd81aa",
+    name_eng: "Chicken Pie",
     name: "ขนมพายไส้ไก่",
     image_url: "/products/product-018-พายไส้ไก่.jpg",
     price: "30",

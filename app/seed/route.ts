@@ -113,6 +113,7 @@ async function seedProducts() {
   await sql`
     CREATE TABLE IF NOT EXISTS products (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      name_eng VARCHAR(255) NOT NULL,
       name VARCHAR(255) NOT NULL,
       image_url VARCHAR(255) NOT NULL,
       price VARCHAR(255) NOT NULL,
@@ -125,8 +126,8 @@ async function seedProducts() {
   const insertedProducts = await Promise.all(
     products.map(
       (product) => sql`
-        INSERT INTO products (id, name, image_url, price, amount, status, date)
-        VALUES (${product.id}, ${product.name}, ${product.image_url}, ${product.price}, ${product.amount}, ${product.status}, ${product.date})
+        INSERT INTO products (id, name_eng, name, image_url, price, amount, status, date)
+        VALUES (${product.id}, ${product.name_eng}, ${product.name}, ${product.image_url}, ${product.price}, ${product.amount}, ${product.status}, ${product.date})
         ON CONFLICT (id) DO NOTHING;
       `
     )

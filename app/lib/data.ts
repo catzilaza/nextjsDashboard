@@ -6,9 +6,10 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
-  Product,
+  ProductTableType,
 } from "./definitions";
 import { formatCurrency } from "./utils";
+import { products } from "./placeholder-data";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -221,26 +222,49 @@ export async function fetchFilteredCustomers(query: string) {
 }
 
 const ITEMS_PER_PAGE_PRODUCT = 5;
-export async function fetchProducts(query: string, currentPage: number) {
+// export async function fetchProducts(query: string, currentPage: number) {
+//   const offset = (currentPage - 1) * ITEMS_PER_PAGE_PRODUCT;
+//   try {
+//     // Artificially delay a response for demo purposes.
+//     // Don't do this in production :)
+
+//     // console.log("Fetching products data...");
+//     // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+//     // const data = await sql<Product[]>`SELECT * FROM products`;
+//     const data = await sql<
+//       ProductTableType[]
+//     >`SELECT * FROM products LIMIT ${ITEMS_PER_PAGE_PRODUCT} OFFSET ${offset}`;
+
+//     // console.log("Data fetch completed after 3 seconds.");
+
+//     return data;
+//   } catch (error) {
+//     console.error("Database Error:", error);
+//     throw new Error("Failed to fetch products data.");
+//   }
+// }
+
+export async function fetchFilteredProducts(
+  query: string,
+  currentPage: number
+) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE_PRODUCT;
+
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
+    const products = await sql<ProductTableType[]>`
+      SELECT
+        *
+      FROM products      
+      WHERE
+        products.name ILIKE ${`%${query}%`}    
+      LIMIT ${ITEMS_PER_PAGE_PRODUCT} OFFSET ${offset}
+    `;
 
-    // console.log("Fetching products data...");
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
-
-    // const data = await sql<Product[]>`SELECT * FROM products`;
-    const data = await sql<
-      Product[]
-    >`SELECT * FROM products LIMIT ${ITEMS_PER_PAGE_PRODUCT} OFFSET ${offset}`;
-
-    // console.log("Data fetch completed after 3 seconds.");
-
-    return data;
+    return products;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch products data.");
+    throw new Error("Failed to fetch filtered products.");
   }
 }
 

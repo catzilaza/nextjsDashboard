@@ -2,7 +2,7 @@ import Image from "next/image";
 import { UpdateInvoice, DeleteInvoice } from "@/app/ui/invoices/buttons";
 // import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredInvoices, fetchProducts } from "@/app/lib/data";
+import { fetchFilteredProducts } from "@/app/lib/data";
 import {
   Card,
   CardContent,
@@ -19,8 +19,7 @@ export default async function ProductCard({
   query: string;
   currentPage: number;
 }) {
-  // const invoices = await fetchFilteredInvoices(query, currentPage);
-  const products = await fetchProducts(query, currentPage);
+  const products = await fetchFilteredProducts(query, currentPage);
 
   // console.log("Products ===> : ", products);
 
