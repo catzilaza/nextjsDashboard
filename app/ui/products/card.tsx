@@ -1,8 +1,16 @@
 import Image from "next/image";
 import { UpdateInvoice, DeleteInvoice } from "@/app/ui/invoices/buttons";
-import InvoiceStatus from "@/app/ui/invoices/status";
+// import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
 import { fetchFilteredInvoices, fetchProducts } from "@/app/lib/data";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default async function ProductCard({
   query,
@@ -11,7 +19,7 @@ export default async function ProductCard({
   query: string;
   currentPage: number;
 }) {
-  const invoices = await fetchFilteredInvoices(query, currentPage);
+  // const invoices = await fetchFilteredInvoices(query, currentPage);
   const products = await fetchProducts(query, currentPage);
 
   return (
@@ -121,47 +129,88 @@ export default async function ProductCard({
           <div className="hidden min-w-full text-gray-900 md:table">
             <div className="grid grid-cols-4 gap-4">
               {products?.map((product) => (
-                <div
-                  key={product.id}
-                  className="card lg:card-side bg-base-100 shadow-xl"
-                >
-                  <figure>
-                    <Image
+                <Card key={product.id}>
+                  <CardHeader>
+                    <CardTitle>Card Title</CardTitle>
+                    <img
+                      className="w-16 h-16 rounded-full"
                       src={product.image_url}
-                      className="rounded-full"
-                      width={400}
-                      height={400}
                       alt={`${product.name}'s profile picture`}
                     />
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">New album is released!</h2>
-                    <p className="text-sm text-gray-500">
-                      Name : {product.name}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      E-mail : {product.name}
-                    </p>
-                    {/* <InvoiceStatus status={invoice.status} /> */}
+
+                    <CardDescription>
+                      Card Description
+                      <p className="text-sm text-gray-500">
+                        Name : {product.name}
+                      </p>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Card Content</p>
                     <div className="flex w-full items-center justify-between pt-4">
                       <div>
                         <p className="text-xl font-medium">
-                          {formatCurrency(product.amount)}
+                          ราคา : {formatCurrency(product.amount)}
                         </p>
-                        <p>{formatDateToLocal(product.date)}</p>
+                        <p> วันที่ : {formatDateToLocal(product.date)}</p>
+                        <p> จำนวนคงเหลือ : {product.amount}</p>
                       </div>
                       <div className="flex justify-end gap-2">
                         <UpdateInvoice id={product.id} />
                         <DeleteInvoice id={product.id} />
                       </div>
                     </div>
+                  </CardContent>
+                  <CardFooter>
+                    <p>Card Footer</p>
                     <div className="card-actions justify-end">
                       <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                         Listen
                       </button>
                     </div>
-                  </div>
-                </div>
+                  </CardFooter>
+                </Card>
+                // <div
+                //   key={product.id}
+                //   className="card lg:card-side bg-base-100 shadow-xl"
+                // >
+                //   <figure>
+                //     <Image
+                //       src={product.image_url}
+                //       className="rounded-full"
+                //       width={80}
+                //       height={80}
+                //       alt={`${product.name}'s profile picture`}
+                //     />
+                //   </figure>
+                //   <div className="card-body">
+                //     <h2 className="card-title">New album is released!</h2>
+                //     <p className="text-sm text-gray-500">
+                //       Name : {product.name}
+                //     </p>
+                //     <p className="text-sm text-gray-500">
+                //       E-mail : {product.name}
+                //     </p>
+                //     {/* <InvoiceStatus status={invoice.status} /> */}
+                //     <div className="flex w-full items-center justify-between pt-4">
+                //       <div>
+                //         <p className="text-xl font-medium">
+                //           {formatCurrency(product.amount)}
+                //         </p>
+                //         <p>{formatDateToLocal(product.date)}</p>
+                //       </div>
+                //       <div className="flex justify-end gap-2">
+                //         <UpdateInvoice id={product.id} />
+                //         <DeleteInvoice id={product.id} />
+                //       </div>
+                //     </div>
+                //     <div className="card-actions justify-end">
+                //       <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                //         Listen
+                //       </button>
+                //     </div>
+                //   </div>
+                // </div>
               ))}
             </div>
           </div>
@@ -171,6 +220,8 @@ export default async function ProductCard({
   );
 }
 
+// https://medium.com/@enayetflweb/crafting-effective-ui-with-the-card-component-in-shadcn-ui-9c41719b8e44
+
 // {
 //   <Image
 //     src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
@@ -179,3 +230,50 @@ export default async function ProductCard({
 //     alt="Album"
 //   />;
 // }
+
+{
+  /* <div className="grid grid-cols-4 gap-4">
+{products?.map((product) => (
+  <div
+    key={product.id}
+    className="card lg:card-side bg-base-100 shadow-xl"
+  >
+    <figure>
+      <Image
+        src={product.image_url}
+        className="rounded-full"
+        width={80}
+        height={80}
+        alt={`${product.name}'s profile picture`}
+      />
+    </figure>
+    <div className="card-body">
+      <h2 className="card-title">New album is released!</h2>
+      <p className="text-sm text-gray-500">
+        Name : {product.name}
+      </p>
+      <p className="text-sm text-gray-500">
+        E-mail : {product.name}
+      </p>     
+      <div className="flex w-full items-center justify-between pt-4">
+        <div>
+          <p className="text-xl font-medium">
+            {formatCurrency(product.amount)}
+          </p>
+          <p>{formatDateToLocal(product.date)}</p>
+        </div>
+        <div className="flex justify-end gap-2">
+          <UpdateInvoice id={product.id} />
+          <DeleteInvoice id={product.id} />
+        </div>
+      </div>
+      <div className="card-actions justify-end">
+        <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+          Listen
+        </button>
+      </div>
+    </div>
+  </div>
+))}
+</div> */
+}
