@@ -2,9 +2,7 @@ import { lusitana } from "@/app/ui/fonts";
 import { Suspense } from "react";
 import Search from "@/app/ui/search";
 import { CreateProduct } from "@/app/ui/products/button";
-import {  
-  ProductsCardSkeleton,
-} from "@/app/ui/skeletons";
+import { ProductsCardSkeleton } from "@/app/ui/skeletons";
 import { fetchProductsPages } from "@/app/lib/data";
 import Pagination from "@/app/ui/invoices/pagination";
 import Card from "@/app/ui/products/card";

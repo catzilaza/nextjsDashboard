@@ -7,6 +7,7 @@ import {
   LatestInvoiceRaw,
   Revenue,
   ProductTableType,
+  ProductForm,
 } from "./definitions";
 import { formatCurrency } from "./utils";
 import { products } from "./placeholder-data";
@@ -221,7 +222,6 @@ export async function fetchFilteredCustomers(query: string) {
   }
 }
 
-const ITEMS_PER_PAGE_PRODUCT = 5;
 // export async function fetchProducts(query: string, currentPage: number) {
 //   const offset = (currentPage - 1) * ITEMS_PER_PAGE_PRODUCT;
 //   try {
@@ -245,6 +245,27 @@ const ITEMS_PER_PAGE_PRODUCT = 5;
 //   }
 // }
 
+export async function fetchProductById(id: string) {
+  try {
+    const data = await sql<ProductForm[]>`
+      SELECT
+        *
+      FROM products
+      WHERE products.id = ${id};
+    `;   
+    //  console.log("function fetchProductById(id: string) ===> : ", data);
+    //  const product = data.map((product) => ({
+    //   ...product,
+    // }));
+
+    return data[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch product.");
+  }
+}
+
+const ITEMS_PER_PAGE_PRODUCT = 5;
 export async function fetchFilteredProducts(
   query: string,
   currentPage: number

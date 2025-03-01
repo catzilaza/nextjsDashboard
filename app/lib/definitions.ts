@@ -108,3 +108,14 @@ export type ProductCardProps = {
   status: "avialable" | "unavialable";
   date: string;
 };
+
+export type ProductForm = {
+  id: string;
+  name_eng: string;
+  name: string;
+  image_url: string;
+  price: string;
+  amount: number;
+  status: "avialable" | "unavialable";
+  date: string;
+};
