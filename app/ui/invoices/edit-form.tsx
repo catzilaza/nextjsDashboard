@@ -24,6 +24,11 @@ export default function EditInvoiceForm({
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
   const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
 
+  //console.log("EditInvoiceForm ====> : ", invoice);
+  // console.log("EditInvoiceForm ====> : ", initialState);
+  //console.log("EditInvoiceForm ====> : ", updateInvoiceWithId);
+
+
   return (
     <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">

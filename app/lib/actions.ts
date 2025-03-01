@@ -90,6 +90,8 @@ export async function updateInvoice(
   const { customerId, amount, status } = validatedFields.data;
   const amountInCents = amount * 100;
 
+  console.log("function updateInvoice amount ==> : ", amount);
+
   try {
     await sql`
         UPDATE invoices
@@ -109,4 +111,70 @@ export async function deleteInvoice(id: string) {
   // throw new Error('Failed to Delete Invoice');
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath("/dashboard/invoices");
+}
+
+//====================================================================
+
+const FormSchemaProduct = z.object({
+  id: z.string(),
+  productId: z.string({
+    invalid_type_error: "Please select a product.",
+  }),
+  amount: z.coerce
+    .number()
+    .gt(0, { message: "Please enter an amount greater than $0." }),
+  date: z.string(),
+});
+
+const UpdateProduct = FormSchemaProduct.omit({ id: true, date: true });
+
+export type StateProduct = {
+  errors?: {
+    productId?: string[];
+    amount?: string[];
+  };
+  message?: string | null;
+};
+
+export async function updateProduct(
+  id: string,
+  prevState: StateProduct,
+  formData: FormData
+) {
+  const validatedFields = UpdateProduct.safeParse({
+    productId: formData.get("productId"),
+    amount: formData.get("amount"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Update Invoice.",
+    };
+  }
+
+  const { productId, amount } = validatedFields.data;
+
+  console.log("function updateProduct amount ==> : ", amount);
+
+  try {
+    await sql`
+        UPDATE products
+        SET amount = ${amount}
+        WHERE id = ${id}
+      `;
+  } catch (error) {
+    // We'll log the error to the console for now
+    console.error(error);
+  }
+
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+}
+
+export async function deleteProduct(id: string) {
+  // throw new Error('Failed to Delete Invoice');
+  await sql`DELETE FROM products WHERE id = ${id}`;
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
 }

@@ -254,11 +254,11 @@ export async function fetchProductById(id: string) {
       WHERE products.id = ${id};
     `;   
     //  console.log("function fetchProductById(id: string) ===> : ", data);
-    //  const product = data.map((product) => ({
-    //   ...product,
-    // }));
+     const product = data.map((product) => ({
+      ...product,
+    }));
 
-    return data[0];
+    return product[0];
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch product.");
