@@ -120,21 +120,57 @@ const FormSchemaProduct = z.object({
   productId: z.string({
     invalid_type_error: "Please select a product.",
   }),
+  price: z.string({ message: "Please enter an price." }),
   amount: z.coerce
     .number()
     .gt(0, { message: "Please enter an amount greater than $0." }),
   date: z.string(),
 });
 
-const UpdateProduct = FormSchemaProduct.omit({ id: true, date: true });
-
 export type StateProduct = {
   errors?: {
     productId?: string[];
     amount?: string[];
+    price?: string[];
   };
   message?: string | null;
 };
+
+const CreateProduct = FormSchemaProduct.omit({ id: true, date: true });
+
+export async function createProduct(prevState: StateProduct, formData: FormData) {
+  const validatedFields = CreateProduct.safeParse({
+    productId: formData.get("productId"),
+    amount: formData.get("amount"),    
+  });
+
+  // If form validation fails, return errors early. Otherwise, continue.
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Product.",
+    };
+  }
+
+  // Prepare data for insertion into the database
+  const { productId, amount } = validatedFields.data;  
+  const date = new Date().toISOString().split("T")[0];
+
+  try {
+    await sql`
+      INSERT INTO products (amount, date)
+      VALUES (${amount}, ${date})
+    `;
+  } catch (error) {
+    // We'll log the error to the console for now
+    console.error(error);
+  }
+
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+}
+
+const UpdateProduct = FormSchemaProduct.omit({ id: true, date: true });
 
 export async function updateProduct(
   id: string,
@@ -144,23 +180,24 @@ export async function updateProduct(
   const validatedFields = UpdateProduct.safeParse({
     productId: formData.get("productId"),
     amount: formData.get("amount"),
+    price: formData.get("price"),
   });
 
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Update Invoice.",
+      message: "Missing Fields. Failed to Update product.",
     };
   }
 
-  const { productId, amount } = validatedFields.data;
+  const { productId, amount, price } = validatedFields.data;
 
-  console.log("function updateProduct amount ==> : ", amount);
+  // console.log("function updateProduct amount ==> : ", amount);
 
   try {
     await sql`
         UPDATE products
-        SET amount = ${amount}
+        SET amount = ${amount}, price = ${price}
         WHERE id = ${id}
       `;
   } catch (error) {

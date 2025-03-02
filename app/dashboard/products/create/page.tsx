@@ -1,7 +1,11 @@
 import Form from "@/app/ui/products/create-form";
 import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
+import { fetchProducts } from "@/app/lib/data";
+
 
 export default async function Page() {
+  const products = await fetchProducts();
+
   return (
     <main>
       <Breadcrumbs
@@ -14,7 +18,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Form />
+      <Form products={products}/>
     </main>
   );
 }

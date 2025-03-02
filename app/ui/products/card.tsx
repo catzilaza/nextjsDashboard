@@ -92,7 +92,7 @@ export default async function ProductCard({
                     <div className="flex w-full items-center justify-between pt-4">
                       <div>
                         <p className="text-xl font-medium">
-                          ราคา : {formatCurrency(product.amount)}
+                          ราคา : {product.price}
                         </p>
                         <p> วันที่ : {formatDateToLocal(product.date)}</p>
                         <p> จำนวนคงเหลือ : {product.amount}</p>

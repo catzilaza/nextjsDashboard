@@ -8,6 +8,7 @@ import {
   Revenue,
   ProductTableType,
   ProductForm,
+  ProductField,
 } from "./definitions";
 import { formatCurrency } from "./utils";
 import { products } from "./placeholder-data";
@@ -222,28 +223,23 @@ export async function fetchFilteredCustomers(query: string) {
   }
 }
 
-// export async function fetchProducts(query: string, currentPage: number) {
-//   const offset = (currentPage - 1) * ITEMS_PER_PAGE_PRODUCT;
-//   try {
-//     // Artificially delay a response for demo purposes.
-//     // Don't do this in production :)
+//================================================================
 
-//     // console.log("Fetching products data...");
-//     // await new Promise((resolve) => setTimeout(resolve, 3000));
+export async function fetchProducts() {
+  try {
+    const products = await sql<ProductField[]>`
+      SELECT
+        *
+      FROM products
+      ORDER BY name ASC
+    `;
 
-//     // const data = await sql<Product[]>`SELECT * FROM products`;
-//     const data = await sql<
-//       ProductTableType[]
-//     >`SELECT * FROM products LIMIT ${ITEMS_PER_PAGE_PRODUCT} OFFSET ${offset}`;
-
-//     // console.log("Data fetch completed after 3 seconds.");
-
-//     return data;
-//   } catch (error) {
-//     console.error("Database Error:", error);
-//     throw new Error("Failed to fetch products data.");
-//   }
-// }
+    return products;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch all products.");
+  }
+}
 
 export async function fetchProductById(id: string) {
   try {

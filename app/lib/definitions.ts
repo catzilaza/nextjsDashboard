@@ -100,7 +100,7 @@ export type ProductTableType = {
 
 export type ProductCardProps = {
   id: string;
-  name_eng: string,
+  name_eng: string;
   name: string;
   image_url: string;
   price: string;
@@ -110,6 +110,17 @@ export type ProductCardProps = {
 };
 
 export type ProductForm = {
+  id: string;
+  name_eng: string;
+  name: string;
+  image_url: string;
+  price: string;
+  amount: number;
+  status: "avialable" | "unavialable";
+  date: string;
+};
+
+export type ProductField = {
   id: string;
   name_eng: string;
   name: string;
