@@ -33,8 +33,8 @@ export default function EditProductForm({ product }: { product: ProductForm }) {
           <div className="relative">
             <Image
               src={product.image_url}
-              width={100}
-              height={50}
+              width={150}
+              height={100}
               alt={product.name_eng}
             ></Image>
           </div>
