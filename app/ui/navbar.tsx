@@ -7,7 +7,7 @@ import {
 
 const Navbar = () => {
   return (
-    <div className="flex h-20 flex-row px-3 py-4 md:px-2">
+    <div className="flex h-20 flex-row px-3 py-1 md:px-2">
       <div className="flex space-x-2">
         <NavLinks />
         <Link

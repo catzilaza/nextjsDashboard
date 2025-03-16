@@ -115,7 +115,16 @@ export async function deleteInvoice(id: string) {
 
 //====================================================================
 
-const FormSchemaProduct = z.object({
+// dessert_id: string;
+// name_eng: string;
+// name: string;
+// image_url: string;
+// price: string;
+// amount: number;
+// status: "avialable" | "unavialable";
+// date: string;
+
+const FormSchemaProductDessert = z.object({
   id: z.string(),
   productId: z.string({
     invalid_type_error: "Please select a product.",
@@ -127,7 +136,7 @@ const FormSchemaProduct = z.object({
   date: z.string(),
 });
 
-export type StateProduct = {
+export type StateProductDessert = {
   errors?: {
     productId?: string[];
     amount?: string[];
@@ -136,12 +145,18 @@ export type StateProduct = {
   message?: string | null;
 };
 
-const CreateProduct = FormSchemaProduct.omit({ id: true, date: true });
+const CreateProductDessert = FormSchemaProductDessert.omit({
+  id: true,
+  date: true,
+});
 
-export async function createProduct(prevState: StateProduct, formData: FormData) {
-  const validatedFields = CreateProduct.safeParse({
+export async function createProductDessert(
+  prevState: StateProductDessert,
+  formData: FormData
+) {
+  const validatedFields = CreateProductDessert.safeParse({
     productId: formData.get("productId"),
-    amount: formData.get("amount"),    
+    amount: formData.get("amount"),
   });
 
   // If form validation fails, return errors early. Otherwise, continue.
@@ -153,7 +168,7 @@ export async function createProduct(prevState: StateProduct, formData: FormData)
   }
 
   // Prepare data for insertion into the database
-  const { productId, amount } = validatedFields.data;  
+  const { productId, amount } = validatedFields.data;
   const date = new Date().toISOString().split("T")[0];
 
   try {
@@ -170,14 +185,17 @@ export async function createProduct(prevState: StateProduct, formData: FormData)
   redirect("/dashboard/products");
 }
 
-const UpdateProduct = FormSchemaProduct.omit({ id: true, date: true });
+const UpdateProductDessert = FormSchemaProductDessert.omit({
+  id: true,
+  date: true,
+});
 
-export async function updateProduct(
+export async function updateProductDessert(
   id: string,
-  prevState: StateProduct,
+  prevState: StateProductDessert,
   formData: FormData
 ) {
-  const validatedFields = UpdateProduct.safeParse({
+  const validatedFields = UpdateProductDessert.safeParse({
     productId: formData.get("productId"),
     amount: formData.get("amount"),
     price: formData.get("price"),
@@ -196,10 +214,9 @@ export async function updateProduct(
 
   try {
     await sql`
-        UPDATE products
+        UPDATE products_desserts
         SET amount = ${amount}, price = ${price}
-        WHERE id = ${id}
-      `;
+        WHERE dessert_id = ${id}`;
   } catch (error) {
     // We'll log the error to the console for now
     console.error(error);
@@ -211,7 +228,7 @@ export async function updateProduct(
 
 export async function deleteProduct(id: string) {
   // throw new Error('Failed to Delete Invoice');
-  await sql`DELETE FROM products WHERE id = ${id}`;
+  await sql`DELETE FROM products_dessert WHERE dessert_id = ${id}`;
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 }
