@@ -6,16 +6,16 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { ProductForm } from "@/app/lib/definitions";
+import { ProductDessertForm } from "@/app/lib/definitions";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
 import { updateProduct, StateProduct } from "@/app/lib/actions";
 import { useActionState } from "react";
 
-export default function EditProductForm({ product }: { product: ProductForm }) {
+export default function EditProductForm({ product }: { product: ProductDessertForm }) {
   const initialState: StateProduct = { message: null, errors: {} };
-  const updateProductWithId = updateProduct.bind(null, product.id);
+  const updateProductWithId = updateProduct.bind(null, product.dessert_id);
   const [state, formAction] = useActionState(updateProductWithId, initialState);
 
   //console.log("EditProductForm ====> : ", product);
@@ -50,13 +50,13 @@ export default function EditProductForm({ product }: { product: ProductForm }) {
               id="product"
               name="productId"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-              defaultValue={product.id}
+              defaultValue={product.dessert_id}
             >
               <option value="" disabled>
                 Select a product
               </option>
               {
-                <option key={product.id} value={product.id}>
+                <option key={product.dessert_id} value={product.dessert_id}>
                   {product.name}
                 </option>
               }
