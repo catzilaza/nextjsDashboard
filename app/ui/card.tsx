@@ -10,6 +10,7 @@ import {
 
 import { fetchProducts_Dessert } from "@/app/lib/data";
 import { formatDateToLocal } from "@/app/lib/utils";
+import Link from "next/link";
 
 export default async function AppCard() {
   const products = await fetchProducts_Dessert();
@@ -26,13 +27,19 @@ export default async function AppCard() {
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
-                      <Image
-                        src={product.image_url}
-                        className="mr-2 rounded-full"
-                        width={50}
-                        height={50}
-                        alt={`${product.name}'s profile picture`}
-                      />
+                      <Link
+                        href="/products"
+                        className="flex items-center gap-5 self-start rounded-lg bg-blue-100 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+                      >
+                        <Image
+                          src={product.image_url}
+                          className="mr-2 rounded-full"
+                          width={50}
+                          height={50}
+                          alt={`${product.name}'s profile picture`}
+                        />
+                      </Link>
+
                       <p>{product.name}</p>
                       <p>{product.name_eng}</p>
                     </div>
@@ -41,7 +48,7 @@ export default async function AppCard() {
                   {/* <InvoiceStatus status={product.status} /> */}
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
-                  <div>                    
+                  <div>
                     <p>{formatDateToLocal(product.date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
@@ -58,11 +65,16 @@ export default async function AppCard() {
                 <Card key={product.dessert_id}>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
-                    <img
-                      className="w-full h-32 full"
-                      src={product.image_url}
-                      alt={`${product.name}'s profile picture`}
-                    />
+                    <Link
+                      href={`/products/${product.dessert_id}/detail`}
+                      className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+                    >
+                      <img
+                        className="w-full h-32 full"
+                        src={product.image_url}
+                        alt={`${product.name}'s profile picture`}
+                      />
+                    </Link>
 
                     <CardDescription>
                       Card Description
