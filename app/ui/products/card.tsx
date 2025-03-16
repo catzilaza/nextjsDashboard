@@ -2,7 +2,7 @@ import Image from "next/image";
 import { UpdateProduct, DeleteProduct } from "@/app/ui/products/button";
 // import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredProducts } from "@/app/lib/data";
+import { fetchFilteredProducts_Dessert } from "@/app/lib/data";
 import {
   Card,
   CardContent,
@@ -19,7 +19,7 @@ export default async function ProductCard({
   query: string;
   currentPage: number;
 }) {
-  const products = await fetchFilteredProducts(query, currentPage);
+  const products = await fetchFilteredProducts_Dessert(query, currentPage);
 
   // console.log("Products ===> : ", products);
 
@@ -30,7 +30,7 @@ export default async function ProductCard({
           <div className="md:hidden">
             {products?.map((product) => (
               <div
-                key={product.id}
+                key={product.dessert_id}
                 className="mb-2 w-full rounded-md bg-white p-4"
               >
                 <div className="flex items-center justify-between border-b pb-4">
@@ -58,8 +58,8 @@ export default async function ProductCard({
                     <p>{formatDateToLocal(product.date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
-                    <UpdateProduct id={product.id} />
-                    <DeleteProduct id={product.id} />
+                    <UpdateProduct id={product.dessert_id} />
+                    <DeleteProduct id={product.dessert_id} />
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@ export default async function ProductCard({
           <div className="hidden min-w-full text-gray-900 md:table">
             <div className="grid grid-cols-5 gap-4">
               {products?.map((product) => (
-                <Card key={product.id}>
+                <Card key={product.dessert_id}>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
                     <img
@@ -98,8 +98,8 @@ export default async function ProductCard({
                         <p> จำนวนคงเหลือ : {product.amount}</p>
                       </div>
                       <div className="flex justify-end gap-2">
-                        <UpdateProduct id={product.id} />
-                        <DeleteProduct id={product.id} />
+                        <UpdateProduct id={product.dessert_id} />
+                        <DeleteProduct id={product.dessert_id} />
                       </div>
                     </div>
                   </CardContent>

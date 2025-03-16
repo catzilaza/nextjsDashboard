@@ -87,8 +87,8 @@ export type InvoiceForm = {
   status: "pending" | "paid";
 };
 
-export type ProductTableType = {
-  id: string;
+export type ProductDessertTableType = {
+  dessert_id: string;
   name_eng: string;
   name: string;
   image_url: string;
@@ -98,8 +98,8 @@ export type ProductTableType = {
   date: string;
 };
 
-export type ProductCardProps = {
-  id: string;
+export type ProductDessertCardProps = {
+  dessert_id: string;
   name_eng: string;
   name: string;
   image_url: string;
@@ -109,8 +109,8 @@ export type ProductCardProps = {
   date: string;
 };
 
-export type ProductForm = {
-  id: string;
+export type ProductDessertForm = {
+  dessert_id: string;
   name_eng: string;
   name: string;
   image_url: string;
@@ -120,8 +120,8 @@ export type ProductForm = {
   date: string;
 };
 
-export type ProductField = {
-  id: string;
+export type ProductDessertField = {
+  dessert_id: string;
   name_eng: string;
   name: string;
   image_url: string;

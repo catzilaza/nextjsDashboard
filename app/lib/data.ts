@@ -6,12 +6,12 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
-  ProductTableType,
-  ProductForm,
-  ProductField,
+  ProductDessertTableType,
+  ProductDessertForm,
+  ProductDessertField,
 } from "./definitions";
 import { formatCurrency } from "./utils";
-import { products } from "./placeholder-data";
+import { products_desserts } from "./placeholder-data";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -225,29 +225,29 @@ export async function fetchFilteredCustomers(query: string) {
 
 //================================================================
 
-export async function fetchProducts() {
+export async function fetchProducts_Dessert() {
   try {
-    const products = await sql<ProductField[]>`
+    const products = await sql<ProductDessertField[]>`
       SELECT
         *
-      FROM products
+      FROM products_desserts
       ORDER BY name ASC
     `;
 
     return products;
   } catch (err) {
     console.error("Database Error:", err);
-    throw new Error("Failed to fetch all products.");
+    throw new Error("Failed to fetch all products_desserts.");
   }
 }
 
-export async function fetchProductById(id: string) {
+export async function fetchProducts_DessertById(id: string) {
   try {
-    const data = await sql<ProductForm[]>`
+    const data = await sql<ProductDessertForm[]>`
       SELECT
         *
-      FROM products
-      WHERE products.id = ${id};
+      FROM products_desserts
+      WHERE products_desserts.dessert_id = ${id};
     `;   
     //  console.log("function fetchProductById(id: string) ===> : ", data);
      const product = data.map((product) => ({
@@ -257,38 +257,38 @@ export async function fetchProductById(id: string) {
     return product[0];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch product.");
+    throw new Error("Failed to fetch products_desserts.");
   }
 }
 
 const ITEMS_PER_PAGE_PRODUCT = 5;
-export async function fetchFilteredProducts(
+export async function fetchFilteredProducts_Dessert(
   query: string,
   currentPage: number
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE_PRODUCT;
 
   try {
-    const products = await sql<ProductTableType[]>`
+    const products = await sql<ProductDessertTableType[]>`
       SELECT
         *
-      FROM products      
+      FROM products_desserts      
       WHERE
-        products.name ILIKE ${`%${query}%`}    
+      products_desserts.name ILIKE ${`%${query}%`}    
       LIMIT ${ITEMS_PER_PAGE_PRODUCT} OFFSET ${offset}
     `;
 
     return products;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch filtered products.");
+    throw new Error("Failed to fetch filtered products_desserts.");
   }
 }
 
-export async function fetchProductsPages(query: string) {
+export async function fetchProducts_DessertPages(query: string) {
   try {
     const data = await sql`SELECT COUNT(*)
-    FROM products
+    FROM products_desserts
   `;
 
     const totalPages = Math.ceil(
@@ -297,6 +297,6 @@ export async function fetchProductsPages(query: string) {
     return totalPages;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of products.");
+    throw new Error("Failed to fetch total number of products_desserts.");
   }
 }

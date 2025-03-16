@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import Search from "@/app/ui/search";
 import { CreateProduct } from "@/app/ui/products/button";
 import { ProductsCardSkeleton } from "@/app/ui/skeletons";
-import { fetchProductsPages } from "@/app/lib/data";
+import { fetchProducts_DessertPages } from "@/app/lib/data";
 import Pagination from "@/app/ui/invoices/pagination";
 import Card from "@/app/ui/products/card";
 
@@ -16,7 +16,7 @@ export default async function Page(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchProductsPages(query);
+  const totalPages = await fetchProducts_DessertPages(query);
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
