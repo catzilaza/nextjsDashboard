@@ -5,7 +5,7 @@ import {
   customers,
   revenue,
   users,
-  products,
+  products_desserts,
 } from "../lib/placeholder-data";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
@@ -107,12 +107,12 @@ async function seedCustomers() {
 //   return insertedRevenue;
 // }
 
-async function seedProducts() {
+async function seedProducts_Dessert() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
   await sql`
-    CREATE TABLE IF NOT EXISTS products (
-      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS products_desserts (
+      dessert_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       name_eng VARCHAR(255) NOT NULL,
       name VARCHAR(255) NOT NULL,
       image_url VARCHAR(255) NOT NULL,
@@ -124,11 +124,11 @@ async function seedProducts() {
   `;
 
   const insertedProducts = await Promise.all(
-    products.map(
+    products_desserts.map(
       (product) => sql`
-        INSERT INTO products (id, name_eng, name, image_url, price, amount, status, date)
-        VALUES (${product.id}, ${product.name_eng}, ${product.name}, ${product.image_url}, ${product.price}, ${product.amount}, ${product.status}, ${product.date})
-        ON CONFLICT (id) DO NOTHING;
+        INSERT INTO products_desserts (dessert_id, name_eng, name, image_url, price, amount, status, date)
+        VALUES (${product.dessert_id}, ${product.name_eng}, ${product.name}, ${product.image_url}, ${product.price}, ${product.amount}, ${product.status}, ${product.date})
+        ON CONFLICT (dessert_id) DO NOTHING;
       `
     )
   );
@@ -143,10 +143,10 @@ export async function GET() {
   // });
   try {
     const result = await sql.begin((sql) => [
-      seedProducts(),
+      seedProducts_Dessert(),
       // seedUsers(),
-      seedCustomers(),
-      seedInvoices(),
+      // seedCustomers(),
+      // seedInvoices(),
       // seedRevenue(),
     ]);
 
