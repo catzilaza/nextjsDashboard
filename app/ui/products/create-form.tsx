@@ -7,16 +7,16 @@ import {
   CurrencyDollarIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { ProductField } from "@/app/lib/definitions";
+import { ProductDessertField } from "@/app/lib/definitions";
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
 import Image from "next/image";
 
-export default function Form({ products }: { products: ProductField[] }) {
+export default function Form({ products }: { products: ProductDessertField[] }) {
   const [selectedImage, setSelectedImage] = useState("");
 
   const handleSelectChange = (event: any) => {
-    const item = products.find((product) => product.id === event.target.value);
+    const item = products.find((product) => product.dessert_id === event.target.value);
     setSelectedImage(String(item?.image_url));
   };
 
