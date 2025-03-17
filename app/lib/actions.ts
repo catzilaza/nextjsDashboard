@@ -153,10 +153,10 @@ export type StateProductDessert = {
   message?: string | null;
 };
 
-const CreateProductDessert = FormSchemaProductDessert.omit({ 
-  // id: true, 
+const CreateProductDessert = FormSchemaProductDessert.omit({
+  // id: true,
   date: true,
-  });
+});
 
 export async function createProductDessert(
   prevState: StateProductDessert,
@@ -211,9 +211,9 @@ export async function createProductDessert(
   redirect("/dashboard/products");
 }
 
-const UpdateProductDessert = FormSchemaProductDessert.omit({  
-  // id: true, 
-  date: true,     
+const UpdateProductDessert = FormSchemaProductDessert.omit({
+  // id: true,
+  date: true,
 });
 
 export async function updateProductDessert(
@@ -241,7 +241,8 @@ export async function updateProductDessert(
     };
   }
 
-  const { productId, name, name_eng, amount, price, image_url } = validatedFields.data;
+  const { productId, name, name_eng, amount, price, image_url } =
+    validatedFields.data;
 
   // console.log("function updateProduct name ==> : ", name);
 

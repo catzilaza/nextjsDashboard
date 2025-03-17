@@ -10,8 +10,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
 import { updateInvoice, State } from "@/app/lib/actions";
-import { useActionState } from 'react';
-
+import { useActionState } from "react";
 
 export default function EditInvoiceForm({
   invoice,
@@ -27,7 +26,6 @@ export default function EditInvoiceForm({
   //console.log("EditInvoiceForm ====> : ", invoice);
   // console.log("EditInvoiceForm ====> : ", initialState);
   //console.log("EditInvoiceForm ====> : ", updateInvoiceWithId);
-
 
   return (
     <form action={formAction}>

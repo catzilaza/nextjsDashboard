@@ -6,13 +6,11 @@ import { notFound } from "next/navigation";
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const id = params.id;
-  const [product] = await Promise.all([
-    fetchProducts_DessertById(id),    
-  ]);
+  const [product] = await Promise.all([fetchProducts_DessertById(id)]);
 
   if (!product) {
     notFound();
-  }else {
+  } else {
     // console.log("fetchProductById(id) ===> : ", product);
   }
 
@@ -28,7 +26,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
           },
         ]}
       />
-      <Form product={product}/>
+      <Form product={product} />
     </main>
   );
 }
