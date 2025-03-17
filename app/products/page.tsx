@@ -1,7 +1,3 @@
 export default async function Page() {
-    return (
-        <>
-            App page
-        </>
-    )
+  return <>App page</>;
 }

@@ -72,11 +72,12 @@ export default async function ProductCard({
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
                     <img
-                      className="w-16 h-16 rounded-full"
+                      className="w-full h-32"
+                      width={50}
+                      height={50}
                       src={product.image_url}
                       alt={`${product.name}'s profile picture`}
                     />
-
                     <CardDescription>
                       Card Description
                       <p className="text-sm text-gray-500">

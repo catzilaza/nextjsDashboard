@@ -271,7 +271,8 @@ export function ProductCardSkeleton() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
-                    <img className="w-16 h-16 rounded-full" alt="" />
+                    {/* <img className="w-16 h-16 rounded-full" alt="" /> */}
+                    <div className="h-10 w-25 rounded-md bg-gray-200" />
 
                     <CardDescription>
                       Card Description
@@ -311,7 +312,7 @@ export function ProductCardSkeleton() {
 export function ProductsCardSkeleton() {
   return (
     <>
-      <ProductCardSkeleton />      
+      <ProductCardSkeleton />
     </>
   );
 }
