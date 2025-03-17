@@ -127,6 +127,7 @@ export async function deleteInvoice(id: string) {
 // date: string;
 
 const FormSchemaProductDessert = z.object({
+  // id: z.string(),
   productId: z.string({
     message: "Please enter a product id.",
   }),
@@ -152,9 +153,10 @@ export type StateProductDessert = {
   message?: string | null;
 };
 
-const CreateProductDessert = FormSchemaProductDessert.omit({
+const CreateProductDessert = FormSchemaProductDessert.omit({ 
+  // id: true, 
   date: true,
-});
+  });
 
 export async function createProductDessert(
   prevState: StateProductDessert,
@@ -209,11 +211,9 @@ export async function createProductDessert(
   redirect("/dashboard/products");
 }
 
-const UpdateProductDessert = FormSchemaProductDessert.omit({
-  date: true,
-  name: true,
-  name_eng: true,
-  image_url: true,
+const UpdateProductDessert = FormSchemaProductDessert.omit({  
+  // id: true, 
+  date: true,     
 });
 
 export async function updateProductDessert(
@@ -223,8 +223,11 @@ export async function updateProductDessert(
 ) {
   const validatedFields = UpdateProductDessert.safeParse({
     productId: formData.get("productId"),
+    name: formData.get("name"),
+    name_eng: formData.get("name_eng"),
     amount: formData.get("amount"),
     price: formData.get("price"),
+    image_url: formData.get("image_url"),
   });
 
   if (!validatedFields.success) {
@@ -238,9 +241,9 @@ export async function updateProductDessert(
     };
   }
 
-  const { productId, amount, price } = validatedFields.data;
+  const { productId, name, name_eng, amount, price, image_url } = validatedFields.data;
 
-  // console.log("function updateProduct amount ==> : ", amount);
+  // console.log("function updateProduct name ==> : ", name);
 
   try {
     await sql`
