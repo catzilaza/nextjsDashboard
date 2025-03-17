@@ -71,6 +71,8 @@ export default async function AppCard() {
                     >
                       <img
                         className="w-full h-32 full"
+                        width={50}
+                        height={50}
                         src={product.image_url}
                         alt={`${product.name}'s profile picture`}
                       />

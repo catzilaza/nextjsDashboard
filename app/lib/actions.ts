@@ -52,6 +52,8 @@ export async function createInvoice(prevState: State, formData: FormData) {
   const amountInCents = amount * 100;
   const date = new Date().toISOString().split("T")[0];
 
+  // console.log("Amount : ",amount);
+
   try {
     await sql`
       INSERT INTO invoices (customer_id, amount, status, date)
@@ -125,28 +127,32 @@ export async function deleteInvoice(id: string) {
 // date: string;
 
 const FormSchemaProductDessert = z.object({
-  id: z.string(),
   productId: z.string({
-    invalid_type_error: "Please select a product.",
+    message: "Please enter a product id.",
   }),
-  price: z.string({ message: "Please enter an price." }),
+  name: z.string({ message: "Please enter name." }),
+  name_eng: z.string({ message: "Please enter name." }),
   amount: z.coerce
     .number()
     .gt(0, { message: "Please enter an amount greater than $0." }),
+  price: z.string({ message: "Please enter price." }),
   date: z.string(),
+  image_url: z.string({ message: "Please enter image_url." }),
 });
 
 export type StateProductDessert = {
   errors?: {
     productId?: string[];
-    amount?: string[];
+    name?: string[];
+    name_eng?: string[];
     price?: string[];
+    amount?: string[];
+    image_url?: string[];
   };
   message?: string | null;
 };
 
 const CreateProductDessert = FormSchemaProductDessert.omit({
-  id: true,
   date: true,
 });
 
@@ -156,11 +162,19 @@ export async function createProductDessert(
 ) {
   const validatedFields = CreateProductDessert.safeParse({
     productId: formData.get("productId"),
+    name: formData.get("name"),
+    name_eng: formData.get("name_eng"),
     amount: formData.get("amount"),
+    price: formData.get("price"),
+    image_url: formData.get("image_url"),
   });
 
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
+    console.log(
+      "validatedFields Error",
+      validatedFields.error.flatten().fieldErrors
+    );
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Create Product.",
@@ -168,14 +182,24 @@ export async function createProductDessert(
   }
 
   // Prepare data for insertion into the database
-  const { productId, amount } = validatedFields.data;
+  const { productId, name, name_eng, price, amount, image_url } =
+    validatedFields.data;
+
+  const status = "avialable";
   const date = new Date().toISOString().split("T")[0];
+
+  // const date = "2024-02-26";
+  // const dessert_id = "d6e15727-9fe1-0001-8c5b-ea44a9bd81aa";
+  // const name = "ขนมไข่กล้วยหอม";
+  // const name_eng = "Banana Egg Cake";
+  // const image_url = "/products/product-001-ขนมไข่กล้วยหอม.jpg";
 
   try {
     await sql`
-      INSERT INTO products (amount, date)
-      VALUES (${amount}, ${date})
+      INSERT INTO products_desserts (dessert_id, name, name_eng, image_url, price, amount, status, date)
+      VALUES (${productId}, ${name}, ${name_eng}, ${image_url}, ${price}, ${amount}, ${status}, ${date})
     `;
+    console.log("INSERT INTO products_desserts : success!!!");
   } catch (error) {
     // We'll log the error to the console for now
     console.error(error);
@@ -186,8 +210,10 @@ export async function createProductDessert(
 }
 
 const UpdateProductDessert = FormSchemaProductDessert.omit({
-  id: true,
   date: true,
+  name: true,
+  name_eng: true,
+  image_url: true,
 });
 
 export async function updateProductDessert(
@@ -202,6 +228,10 @@ export async function updateProductDessert(
   });
 
   if (!validatedFields.success) {
+    console.log(
+      "validatedFields Error",
+      validatedFields.error.flatten().fieldErrors
+    );
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to Update product.",
@@ -217,6 +247,7 @@ export async function updateProductDessert(
         UPDATE products_desserts
         SET amount = ${amount}, price = ${price}
         WHERE dessert_id = ${id}`;
+    console.log("UPDATE : success!!!");
   } catch (error) {
     // We'll log the error to the console for now
     console.error(error);
@@ -228,7 +259,7 @@ export async function updateProductDessert(
 
 export async function deleteProduct(id: string) {
   // throw new Error('Failed to Delete Invoice');
-  await sql`DELETE FROM products_dessert WHERE dessert_id = ${id}`;
+  await sql`DELETE FROM products_desserts WHERE dessert_id = ${id}`;
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 }

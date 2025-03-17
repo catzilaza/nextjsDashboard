@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import AcmeLogo from "@/app/ui/acme-logo";
+import Link from "next/link";
 
 export default async function DetailProductPage(props: {
   params: Promise<{ id: string }>;
@@ -29,6 +30,8 @@ export default async function DetailProductPage(props: {
             <CardTitle>Card Title</CardTitle>
             <img
               className="w-100 h-50"
+              height={"auto"}
+              width={"auto"}
               src={product.image_url}
               alt={`${product.name}'s profile picture`}
             />
@@ -58,9 +61,12 @@ export default async function DetailProductPage(props: {
           <CardFooter>
             <p>Card Footer</p>
             <div className="card-actions justify-end">
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                Listen
-              </button>
+              <Link
+                href={"/"}
+                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              >
+                Back
+              </Link>
             </div>
           </CardFooter>
         </Card>
