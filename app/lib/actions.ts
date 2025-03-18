@@ -297,12 +297,12 @@ export type SignUpActionState = {
     password?: string[];
     email?: string[];
   };
-  message?: {};
+  message?: string | null;
 };
 
 const SignUpSchemaOmit = SignUpSchema.omit({});
 
-export async function signUp(
+export async function SignUp(
   _prevState: SignUpActionState,
   form: FormData
 ): Promise<SignUpActionState> {

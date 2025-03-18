@@ -23,7 +23,10 @@ export default function EditProductForm({
     null,
     product.dessert_id
   );
-  const [state, formAction] = useActionState(updateProductWithId, initialState);
+  const [state, formAction, isPending] = useActionState(
+    updateProductWithId,
+    initialState
+  );
 
   // console.log("EditProductForm ====> : ", product);
   // console.log("EditProductForm ====> : ", initialState);
@@ -41,12 +44,13 @@ export default function EditProductForm({
             Product Image
           </label>
           <div className="relative">
-            <Image
+            <img
               src={product.image_url}
-              width={150}
-              height={100}
+              className="w-80 h-25"
+              height={"auto"}
+              width={"auto"}
               alt={product.name_eng}
-            ></Image>
+            ></img>
           </div>
         </div>
 
@@ -205,7 +209,14 @@ export default function EditProductForm({
         >
           Edit product
         </Link> */}
-        <Button type="submit">Edit product</Button>
+        <Button type="submit" disabled={isPending}>
+          Edit product
+        </Button>
+        <div className="flex h-8 items-end space-x-1">
+          {/* Add form errors here */}
+          {isPending && <p>Please wait...</p>}
+          {state.errors && <p className="text-red-500">{state.message}</p>}
+        </div>
       </div>
     </form>
   );

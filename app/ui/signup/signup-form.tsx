@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { lusitana } from "@/app/ui/fonts";
-import { signUp } from "@/app/lib/actions";
+import { SignUp } from "@/app/lib/actions";
 import {
   AtSymbolIcon,
   KeyIcon,
@@ -10,9 +10,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "../button";
+import { SignUpActionState } from "@/app/lib/actions";
 
 export default function SignUpForm() {
-  const [state, action] = useActionState(signUp, {});
+  const initialState: SignUpActionState = { message: null, errors: {} };
+  const [state, action, isPending] = useActionState(SignUp, initialState);
   return (
     <form action={action} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -90,13 +92,23 @@ export default function SignUpForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full">
+        <Button className="mt-4 w-full" disabled={isPending}>
           Sign Up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div className="flex h-8 items-end space-x-1">
           {/* Add form errors here */}
+          {isPending && <p>Please wait...</p>}
+          {state.errors && (
+            <p className="text-red-500">{state.errors.username}</p>
+          )}
         </div>
       </div>
     </form>
   );
+}
+
+{
+  /* <Button className="mt-4 w-full">
+Sign Up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+</Button> */
 }

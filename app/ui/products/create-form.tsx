@@ -21,7 +21,7 @@ export default function Form({
   products: ProductDessertField[];
 }) {
   const initialState: StateProductDessert = { message: null, errors: {} };
-  const [state, formAction] = useActionState(
+  const [state, formAction, isPending] = useActionState(
     createProductDessert,
     initialState
   );
@@ -204,7 +204,14 @@ export default function Form({
         >
           Cancel
         </Link>
-        <Button type="submit">Create Product</Button>
+        <Button type="submit" disabled={isPending}>
+          Create Product
+        </Button>
+        <div className="flex h-8 items-end space-x-1">
+          {/* Add form errors here */}
+          {isPending && <p>Please wait...</p>}
+          {state.errors && <p className="text-red-500">{state.message}</p>}
+        </div>
       </div>
     </form>
   );
