@@ -2,10 +2,24 @@
 // https://nextjs.org/learn/dashboard-app/fetching-data
 const users = [
   {
-    id: "410544b2-4001-4271-9855-fec4b6a6442a",
-    name: "User",
+    user_id: "410544b2-4001-4271-9855-fec4b6a6442a",
+    username: "Admin",
+    email: "admin@nextmail.com",
+    password: "123456",
+    status: "admin",
+    date: "2022-12-06",
+    image_blob: "",   
+    image_url: "/customers/evil-rabbit.png",
+  },
+  {
+    user_id: "410544b2-4001-4271-9855-fec4b6a6332a",
+    username: "User",
     email: "user@nextmail.com",
     password: "123456",
+    status: "user",
+    date: "2022-12-06",
+    image_blob: "",    
+    image_url: "/customers/delba-de-oliveira.png",
   },
 ];
 

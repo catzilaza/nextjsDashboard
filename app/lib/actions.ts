@@ -1,5 +1,7 @@
 "use server";
 
+import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -266,4 +268,88 @@ export async function deleteProduct(id: string) {
   await sql`DELETE FROM products_desserts WHERE dessert_id = ${id}`;
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
+}
+
+//===============================================================================
+//Website Learn useActionState
+//https://dev.to/bookercodes/learn-useactionstate-quickly-4jj7
+
+const SignUpSchema = z.object({
+  username: z.string().min(4, { message: "Be at least 4 characters long" }),
+  password: z
+    .string()
+    .min(8, { message: "Be at least 8 characters long" })
+    .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
+    .regex(/[0-9]/, { message: "Contain at least one number." })
+    .regex(/[^a-zA-Z0-9]/, {
+      message: "Contain at least one special character.",
+    })
+    .trim(),
+  email: z.string({ message: "Enter email" }),
+});
+
+export type SignUpActionState = {
+  username?: string;
+  password?: string;
+  email?: string;
+  errors?: {
+    username?: string[];
+    password?: string[];
+    email?: string[];
+  };
+  message?: {};
+};
+
+const SignUpSchemaOmit = SignUpSchema.omit({});
+
+export async function signUp(
+  _prevState: SignUpActionState,
+  form: FormData
+): Promise<SignUpActionState> {
+  const user_id = uuidv4();
+  const username = form.get("username") as string;
+  const password = form.get("password") as string;
+  const email = form.get("email") as string;
+  const status = "user";
+  const date = new Date().toISOString().split("T")[0];
+  const image_blob = "";
+  const image_url = "/customers/evil-rabbit.png";
+
+  const validatedFields = SignUpSchemaOmit.safeParse({
+    username,
+    password,
+    email,
+  });
+
+  if (!validatedFields.success) {
+    console.log("ERROR : ", validatedFields.error.flatten().fieldErrors);
+    return {
+      username,
+      password,
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  // console.log("username : ", username);
+  // console.log("password : ", password);
+  // console.log("email : ", email);
+
+  // process validated form inputs here
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    await sql`
+      INSERT INTO users (user_id, username, email, password, status, date, image_url)
+      VALUES (${user_id}, ${username}, ${email}, ${hashedPassword}, ${status}, ${date}, ${image_url})
+    `;
+    console.log("INSERT INTO users : success!!!");
+  } catch (error) {
+    // We'll log the error to the console for now
+    console.error(error);
+  }
+
+  revalidatePath("/");
+  redirect("/");
+
+  // return { username, password };
 }
