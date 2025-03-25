@@ -71,16 +71,10 @@ export default async function ProductCard({
                 <Card key={product.dessert_id}>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
-                    <Image
-                      className="mr-2"
-                      priority
-                      width={50}
-                      height={50}
-                      // height={50}
-                      style={{
-                        width: "auto",
-                        height: "auto",
-                      }}
+                    <img
+                      className="w-100 h-50"
+                      height={"auto"}
+                      width={"auto"}
                       src={product.image_url}
                       alt={`${product.name}'s profile picture`}
                     />
