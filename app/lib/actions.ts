@@ -6,6 +6,11 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import postgres from "postgres";
+import { fetchUserByEmail, fetchUser } from "./data";
+import { User } from "./definitions";
+import { CreateSession } from "../login/lib/session";
+import { signIn } from "@/auth";
+import { AuthError } from "next-auth";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -285,7 +290,9 @@ const SignUpSchema = z.object({
       message: "Contain at least one special character.",
     })
     .trim(),
-  email: z.string({ message: "Enter email" }),
+  email: z.string({
+    invalid_type_error: "Invalid Email",
+  }),
 });
 
 export type SignUpActionState = {
@@ -352,4 +359,88 @@ export async function SignUp(
   redirect("/");
 
   // return { username, password };
+}
+
+//===========================================================================
+
+const LogInSchema = z.object({
+  password: z
+    .string()
+    .min(8, { message: "Be at least 8 characters long" })
+    .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
+    .regex(/[0-9]/, { message: "Contain at least one number." })
+    .regex(/[^a-zA-Z0-9]/, {
+      message: "Contain at least one special character.",
+    })
+    .trim(),
+  email: z.string({
+    invalid_type_error: "Invalid Email",
+  }),
+});
+
+export type LogInActionState = {
+  password?: string;
+  email?: string;
+  errors?: {
+    password?: string[];
+    email?: string[];
+  };
+  message?: string | null;
+};
+
+const LogInSchemaOmit = LogInSchema.omit({});
+
+export async function Login(
+  prevState: LogInActionState,
+  formData: FormData
+): Promise<LogInActionState> {
+  const validatedFields = LogInSchemaOmit.safeParse({
+    password: formData.get("password"),
+    email: formData.get("email"),
+  });
+
+  if (!validatedFields.success) {
+    console.log(
+      "validatedFields Error",
+      validatedFields.error.flatten().fieldErrors
+    );
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to fetch user by id.",
+    };
+  }
+
+  const { password, email } = validatedFields.data;
+
+  const data = await fetchUser(email, password);
+  // console.log("Fetch User By Email ", data);
+  // if (!data) return null;
+  // const passwordsMatch = await bcrypt.compare(password, data.password);
+
+  if (data !== null) {
+    //Create Session
+    await CreateSession(data?.user_id);
+  }
+
+  revalidatePath("/login");
+  redirect("/login");
+}
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return "Invalid credentials.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+    throw error;
+  }
 }

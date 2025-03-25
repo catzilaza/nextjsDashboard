@@ -26,9 +26,16 @@ export default async function Page(props: {
         <Search placeholder="Search products..." />
         <CreateProduct />
       </div>
+      {/* <Suspense key={query + currentPage}>
+      
+        <Card query={query} currentPage={currentPage} />
+      </Suspense> */}
       <Suspense key={query + currentPage} fallback={<ProductsCardSkeleton />}>
         <Card query={query} currentPage={currentPage} />
       </Suspense>
+
+      {/* <Card query={query} currentPage={currentPage} /> */}
+
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
       </div>

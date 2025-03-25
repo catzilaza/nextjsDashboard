@@ -127,3 +127,60 @@ function UUIDPage() {
     </div>
   );
 }
+
+
+
+//Optimistic updates
+//https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
+
+// 'use client'
+ 
+// import { useOptimistic } from 'react'
+// import { send } from './actions'
+ 
+// type Message = {
+//   message: string
+// }
+ 
+// export function Thread({ messages }: { messages: Message[] }) {
+//   const [optimisticMessages, addOptimisticMessage] = useOptimistic<
+//     Message[],
+//     string
+//   >(messages, (state, newMessage) => [...state, { message: newMessage }])
+ 
+//   const formAction = async (formData: FormData) => {
+//     const message = formData.get('message') as string
+//     addOptimisticMessage(message)
+//     await send(message)
+//   }
+ 
+//   return (
+//     <div>
+//       {optimisticMessages.map((m, i) => (
+//         <div key={i}>{m.message}</div>
+//       ))}
+//       <form action={formAction}>
+//         <input type="text" name="message" />
+//         <button type="submit">Send</button>
+//       </form>
+//     </div>
+//   )
+// }
+
+
+// 'use server'
+ 
+// import { cookies } from 'next/headers'
+ 
+// export async function exampleAction() {
+//   const cookieStore = await cookies()
+ 
+//   // Get cookie
+//   cookieStore.get('name')?.value
+ 
+//   // Set cookie
+//   cookieStore.set('name', 'Delba')
+ 
+//   // Delete cookie
+//   cookieStore.delete('name')
+// }

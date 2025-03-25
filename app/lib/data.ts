@@ -9,9 +9,11 @@ import {
   ProductDessertTableType,
   ProductDessertForm,
   ProductDessertField,
+  User,
 } from "./definitions";
 import { formatCurrency } from "./utils";
 import { products_desserts } from "./placeholder-data";
+import bcrypt from "bcrypt";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -248,9 +250,9 @@ export async function fetchProducts_DessertById(id: string) {
         *
       FROM products_desserts
       WHERE products_desserts.dessert_id = ${id};
-    `;   
+    `;
     //  console.log("function fetchProductById(id: string) ===> : ", data);
-     const product = data.map((product) => ({
+    const product = data.map((product) => ({
       ...product,
     }));
 
@@ -298,5 +300,43 @@ export async function fetchProducts_DessertPages(query: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of products_desserts.");
+  }
+}
+
+export async function fetchUserByEmail(email: string) {
+  try {
+    const data = await sql<User[]>`
+      SELECT
+        *
+      FROM users
+      WHERE users.email = ${email};
+    `;
+
+    return data[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch user by email.");
+  }
+}
+
+export async function fetchUser(email: string, password: string) {
+  try {
+    const data = await sql<User[]>`
+      SELECT
+        *
+      FROM users
+      WHERE (users.email = ${email}) and (users.password = ${password});
+    `;
+
+    if (!data) return null;
+
+    const passwordsMatch = await bcrypt.compare(password, data[0].password);
+
+    if (!passwordsMatch) return null;
+
+    return data[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch user by email.");
   }
 }

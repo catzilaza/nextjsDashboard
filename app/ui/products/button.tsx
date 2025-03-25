@@ -28,11 +28,20 @@ export function UpdateProduct({ id }: { id: string }) {
   );
 }
 
+import { useFormStatus } from 'react-dom'
+//Pending states
+//Alternatively , When using this hook, you'll need to create a separate component to render
+// the loading indicator. For example, to disable the button when the action is pending:
+//https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
+
+
+
 export function DeleteProduct({ id }: { id: string }) {
   const deleteProductWithId = deleteProduct.bind(null, id);
+  const { pending } = useFormStatus()
   return (
     <form action={deleteProductWithId}>
-      <button type="submit" className="rounded-md border p-2 hover:bg-gray-100">
+      <button disabled={pending} type="submit" className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>

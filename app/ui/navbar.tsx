@@ -14,7 +14,7 @@ const Navbar = () => {
           href="/signup"
           className="flex h-[48px] w-auto grow items-center justify-center gap-2 rounded-md bg-blue-300 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
         >
-          <span>Sign in</span> <IdentificationIcon className="w-5 md:w-6" />
+          <span>Sign up</span> <IdentificationIcon className="w-5 md:w-6" />
         </Link>
         <Link
           href="/login"

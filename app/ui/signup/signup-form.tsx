@@ -92,6 +92,7 @@ export default function SignUpForm() {
             </div>
           </div>
         </div>
+        <p aria-live="polite">{state?.message}</p>
         <Button className="mt-4 w-full" disabled={isPending}>
           Sign Up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
