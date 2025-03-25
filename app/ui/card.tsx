@@ -70,9 +70,9 @@ export default async function AppCard() {
                       className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
                     >
                       <img
-                        className="w-full h-32 full"
-                        width={50}
-                        height={50}
+                        className="w-100 h-50"
+                        height={"auto"}
+                        width={"auto"}
                         src={product.image_url}
                         alt={`${product.name}'s profile picture`}
                       />
