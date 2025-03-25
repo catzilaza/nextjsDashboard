@@ -147,8 +147,8 @@ export async function GET() {
   // });
   try {
     const result = await sql.begin((sql) => [
-      // seedProducts_Dessert(),
-      seedUsers(),
+      seedProducts_Dessert(),
+      // seedUsers(),
       // seedCustomers(),
       // seedInvoices(),
       // seedRevenue(),
