@@ -237,13 +237,17 @@ export default function Form({
             </label>
             <div className="relative mt-2 rounded-md">
               <div className="relative">
-                <img
-                  src={"/products/product-001-ขนมไข่กล้วยหอม.jpg"}
-                  className="w-80 h-25"
-                  height={"auto"}
-                  width={"auto"}
-                  alt={"/products/product-001-ขนมไข่กล้วยหอม.jpg"}
-                ></img>
+                <Image
+                  src={"/products/banana-egg-cake.jpg"}
+                  priority
+                  width={300}
+                  height={200}
+                  alt={`${"/products/banana-egg-cake.jpg"}'s profile picture`}
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                  }}
+                />
               </div>
             </div>
           </div>

@@ -8,12 +8,12 @@ import {
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "./button";
-import { Login, LogInActionState } from "../lib/actions";
 import { useActionState } from "react";
-import { signIn } from "@/auth";
-import { AuthError } from "next-auth";
 import { authenticate } from "@/app/lib/actions";
 import { useSearchParams } from "next/navigation";
+import { signIn } from "@/auth";
+import { AuthError } from "next-auth";
+import { Login, LogInActionState } from "../lib/actions";
 
 export default function LoginForm() {
   // const initialState: LogInActionState = { message: null, errors: {} };
@@ -25,6 +25,7 @@ export default function LoginForm() {
     authenticate,
     undefined
   );
+  
   return (
     <form action={formAction} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -87,6 +88,7 @@ export default function LoginForm() {
             </>
           )}
         </Button> */}
+        {/* <input type="hidden" name="redirectTo" value={callbackUrl} /> */}
         <input type="hidden" name="redirectTo" value={callbackUrl} />
         <Button className="mt-4 w-full" aria-disabled={isPending}>
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />

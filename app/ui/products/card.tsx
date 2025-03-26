@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // import { products_desserts } from "@/app/lib/placeholder-data";
+import pic1 from "../../../public/products/Brownie.jpg";
 
 export default async function ProductCard({
   query,
@@ -41,10 +42,15 @@ export default async function ProductCard({
                     <div className="mb-2 flex items-center">
                       <Image
                         src={product.image_url}
-                        className="mr-2 rounded-full"
-                        width={50}
+                        priority
+                        className="mr-2"
+                        width={100}
                         height={50}
-                        alt={`${product.name}'s profile picture`}
+                        alt={`${product.name_eng}'s profile picture`}
+                        style={{
+                          width: "auto",
+                          height: "auto",
+                        }}
                       />
                       <p>{product.name}</p>
                       <p>{product.name_eng}</p>
@@ -73,12 +79,17 @@ export default async function ProductCard({
                 <Card key={product.dessert_id}>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
-                    <img
-                      className="w-100 h-50"
-                      height={"auto"}
-                      width={"auto"}
+                    <Image
                       src={product.image_url}
-                      alt={`${product.name}'s profile picture`}
+                      priority
+                      className="mr-2"
+                      width={200}
+                      height={150}
+                      alt={`${product.name_eng}'s profile picture`}
+                      style={{
+                        width: "auto",
+                        height: "auto",
+                      }}
                     />
                     <CardDescription>
                       Card Description
@@ -122,6 +133,16 @@ export default async function ProductCard({
       </div>
     </div>
   );
+}
+
+{
+  /* <img
+className="w-100 h-50"
+height={"auto"}
+width={"auto"}
+src={product.image_url}
+alt={`${product.name}'s profile picture`}
+/> */
 }
 
 // https://medium.com/@enayetflweb/crafting-effective-ui-with-the-card-component-in-shadcn-ui-9c41719b8e44

@@ -6,6 +6,8 @@ import { lusitana } from "@/app/ui/fonts";
 import Image from "next/image";
 import Navbar from "./ui/navbar";
 // import Card from "./ui/card";
+import pic1_hero_desktop from "../public/hero-desktop.png"
+import pic2_hero_mobile from "../public/hero-mobile.png"
 
 export default function Page() {
   return (
@@ -38,7 +40,7 @@ export default function Page() {
         </div>
         <div className="flex items-center justify-center p-6 md:w-4/5 md:px-28 md:py-6">
           <Image
-            src="/hero-desktop.png"
+            src={pic1_hero_desktop}
             width={1000}
             height={760}
             className="hidden md:block"
@@ -46,7 +48,9 @@ export default function Page() {
             priority
           />
           <Image
-            src="/hero-mobile.png"
+            src={pic2_hero_mobile}
+            // src="/hero-mobile.png"
+            priority
             width={560}
             height={620}
             className="block md:hidden"

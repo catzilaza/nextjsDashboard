@@ -9,7 +9,8 @@ import {
 } from "@/app/ui/skeletons";
 import { fetchProducts_DessertPages } from "@/app/lib/data";
 import Pagination from "@/app/ui/invoices/pagination";
-import Card from "@/app/ui/products/card";
+// import Card from "@/app/ui/products/card";
+import ProductCard from "@/app/ui/products/card";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -31,7 +32,7 @@ export default async function Page(props: {
         <CreateProduct />
       </div>
       <Suspense key={query + currentPage} fallback={<ProductsCardSkeleton />}>
-        <Card query={query} currentPage={currentPage} />
+        <ProductCard query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
