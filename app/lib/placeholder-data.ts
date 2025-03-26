@@ -8,7 +8,7 @@ const users = [
     password: "123456",
     status: "admin",
     date: "2022-12-06",
-    image_blob: "",   
+    image_blob: "",
     image_url: "/customers/evil-rabbit.png",
   },
   {
@@ -18,7 +18,7 @@ const users = [
     password: "123456",
     status: "user",
     date: "2022-12-06",
-    image_blob: "",    
+    image_blob: "",
     image_url: "/customers/delba-de-oliveira.png",
   },
 ];
