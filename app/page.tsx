@@ -6,8 +6,8 @@ import { lusitana } from "@/app/ui/fonts";
 import Image from "next/image";
 import Navbar from "./ui/navbar";
 // import Card from "./ui/card";
-import pic1_hero_desktop from "../public/hero-desktop.png"
-import pic2_hero_mobile from "../public/hero-mobile.png"
+import pic1_hero_desktop from "../public/hero-desktop.png";
+import pic2_hero_mobile from "../public/hero-mobile.png";
 
 export default function Page() {
   return (
