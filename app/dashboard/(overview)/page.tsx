@@ -10,8 +10,6 @@ import {
   CardsSkeleton,
 } from "@/app/ui/skeletons";
 
-import { auth } from "@/auth";
-
 export default async function Page() {
   const {
     numberOfInvoices,
@@ -20,13 +18,10 @@ export default async function Page() {
     totalPendingInvoices,
   } = await fetchCardData();
 
-  const session:any = await auth();
-  console.log("session : ", session);
-
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        Dashboard : session : {session.user.email} : expires: {session.expires}
+        Dashboard
       </h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Suspense fallback={<CardsSkeleton />}>

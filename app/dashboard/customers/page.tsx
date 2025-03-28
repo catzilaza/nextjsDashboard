@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import CustomersTable from "@/app/ui/customers/table";
+import { people } from "@/app/lib/placeholder-data";
 
 // Loading animation
 const shimmer =
@@ -18,6 +20,7 @@ export default function Page() {
     <>
       <p>Customers Page</p>
       <UUIDPage />
+      {/* <CustomersTable /> */}
     </>
   );
 }
@@ -32,6 +35,17 @@ function UUIDPage() {
       <p>
         <strong>{uuid}</strong>
       </p>
+      <ul className="divide-y divide-gray-200">
+        {people.map((person) => (
+          <li key={person.email} className="flex py-4">
+            <img className="size-10 rounded-full" src={person.image} alt="" />
+            <div className="ml-3">
+              <p className="text-sm font-medium text-gray-900">{person.name}</p>
+              <p className="text-sm text-gray-500">{person.email}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
 
       {/*Card Skeleton*/}
       {/* <div
@@ -49,32 +63,30 @@ function UUIDPage() {
   );
 }
 
-
-
 //Optimistic updates
 //https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
 
 // 'use client'
- 
+
 // import { useOptimistic } from 'react'
 // import { send } from './actions'
- 
+
 // type Message = {
 //   message: string
 // }
- 
+
 // export function Thread({ messages }: { messages: Message[] }) {
 //   const [optimisticMessages, addOptimisticMessage] = useOptimistic<
 //     Message[],
 //     string
 //   >(messages, (state, newMessage) => [...state, { message: newMessage }])
- 
+
 //   const formAction = async (formData: FormData) => {
 //     const message = formData.get('message') as string
 //     addOptimisticMessage(message)
 //     await send(message)
 //   }
- 
+
 //   return (
 //     <div>
 //       {optimisticMessages.map((m, i) => (
@@ -88,20 +100,19 @@ function UUIDPage() {
 //   )
 // }
 
-
 // 'use server'
- 
+
 // import { cookies } from 'next/headers'
- 
+
 // export async function exampleAction() {
 //   const cookieStore = await cookies()
- 
+
 //   // Get cookie
 //   cookieStore.get('name')?.value
- 
+
 //   // Set cookie
 //   cookieStore.set('name', 'Delba')
- 
+
 //   // Delete cookie
 //   cookieStore.delete('name')
 // }

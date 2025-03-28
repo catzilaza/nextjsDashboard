@@ -7,7 +7,8 @@ export type User = {
   username: string;
   email: string;
   password: string;
-  status: "admin" | "user";
+  status: boolean;
+  roll: "admin" | "user";
   date: string;
   image_blob: string;
   image_url: string;

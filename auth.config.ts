@@ -23,6 +23,10 @@ export const authConfig = {
       return true;
     },
   },
+  // session: {
+  //   strategy: "jwt",
+  // },
+  // trustHost: true,
   providers: [],
 } satisfies NextAuthConfig;
 

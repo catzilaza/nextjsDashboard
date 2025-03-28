@@ -18,7 +18,8 @@ async function seedUsers() {
       username VARCHAR(255) NOT NULL,
       email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL,
-      status VARCHAR(255) NOT NULL,
+      status VARCHAR(255) NOT NULL,      
+      roll VARCHAR(255) NOT NULL,      
       date DATE NOT NULL,
       image_blob BYTEA,    
       image_url VARCHAR(255)
@@ -29,8 +30,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return sql`
-        INSERT INTO users (user_id, username, email, password, status, date, image_url)
-        VALUES (${user.user_id}, ${user.username}, ${user.email}, ${hashedPassword}, ${user.status}, ${user.date}, ${user.image_url})
+        INSERT INTO users (user_id, username, email, password, status, roll, date, image_url)
+        VALUES (${user.user_id}, ${user.username}, ${user.email}, ${hashedPassword}, ${user.status}, ${user.roll}, ${user.date}, ${user.image_url})
         ON CONFLICT (user_id) DO NOTHING;
       `;
     })
@@ -147,8 +148,8 @@ export async function GET() {
   // });
   try {
     const result = await sql.begin((sql) => [
-      seedProducts_Dessert(),
-      // seedUsers(),
+      // seedProducts_Dessert(),
+      seedUsers(),
       // seedCustomers(),
       // seedInvoices(),
       // seedRevenue(),
