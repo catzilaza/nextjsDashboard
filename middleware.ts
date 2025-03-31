@@ -1,8 +1,6 @@
 // import { type NextRequest, NextResponse } from "next/server";
 // import { auth as middleware } from "./auth";
-import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { decrypt } from "./app/auth/02-stateless-session";
+
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 
