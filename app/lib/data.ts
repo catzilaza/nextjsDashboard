@@ -14,6 +14,7 @@ import {
 import { formatCurrency } from "./utils";
 import { products_desserts } from "./placeholder-data";
 import bcrypt from "bcrypt";
+import { auth } from "@/auth";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -324,23 +325,35 @@ export async function fetchUserByEmail(email: string) {
 }
 
 export async function fetchUser(email: string, password: string) {
+  console.log("FetchUser Step 0: email : password : ", email, password);
   try {
     const data = await sql<User[]>`
       SELECT
         *
       FROM users
-      WHERE (users.email = ${email}) and (users.password = ${password});
+      WHERE (users.email = ${email});
     `;
+
+    console.log("FetchUser Step 1: data : ", data);
 
     if (!data) return null;
 
     const passwordsMatch = await bcrypt.compare(password, data[0].password);
 
     if (!passwordsMatch) return null;
+    console.log("FetchUser Step Match : passwordsMatch : ", passwordsMatch);
 
     return data[0];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch user by email.");
+    throw new Error("Failed to fetch user.");
   }
 }
+
+export async function getLoginSession() {
+  const session:any = await auth();
+  // console.log("getLoginSession : ", session);
+  return session;
+}
+
+

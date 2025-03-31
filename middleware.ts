@@ -1,6 +1,13 @@
+// import { type NextRequest, NextResponse } from "next/server";
+// import { auth as middleware } from "./auth";
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { decrypt } from "./app/auth/02-stateless-session";
 import NextAuth from "next-auth";
-import { type NextRequest, NextResponse } from "next/server";
 import { authConfig } from "./auth.config";
+
+//https://github.com/vercel-labs/app-router-auth
+//https://github.com/nextauthjs/next-auth
 
 export default NextAuth(authConfig).auth;
 
@@ -14,26 +21,34 @@ export const config = {
   ],
 };
 
-// export default async function MiddleWare(req: NextRequest) {
-//   //1. Check if route is protected
-//   const path = "";
-//   const protectedRoutes = ["/dashboard"];
-//   const currentPath = req.nextUrl.pathname;
+// // 1. Specify protected and public routes
+// const protectedRoutes = ["/dashboard", "/products"];
+// const publicRoutes = ["/login", "/signup", "/"];
+
+// export default async function middleware(req: NextRequest) {
+//   // 2. Check if the current route is protected or public
+//   const path = req.nextUrl.pathname;
 //   const isProtectedRoute = protectedRoutes.includes(path);
+//   const isPublicRoute = publicRoutes.includes(path);
 
-//   if (isProtectedRoute) {
-//     //2. Check for valid session
-//     const cookie = cookies().get('session')?.value;
-//     const session = await decrypt(cookie)
+//   // 3. Decrypt the session from the cookie
+//   const cookie = (await cookies()).get("session")?.value;
+//   const session = await decrypt(cookie);
 
-//     //3. Redirect unauthed users
-//     if(!session?.userId) {
-//       return NextResponse.redirect(new URL('login', req.nextUrl));
-//     }
+//   // 4. Redirect
+//   if (isProtectedRoute && !session?.userId) {
+//     return NextResponse.redirect(new URL("/login", req.nextUrl));
 //   }
 
-//   //4. Render route
-//   return NextResponse.next()
+//   if (
+//     isPublicRoute &&
+//     session?.userId &&
+//     !req.nextUrl.pathname.startsWith("/dashboard")
+//   ) {
+//     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+//   }
+
+//   return NextResponse.next();
 // }
 
 // export const config = {
@@ -50,7 +65,6 @@ export const config = {
 //   "/admin": "admin",
 //   "/manager": "manager",
 //   "/cto": "cto",
-
 // };
 
 // export default async function middleware(req: NextRequest) {

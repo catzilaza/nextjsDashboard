@@ -141,6 +141,18 @@ async function seedProducts_Dessert() {
   return insertedProducts;
 }
 
+async function seedUser_session() {
+  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await sql`
+    CREATE TABLE user_sessions (
+    id SERIAL PRIMARY KEY,
+    userId INTEGER NOT NULL REFERENCES users(id),
+    expiresAt TIMESTAMP NOT NULL
+    );
+  `;
+}
+
 export async function GET() {
   // return Response.json({
   //   message:
@@ -148,8 +160,9 @@ export async function GET() {
   // });
   try {
     const result = await sql.begin((sql) => [
+      seedUser_session(),
       // seedProducts_Dessert(),
-      seedUsers(),
+      // seedUsers(),
       // seedCustomers(),
       // seedInvoices(),
       // seedRevenue(),

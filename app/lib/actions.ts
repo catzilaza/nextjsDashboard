@@ -6,9 +6,8 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import postgres from "postgres";
-import { fetchUserByEmail, fetchUser } from "./data";
-import { User } from "./definitions";
-import { CreateSession } from "../login/lib/session";
+import { fetchUser } from "./data";
+
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
@@ -417,11 +416,6 @@ export async function Login(
   // if (!data) return null;
   // const passwordsMatch = await bcrypt.compare(password, data.password);
 
-  if (data !== null) {
-    //Create Session
-    await CreateSession(data?.user_id);
-  }
-
   revalidatePath("/login");
   redirect("/login");
 }
@@ -444,3 +438,39 @@ export async function authenticate(
     throw error;
   }
 }
+
+// export async function createInvoice(prevState: State, formData: FormData) {
+//   const validatedFields = CreateInvoice.safeParse({
+//     customerId: formData.get("customerId"),
+//     amount: formData.get("amount"),
+//     status: formData.get("status"),
+//   });
+
+//   // If form validation fails, return errors early. Otherwise, continue.
+//   if (!validatedFields.success) {
+//     return {
+//       errors: validatedFields.error.flatten().fieldErrors,
+//       message: "Missing Fields. Failed to Create Invoice.",
+//     };
+//   }
+
+//   // Prepare data for insertion into the database
+//   const { customerId, amount, status } = validatedFields.data;
+//   const amountInCents = amount * 100;
+//   const date = new Date().toISOString().split("T")[0];
+
+//   // console.log("Amount : ",amount);
+
+//   try {
+//     await sql`
+//       INSERT INTO invoices (customer_id, amount, status, date)
+//       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+//     `;
+//   } catch (error) {
+//     // We'll log the error to the console for now
+//     console.error(error);
+//   }
+
+//   revalidatePath("/dashboard/invoices");
+//   redirect("/dashboard/invoices");
+// }

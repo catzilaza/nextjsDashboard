@@ -7,25 +7,20 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "./button";
+import { Button } from "../button";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import { useSearchParams } from "next/navigation";
-import { signIn } from "@/auth";
-import { AuthError } from "next-auth";
-import { Login, LogInActionState } from "../lib/actions";
+import Link from "next/link";
 
 export default function LoginForm() {
-  // const initialState: LogInActionState = { message: null, errors: {} };
-  // const [state, action, isPending] = useActionState(Login, initialState);
-
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined
   );
-  
+
   return (
     <form action={formAction} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -101,6 +96,12 @@ export default function LoginForm() {
             </>
           )}
         </div>
+        <Link
+          href={"/"}
+          className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+        >
+          Cancle
+        </Link>
       </div>
     </form>
   );

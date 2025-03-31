@@ -8,7 +8,7 @@ import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-async function getUser(email: string): Promise<User | undefined> {
+async function getUser(email: string) {
   try {
     const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
     return user[0];
@@ -18,11 +18,11 @@ async function getUser(email: string): Promise<User | undefined> {
   }
 }
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
-      async authorize(credentials, req): Promise<User | null> {
+      async authorize(credentials, req) {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
@@ -30,24 +30,13 @@ export const { auth, signIn, signOut } = NextAuth({
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
-          // console.log("Step 0 get Email user : ", user);
+
           if (!user) return null;
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          // console.log("Step 1 Compare password user : ", user);
 
-          const filtered_user: User = {
-            user_id: user?.user_id,
-            username: user?.username,
-            email: user?.email,
-            password: "",
-            status: user?.status,
-            roll: user?.roll,
-            date: user?.date,
-            image_blob: user?.image_blob,
-            image_url: user?.image_url,
-          };
+          const filtered_user = user;
 
-          if (passwordsMatch) return user;
+          if (passwordsMatch) return filtered_user;
         }
 
         console.log("Invalid credentials");

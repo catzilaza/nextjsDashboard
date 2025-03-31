@@ -11,6 +11,7 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "../button";
 import { SignUpActionState } from "@/app/lib/actions";
+import Link from "next/link";
 
 export default function SignUpForm() {
   const initialState: SignUpActionState = { message: null, errors: {} };
@@ -103,6 +104,12 @@ export default function SignUpForm() {
             <p className="text-red-500">{state.errors.username}</p>
           )}
         </div>
+        <Link
+          href={"/"}
+          className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+        >
+          Cancle
+        </Link>
       </div>
     </form>
   );

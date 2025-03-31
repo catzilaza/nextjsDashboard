@@ -1,10 +1,13 @@
 import type { NextAuthConfig } from "next-auth";
+import type { User as NextAuthUser } from "next-auth";
+import type { AdapterUser } from "next-auth/adapters";
 
-// type authConfigType = {
-//     pages: {
-//         signIn: string;
-//     }
-// }
+// Extend the User type to include the `username` property
+interface User extends NextAuthUser {
+  username?: string;
+  image_url?: string;
+  roll?: string;
+}
 
 export const authConfig = {
   pages: {
@@ -22,11 +25,27 @@ export const authConfig = {
       }
       return true;
     },
+    jwt({ token, user }) {
+      if (user) {
+        const extendedUser = user as User;
+        token.id = extendedUser.id;
+        token.name = extendedUser.username;
+        token.email = extendedUser.email;
+        token.picture = extendedUser.image_url;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (session) {
+        session.user.id = token.id as string;
+        session.user.name = token.name;
+        session.user.email = token.email as string;
+        session.user.image = token.picture;
+      }
+
+      return session;
+    },
   },
-  // session: {
-  //   strategy: "jwt",
-  // },
-  // trustHost: true,
   providers: [],
 } satisfies NextAuthConfig;
 
