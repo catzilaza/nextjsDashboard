@@ -351,9 +351,7 @@ export async function fetchUser(email: string, password: string) {
 }
 
 export async function getLoginSession() {
-  const session:any = await auth();
+  const session: any = await auth();
   // console.log("getLoginSession : ", session);
   return session;
 }
-
-

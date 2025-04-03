@@ -5,7 +5,7 @@ import {
   IdentificationIcon,
 } from "@heroicons/react/24/outline";
 
-const Navbar = () => {
+const Navbar = async () => {
   return (
     <div className="flex h-20 flex-row px-3 py-1 md:px-2">
       <div className="flex space-x-2">

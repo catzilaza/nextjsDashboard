@@ -14,6 +14,38 @@ export type User = {
   image_url: string;
 };
 
+export type UserSessionTable = {
+  user_id: string;
+  session_id: string;
+  session_token: string;
+  expires: string;
+  user_agent: string;
+  ip_address: string;
+  created_at: string;
+  updated_at: string;
+  user: User;
+};
+
+export type Account = {
+  user_id: string;
+  provider: string;
+  provider_account_id: string;
+  type: string;
+  access_token: string;
+  expires_at: string;
+  token_type: string;
+  scope: string;
+  id_token: string;
+  session_state: string;
+  access_token_expires_at: string;
+  refresh_token: string;
+  id_token_expires_at: string;
+  id_token_expires: string;
+  created_at: string;
+  updated_at: string;
+  user: User;
+};
+
 export type Customer = {
   id: string;
   name: string;

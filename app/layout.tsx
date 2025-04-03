@@ -2,7 +2,6 @@ import "@/app/ui/global.css";
 import { inter } from "@/app/ui/fonts";
 // import { Inter, Lusitana } from "next/font/google";
 
-
 export default function RootLayout({
   children,
 }: {

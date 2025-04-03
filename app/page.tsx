@@ -8,6 +8,7 @@ import Navbar from "./ui/navbar";
 // import Card from "./ui/card";
 import pic1_hero_desktop from "../public/hero-desktop.png";
 import pic2_hero_mobile from "../public/hero-mobile.png";
+import { Statususer } from "@/components/statususer";
 
 export default function Page() {
   return (
@@ -22,6 +23,7 @@ export default function Page() {
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-1/5 md:px-20">
           <div className="relative w-0 h-0 border-l-[15px] border-r-[15px] border-b-[26px] border-l-transparent border-r-transparent border-b-black" />
+          <Statususer />
           <p
             className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
           >

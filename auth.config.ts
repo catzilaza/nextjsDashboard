@@ -16,12 +16,44 @@ export const authConfig = {
   callbacks: {
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
+
+      const extendedAuth = auth as User;
+
+      // How to set roll base access control in callback authorized?Thanks.
+      // const userRole = extendedAuth?.roll;
+
+      // // Define role-based access rules
+      // const roleBasedAccess = {
+      //   admin: ["/", "/products", "/dashboard"],
+      //   user: ["/", "/products"],
+      //   guest: ["/", "/products", "/login", "/signup"],
+      // };
+
+      // const isAdmin = extendedAuth?.roll === "admin";
+
+      // const isOnDashboard = ["/products", "/dashboard"].some((route) =>
+      //   nextUrl.pathname.startsWith(route)
+      // );
+
+      // if (isOnDashboard) {
+      //   if (isLoggedIn) return true;
+      //   return false; // Redirect unauthenticated users to login page
+      // } else if (isLoggedIn) {
+      //   return Response.redirect(new URL("/dashboard", nextUrl));
+      // }
+      // return true;
+
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+
       if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
-        return Response.redirect(new URL("/dashboard", nextUrl));
+        if (isLoggedIn) {
+          return true;
+        }
+        return false;
+      } else {
+        if (isLoggedIn) {
+          return Response.redirect(new URL("/dashboard", nextUrl));
+        }
       }
       return true;
     },
