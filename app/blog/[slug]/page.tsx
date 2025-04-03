@@ -6,7 +6,7 @@ import Image from "next/image";
 export default async function SlugBlog({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   //   const blog = await prisma.post.findUnique({
   //     where: {
