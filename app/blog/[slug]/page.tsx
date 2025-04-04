@@ -48,25 +48,27 @@ export default async function SlugBlog({
   //   console.log("blog+++++++++++++++", blog.params.slug);
 
   return (
-    <section className="py-24 px-8">
-      <div className="container">
-        <h1 className="text-4xl font-bold">{blog.name}</h1>
-        <div
-          className="prose-headings:font-title font-default prose mt-4 dark:prose-invert focus:outline-none"
-          dangerouslySetInnerHTML={{ __html: blog.name_eng }}
-        ></div>
-        <div>
-          <Image
-            src={blog.image_url}
-            alt={blog.name_eng}
-            priority
-            width={500}
-            height={500}
-            className="rounded-lg mt-4"
-            style={{ width: "auto", height: "auto" }} // Responsive image
-          />
+    <>
+      <section className="py-24 px-8">
+        <div className="container">
+          <h1 className="text-4xl font-bold">{blog.name}</h1>
+          <div
+            className="prose-headings:font-title font-default prose mt-4 dark:prose-invert focus:outline-none"
+            dangerouslySetInnerHTML={{ __html: blog.name_eng }}
+          ></div>
+          <div>
+            <Image
+              src={blog.image_url}
+              alt={blog.name_eng}
+              priority
+              width={500}
+              height={500}
+              className="rounded-lg mt-4"
+              style={{ width: "auto", height: "auto" }} // Responsive image
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

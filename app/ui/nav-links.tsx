@@ -18,6 +18,7 @@ const links = [
   { name: "Home", href: "/", icon: HomeIcon },
   { name: "Products", href: "/products", icon: DocumentDuplicateIcon },
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
+  { name: "Blog", href: "/blog", icon: ChartBarSquareIcon },
   // {
   //   name: "Invoices",
   //   href: "/dashboard/invoices",
