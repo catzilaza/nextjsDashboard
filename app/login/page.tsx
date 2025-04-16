@@ -3,6 +3,8 @@ import LoginForm from "@/app/ui/login/login-form";
 import { Suspense } from "react";
 import { signIn } from "@/auth";
 import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import { Button } from "../ui/button";
 
 export default function LoginPage() {
   return (
@@ -25,9 +27,10 @@ export default function LoginPage() {
             className="space-y-3"
           >
             <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-              <button className="mt-4 w-full" type="submit">
-                Signin with GitHub
-              </button>
+              <Button className="mt-4 w-full" type="submit">
+                Login with GitHub
+                <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+              </Button>
             </div>
           </form>
         </Suspense>

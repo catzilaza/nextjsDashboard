@@ -4,7 +4,7 @@ import { getLoginSession } from "@/app/lib/data";
 
 export default async function Page() {
   const session: any = await getLoginSession();
-  console.log("session", session);
+  // console.log("session", session);
 
   return (
     <>
@@ -16,13 +16,18 @@ export default async function Page() {
           <img
             className="size-10 rounded-full"
             src={session?.user?.image as string}
-            alt=""
+            alt="Not Found Image"
           />
           <div className="ml-3">
             <p className="text-sm font-medium text-gray-900">
-              {session?.user?.name as string} : role {session?.user?.roll}
+              Name : {session?.user?.name as string}
             </p>
-            <p className="text-sm text-gray-500">{session?.user?.email}</p>
+            <p className="text-sm font-medium text-gray-900">
+              Role : {session?.user?.roll as string}
+            </p>
+            <p className="text-sm text-gray-500">
+              Email : {session?.user?.email as string}
+            </p>
           </div>
         </li>
         <div className="divide-y divide-gray-200"></div>
