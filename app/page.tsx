@@ -42,7 +42,7 @@ export default function Page() {
         </div>
         <div className="flex items-center justify-center p-6 md:w-4/5 md:px-28 md:py-6">
           <Image
-            src={pic1_hero_desktop}
+            src={"/hero-desktop.png"}
             width={1000}
             height={760}
             className="hidden md:block"
@@ -50,7 +50,7 @@ export default function Page() {
             priority
           />
           <Image
-            src={pic2_hero_mobile}
+            src={"/hero-mobile.png"}
             // src="/hero-mobile.png"
             priority
             width={560}
