@@ -6,6 +6,9 @@ import type { User } from "@/app/lib/definitions";
 import bcrypt from "bcrypt";
 import postgres from "postgres";
 
+import Google from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
+
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 async function getUser(email: string) {
@@ -20,7 +23,18 @@ async function getUser(email: string) {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  session: {
+    strategy: "jwt",
+  },
   providers: [
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+    }),
+    Github({
+      clientId: process.env.AUTH_GITHUB_IDD as string,
+      clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+    }),
     Credentials({
       async authorize(credentials, req) {
         const parsedCredentials = z

@@ -4,6 +4,8 @@ import { getLoginSession } from "@/app/lib/data";
 
 export default async function Page() {
   const session: any = await getLoginSession();
+  console.log("session", session);
+
   return (
     <>
       <p>Customers Page</p>
@@ -18,7 +20,7 @@ export default async function Page() {
           />
           <div className="ml-3">
             <p className="text-sm font-medium text-gray-900">
-              {session?.user?.name as string}
+              {session?.user?.name as string} : role {session?.user?.roll}
             </p>
             <p className="text-sm text-gray-500">{session?.user?.email}</p>
           </div>
