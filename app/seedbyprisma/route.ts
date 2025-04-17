@@ -1,36 +1,36 @@
-import bcrypt from "bcrypt";
-import { PrismaClient } from "@prisma/client";
+// import bcrypt from "bcrypt";
+// import { PrismaClient } from "@prisma/client";
 
-import {
-  invoices,
-  customers,
-  revenue,
-  users,
-  products_desserts,
-} from "../lib/placeholder-data";
+// import {
+//   invoices,
+//   customers,
+//   revenue,
+//   users,
+//   products_desserts,
+// } from "../lib/placeholder-data";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
-async function seedUsers() {
-  for (const user of users) {
-    const hashedPassword = await bcrypt.hash(user.password, 10);
+// async function seedUsers() {
+//   for (const user of users) {
+//     const hashedPassword = await bcrypt.hash(user.password, 10);
 
-    await prisma.users.create({
-      // Check for conflict on `user_id`
-      // Do nothing if the user already exists
-      data: {
-        user_id: user.user_id,
-        username: user.username,
-        email: user.email,
-        password: hashedPassword,
-        status: "user.status",
-        role: user.role,
-        date: user.date,
-        image_url: user.image_url,
-      },
-    });
-  }
-}
+//     await prisma.users.create({
+//       // Check for conflict on `user_id`
+//       // Do nothing if the user already exists
+//       data: {
+//         user_id: user.user_id,
+//         username: user.username,
+//         email: user.email,
+//         password: hashedPassword,
+//         status: "user.status",
+//         role: user.role,
+//         date: user.date,
+//         image_url: user.image_url,
+//       },
+//     });
+//   }
+// }
 
 // async function seedInvoices() {
 //   await dbConnect();
@@ -80,29 +80,30 @@ async function seedUsers() {
 //   return insertedRevenue;
 // }
 
-export async function GET() {
-  // return Response.json({ message: "Database seeded successfully" });
+// export async function GET() {
+// return Response.json({ message: "Database seeded successfully" });
 
-  // try {
-  // await client.sql`BEGIN`;
-  // await seedUsers();
-  // await seedCustomers();
-  // await seedInvoices();
-  // await seedRevenue();
-  // await client.sql`COMMIT`;
+// try {
+// await client.sql`BEGIN`;
+// await seedUsers();
+// await seedCustomers();
+// await seedInvoices();
+// await seedRevenue();
+// await client.sql`COMMIT`;
 
-  //   return Response.json({ message: "Database seeded successfully" });
-  // } catch (error) {
-  //   //   await client.sql`ROLLBACK`;
-  //   return Response.json({ error }, { status: 500 });
-  // }
-  seedUsers()
-    .then(() => {
-      console.log("Users seeded successfully");
-      prisma.$disconnect();
-    })
-    .catch((error) => {
-      console.error("Error seeding users:", error);
-      prisma.$disconnect();
-    });
-}
+//   return Response.json({ message: "Database seeded successfully" });
+// } catch (error) {
+//   //   await client.sql`ROLLBACK`;
+//   return Response.json({ error }, { status: 500 });
+// }
+//   seedUsers()
+//     .then(() => {
+//       console.log("Users seeded successfully");
+//       prisma.$disconnect();
+//     })
+//     .catch((error) => {
+//       console.error("Error seeding users:", error);
+//       prisma.$disconnect();
+//     });
+// }
+//
