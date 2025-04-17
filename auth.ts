@@ -45,7 +45,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
 
-          if (!user) return null;
+          if (!user) {
+            console.log(
+              "From Provider : Function Credential() ==> Not found email"
+            );
+            return null;
+          }
+
           const passwordsMatch = await bcrypt.compare(password, user.password);
 
           const filtered_user = user;
@@ -53,7 +59,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           if (passwordsMatch) return filtered_user;
         }
 
-        console.log("Invalid credentials");
+        console.log(
+          "From Provider : Function Credential() ==> Invalid credentials : Password not match"
+        );
         return null;
       },
     }),

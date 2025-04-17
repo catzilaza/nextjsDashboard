@@ -10,7 +10,7 @@ interface UserSession extends NextAuthSession {
     name?: string | null;
     email?: string | null;
     image?: string | null;
-    roll?: "admin" | "user";
+    role?: "admin" | "user";
   };
 }
 
@@ -18,7 +18,7 @@ interface UserSession extends NextAuthSession {
 interface User extends NextAuthUser {
   username?: string;
   image_url?: string;
-  roll?: "admin" | "user";
+  role?: "admin" | "user";
 }
 
 export const authConfig = {
@@ -56,7 +56,7 @@ export const authConfig = {
       // return true;
 
       const extendedAuth = auth as UserSession;
-      const isAdmin = extendedAuth?.user?.roll === "admin";
+      const isAdmin = extendedAuth?.user?.role === "admin";
       const isOnRoot = nextUrl.pathname.startsWith("/");
 
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
@@ -93,7 +93,7 @@ export const authConfig = {
         token.name = extendedUser.username;
         token.email = extendedUser.email;
         token.picture = extendedUser.image_url;
-        token.roll = extendedUser.roll;
+        token.roll = extendedUser.role;
         return token;
       }
       return token;
@@ -105,7 +105,7 @@ export const authConfig = {
         extendedSession.user.name = token.name;
         extendedSession.user.email = token.email as string;
         extendedSession.user.image = token.picture;
-        extendedSession.user.roll = token.roll as "admin" | "user";
+        extendedSession.user.role = token.roll as "admin" | "user";
 
         return extendedSession;
       }

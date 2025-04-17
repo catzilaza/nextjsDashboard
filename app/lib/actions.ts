@@ -1,13 +1,12 @@
 "use server";
 
+import postgres from "postgres";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import postgres from "postgres";
 import { fetchUser } from "./data";
-
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
@@ -420,24 +419,24 @@ export async function Login(
   redirect("/login");
 }
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData
-) {
-  try {
-    await signIn("credentials", formData);
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return "Invalid credentials.";
-        default:
-          return "Something went wrong.";
-      }
-    }
-    throw error;
-  }
-}
+// export async function authenticate(
+//   prevState: string | undefined,
+//   formData: FormData
+// ) {
+//   try {
+//     await signIn("credentials", formData);
+//   } catch (error) {
+//     if (error instanceof AuthError) {
+//       switch (error.type) {
+//         case "CredentialsSignin":
+//           return "Invalid credentials.";
+//         default:
+//           return "Something went wrong.";
+//       }
+//     }
+//     throw error;
+//   }
+// }
 
 // export async function createInvoice(prevState: State, formData: FormData) {
 //   const validatedFields = CreateInvoice.safeParse({

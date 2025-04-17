@@ -23,7 +23,7 @@ export default async function Page() {
               Name : {session?.user?.name as string}
             </p>
             <p className="text-sm font-medium text-gray-900">
-              Role : {session?.user?.roll as string}
+              Role : {session?.user?.role as string}
             </p>
             <p className="text-sm text-gray-500">
               Email : {session?.user?.email as string}
