@@ -117,18 +117,47 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.CustomersScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
-  name: 'name'
+  image_url: 'image_url'
 };
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.InvoicesScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  content: 'content',
-  published: 'published',
-  authorId: 'authorId'
+  customer_id: 'customer_id',
+  amount: 'amount',
+  status: 'status',
+  date: 'date'
+};
+
+exports.Prisma.Products_dessertsScalarFieldEnum = {
+  dessert_id: 'dessert_id',
+  name_eng: 'name_eng',
+  name: 'name',
+  image_url: 'image_url',
+  price: 'price',
+  amount: 'amount',
+  status: 'status',
+  date: 'date'
+};
+
+exports.Prisma.RevenueScalarFieldEnum = {
+  month: 'month',
+  revenue: 'revenue'
+};
+
+exports.Prisma.UsersScalarFieldEnum = {
+  user_id: 'user_id',
+  username: 'username',
+  email: 'email',
+  password: 'password',
+  status: 'status',
+  role: 'role',
+  date: 'date',
+  image_blob: 'image_blob',
+  image_url: 'image_url'
 };
 
 exports.Prisma.SortOrder = {
@@ -148,8 +177,11 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Post: 'Post'
+  customers: 'customers',
+  invoices: 'invoices',
+  products_desserts: 'products_desserts',
+  revenue: 'revenue',
+  users: 'users'
 };
 
 /**
