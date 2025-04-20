@@ -1,7 +1,5 @@
 import AcmeLogo from "@/app/ui/acme-logo";
-import LoginForm from "@/components/auth/login/login-form";
-// import SignUpForm from "../ui/signup/signup-form";
-import SignUpForm from "@/app/ui/signup/signup-form";
+import SignUpForm from "@/components/auth/signup/signup-form";
 import { Suspense } from "react";
 
 export default function SignUpPage() {

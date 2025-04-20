@@ -277,87 +277,89 @@ export async function deleteProduct(id: string) {
 //Website Learn useActionState
 //https://dev.to/bookercodes/learn-useactionstate-quickly-4jj7
 
-const SignUpSchema = z.object({
-  username: z.string().min(4, { message: "Be at least 4 characters long" }),
-  password: z
-    .string()
-    .min(8, { message: "Be at least 8 characters long" })
-    .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
-    .regex(/[0-9]/, { message: "Contain at least one number." })
-    .regex(/[^a-zA-Z0-9]/, {
-      message: "Contain at least one special character.",
-    })
-    .trim(),
-  email: z.string({
-    invalid_type_error: "Invalid Email",
-  }),
-});
+// const SignUpSchema = z.object({
+//   username: z.string().min(4, { message: "Be at least 4 characters long" }),
+//   password: z
+//     .string()
+//     .min(8, { message: "Be at least 8 characters long" })
+//     .regex(/[a-zA-Z]/, { message: "Contain at least one letter." })
+//     .regex(/[0-9]/, { message: "Contain at least one number." })
+//     .regex(/[^a-zA-Z0-9]/, {
+//       message: "Contain at least one special character.",
+//     })
+//     .trim(),
+//   email: z.string({
+//     invalid_type_error: "Invalid Email",
+//   }),
+// });
 
-export type SignUpActionState = {
-  username?: string;
-  password?: string;
-  email?: string;
-  errors?: {
-    username?: string[];
-    password?: string[];
-    email?: string[];
-  };
-  message?: string | null;
-};
+// export type SignUpActionState = {
+//   username?: string;
+//   password?: string;
+//   email?: string;
+//   errors?: {
+//     username?: string[];
+//     password?: string[];
+//     email?: string[];
+//   };
+//   message?: string | null;
+// };
 
-const SignUpSchemaOmit = SignUpSchema.omit({});
+// const SignUpSchemaOmit = SignUpSchema.omit({});
 
-export async function SignUp(
-  _prevState: SignUpActionState,
-  form: FormData
-): Promise<SignUpActionState> {
-  const user_id = uuidv4();
-  const username = form.get("username") as string;
-  const password = form.get("password") as string;
-  const email = form.get("email") as string;
-  const status = "user";
-  const date = new Date().toISOString().split("T")[0];
-  const image_blob = "";
-  const image_url = "/customers/evil-rabbit.png";
+// export async function SignUp(
+//   _prevState: SignUpActionState,
+//   form: FormData
+// ): Promise<SignUpActionState> {
+//   const user_id = uuidv4();
+//   const username = form.get("username") as string;
+//   const password = form.get("password") as string;
+//   const email = form.get("email") as string;
+//   const status = true;
+//   const role = "user";
+//   const date = new Date().toISOString().split("T")[0];
+//   const image_blob = "";
+//   const image_url = "/customers/balazs-orban.png";
 
-  const validatedFields = SignUpSchemaOmit.safeParse({
-    username,
-    password,
-    email,
-  });
+//   const validatedFields = SignUpSchemaOmit.safeParse({
+//     username,
+//     password,
+//     email,
+//   });
 
-  if (!validatedFields.success) {
-    console.log("ERROR : ", validatedFields.error.flatten().fieldErrors);
-    return {
-      username,
-      password,
-      errors: validatedFields.error.flatten().fieldErrors,
-    };
-  }
+//   if (!validatedFields.success) {
+//     console.log("ERROR : ", validatedFields.error.flatten().fieldErrors);
+//     return {
+//       username,
+//       password,
+//       errors: validatedFields.error.flatten().fieldErrors,
+//     };
+//   }
 
-  // console.log("username : ", username);
-  // console.log("password : ", password);
-  // console.log("email : ", email);
+//   // console.log("username : ", username);
+//   // console.log("password : ", password);
+//   // console.log("email : ", email);
 
-  // process validated form inputs here
-  const hashedPassword = await bcrypt.hash(password, 10);
+//   // process validated form inputs here
+//   const hashedPassword = await bcrypt.hash(password, 10);
 
-  try {
-    await sql`
-      INSERT INTO users (user_id, username, email, password, status, date, image_url)
-      VALUES (${user_id}, ${username}, ${email}, ${hashedPassword}, ${status}, ${date}, ${image_url})
-    `;
-    console.log("INSERT INTO users : success!!!");
-  } catch (error) {
-    // We'll log the error to the console for now
-    console.error(error);
-  }
+//   try {
+//     await sql`
+//       INSERT INTO users (user_id, username, email, password, status, role , date, image_url)
+//       VALUES (${user_id}, ${username}, ${email}, ${hashedPassword}, ${status}, ${role}, ${date}, ${image_url})
+//     `;
 
-  revalidatePath("/");
-  redirect("/");
+//     console.log("INSERT INTO users : success!!!");
+//   } catch (error) {
+//     // We'll log the error to the console for now
+//     console.error(error);
+//   }
 
-  // return { username, password };
-}
+//   revalidatePath("/");
+//   redirect("/");
+
+//   // return { username, password };
+// }
 
 //===========================================================================
 
