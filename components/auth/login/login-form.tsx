@@ -9,15 +9,14 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "../../../app/ui/button";
 import { useActionState } from "react";
-// import { authenticate } from "@/app/lib/actions";
-import { authenticateAction } from "@/app/lib/actions/auth-action";
+import { authenticate } from "@/app/lib/actions/auth/auth-action";
 import { useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [errorMessage, formAction, isPending] = useActionState(
-    authenticateAction,
+    authenticate,
     undefined
   );
 
@@ -89,4 +88,43 @@ export default function LoginForm() {
       </form>
     </>
   );
+}
+
+{
+  /* <form
+className="space-y-4"
+action={formAction}
+// action={async (formData) => {
+//   "use server";
+//   await executeAction({
+//     actionFn: async () => {
+//       await signIn("credentials", formData);
+//     },
+//   });
+// }}
+>
+<Input
+  name="email"
+  placeholder="Email"
+  type="email"
+  required
+  autoComplete="email"
+/>
+<Input
+  name="password"
+  placeholder="Password"
+  type="password"
+  required
+  autoComplete="current-password"
+/>
+<Button className="w-full" type="submit">
+  Sign In
+</Button>
+</form>
+
+<div className="text-center">
+<Button asChild variant="link" aria-disabled={isPending}>
+  <Link href="/sign-up">Don&apos;t have an account? Sign up</Link>
+</Button>
+</div> */
 }

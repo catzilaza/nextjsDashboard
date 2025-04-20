@@ -8,6 +8,58 @@ import { authConfig } from "./auth.config";
 //https://github.com/nextauthjs/next-auth
 
 export default NextAuth(authConfig).auth;
+// export default NextAuth(authConfig).auth(async () => {});
+
+// const privateRoutes = ["/dashboard"];
+
+// const { auth } = NextAuth(authConfig);
+
+// export default auth(async (req) => {
+
+//   console.log("This is Middleware --------");
+
+//   console.log("Middleware triggered:", req.nextUrl.pathname);
+//   console.log("Request auth:", req.auth);
+//   console.log("Request method:", req.method);
+//   console.log("Request URL:", req.url);
+//   console.log("Request headers:", req.headers.get("cookie"));
+
+//   const isLoggedIn = !!req.auth;
+//   const { nextUrl } = req;
+
+//   const url = "http://localhost:3000";
+
+//   const isPrivateRoute = privateRoutes.includes(nextUrl.pathname);
+//   const isAuthRoute = nextUrl.pathname.includes("/login");
+//   const isApiRoute = nextUrl.pathname.includes("/api/");
+
+//   if (isApiRoute) {
+//     console.log("This is : isApiRoute is TRUE and return;");
+//     return;
+//   }
+
+//   if (isLoggedIn && isAuthRoute) {
+//     console.log(
+//       "*******This is :  isLoggedIn && isAuthRoute TRUE and return Response.redirect(${url}/dashboard);"
+//     );
+//     return Response.redirect(`${url}/dashboard`);
+//     // return Response.redirect(new URL("/dashboard", nextUrl));
+//   }
+
+//   if (isAuthRoute && !isLoggedIn) {
+//     console.log("This is : isAuthRoute && !isLoggedIn TRUE and return;");
+//     return;
+//   }
+
+//   if (isPrivateRoute && !isLoggedIn) {
+//     console.log(
+//       "This is : isPrivateRoute && !isLoggedIn TRUE and return Response.redirect(`${url}/login`;"
+//     );
+//     return Response.redirect(`${url}/login`);
+//   }
+
+//   console.log("Exit From Middleware auth ---------");
+// });
 
 export const config = {
   // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher

@@ -1,72 +1,94 @@
 import NextAuth from "next-auth";
-import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import type { User } from "@/app/lib/definitions";
+import { authConfig } from "./auth.config";
 import bcrypt from "bcrypt";
-import postgres from "postgres";
+// import postgres from "postgres";
+// import prisma from "./lib/prisma";
 
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
+import { getUserByEmail } from "./lib/data/auth/users";
 
-async function getUser(email: string) {
-  try {
-    const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
-    return user[0];
-  } catch (error) {
-    console.error("Failed to fetch user:", error);
-    throw new Error("Failed to fetch user.");
-  }
-}
+// const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
+
+// async function getUser(email: string) {
+//   try {
+//     const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
+//     return user[0];
+//   } catch (error) {
+//     console.error("Failed to fetch user:", error);
+//     throw new Error("Failed to fetch user.");
+//   }
+// }
+
+// async function getUserByEmail(email: string) {
+//   try {
+//     const user = await prisma.users.findFirst({
+//       where: {
+//         email: email,
+//       },
+//     });
+//     return user;
+//   } catch (error) {
+//     console.error("Failed to fetch user by email:", error);
+//     throw new Error("Failed to fetch user by email.");
+//     // return null
+//   }
+// }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  session: {
-    strategy: "jwt",
-  },
+  // session: {
+  //   strategy: "jwt",
+  // },
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
     }),
-    Github({
-      clientId: process.env.AUTH_GITHUB_IDD as string,
-      clientSecret: process.env.AUTH_GITHUB_SECRET as string,
-    }),
+    Github,
     Credentials({
       async authorize(credentials, req) {
+        console.log("+++++ Enter Credentials : Authorize");
+
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
 
-        if (parsedCredentials.success) {
-          const { email, password } = parsedCredentials.data;
-          const user = await getUser(email);
+        if (!parsedCredentials.success) {
+          console.log("Leave Credentials : Authorize");
+          return null;
+        }
+        const { email, password } = parsedCredentials.data;
+        // const user = await getUser(email);
+        const user = await getUserByEmail(email);
 
-          if (!user) {
-            console.log(
-              "From Provider : Function Credential() ==> Not found email"
-            );
-            return null;
-          }
+        if (!user) {
+          console.log("User not found");
+          return null;
+        }
+        const passwordsMatch = await bcrypt.compare(password, user.password);
 
-          const passwordsMatch = await bcrypt.compare(password, user.password);
-
-          const filtered_user = user;
-
-          if (passwordsMatch) return filtered_user;
+        if (!passwordsMatch) {
+          console.log("Leave Credentials : Authorize");
+          return null;
         }
 
-        console.log(
-          "From Provider : Function Credential() ==> Invalid credentials : Password not match"
-        );
-        return null;
+        console.log("Leave Credentials : Authorize");
+
+        return user;
       },
     }),
   ],
 });
+
+//    Github({
+//   clientId: process.env.AUTH_GITHUB_IDD as string,
+//   clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+// })
 
 // import NextAuth from "next-auth";
 // import GitHubProvider from "next-auth/providers/github";
