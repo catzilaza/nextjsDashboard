@@ -6,11 +6,14 @@ import { authConfig } from "./auth.config";
 import bcrypt from "bcrypt";
 // import postgres from "postgres";
 // import prisma from "./lib/prisma";
+// import { adapter } from "next/dist/server/web/adapter";
+// import { Adapter } from "next-auth/adapter";
 
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
 
 import { getUserByEmail } from "./lib/data/auth/users";
+import { error } from "console";
 
 // const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -44,6 +47,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   // session: {
   //   strategy: "jwt",
   // },
+  // adapter: PrismaAdapter(prisma) as Adapter,
+  // theme:{
+  //   logo:"logo.png"
+  // },
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -52,34 +59,50 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Github,
     Credentials({
       async authorize(credentials, req) {
-        console.log("+++++ Enter Credentials : Authorize");
+        try {
+          const parsedCredentials = z
+            .object({ email: z.string().email(), password: z.string().min(6) })
+            .safeParse(credentials);
 
-        const parsedCredentials = z
-          .object({ email: z.string().email(), password: z.string().min(6) })
-          .safeParse(credentials);
+          if (!parsedCredentials.success) {
+            console.error(
+              "Invalid credentials format:",
+              parsedCredentials.error
+            );
+            // throw error;
+            return null;
+          }
 
-        if (!parsedCredentials.success) {
-          console.log("Leave Credentials : Authorize");
+          const { email, password } = parsedCredentials.data;
+          const user = await getUserByEmail(email);
+
+          if (!user) {
+            console.error("User not found for email:", email);
+            // throw error;
+            return null;
+          }
+
+          const passwordsMatch = await bcrypt.compare(password, user.password);
+
+          try {
+            if (!passwordsMatch) {
+              console.error("Password does not match for user:", email);
+              // throw error;
+              return null;
+            }
+          } catch (error) {
+            console.error("Error in authorize function:", error);
+            return null;
+          }
+
+          return {
+            ...user,
+            role: user.role as "user" | "admin" | null | undefined,
+          };
+        } catch (error) {
+          console.error("Error in authorize function:", error);
           return null;
         }
-        const { email, password } = parsedCredentials.data;
-        // const user = await getUser(email);
-        const user = await getUserByEmail(email);
-
-        if (!user) {
-          console.log("User not found");
-          return null;
-        }
-        const passwordsMatch = await bcrypt.compare(password, user.password);
-
-        if (!passwordsMatch) {
-          console.log("Leave Credentials : Authorize");
-          return null;
-        }
-
-        console.log("Leave Credentials : Authorize");
-
-        return user;
       },
     }),
   ],

@@ -3,6 +3,7 @@
 
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
+import { NextResponse } from "next/server";
 
 //https://github.com/vercel-labs/app-router-auth
 //https://github.com/nextauthjs/next-auth
@@ -13,6 +14,54 @@ export default NextAuth(authConfig).auth;
 // const privateRoutes = ["/dashboard"];
 
 // const { auth } = NextAuth(authConfig);
+
+// export async function middleware(request: any) {
+//   // const session = await auth();
+
+//   // console.log(session);
+//   // console.log("middleware");
+//   return;
+// }
+
+// export async function middleware(request: any) {
+//   const session = await auth();
+
+//   console.log(session);
+//   console.log("middleware");
+//   return NextResponse.redirect(new URL("/", request.url));
+// }
+
+// interface MiddlewareRequest extends Request {
+//   url: string;
+// }
+
+// interface AuthSession {
+//   user?: {
+//     id: string | undefined;
+//     name: string;
+//     email: string;
+//   };
+//   expires: string;
+// }
+
+// export async function middleware(request: MiddlewareRequest): Promise<NextResponse> {
+//   const session = await auth();
+//   const transformedSession: AuthSession | null = session
+//     ? {
+//         user: session.user
+//           ? {
+//               id: session.user.id ?? "",
+//               name: session.user.name ?? "",
+//               email: session.user.email ?? "",
+//             }
+//           : undefined,
+//         expires: session.expires,
+//       }
+//     : null;
+//   console.log(session);
+//   console.log("middleware");
+//   return NextResponse.redirect(new URL("/", request.url));
+// }
 
 // export default auth(async (req) => {
 

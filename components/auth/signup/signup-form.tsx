@@ -14,10 +14,13 @@ import {
   SignUp,
   SignUpActionState,
 } from "@/app/lib/actions/auth/signup-action";
+import { useToast } from "@/hooks/use-toast";
 
 export default function SignUpForm() {
   const initialState: SignUpActionState = { message: null, errors: {} };
   const [state, action, isPending] = useActionState(SignUp, initialState);
+  const { toast } = useToast();
+
   return (
     <form action={action} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
