@@ -11,6 +11,7 @@ import {
   KeyIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
+import LoginForm from "@/components/auth/login/login-form";
 
 export default function LoginPage() {
   return (
@@ -39,7 +40,8 @@ export default function LoginPage() {
             </div>
             <Suspense>
               {/* Email/Password Sign In */}
-              <form
+              <LoginForm />
+              {/* <form
                 className="space-y-4"
                 action={async (formData) => {
                   "use server";
@@ -75,14 +77,14 @@ export default function LoginPage() {
                     Don&apos;t have an account? Sign up
                   </Link>
                 </Button>
-              </div>
+              </div> */}
             </Suspense>
-            <Link
+            {/* <Link
               href={"/"}
               className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
             >
               Cancle
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

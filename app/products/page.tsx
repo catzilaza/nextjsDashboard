@@ -1,15 +1,15 @@
 import AcmeLogo from "@/app/ui/acme-logo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import styles from "@/app/ui/home.module.css";
 import { lusitana } from "@/app/ui/fonts";
-import Image from "next/image";
-// import Navbar from "./ui/navbar";
-// import Card from "./ui/card";
 import Navbar from "../ui/navbar";
-import Card from "../ui/card";
+import ProductList from "@/components/products/product-list";
+import { fetchProducts_Dessert } from "@/app/lib/data";
+import { formatDateToLocal } from "@/app/lib/utils";
+import styles from "@/app/ui/home.module.css";
 
-export default function Page() {
+export default async function ProductsPage() {
+  const products = await fetchProducts_Dessert();
   return (
     <main className="flex min-h-screen flex-col p-6">
       {/*<div className={styles.shape} />*/}
@@ -39,7 +39,7 @@ export default function Page() {
           </Link>
         </div>
         <div className="flex items-center justify-center p-6 md:w-4/5 md:px-28 md:py-6">
-          <Card />
+          <ProductList products={products} />
         </div>
       </div>
     </main>

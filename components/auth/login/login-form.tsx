@@ -11,6 +11,7 @@ import { Button } from "../../../app/ui/button";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions/auth/auth-action";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
@@ -19,6 +20,12 @@ export default function LoginForm() {
     authenticate,
     undefined
   );
+
+  // if (errorMessage) {
+  //   console.log("From SignIN Form has error : ", errorMessage);
+  // } else {
+  //   console.log("From SignIN Form No error : ", errorMessage);
+  // }
 
   return (
     <>
@@ -73,7 +80,7 @@ export default function LoginForm() {
             Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
           </Button>
           <div
-            className="flex h-8 items-end space-x-1"
+            className="flex h-6 items-center space-x-1"
             aria-live="polite"
             aria-atomic="true"
           >
@@ -84,13 +91,23 @@ export default function LoginForm() {
               </>
             )}
           </div>
+          <div className="text-center mb-8 h-4">
+            <Link href="/sign-up" style={{ textDecoration: "underline" }}>
+              Don&apos;t have an account? Sign up
+            </Link>
+          </div>
+          <Link
+            href={"/"}
+            className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          >
+            Cancle
+          </Link>
         </div>
       </form>
     </>
   );
 }
 
-// {
 /* <form
 className="space-y-4"
 action={formAction}
@@ -127,4 +144,3 @@ action={formAction}
   <Link href="/sign-up">Don&apos;t have an account? Sign up</Link>
 </Button>
 </div> */
-// }

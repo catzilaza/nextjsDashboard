@@ -1,114 +1,9 @@
-// import { type NextRequest, NextResponse } from "next/server";
-// import { auth as middleware } from "./auth";
-
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import { NextResponse } from "next/server";
 
-//https://github.com/vercel-labs/app-router-auth
-//https://github.com/nextauthjs/next-auth
-
 export default NextAuth(authConfig).auth;
 // export default NextAuth(authConfig).auth(async () => {});
-
-// const privateRoutes = ["/dashboard"];
-
-// const { auth } = NextAuth(authConfig);
-
-// export async function middleware(request: any) {
-//   // const session = await auth();
-
-//   // console.log(session);
-//   // console.log("middleware");
-//   return;
-// }
-
-// export async function middleware(request: any) {
-//   const session = await auth();
-
-//   console.log(session);
-//   console.log("middleware");
-//   return NextResponse.redirect(new URL("/", request.url));
-// }
-
-// interface MiddlewareRequest extends Request {
-//   url: string;
-// }
-
-// interface AuthSession {
-//   user?: {
-//     id: string | undefined;
-//     name: string;
-//     email: string;
-//   };
-//   expires: string;
-// }
-
-// export async function middleware(request: MiddlewareRequest): Promise<NextResponse> {
-//   const session = await auth();
-//   const transformedSession: AuthSession | null = session
-//     ? {
-//         user: session.user
-//           ? {
-//               id: session.user.id ?? "",
-//               name: session.user.name ?? "",
-//               email: session.user.email ?? "",
-//             }
-//           : undefined,
-//         expires: session.expires,
-//       }
-//     : null;
-//   console.log(session);
-//   console.log("middleware");
-//   return NextResponse.redirect(new URL("/", request.url));
-// }
-
-// export default auth(async (req) => {
-
-//   console.log("This is Middleware --------");
-
-//   console.log("Middleware triggered:", req.nextUrl.pathname);
-//   console.log("Request auth:", req.auth);
-//   console.log("Request method:", req.method);
-//   console.log("Request URL:", req.url);
-//   console.log("Request headers:", req.headers.get("cookie"));
-
-//   const isLoggedIn = !!req.auth;
-//   const { nextUrl } = req;
-
-//   const url = "http://localhost:3000";
-
-//   const isPrivateRoute = privateRoutes.includes(nextUrl.pathname);
-//   const isAuthRoute = nextUrl.pathname.includes("/login");
-//   const isApiRoute = nextUrl.pathname.includes("/api/");
-
-//   if (isApiRoute) {
-//     console.log("This is : isApiRoute is TRUE and return;");
-//     return;
-//   }
-
-//   if (isLoggedIn && isAuthRoute) {
-//     console.log(
-//       "*******This is :  isLoggedIn && isAuthRoute TRUE and return Response.redirect(${url}/dashboard);"
-//     );
-//     return Response.redirect(`${url}/dashboard`);
-//     // return Response.redirect(new URL("/dashboard", nextUrl));
-//   }
-
-//   if (isAuthRoute && !isLoggedIn) {
-//     console.log("This is : isAuthRoute && !isLoggedIn TRUE and return;");
-//     return;
-//   }
-
-//   if (isPrivateRoute && !isLoggedIn) {
-//     console.log(
-//       "This is : isPrivateRoute && !isLoggedIn TRUE and return Response.redirect(`${url}/login`;"
-//     );
-//     return Response.redirect(`${url}/login`);
-//   }
-
-//   console.log("Exit From Middleware auth ---------");
-// });
 
 export const config = {
   // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
@@ -120,77 +15,27 @@ export const config = {
   ],
 };
 
-// // 1. Specify protected and public routes
-// const protectedRoutes = ["/dashboard", "/products"];
-// const publicRoutes = ["/login", "/signup", "/"];
+/** alternative you can do authorize logic in the middleware.ts file */
+// type NextAuthRequest = NextRequest & { auth: Session | null };
 
-// export default async function middleware(req: NextRequest) {
-//   // 2. Check if the current route is protected or public
-//   const path = req.nextUrl.pathname;
-//   const isProtectedRoute = protectedRoutes.includes(path);
-//   const isPublicRoute = publicRoutes.includes(path);
+// const auth = NextAuth(authConfig).auth;
 
-//   // 3. Decrypt the session from the cookie
-//   const cookie = (await cookies()).get("session")?.value;
-//   const session = await decrypt(cookie);
+// export default auth((request: NextAuthRequest) => {
+//   const { auth, nextUrl } = request;
 
-//   // 4. Redirect
-//   if (isProtectedRoute && !session?.userId) {
-//     return NextResponse.redirect(new URL("/login", req.nextUrl));
+//   const isLoggedIn = !!auth?.user;
+//   const isOnProfile = nextUrl.pathname.startsWith("/profile");
+//   const isOnAuth = nextUrl.pathname.startsWith("/auth");
+
+//   if (isOnProfile) {
+//     if (isLoggedIn) return;
+//     return Response.redirect(new URL("/auth/signin", nextUrl));
 //   }
 
-//   if (
-//     isPublicRoute &&
-//     session?.userId &&
-//     !req.nextUrl.pathname.startsWith("/dashboard")
-//   ) {
-//     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+//   if (isOnAuth) {
+//     if (!isLoggedIn) return;
+//     return Response.redirect(new URL("/profile", nextUrl));
 //   }
 
-//   return NextResponse.next();
-// }
-
-// export const config = {
-//   matcher: ["/((?!api|_next/static|_next/image).*)"],
-// };
-
-// import { cookies } from "next/headers";
-// import { NextRequest, NextResponse } from "next/server";
-// import { decrypt } from "./app/lib/session";
-
-// const protectedRoutes = ["/dashboard"];
-// const publicRoutes = ["/login"];
-// const roleBasedRoutes: Record<string, string> = {
-//   "/admin": "admin",
-//   "/manager": "manager",
-//   "/cto": "cto",
-// };
-
-// export default async function middleware(req: NextRequest) {
-//   const path = req.nextUrl.pathname;
-//   const isProtectedRoute = protectedRoutes.includes(path);
-//   const isPublicRoute = publicRoutes.includes(path);
-
-//   const cookie = (await cookies()).get("session")?.value;
-//   const session = await decrypt(cookie);
-
-//   if (isProtectedRoute && !session?.userId) {
-//     return NextResponse.redirect(new URL("/auth/login", req.nextUrl));
-//   }
-
-//   if (isPublicRoute && session?.userId) {
-//     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
-//   }
-
-//   // Check for role-based access
-//   for (const route in roleBasedRoutes) {
-//     if (path.startsWith(route)) {
-//       const requiredRole = roleBasedRoutes[route];
-//       if (session?.role !== requiredRole) {
-//         return NextResponse.redirect(new URL("/unauthorized", req.nextUrl));
-//       }
-//     }
-//   }
-
-//   return NextResponse.next();
-// }
+//   return;
+// });

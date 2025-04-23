@@ -33,19 +33,19 @@ export const authConfig = {
     async jwt({ token, trigger, session, account, user, profile }) {
       // console.log("***** Enter Callbacks : JWT", token);
 
-      // if (trigger === "update") token.name = session.user.name;
-      // if (account?.provider === "keycloak") {
-      //   // console.log("Leave Callbacks : JWT");
-      //   return { ...token, accessToken: account.access_token };
-      // }
-      // if (account?.provider === "credentials") {
-      //   token.credentials = true;
-      // }
+      if (trigger === "update") token.name = session.user.name;
+      if (account?.provider === "keycloak") {
+        // console.log("Leave Callbacks : JWT");
+        return { ...token, accessToken: account.access_token };
+      }
+      if (account?.provider === "credentials") {
+        token.credentials = true;
+      }
 
       if (account && user) {
-        console.log("acount && user");
-        console.log(`In jwt call back - User is ${JSON.stringify(token)}`);
-        console.log(`In jwt call back - Account is ${JSON.stringify(account)}`);
+        // console.log("acount && user");
+        // console.log(`In jwt call back - User is ${JSON.stringify(token)}`);
+        // console.log(`In jwt call back - Account is ${JSON.stringify(account)}`);
 
         return {
           ...token,

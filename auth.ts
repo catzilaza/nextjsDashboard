@@ -13,7 +13,6 @@ import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
 
 import { getUserByEmail } from "./lib/data/auth/users";
-import { error } from "console";
 
 // const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -87,6 +86,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           try {
             if (!passwordsMatch) {
               console.error("Password does not match for user:", email);
+              // throw new OAuthAccountAlreadyLinkedError();
               // throw error;
               return null;
             }

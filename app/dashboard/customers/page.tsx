@@ -1,15 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
-// import { getLoginSession } from "@/app/lib/data";
-
-// import path from "path";
-// import { people } from "@/app/lib/placeholder-data";
 import { auth } from "@/auth";
+import { getLoginSession } from "@/app/lib/data";
 
 export default async function Page() {
-  // const session: any = await getLoginSession();
-  // console.log("Page session", session);
-  const session = await auth();
-  console.log("Page session : ", session);
+  const session: any = await getLoginSession();
+  console.log("Page session", session);
+  // const session = await auth();
+  // console.log("Page session : ", session);
 
   return (
     <>

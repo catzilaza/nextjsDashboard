@@ -7,8 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import AcmeLogo from "@/app/ui/acme-logo";
 import Link from "next/link";
+import ProductCard from "@/components/products/product-card";
 
 export default async function DetailProductPage(props: {
   params: Promise<{ id: string }>;
@@ -17,6 +19,7 @@ export default async function DetailProductPage(props: {
   const id = params.id;
   const [product] = await Promise.all([fetchProducts_DessertById(id)]);
   // console.log("[products] : ", product);
+
   return (
     <main className="flex items-center justify-center md:h-screen">
       <div className="relative mx-auto flex w-full max-w-[600px] flex-col space-y-2.5 p-4 md:-mt-32">
@@ -25,7 +28,7 @@ export default async function DetailProductPage(props: {
             <AcmeLogo />
           </div>
         </div> */}
-        <Card key={product.dessert_id}>
+        {/* <Card key={product.dessert_id}>
           <CardHeader>
             <CardTitle>Card Title</CardTitle>
             <img
@@ -49,27 +52,33 @@ export default async function DetailProductPage(props: {
             <div className="flex w-full items-center justify-between pt-4">
               <div>
                 <p className="text-xl font-medium">ราคา : {product.price}</p>
-                {/* <p> วันที่ : {formatDateToLocal(product.date)}</p> */}
+
                 <p> จำนวนคงเหลือ : {product.amount}</p>
               </div>
-              <div className="flex justify-end gap-2">
-                {/* <UpdateProduct id={product.dessert_id} />
-                  <DeleteProduct id={product.dessert_id} /> */}
-              </div>
+              <div className="flex justify-end gap-2"></div>
             </div>
           </CardContent>
           <CardFooter>
             <p>Card Footer</p>
             <div className="card-actions justify-end">
+              <Button
+                type="button"
+                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              >
+                Add to Cart
+              </Button>
+            </div>
+            <div className="card-actions justify-end">
               <Link
-                href={"/"}
+                href={"/products"}
                 className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               >
                 Back
               </Link>
             </div>
           </CardFooter>
-        </Card>
+        </Card> */}
+        <ProductCard product={product} />
       </div>
     </main>
   );
