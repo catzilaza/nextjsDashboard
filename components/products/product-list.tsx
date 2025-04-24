@@ -104,11 +104,12 @@ export default function ProductList({
                   <CardFooter>
                     <p>Card Footer</p>
                     <div className="card-actions justify-end">
-                      <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        <Link href={`/products/${product.dessert_id}/detail`}>
-                          View Item
-                        </Link>
-                      </button>
+                      <Link
+                        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                        href={`/products/${product.dessert_id}/detail`}
+                      >
+                        View Item
+                      </Link>
                     </div>
                   </CardFooter>
                 </Card>

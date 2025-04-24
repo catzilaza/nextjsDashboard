@@ -8,27 +8,28 @@ export const authConfig = {
   },
   callbacks: {
     async authorized({ auth, request: { nextUrl } }) {
+      return true;
       // console.log("----- Enter Callbacks : Authorized");
 
-      const isLoggedIn = !!auth?.user;
+      // const isLoggedIn = !!auth?.user;
 
-      const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+      // const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
 
-      if (isOnDashboard) {
-        if (isLoggedIn) {
-          // console.log("Leave Callbacks : Authorized");
-          return true;
-        }
-        // console.log("Leave Callbacks : Authorized");
-        return false;
-      } else {
-        if (isLoggedIn) {
-          // console.log("Leave Callbacks : Authorized");
-          return Response.redirect(new URL("/dashboard", nextUrl));
-        }
-      }
-      // console.log("Leave Callbacks : Authorized");
-      return true;
+      // if (isOnDashboard) {
+      //   if (isLoggedIn) {
+      //     // console.log("Leave Callbacks : Authorized");
+      //     return true;
+      //   }
+      //   // console.log("Leave Callbacks : Authorized");
+      //   return false;
+      // } else {
+      //   if (isLoggedIn) {
+      //     // console.log("Leave Callbacks : Authorized");
+      //     return Response.redirect(new URL("/dashboard", nextUrl));
+      //   }
+      // }
+      // // console.log("Leave Callbacks : Authorized");
+      // return true;
     },
     async jwt({ token, trigger, session, account, user, profile }) {
       // console.log("***** Enter Callbacks : JWT", token);

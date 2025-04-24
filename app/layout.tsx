@@ -12,8 +12,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         {/* <Homeheader /> */}
-        <Toaster />
         {children}
+        <Toaster
+          toastOptions={{
+            className: "bg-white text-black",
+            duration: 3000,
+            style: {
+              background: "#fff",
+              color: "#000",
+            },
+          }}
+        />
       </body>
     </html>
   );

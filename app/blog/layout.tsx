@@ -8,7 +8,7 @@ export default async function Layout({
   return (
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
       {children}
-      <Toaster
+      {/* <Toaster
         toastOptions={{
           className: "bg-white text-black",
           duration: 3000,
@@ -17,7 +17,7 @@ export default async function Layout({
             color: "#000",
           },
         }}
-      />
+      /> */}
     </div>
   );
 }

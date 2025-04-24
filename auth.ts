@@ -87,11 +87,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (!passwordsMatch) {
               console.error("Password does not match for user:", email);
               // throw new OAuthAccountAlreadyLinkedError();
-              // throw error;
+              // throw new Error("Password does not match");
               return null;
             }
           } catch (error) {
-            console.error("Error in authorize function:", error);
+            console.error("Error in authorize function:");
             return null;
           }
 
@@ -100,7 +100,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             role: user.role as "user" | "admin" | null | undefined,
           };
         } catch (error) {
-          console.error("Error in authorize function:", error);
+          console.error("Error in authorize function:");
           return null;
         }
       },

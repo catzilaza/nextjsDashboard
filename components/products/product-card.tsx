@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ProductDessertSchema } from "@/app/lib/definitions";
-import { useCartStore } from "@/app/store/cart-store";
+import { useCartStore } from "@/store/cart-store";
 
 export default function ProductCard({
   product,

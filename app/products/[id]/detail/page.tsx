@@ -1,15 +1,4 @@
 import { fetchProducts_DessertById } from "@/app/lib/data";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import AcmeLogo from "@/app/ui/acme-logo";
-import Link from "next/link";
 import ProductCard from "@/components/products/product-card";
 
 export default async function DetailProductPage(props: {
@@ -18,7 +7,6 @@ export default async function DetailProductPage(props: {
   const params = await props.params;
   const id = params.id;
   const [product] = await Promise.all([fetchProducts_DessertById(id)]);
-  // console.log("[products] : ", product);
 
   return (
     <main className="flex items-center justify-center md:h-screen">

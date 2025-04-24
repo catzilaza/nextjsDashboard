@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 // import { createBlogAction } from '@/lib/actions'
-// import { toast } from 'sonner'
+import { toast } from "sonner";
+// import { useToast } from "@/hooks/use-toast";
 
 import Editor from "./editor/selectors/editor";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ export default function ContentForm() {
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState<string>("");
   const [pending, setPending] = useState(false);
+  // const { toast } = useToast();
 
   useEffect(() => {
     const name = title
@@ -43,6 +45,7 @@ export default function ContentForm() {
     // if (result?.error) {
     //   toast.error(result.error)
     // }
+    toast(" title: 666 55555");
 
     setPending(false);
   }

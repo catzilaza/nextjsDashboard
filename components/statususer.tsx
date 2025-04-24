@@ -1,7 +1,6 @@
 "use client";
 
-import React, { use } from "react";
-import { useStore } from "@/app/store/user";
+import { useStore } from "@/store/user";
 
 export const Statususer = () => {
   const user = useStore((state: any) => state.user);
