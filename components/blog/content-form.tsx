@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 // import { createBlogAction } from '@/lib/actions'
 import { toast } from "sonner";
 // import { useToast } from "@/hooks/use-toast";
-
 import Editor from "./editor/selectors/editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import styles from "./content.module.css";
 
 export const defaultValue = {
   type: "doc",
@@ -22,6 +22,8 @@ export const defaultValue = {
 export default function ContentForm() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [textInput, setTextInput] = useState("");
+  const [numberInput, setNumberInput] = useState("");
   const [content, setContent] = useState<string>("");
   const [pending, setPending] = useState(false);
   // const { toast } = useToast();
@@ -45,15 +47,16 @@ export default function ContentForm() {
     // if (result?.error) {
     //   toast.error(result.error)
     // }
-    toast(" title: 666 55555");
+    toast(`Title : ${title} Slug: ${slug} TextInput: ${textInput}`);
 
     setPending(false);
   }
 
   return (
     <div className="mt-6 flex max-w-2xl flex-col gap-4">
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <Input
+          className="bg-red-200"
           type="text"
           placeholder="Title"
           value={title}
@@ -65,6 +68,38 @@ export default function ContentForm() {
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
         />
+      </div>
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="border p-8 rounded-lg">
+          <label htmlFor="textInput" className="mr-10">
+            Text
+          </label>
+          <input
+            onChange={(e) => setTextInput(e.target.value)}            
+            className={`${styles.textInput} border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+            type="text"
+            id="textInput"
+            name="textInput"
+            placeholder="Text"
+            required
+          />
+          <br />
+        </div>
+        <div className="border p-8 rounded-lg">
+          <label htmlFor="numberInput" className="mr-4">
+            Number
+          </label>
+          <input
+            onChange={(e) => setNumberInput(e.target.value)}
+            className="rounded-md"
+            type="number"
+            id="numberInput"
+            name="numberInput"
+            placeholder="Number"
+            required
+          />
+          <br />
+        </div>
       </div>
 
       <Editor initialValue={defaultValue} onChange={setContent} />

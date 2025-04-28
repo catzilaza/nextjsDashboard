@@ -28,17 +28,9 @@ export async function UploadImageForm() {
             <br />
           </div>
           <div className="border p-8 rounded-lg">
-            <label htmlFor="textInput">Text</label>
-            <input type="text" id="textInput" name="textInput" required />
-            <br />
-          </div>
-          <div className="border p-8 rounded-lg">
-            <label htmlFor="numberInput">Number</label>
-            <input type="number" id="numberInput" name="numberInput" required />
-            <br />
-          </div>
-          <div className="border p-8 rounded-lg">
-            <button>Upload</button>
+            <button type="button" className="rounded-md bg-slate-300">
+              Upload
+            </button>
           </div>
         </form>
       </div>

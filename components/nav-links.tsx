@@ -20,6 +20,7 @@ const links = [
   { name: "Products", href: "/products", icon: DocumentDuplicateIcon },
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
   { name: "Blog", href: "/blog", icon: ChartBarSquareIcon },
+  { name: "Avatar", href: "/avatar/upload", icon: ChartBarSquareIcon },
   // {
   //   name: "Invoices",
   //   href: "/dashboard/invoices",

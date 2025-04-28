@@ -11,6 +11,7 @@ import { Images } from "@/components/blog/images";
 // import { revalidatePath } from "next/cache";
 // import styles from "./page.module.css";
 import styles from "@/components/blog/blogStyle/blog.module.css";
+import { toast } from "sonner";
 // import prisma from '@/lib/prisma'
 // import { list } from "@vercel/blob";
 
@@ -55,13 +56,81 @@ export default async function BlogPage() {
         <div className={styles.header}>
           <Header />
         </div>
+
+        <div>
+          <header className="bg-blue-200 py-4 px-8">
+            {/*w-full max-w-full bg-white flex items-center justify-between */}
+            <nav className="flex flex-col md:flex-row justify-between">
+              <div className="bg-green-200 h-20">
+                {/* bg-green-200 h-8 w-auto*/}
+                <img
+                  className="bg-white w-10 h-20"
+                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                  alt="Your Company"
+                />
+              </div>
+              <div className="bg-slate-300 h-20 flex justify-center">
+                <div className="flex justify-center items-center">
+                  <div className="bg-slate-300">
+                    <label htmlFor="search">search</label>
+                    <input type="text" />
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white h-20 flex flex-1 flex-col md:flex-row justify-around items-center">
+                {/* bg-red-200 flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-6*/}
+
+                <div className="m-4">
+                  <button type="button" className="bg-slate-300 rounded-lg p-5">
+                    Home
+                  </button>
+                </div>
+                <div className="m-8">
+                  <Link href="/blog" className="bg-slate-300 rounded-lg p-5">
+                    Posts
+                  </Link>
+                </div>
+                <div className="m-8">
+                  <Link href="/blog" className="bg-slate-300 rounded-lg p-5">
+                    login
+                  </Link>
+                </div>
+                <div className="bg-green-200 h-20 rounded-lg p-5 m-4">
+                  <div className="flex">
+                    {/* bg-green-200 h-8 w-auto w-10 h-20*/}
+                    <button>
+                      <img
+                        className="bg-slate-300 w-10 h-20"
+                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                        alt="Your Company"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
+        </div>
         <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
           <div className={styles.blogForm}>
-            <h1 className="text-3xl font-bold">Write a blog</h1>
-            <ContentForm />
-            <UploadImageForm />
-            <div className="h-1/3"></div>
-            <Footer />
+            <div className="flex flex-col">
+              <div>
+                {" "}
+                <h1 className="text-3xl font-bold">Write a blog</h1>
+                <ContentForm />
+                <br />
+              </div>
+              <div>
+                <UploadImageForm />
+                <br />
+              </div>
+              <div>
+                {" "}
+                {/* <div className="h-1/3"></div> */}
+                <Footer />
+                <br />
+              </div>
+            </div>
           </div>
           <div className={styles.blogList}>
             <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
