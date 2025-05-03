@@ -1,5 +1,4 @@
-/* Style for the main container */
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
@@ -10,46 +9,41 @@
   scrollbar-color: #888 #f1f1f1;
 }
 
-/* Style for the header */
 .header {
   height: 5rem;
-  background-color: #3b82f6; /* Blue */
+  background-color: #3b82f6;
   border-radius: 0.5rem;
   padding: 1rem;
   display: flex;
   align-items: center;
 }
 
-/* Style for the blog form section */
 .blogForm {
-  background-color: #f9fafb; /* Light gray */
+  background-color: #f9fafb;
   border-radius: 0.5rem;
   padding: 2rem;
   flex: 1;
 }
 
-/* Style for the blog list section */
 .blogList {
-  background-color: #f9fafb; /* Light gray */
+  background-color: #f9fafb;
   border-radius: 0.5rem;
   padding: 2rem;
   flex: 1;
 }
 
-/* Style for the blog titles */
 .blogTitle {
-  font-size: 1.875rem; /* 3xl */
+  font-size: 1.875rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-/* Style for the blog links */
 .blogLink {
-  color: #3b82f6; /* Blue */
+  color: #3b82f6;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 .blogLink:hover {
-  color: #2563eb; /* Darker blue */
-}
+  color: #2563eb;
+} */

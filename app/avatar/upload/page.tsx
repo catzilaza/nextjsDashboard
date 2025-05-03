@@ -11,6 +11,7 @@ import {
   SearchIcon,
   MenuIcon,
 } from "lucide-react";
+import NavbarDropdown from "@/components/NavbarDropdown";
 
 // const SidebarContext = createContext();
 
@@ -53,6 +54,7 @@ export default function AvatarUploadPage() {
   const Navbar: React.FC<{ isSticky: boolean }> = ({ isSticky }) => {
     const [expanded, setExpanded] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(true);
+
     return (
       <>
         <div
@@ -79,6 +81,7 @@ export default function AvatarUploadPage() {
               <li className="p-3 hover:bg-red-400 hover:text-white rounded-md transition-all cursor-pointer">
                 Product
               </li>
+
               <li className="p-3 hover:bg-red-400 hover:text-white rounded-md transition-all cursor-pointer">
                 Explore
               </li>
@@ -165,6 +168,7 @@ export default function AvatarUploadPage() {
           
         </div> */}
         <Navbar isSticky={isSticky} />
+        {/* <NavbarDropdown /> */}
 
         <section className="min-h-screen w-full bg-slate-200 flex justify-center items-center">
           SECTION 1
