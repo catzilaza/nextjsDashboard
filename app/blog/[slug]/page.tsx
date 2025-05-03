@@ -69,3 +69,17 @@
 //     </>
 //   );
 // }
+
+export default async function SlugBlog({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  return (
+    <>
+      <p>Slug Blog Page</p>
+    </>
+  );
+}
