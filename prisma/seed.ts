@@ -1,5 +1,6 @@
 //import { PrismaClient, Prisma } from "../src/app/generated/prisma";
 import { PrismaClient, Prisma } from "generated/prisma";
+import { User } from "@/lib/placeholder-data/blog/User";
 
 const prisma = new PrismaClient();
 

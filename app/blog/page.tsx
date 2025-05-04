@@ -1,8 +1,40 @@
-export default async function BlogPage() {
+"use client";
+
+// https://www.youtube.com/watch?v=DpYE5zPDRVQ
+// https://github.com/safak/next-blog/blob/completed/src/components/card/Card.jsx
+
+import { useSearchParams } from "next/navigation";
+import CardList from "@/components/blog/cardlist/CardList";
+import Menu from "@/components/blog/Menu/Menu";
+import styles from "./blogPage.module.css";
+import Featured from "@/components/blog/featured/Featured";
+import Categorylist from "@/components/blog/categorylist/CategoryList";
+
+type typeParams = {
+  page: string;
+  cat: string;
+};
+
+export default function BlogPage({ params }: { params: typeParams }) {
+  const page = params.page || "1";
+  const cat = params.cat || "all";
+
+  // const searchParams = useSearchParams();
+  // const page = searchParams.get("page") || "1";
+  // const cat = searchParams.get("cat");
+
   return (
-    <>
-      <p>Blog Page</p>
-    </>
+    <div className={styles.blogBody}>
+      <div className={styles.container}>
+        <Featured />
+        <Categorylist />
+        <h1 className={styles.title}>Blog Page</h1>
+        <div className={styles.content}>
+          <CardList page={page} cat={cat} />
+          <Menu />
+        </div>
+      </div>
+    </div>
   );
 }
 
