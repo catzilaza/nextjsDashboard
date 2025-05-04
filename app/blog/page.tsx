@@ -15,9 +15,11 @@ type typeParams = {
   cat: string;
 };
 
-export default function BlogPage({ params }: { params: typeParams }) {
-  const page = params.page || "1";
-  const cat = params.cat || "all";
+export default function BlogPage({ page, cat }: { page: any; cat: any }) {
+  // const page = parseInt(searchParams.page) || "1";
+
+  // const page = params.page || "1";
+  // const cat = params.cat || "all";
 
   // const searchParams = useSearchParams();
   // const page = searchParams.get("page") || "1";

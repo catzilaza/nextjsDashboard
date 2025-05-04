@@ -21,7 +21,7 @@ type typeParams = {
   cat: string;
 };
 
-const CardList = (params: typeParams) => {
+const CardList = (params: any) => {
   const page = parseInt(params.page);
   const cat = params.cat || "";
   //   const { posts, count } = await getData(page, cat);
