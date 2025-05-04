@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 // import prisma from "./lib/prisma";
 // import { adapter } from "next/dist/server/web/adapter";
 // import { Adapter } from "next-auth/adapter";
+// import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";

@@ -160,26 +160,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   image_url: 'image_url'
 };
 
-exports.Prisma.UserScalarFieldEnum = {
-  user_id: 'user_id',
-  name: 'name',
-  email: 'email',
-  emailVerified: 'emailVerified',
-  password: 'password',
-  status: 'status',
-  role: 'role',
-  date: 'date',
-  image_blob: 'image_blob',
-  image_url: 'image_url',
-  image: 'image',
-  address: 'address',
-  paymentMethod: 'paymentMethod',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.AccountScalarFieldEnum = {
-  account_id: 'account_id',
+  id: 'id',
   userId: 'userId',
   type: 'type',
   provider: 'provider',
@@ -190,18 +172,22 @@ exports.Prisma.AccountScalarFieldEnum = {
   token_type: 'token_type',
   scope: 'scope',
   id_token: 'id_token',
-  session_state: 'session_state',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  session_state: 'session_state'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
-  session_id: 'session_id',
+  id: 'id',
   sessionToken: 'sessionToken',
   userId: 'userId',
-  expires: 'expires',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  expires: 'expires'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  emailVerified: 'emailVerified',
+  image: 'image'
 };
 
 exports.Prisma.VerificationTokenScalarFieldEnum = {
@@ -210,91 +196,36 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
   expires: 'expires'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
-  prod_id: 'prod_id',
-  name: 'name',
-  slug: 'slug',
-  category: 'category',
-  images: 'images',
-  brand: 'brand',
-  description: 'description',
-  stock: 'stock',
-  price: 'price',
-  rating: 'rating',
-  numReviews: 'numReviews',
-  isFeatured: 'isFeatured',
-  banner: 'banner',
-  sizes: 'sizes',
-  colors: 'colors',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.CartScalarFieldEnum = {
-  cart_id: 'cart_id',
-  userId: 'userId',
-  sessionCartId: 'sessionCartId',
-  items: 'items',
-  itemsPrice: 'itemsPrice',
-  totalPrice: 'totalPrice',
-  shippingPrice: 'shippingPrice',
-  taxPrice: 'taxPrice',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.OrderScalarFieldEnum = {
-  order_id: 'order_id',
-  userId: 'userId',
-  shippingAddress: 'shippingAddress',
-  paymentMethod: 'paymentMethod',
-  paymentResult: 'paymentResult',
-  itemsPrice: 'itemsPrice',
-  totalPrice: 'totalPrice',
-  shippingPrice: 'shippingPrice',
-  taxPrice: 'taxPrice',
-  isPaid: 'isPaid',
-  paidAt: 'paidAt',
-  isDelivered: 'isDelivered',
-  deliveredAt: 'deliveredAt',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.OrderItemScalarFieldEnum = {
-  orderId: 'orderId',
-  productId: 'productId',
-  qty: 'qty',
-  price: 'price',
-  name: 'name',
-  slug: 'slug',
-  image: 'image'
-};
-
-exports.Prisma.UserWebScalarFieldEnum = {
+exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  email: 'email',
-  name: 'name'
-};
-
-exports.Prisma.PostWebScalarFieldEnum = {
-  id: 'id',
+  slug: 'slug',
   title: 'title',
-  content: 'content',
-  published: 'published',
-  authorId: 'authorId'
+  img: 'img'
+};
+
+exports.Prisma.PostScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  slug: 'slug',
+  title: 'title',
+  desc: 'desc',
+  img: 'img',
+  views: 'views',
+  catSlug: 'catSlug',
+  userEmail: 'userEmail'
+};
+
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  desc: 'desc',
+  userEmail: 'userEmail',
+  postSlug: 'postSlug'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.NullableJsonNullValueInput = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull
-};
-
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -307,12 +238,6 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
-};
-
 
 exports.Prisma.ModelName = {
   customers: 'customers',
@@ -320,16 +245,13 @@ exports.Prisma.ModelName = {
   products_desserts: 'products_desserts',
   revenue: 'revenue',
   users: 'users',
-  User: 'User',
   Account: 'Account',
   Session: 'Session',
+  User: 'User',
   VerificationToken: 'VerificationToken',
-  Product: 'Product',
-  Cart: 'Cart',
-  Order: 'Order',
-  OrderItem: 'OrderItem',
-  UserWeb: 'UserWeb',
-  PostWeb: 'PostWeb'
+  Category: 'Category',
+  Post: 'Post',
+  Comment: 'Comment'
 };
 
 /**
