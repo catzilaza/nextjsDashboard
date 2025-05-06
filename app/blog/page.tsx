@@ -9,9 +9,6 @@ import Featured from "@/components/blog/featured/Featured";
 import Categorylist from "@/components/blog/categorylist/CategoryList";
 
 export default function BlogPage() {
-  const page = "1";
-  const cat = "all";
-
   return (
     <div className={styles.blogBody}>
       <div className={styles.container}>
@@ -19,7 +16,7 @@ export default function BlogPage() {
         <Categorylist />
         <h1 className={styles.title}>Blog Page</h1>
         <div className={styles.content}>
-          <CardList page={page} cat={cat} />
+          <CardList />
           <Menu />
         </div>
       </div>

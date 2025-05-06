@@ -13,7 +13,7 @@ const Card = ({ item }: { item: any }) => {
       <div className={styles.textContainer}>
         <div className={styles.detail}>
           <span className={styles.date}>
-            {item.createdAt.substring(0, 10)} -{" "}
+            {new Date(item.createdAt).toISOString().substring(0, 10) + " "}
           </span>
           <span className={styles.category}>{item.catSlug}</span>
         </div>
@@ -25,7 +25,7 @@ const Card = ({ item }: { item: any }) => {
           className={styles.desc}
           dangerouslySetInnerHTML={{ __html: item?.desc.substring(0, 60) }}
         />
-        <Link href={`/posts/${item.slug}`} className={styles.link}>
+        <Link href={`/blog/posts/${item.slug}`} className={styles.link}>
           Read More
         </Link>
       </div>
