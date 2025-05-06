@@ -8,11 +8,13 @@ export const GET = async (
   const { slug } = params;
 
   try {
-    const post = await prisma.post.update({
-      where: { slug },
-      data: { views: { increment: 1 } },
-      include: { user: true },
-    });
+    const post = await prisma.post.findMany();
+    // const post = await prisma.post.update({
+    //   where: { slug },
+    //   data: { views: { increment: 1 } },
+    //   include: { user: true },
+    // });
+    // console.log("GET Slug ++++++ post", post);
 
     return new NextResponse(JSON.stringify(post), { status: 200 });
   } catch (error) {

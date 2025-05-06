@@ -8,23 +8,9 @@ import styles from "./blogPage.module.css";
 import Featured from "@/components/blog/featured/Featured";
 import Categorylist from "@/components/blog/categorylist/CategoryList";
 
-type typeParams = {
-  page: string;
-  cat: string;
-};
-
 export default function BlogPage() {
-  // const page = parseInt(searchParams.page) || "1";
-
-  // const page = params.page || "1";
-  // const cat = params.cat || "all";
-
   const page = "1";
   const cat = "all";
-
-  // const searchParams = useSearchParams();
-  // const page = searchParams.get("page") || "1";
-  // const cat = searchParams.get("cat");
 
   return (
     <div className={styles.blogBody}>

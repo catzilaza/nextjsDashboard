@@ -7,12 +7,14 @@ export const GET = async (req: NextResponse) => {
   const postSlug = searchParams.get("postSlug") as string;
 
   try {
-    const comments = await prisma.comment.findMany({
-      where: {
-        ...(postSlug && { postSlug }),
-      },
-      include: { user: true },
-    });
+    const comments = await prisma.comment.findMany();
+    // const [comments] = await prisma.comment.findMany({
+    //   where: {
+    //     ...(postSlug && { postSlug }),
+    //   },
+    //   include: { user: true },
+    // });
+    console.log("GET ++++++ comments", comments);
     return new NextResponse(JSON.stringify(comments), {
       status: 200,
     });

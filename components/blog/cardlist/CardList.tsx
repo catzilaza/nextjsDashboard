@@ -19,11 +19,6 @@ const getData = async (page: any, cat: any) => {
   return res.json();
 };
 
-type typeParams = {
-  page: string;
-  cat: string;
-};
-
 const CardList = async (params: any) => {
   const page = parseInt(params.page);
   const cat = params.cat || "fashion";
@@ -32,7 +27,7 @@ const CardList = async (params: any) => {
   console.log("++++++ cat", cat);
 
   const { posts, count } = await getData(page, cat);
-  console.log("++++++ posts", posts);
+  // console.log("++++++ posts", posts);
   // const posts = [
   //   {
   //     _id: "1",

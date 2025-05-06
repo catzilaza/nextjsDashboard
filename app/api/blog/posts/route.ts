@@ -8,6 +8,9 @@ export const GET = async (req: NextResponse) => {
   const cat = searchParams.get("cat") || undefined;
   const POST_PER_PAGE = 2;
 
+  // console.log("GET ++++++ page", page);
+  // console.log("GET ++++++ cat", cat);
+
   const query = {
     take: POST_PER_PAGE,
     skip: POST_PER_PAGE * (Number(page) - 1),
@@ -17,10 +20,13 @@ export const GET = async (req: NextResponse) => {
   };
 
   try {
-    const [posts, count] = await prisma.$transaction([
-      prisma.post.findMany(query),
-      prisma.post.count({ where: query.where }),
-    ]);
+    const posts = await prisma.post.findMany();
+    const count = await prisma.post.count();
+    // const [posts, count] = await prisma.$transaction([
+    //   prisma.post.findMany(query),
+    //   prisma.post.count({ where: query.where }),
+    // ]);
+    // console.log("GET ++++++ posts", posts, count);
     return new NextResponse(JSON.stringify({ posts, count }), { status: 200 });
   } catch (error) {
     console.log(error);
