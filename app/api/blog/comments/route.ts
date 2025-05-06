@@ -47,14 +47,12 @@ export const POST = async (req: NextResponse) => {
     });
 
     return new NextResponse(JSON.stringify(comment), {
-      status: 201,
+      status: 200,
     });
   } catch (error) {
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong" }),
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 };
