@@ -39,6 +39,16 @@ export type revenue = $Result.DefaultSelection<Prisma.$revenuePayload>
  */
 export type users = $Result.DefaultSelection<Prisma.$usersPayload>
 /**
+ * Model Author
+ * 
+ */
+export type Author = $Result.DefaultSelection<Prisma.$AuthorPayload>
+/**
+ * Model Book
+ * 
+ */
+export type Book = $Result.DefaultSelection<Prisma.$BookPayload>
+/**
  * Model Account
  * 
  */
@@ -248,6 +258,26 @@ export class PrismaClient<
     * ```
     */
   get users(): Prisma.usersDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.author`: Exposes CRUD operations for the **Author** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Authors
+    * const authors = await prisma.author.findMany()
+    * ```
+    */
+  get author(): Prisma.AuthorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.book`: Exposes CRUD operations for the **Book** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Books
+    * const books = await prisma.book.findMany()
+    * ```
+    */
+  get book(): Prisma.BookDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.account`: Exposes CRUD operations for the **Account** model.
@@ -763,6 +793,8 @@ export namespace Prisma {
     products_desserts: 'products_desserts',
     revenue: 'revenue',
     users: 'users',
+    Author: 'Author',
+    Book: 'Book',
     Account: 'Account',
     Session: 'Session',
     User: 'User',
@@ -788,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "customers" | "invoices" | "products_desserts" | "revenue" | "users" | "account" | "session" | "user" | "verificationToken" | "category" | "post" | "comment"
+      modelProps: "customers" | "invoices" | "products_desserts" | "revenue" | "users" | "author" | "book" | "account" | "session" | "user" | "verificationToken" | "category" | "post" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1159,6 +1191,154 @@ export namespace Prisma {
           count: {
             args: Prisma.usersCountArgs<ExtArgs>
             result: $Utils.Optional<UsersCountAggregateOutputType> | number
+          }
+        }
+      }
+      Author: {
+        payload: Prisma.$AuthorPayload<ExtArgs>
+        fields: Prisma.AuthorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AuthorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AuthorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          findFirst: {
+            args: Prisma.AuthorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AuthorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          findMany: {
+            args: Prisma.AuthorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+          }
+          create: {
+            args: Prisma.AuthorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          createMany: {
+            args: Prisma.AuthorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AuthorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+          }
+          delete: {
+            args: Prisma.AuthorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          update: {
+            args: Prisma.AuthorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          deleteMany: {
+            args: Prisma.AuthorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AuthorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AuthorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+          }
+          upsert: {
+            args: Prisma.AuthorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          aggregate: {
+            args: Prisma.AuthorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAuthor>
+          }
+          groupBy: {
+            args: Prisma.AuthorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AuthorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AuthorCountArgs<ExtArgs>
+            result: $Utils.Optional<AuthorCountAggregateOutputType> | number
+          }
+        }
+      }
+      Book: {
+        payload: Prisma.$BookPayload<ExtArgs>
+        fields: Prisma.BookFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          findFirst: {
+            args: Prisma.BookFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          findMany: {
+            args: Prisma.BookFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>[]
+          }
+          create: {
+            args: Prisma.BookCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          createMany: {
+            args: Prisma.BookCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>[]
+          }
+          delete: {
+            args: Prisma.BookDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          update: {
+            args: Prisma.BookUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>[]
+          }
+          upsert: {
+            args: Prisma.BookUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          aggregate: {
+            args: Prisma.BookAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBook>
+          }
+          groupBy: {
+            args: Prisma.BookGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookCountArgs<ExtArgs>
+            result: $Utils.Optional<BookCountAggregateOutputType> | number
           }
         }
       }
@@ -1769,6 +1949,8 @@ export namespace Prisma {
     products_desserts?: products_dessertsOmit
     revenue?: revenueOmit
     users?: usersOmit
+    author?: AuthorOmit
+    book?: BookOmit
     account?: AccountOmit
     session?: SessionOmit
     user?: UserOmit
@@ -1866,21 +2048,52 @@ export namespace Prisma {
 
 
   /**
+   * Count Type AuthorCountOutputType
+   */
+
+  export type AuthorCountOutputType = {
+    books: number
+  }
+
+  export type AuthorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    books?: boolean | AuthorCountOutputTypeCountBooksArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AuthorCountOutputType without action
+   */
+  export type AuthorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuthorCountOutputType
+     */
+    select?: AuthorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AuthorCountOutputType without action
+   */
+  export type AuthorCountOutputTypeCountBooksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookWhereInput
+  }
+
+
+  /**
    * Count Type UserCountOutputType
    */
 
   export type UserCountOutputType = {
     accounts: number
-    sessions: number
-    Post: number
     Comment: number
+    Post: number
+    sessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-    Post?: boolean | UserCountOutputTypeCountPostArgs
     Comment?: boolean | UserCountOutputTypeCountCommentArgs
+    Post?: boolean | UserCountOutputTypeCountPostArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   }
 
   // Custom InputTypes
@@ -1904,8 +2117,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
+  export type UserCountOutputTypeCountCommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
   }
 
   /**
@@ -1918,8 +2131,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountCommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CommentWhereInput
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
 
@@ -1960,10 +2173,12 @@ export namespace Prisma {
 
   export type PostCountOutputType = {
     comments: number
+    categories: number
   }
 
   export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | PostCountOutputTypeCountCommentsArgs
+    categories?: boolean | PostCountOutputTypeCountCategoriesArgs
   }
 
   // Custom InputTypes
@@ -1982,6 +2197,13 @@ export namespace Prisma {
    */
   export type PostCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
+  }
+
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
   }
 
 
@@ -7106,6 +7328,2193 @@ export namespace Prisma {
 
 
   /**
+   * Model Author
+   */
+
+  export type AggregateAuthor = {
+    _count: AuthorCountAggregateOutputType | null
+    _avg: AuthorAvgAggregateOutputType | null
+    _sum: AuthorSumAggregateOutputType | null
+    _min: AuthorMinAggregateOutputType | null
+    _max: AuthorMaxAggregateOutputType | null
+  }
+
+  export type AuthorAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AuthorSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AuthorMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    bio: string | null
+    createdAt: Date | null
+    country: string | null
+  }
+
+  export type AuthorMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    bio: string | null
+    createdAt: Date | null
+    country: string | null
+  }
+
+  export type AuthorCountAggregateOutputType = {
+    id: number
+    name: number
+    bio: number
+    createdAt: number
+    country: number
+    _all: number
+  }
+
+
+  export type AuthorAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type AuthorSumAggregateInputType = {
+    id?: true
+  }
+
+  export type AuthorMinAggregateInputType = {
+    id?: true
+    name?: true
+    bio?: true
+    createdAt?: true
+    country?: true
+  }
+
+  export type AuthorMaxAggregateInputType = {
+    id?: true
+    name?: true
+    bio?: true
+    createdAt?: true
+    country?: true
+  }
+
+  export type AuthorCountAggregateInputType = {
+    id?: true
+    name?: true
+    bio?: true
+    createdAt?: true
+    country?: true
+    _all?: true
+  }
+
+  export type AuthorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Author to aggregate.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Authors
+    **/
+    _count?: true | AuthorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AuthorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AuthorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AuthorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AuthorMaxAggregateInputType
+  }
+
+  export type GetAuthorAggregateType<T extends AuthorAggregateArgs> = {
+        [P in keyof T & keyof AggregateAuthor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAuthor[P]>
+      : GetScalarType<T[P], AggregateAuthor[P]>
+  }
+
+
+
+
+  export type AuthorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuthorWhereInput
+    orderBy?: AuthorOrderByWithAggregationInput | AuthorOrderByWithAggregationInput[]
+    by: AuthorScalarFieldEnum[] | AuthorScalarFieldEnum
+    having?: AuthorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AuthorCountAggregateInputType | true
+    _avg?: AuthorAvgAggregateInputType
+    _sum?: AuthorSumAggregateInputType
+    _min?: AuthorMinAggregateInputType
+    _max?: AuthorMaxAggregateInputType
+  }
+
+  export type AuthorGroupByOutputType = {
+    id: number
+    name: string
+    bio: string | null
+    createdAt: Date
+    country: string | null
+    _count: AuthorCountAggregateOutputType | null
+    _avg: AuthorAvgAggregateOutputType | null
+    _sum: AuthorSumAggregateOutputType | null
+    _min: AuthorMinAggregateOutputType | null
+    _max: AuthorMaxAggregateOutputType | null
+  }
+
+  type GetAuthorGroupByPayload<T extends AuthorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AuthorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AuthorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AuthorGroupByOutputType[P]>
+            : GetScalarType<T[P], AuthorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AuthorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    bio?: boolean
+    createdAt?: boolean
+    country?: boolean
+    books?: boolean | Author$booksArgs<ExtArgs>
+    _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["author"]>
+
+  export type AuthorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    bio?: boolean
+    createdAt?: boolean
+    country?: boolean
+  }, ExtArgs["result"]["author"]>
+
+  export type AuthorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    bio?: boolean
+    createdAt?: boolean
+    country?: boolean
+  }, ExtArgs["result"]["author"]>
+
+  export type AuthorSelectScalar = {
+    id?: boolean
+    name?: boolean
+    bio?: boolean
+    createdAt?: boolean
+    country?: boolean
+  }
+
+  export type AuthorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "bio" | "createdAt" | "country", ExtArgs["result"]["author"]>
+  export type AuthorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    books?: boolean | Author$booksArgs<ExtArgs>
+    _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AuthorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AuthorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AuthorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Author"
+    objects: {
+      books: Prisma.$BookPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      bio: string | null
+      createdAt: Date
+      country: string | null
+    }, ExtArgs["result"]["author"]>
+    composites: {}
+  }
+
+  type AuthorGetPayload<S extends boolean | null | undefined | AuthorDefaultArgs> = $Result.GetResult<Prisma.$AuthorPayload, S>
+
+  type AuthorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AuthorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AuthorCountAggregateInputType | true
+    }
+
+  export interface AuthorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Author'], meta: { name: 'Author' } }
+    /**
+     * Find zero or one Author that matches the filter.
+     * @param {AuthorFindUniqueArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AuthorFindUniqueArgs>(args: SelectSubset<T, AuthorFindUniqueArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Author that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AuthorFindUniqueOrThrowArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AuthorFindUniqueOrThrowArgs>(args: SelectSubset<T, AuthorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Author that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorFindFirstArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AuthorFindFirstArgs>(args?: SelectSubset<T, AuthorFindFirstArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Author that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorFindFirstOrThrowArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AuthorFindFirstOrThrowArgs>(args?: SelectSubset<T, AuthorFindFirstOrThrowArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Authors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Authors
+     * const authors = await prisma.author.findMany()
+     * 
+     * // Get first 10 Authors
+     * const authors = await prisma.author.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const authorWithIdOnly = await prisma.author.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AuthorFindManyArgs>(args?: SelectSubset<T, AuthorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Author.
+     * @param {AuthorCreateArgs} args - Arguments to create a Author.
+     * @example
+     * // Create one Author
+     * const Author = await prisma.author.create({
+     *   data: {
+     *     // ... data to create a Author
+     *   }
+     * })
+     * 
+     */
+    create<T extends AuthorCreateArgs>(args: SelectSubset<T, AuthorCreateArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Authors.
+     * @param {AuthorCreateManyArgs} args - Arguments to create many Authors.
+     * @example
+     * // Create many Authors
+     * const author = await prisma.author.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AuthorCreateManyArgs>(args?: SelectSubset<T, AuthorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Authors and returns the data saved in the database.
+     * @param {AuthorCreateManyAndReturnArgs} args - Arguments to create many Authors.
+     * @example
+     * // Create many Authors
+     * const author = await prisma.author.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Authors and only return the `id`
+     * const authorWithIdOnly = await prisma.author.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AuthorCreateManyAndReturnArgs>(args?: SelectSubset<T, AuthorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Author.
+     * @param {AuthorDeleteArgs} args - Arguments to delete one Author.
+     * @example
+     * // Delete one Author
+     * const Author = await prisma.author.delete({
+     *   where: {
+     *     // ... filter to delete one Author
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AuthorDeleteArgs>(args: SelectSubset<T, AuthorDeleteArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Author.
+     * @param {AuthorUpdateArgs} args - Arguments to update one Author.
+     * @example
+     * // Update one Author
+     * const author = await prisma.author.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AuthorUpdateArgs>(args: SelectSubset<T, AuthorUpdateArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Authors.
+     * @param {AuthorDeleteManyArgs} args - Arguments to filter Authors to delete.
+     * @example
+     * // Delete a few Authors
+     * const { count } = await prisma.author.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AuthorDeleteManyArgs>(args?: SelectSubset<T, AuthorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Authors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Authors
+     * const author = await prisma.author.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AuthorUpdateManyArgs>(args: SelectSubset<T, AuthorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Authors and returns the data updated in the database.
+     * @param {AuthorUpdateManyAndReturnArgs} args - Arguments to update many Authors.
+     * @example
+     * // Update many Authors
+     * const author = await prisma.author.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Authors and only return the `id`
+     * const authorWithIdOnly = await prisma.author.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AuthorUpdateManyAndReturnArgs>(args: SelectSubset<T, AuthorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Author.
+     * @param {AuthorUpsertArgs} args - Arguments to update or create a Author.
+     * @example
+     * // Update or create a Author
+     * const author = await prisma.author.upsert({
+     *   create: {
+     *     // ... data to create a Author
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Author we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AuthorUpsertArgs>(args: SelectSubset<T, AuthorUpsertArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Authors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorCountArgs} args - Arguments to filter Authors to count.
+     * @example
+     * // Count the number of Authors
+     * const count = await prisma.author.count({
+     *   where: {
+     *     // ... the filter for the Authors we want to count
+     *   }
+     * })
+    **/
+    count<T extends AuthorCountArgs>(
+      args?: Subset<T, AuthorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AuthorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Author.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AuthorAggregateArgs>(args: Subset<T, AuthorAggregateArgs>): Prisma.PrismaPromise<GetAuthorAggregateType<T>>
+
+    /**
+     * Group by Author.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AuthorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AuthorGroupByArgs['orderBy'] }
+        : { orderBy?: AuthorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AuthorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuthorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Author model
+   */
+  readonly fields: AuthorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Author.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AuthorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    books<T extends Author$booksArgs<ExtArgs> = {}>(args?: Subset<T, Author$booksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Author model
+   */
+  interface AuthorFieldRefs {
+    readonly id: FieldRef<"Author", 'Int'>
+    readonly name: FieldRef<"Author", 'String'>
+    readonly bio: FieldRef<"Author", 'String'>
+    readonly createdAt: FieldRef<"Author", 'DateTime'>
+    readonly country: FieldRef<"Author", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Author findUnique
+   */
+  export type AuthorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author findUniqueOrThrow
+   */
+  export type AuthorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author findFirst
+   */
+  export type AuthorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Authors.
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Authors.
+     */
+    distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
+  }
+
+  /**
+   * Author findFirstOrThrow
+   */
+  export type AuthorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Authors.
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Authors.
+     */
+    distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
+  }
+
+  /**
+   * Author findMany
+   */
+  export type AuthorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authors to fetch.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Authors.
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
+  }
+
+  /**
+   * Author create
+   */
+  export type AuthorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Author.
+     */
+    data: XOR<AuthorCreateInput, AuthorUncheckedCreateInput>
+  }
+
+  /**
+   * Author createMany
+   */
+  export type AuthorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Authors.
+     */
+    data: AuthorCreateManyInput | AuthorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Author createManyAndReturn
+   */
+  export type AuthorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Authors.
+     */
+    data: AuthorCreateManyInput | AuthorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Author update
+   */
+  export type AuthorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Author.
+     */
+    data: XOR<AuthorUpdateInput, AuthorUncheckedUpdateInput>
+    /**
+     * Choose, which Author to update.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author updateMany
+   */
+  export type AuthorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Authors.
+     */
+    data: XOR<AuthorUpdateManyMutationInput, AuthorUncheckedUpdateManyInput>
+    /**
+     * Filter which Authors to update
+     */
+    where?: AuthorWhereInput
+    /**
+     * Limit how many Authors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Author updateManyAndReturn
+   */
+  export type AuthorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * The data used to update Authors.
+     */
+    data: XOR<AuthorUpdateManyMutationInput, AuthorUncheckedUpdateManyInput>
+    /**
+     * Filter which Authors to update
+     */
+    where?: AuthorWhereInput
+    /**
+     * Limit how many Authors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Author upsert
+   */
+  export type AuthorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Author to update in case it exists.
+     */
+    where: AuthorWhereUniqueInput
+    /**
+     * In case the Author found by the `where` argument doesn't exist, create a new Author with this data.
+     */
+    create: XOR<AuthorCreateInput, AuthorUncheckedCreateInput>
+    /**
+     * In case the Author was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AuthorUpdateInput, AuthorUncheckedUpdateInput>
+  }
+
+  /**
+   * Author delete
+   */
+  export type AuthorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter which Author to delete.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author deleteMany
+   */
+  export type AuthorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Authors to delete
+     */
+    where?: AuthorWhereInput
+    /**
+     * Limit how many Authors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Author.books
+   */
+  export type Author$booksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    where?: BookWhereInput
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    cursor?: BookWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Author without action
+   */
+  export type AuthorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Book
+   */
+
+  export type AggregateBook = {
+    _count: BookCountAggregateOutputType | null
+    _avg: BookAvgAggregateOutputType | null
+    _sum: BookSumAggregateOutputType | null
+    _min: BookMinAggregateOutputType | null
+    _max: BookMaxAggregateOutputType | null
+  }
+
+  export type BookAvgAggregateOutputType = {
+    id: number | null
+    authorId: number | null
+  }
+
+  export type BookSumAggregateOutputType = {
+    id: number | null
+    authorId: number | null
+  }
+
+  export type BookMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    authorId: number | null
+    createdAt: Date | null
+  }
+
+  export type BookMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    authorId: number | null
+    createdAt: Date | null
+  }
+
+  export type BookCountAggregateOutputType = {
+    id: number
+    title: number
+    authorId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BookAvgAggregateInputType = {
+    id?: true
+    authorId?: true
+  }
+
+  export type BookSumAggregateInputType = {
+    id?: true
+    authorId?: true
+  }
+
+  export type BookMinAggregateInputType = {
+    id?: true
+    title?: true
+    authorId?: true
+    createdAt?: true
+  }
+
+  export type BookMaxAggregateInputType = {
+    id?: true
+    title?: true
+    authorId?: true
+    createdAt?: true
+  }
+
+  export type BookCountAggregateInputType = {
+    id?: true
+    title?: true
+    authorId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BookAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Book to aggregate.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Books
+    **/
+    _count?: true | BookCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookMaxAggregateInputType
+  }
+
+  export type GetBookAggregateType<T extends BookAggregateArgs> = {
+        [P in keyof T & keyof AggregateBook]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBook[P]>
+      : GetScalarType<T[P], AggregateBook[P]>
+  }
+
+
+
+
+  export type BookGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookWhereInput
+    orderBy?: BookOrderByWithAggregationInput | BookOrderByWithAggregationInput[]
+    by: BookScalarFieldEnum[] | BookScalarFieldEnum
+    having?: BookScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookCountAggregateInputType | true
+    _avg?: BookAvgAggregateInputType
+    _sum?: BookSumAggregateInputType
+    _min?: BookMinAggregateInputType
+    _max?: BookMaxAggregateInputType
+  }
+
+  export type BookGroupByOutputType = {
+    id: number
+    title: string
+    authorId: number
+    createdAt: Date
+    _count: BookCountAggregateOutputType | null
+    _avg: BookAvgAggregateOutputType | null
+    _sum: BookSumAggregateOutputType | null
+    _min: BookMinAggregateOutputType | null
+    _max: BookMaxAggregateOutputType | null
+  }
+
+  type GetBookGroupByPayload<T extends BookGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookGroupByOutputType[P]>
+            : GetScalarType<T[P], BookGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["book"]>
+
+  export type BookSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["book"]>
+
+  export type BookSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["book"]>
+
+  export type BookSelectScalar = {
+    id?: boolean
+    title?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+  }
+
+  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "authorId" | "createdAt", ExtArgs["result"]["book"]>
+  export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+  export type BookIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+  export type BookIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+
+  export type $BookPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Book"
+    objects: {
+      author: Prisma.$AuthorPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      authorId: number
+      createdAt: Date
+    }, ExtArgs["result"]["book"]>
+    composites: {}
+  }
+
+  type BookGetPayload<S extends boolean | null | undefined | BookDefaultArgs> = $Result.GetResult<Prisma.$BookPayload, S>
+
+  type BookCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookCountAggregateInputType | true
+    }
+
+  export interface BookDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Book'], meta: { name: 'Book' } }
+    /**
+     * Find zero or one Book that matches the filter.
+     * @param {BookFindUniqueArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookFindUniqueArgs>(args: SelectSubset<T, BookFindUniqueArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Book that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookFindUniqueOrThrowArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookFindUniqueOrThrowArgs>(args: SelectSubset<T, BookFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Book that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookFindFirstArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookFindFirstArgs>(args?: SelectSubset<T, BookFindFirstArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Book that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookFindFirstOrThrowArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookFindFirstOrThrowArgs>(args?: SelectSubset<T, BookFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Books that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Books
+     * const books = await prisma.book.findMany()
+     * 
+     * // Get first 10 Books
+     * const books = await prisma.book.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookWithIdOnly = await prisma.book.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookFindManyArgs>(args?: SelectSubset<T, BookFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Book.
+     * @param {BookCreateArgs} args - Arguments to create a Book.
+     * @example
+     * // Create one Book
+     * const Book = await prisma.book.create({
+     *   data: {
+     *     // ... data to create a Book
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookCreateArgs>(args: SelectSubset<T, BookCreateArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Books.
+     * @param {BookCreateManyArgs} args - Arguments to create many Books.
+     * @example
+     * // Create many Books
+     * const book = await prisma.book.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookCreateManyArgs>(args?: SelectSubset<T, BookCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Books and returns the data saved in the database.
+     * @param {BookCreateManyAndReturnArgs} args - Arguments to create many Books.
+     * @example
+     * // Create many Books
+     * const book = await prisma.book.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Books and only return the `id`
+     * const bookWithIdOnly = await prisma.book.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookCreateManyAndReturnArgs>(args?: SelectSubset<T, BookCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Book.
+     * @param {BookDeleteArgs} args - Arguments to delete one Book.
+     * @example
+     * // Delete one Book
+     * const Book = await prisma.book.delete({
+     *   where: {
+     *     // ... filter to delete one Book
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookDeleteArgs>(args: SelectSubset<T, BookDeleteArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Book.
+     * @param {BookUpdateArgs} args - Arguments to update one Book.
+     * @example
+     * // Update one Book
+     * const book = await prisma.book.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookUpdateArgs>(args: SelectSubset<T, BookUpdateArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Books.
+     * @param {BookDeleteManyArgs} args - Arguments to filter Books to delete.
+     * @example
+     * // Delete a few Books
+     * const { count } = await prisma.book.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookDeleteManyArgs>(args?: SelectSubset<T, BookDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Books.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Books
+     * const book = await prisma.book.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookUpdateManyArgs>(args: SelectSubset<T, BookUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Books and returns the data updated in the database.
+     * @param {BookUpdateManyAndReturnArgs} args - Arguments to update many Books.
+     * @example
+     * // Update many Books
+     * const book = await prisma.book.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Books and only return the `id`
+     * const bookWithIdOnly = await prisma.book.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookUpdateManyAndReturnArgs>(args: SelectSubset<T, BookUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Book.
+     * @param {BookUpsertArgs} args - Arguments to update or create a Book.
+     * @example
+     * // Update or create a Book
+     * const book = await prisma.book.upsert({
+     *   create: {
+     *     // ... data to create a Book
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Book we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookUpsertArgs>(args: SelectSubset<T, BookUpsertArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Books.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCountArgs} args - Arguments to filter Books to count.
+     * @example
+     * // Count the number of Books
+     * const count = await prisma.book.count({
+     *   where: {
+     *     // ... the filter for the Books we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookCountArgs>(
+      args?: Subset<T, BookCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Book.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookAggregateArgs>(args: Subset<T, BookAggregateArgs>): Prisma.PrismaPromise<GetBookAggregateType<T>>
+
+    /**
+     * Group by Book.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookGroupByArgs['orderBy'] }
+        : { orderBy?: BookGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Book model
+   */
+  readonly fields: BookFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Book.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends AuthorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AuthorDefaultArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Book model
+   */
+  interface BookFieldRefs {
+    readonly id: FieldRef<"Book", 'Int'>
+    readonly title: FieldRef<"Book", 'String'>
+    readonly authorId: FieldRef<"Book", 'Int'>
+    readonly createdAt: FieldRef<"Book", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Book findUnique
+   */
+  export type BookFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book findUniqueOrThrow
+   */
+  export type BookFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book findFirst
+   */
+  export type BookFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Books.
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Books.
+     */
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Book findFirstOrThrow
+   */
+  export type BookFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Books.
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Books.
+     */
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Book findMany
+   */
+  export type BookFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Books to fetch.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Books.
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Book create
+   */
+  export type BookCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Book.
+     */
+    data: XOR<BookCreateInput, BookUncheckedCreateInput>
+  }
+
+  /**
+   * Book createMany
+   */
+  export type BookCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Books.
+     */
+    data: BookCreateManyInput | BookCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Book createManyAndReturn
+   */
+  export type BookCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * The data used to create many Books.
+     */
+    data: BookCreateManyInput | BookCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Book update
+   */
+  export type BookUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Book.
+     */
+    data: XOR<BookUpdateInput, BookUncheckedUpdateInput>
+    /**
+     * Choose, which Book to update.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book updateMany
+   */
+  export type BookUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Books.
+     */
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyInput>
+    /**
+     * Filter which Books to update
+     */
+    where?: BookWhereInput
+    /**
+     * Limit how many Books to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Book updateManyAndReturn
+   */
+  export type BookUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * The data used to update Books.
+     */
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyInput>
+    /**
+     * Filter which Books to update
+     */
+    where?: BookWhereInput
+    /**
+     * Limit how many Books to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Book upsert
+   */
+  export type BookUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Book to update in case it exists.
+     */
+    where: BookWhereUniqueInput
+    /**
+     * In case the Book found by the `where` argument doesn't exist, create a new Book with this data.
+     */
+    create: XOR<BookCreateInput, BookUncheckedCreateInput>
+    /**
+     * In case the Book was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookUpdateInput, BookUncheckedUpdateInput>
+  }
+
+  /**
+   * Book delete
+   */
+  export type BookDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter which Book to delete.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book deleteMany
+   */
+  export type BookDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Books to delete
+     */
+    where?: BookWhereInput
+    /**
+     * Limit how many Books to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Book without action
+   */
+  export type BookDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Book
+     */
+    omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Account
    */
 
@@ -9498,9 +11907,9 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    Post?: boolean | User$PostArgs<ExtArgs>
     Comment?: boolean | User$CommentArgs<ExtArgs>
+    Post?: boolean | User$PostArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -9531,9 +11940,9 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    Post?: boolean | User$PostArgs<ExtArgs>
     Comment?: boolean | User$CommentArgs<ExtArgs>
+    Post?: boolean | User$PostArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9543,9 +11952,9 @@ export namespace Prisma {
     name: "User"
     objects: {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
-      sessions: Prisma.$SessionPayload<ExtArgs>[]
-      Post: Prisma.$PostPayload<ExtArgs>[]
       Comment: Prisma.$CommentPayload<ExtArgs>[]
+      Post: Prisma.$PostPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9948,9 +12357,9 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Post<T extends User$PostArgs<ExtArgs> = {}>(args?: Subset<T, User$PostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Comment<T extends User$CommentArgs<ExtArgs> = {}>(args?: Subset<T, User$CommentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Post<T extends User$PostArgs<ExtArgs> = {}>(args?: Subset<T, User$PostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10397,27 +12806,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.sessions
+   * User.Comment
    */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$CommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Session
+     * Select specific fields to fetch from the Comment
      */
-    select?: SessionSelect<ExtArgs> | null
+    select?: CommentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Session
+     * Omit specific fields from the Comment
      */
-    omit?: SessionOmit<ExtArgs> | null
+    omit?: CommentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
   }
 
   /**
@@ -10445,27 +12854,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.Comment
+   * User.sessions
    */
-  export type User$CommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Comment
+     * Select specific fields to fetch from the Session
      */
-    select?: CommentSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Comment
+     * Omit specific fields from the Session
      */
-    omit?: CommentOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CommentInclude<ExtArgs> | null
-    where?: CommentWhereInput
-    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
-    cursor?: CommentWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -12743,9 +15152,9 @@ export namespace Prisma {
     views?: boolean
     catSlug?: boolean
     userEmail?: boolean
-    cat?: boolean | CategoryDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     comments?: boolean | Post$commentsArgs<ExtArgs>
+    categories?: boolean | Post$categoriesArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -12759,7 +15168,6 @@ export namespace Prisma {
     views?: boolean
     catSlug?: boolean
     userEmail?: boolean
-    cat?: boolean | CategoryDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -12773,7 +15181,6 @@ export namespace Prisma {
     views?: boolean
     catSlug?: boolean
     userEmail?: boolean
-    cat?: boolean | CategoryDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -12791,26 +15198,24 @@ export namespace Prisma {
 
   export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "slug" | "title" | "desc" | "img" | "views" | "catSlug" | "userEmail", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cat?: boolean | CategoryDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     comments?: boolean | Post$commentsArgs<ExtArgs>
+    categories?: boolean | Post$categoriesArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cat?: boolean | CategoryDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type PostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cat?: boolean | CategoryDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
-      cat: Prisma.$CategoryPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
       comments: Prisma.$CommentPayload<ExtArgs>[]
+      categories: Prisma.$CategoryPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13216,9 +15621,9 @@ export namespace Prisma {
    */
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    cat<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     comments<T extends Post$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Post$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    categories<T extends Post$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Post$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13677,6 +16082,30 @@ export namespace Prisma {
   }
 
   /**
+   * Post.categories
+   */
+  export type Post$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
    * Post without action
    */
   export type PostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13859,8 +16288,8 @@ export namespace Prisma {
     desc?: boolean
     userEmail?: boolean
     postSlug?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13869,8 +16298,8 @@ export namespace Prisma {
     desc?: boolean
     userEmail?: boolean
     postSlug?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13879,8 +16308,8 @@ export namespace Prisma {
     desc?: boolean
     userEmail?: boolean
     postSlug?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectScalar = {
@@ -13893,23 +16322,23 @@ export namespace Prisma {
 
   export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "desc" | "userEmail" | "postSlug", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type CommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Comment"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       post: Prisma.$PostPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14311,8 +16740,8 @@ export namespace Prisma {
    */
   export interface Prisma__CommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14833,6 +17262,27 @@ export namespace Prisma {
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
 
+  export const AuthorScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    bio: 'bio',
+    createdAt: 'createdAt',
+    country: 'country'
+  };
+
+  export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+
+
+  export const BookScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    authorId: 'authorId',
+    createdAt: 'createdAt'
+  };
+
+  export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
   export const AccountScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -15300,6 +17750,115 @@ export namespace Prisma {
     image_url?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
+  export type AuthorWhereInput = {
+    AND?: AuthorWhereInput | AuthorWhereInput[]
+    OR?: AuthorWhereInput[]
+    NOT?: AuthorWhereInput | AuthorWhereInput[]
+    id?: IntFilter<"Author"> | number
+    name?: StringFilter<"Author"> | string
+    bio?: StringNullableFilter<"Author"> | string | null
+    createdAt?: DateTimeFilter<"Author"> | Date | string
+    country?: StringNullableFilter<"Author"> | string | null
+    books?: BookListRelationFilter
+  }
+
+  export type AuthorOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    bio?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    country?: SortOrderInput | SortOrder
+    books?: BookOrderByRelationAggregateInput
+  }
+
+  export type AuthorWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: AuthorWhereInput | AuthorWhereInput[]
+    OR?: AuthorWhereInput[]
+    NOT?: AuthorWhereInput | AuthorWhereInput[]
+    name?: StringFilter<"Author"> | string
+    bio?: StringNullableFilter<"Author"> | string | null
+    createdAt?: DateTimeFilter<"Author"> | Date | string
+    country?: StringNullableFilter<"Author"> | string | null
+    books?: BookListRelationFilter
+  }, "id">
+
+  export type AuthorOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    bio?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    country?: SortOrderInput | SortOrder
+    _count?: AuthorCountOrderByAggregateInput
+    _avg?: AuthorAvgOrderByAggregateInput
+    _max?: AuthorMaxOrderByAggregateInput
+    _min?: AuthorMinOrderByAggregateInput
+    _sum?: AuthorSumOrderByAggregateInput
+  }
+
+  export type AuthorScalarWhereWithAggregatesInput = {
+    AND?: AuthorScalarWhereWithAggregatesInput | AuthorScalarWhereWithAggregatesInput[]
+    OR?: AuthorScalarWhereWithAggregatesInput[]
+    NOT?: AuthorScalarWhereWithAggregatesInput | AuthorScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Author"> | number
+    name?: StringWithAggregatesFilter<"Author"> | string
+    bio?: StringNullableWithAggregatesFilter<"Author"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Author"> | Date | string
+    country?: StringNullableWithAggregatesFilter<"Author"> | string | null
+  }
+
+  export type BookWhereInput = {
+    AND?: BookWhereInput | BookWhereInput[]
+    OR?: BookWhereInput[]
+    NOT?: BookWhereInput | BookWhereInput[]
+    id?: IntFilter<"Book"> | number
+    title?: StringFilter<"Book"> | string
+    authorId?: IntFilter<"Book"> | number
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
+  }
+
+  export type BookOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    author?: AuthorOrderByWithRelationInput
+  }
+
+  export type BookWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BookWhereInput | BookWhereInput[]
+    OR?: BookWhereInput[]
+    NOT?: BookWhereInput | BookWhereInput[]
+    title?: StringFilter<"Book"> | string
+    authorId?: IntFilter<"Book"> | number
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
+  }, "id">
+
+  export type BookOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    _count?: BookCountOrderByAggregateInput
+    _avg?: BookAvgOrderByAggregateInput
+    _max?: BookMaxOrderByAggregateInput
+    _min?: BookMinOrderByAggregateInput
+    _sum?: BookSumOrderByAggregateInput
+  }
+
+  export type BookScalarWhereWithAggregatesInput = {
+    AND?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
+    OR?: BookScalarWhereWithAggregatesInput[]
+    NOT?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Book"> | number
+    title?: StringWithAggregatesFilter<"Book"> | string
+    authorId?: IntWithAggregatesFilter<"Book"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
+  }
+
   export type AccountWhereInput = {
     AND?: AccountWhereInput | AccountWhereInput[]
     OR?: AccountWhereInput[]
@@ -15453,9 +18012,9 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
-    sessions?: SessionListRelationFilter
-    Post?: PostListRelationFilter
     Comment?: CommentListRelationFilter
+    Post?: PostListRelationFilter
+    sessions?: SessionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -15465,9 +18024,9 @@ export namespace Prisma {
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     accounts?: AccountOrderByRelationAggregateInput
-    sessions?: SessionOrderByRelationAggregateInput
-    Post?: PostOrderByRelationAggregateInput
     Comment?: CommentOrderByRelationAggregateInput
+    Post?: PostOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -15480,9 +18039,9 @@ export namespace Prisma {
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
-    sessions?: SessionListRelationFilter
-    Post?: PostListRelationFilter
     Comment?: CommentListRelationFilter
+    Post?: PostListRelationFilter
+    sessions?: SessionListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -15613,9 +18172,9 @@ export namespace Prisma {
     views?: IntFilter<"Post"> | number
     catSlug?: StringFilter<"Post"> | string
     userEmail?: StringFilter<"Post"> | string
-    cat?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     comments?: CommentListRelationFilter
+    categories?: CategoryListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type PostOrderByWithRelationInput = {
@@ -15628,9 +18187,9 @@ export namespace Prisma {
     views?: SortOrder
     catSlug?: SortOrder
     userEmail?: SortOrder
-    cat?: CategoryOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
     comments?: CommentOrderByRelationAggregateInput
+    categories?: CategoryOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -15646,9 +18205,9 @@ export namespace Prisma {
     views?: IntFilter<"Post"> | number
     catSlug?: StringFilter<"Post"> | string
     userEmail?: StringFilter<"Post"> | string
-    cat?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     comments?: CommentListRelationFilter
+    categories?: CategoryListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "slug">
 
   export type PostOrderByWithAggregationInput = {
@@ -15692,8 +18251,8 @@ export namespace Prisma {
     desc?: StringFilter<"Comment"> | string
     userEmail?: StringFilter<"Comment"> | string
     postSlug?: StringFilter<"Comment"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type CommentOrderByWithRelationInput = {
@@ -15702,8 +18261,8 @@ export namespace Prisma {
     desc?: SortOrder
     userEmail?: SortOrder
     postSlug?: SortOrder
-    user?: UserOrderByWithRelationInput
     post?: PostOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -15715,8 +18274,8 @@ export namespace Prisma {
     desc?: StringFilter<"Comment"> | string
     userEmail?: StringFilter<"Comment"> | string
     postSlug?: StringFilter<"Comment"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type CommentOrderByWithAggregationInput = {
@@ -16042,6 +18601,108 @@ export namespace Prisma {
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type AuthorCreateInput = {
+    name: string
+    bio?: string | null
+    createdAt?: Date | string
+    country?: string | null
+    books?: BookCreateNestedManyWithoutAuthorInput
+  }
+
+  export type AuthorUncheckedCreateInput = {
+    id?: number
+    name: string
+    bio?: string | null
+    createdAt?: Date | string
+    country?: string | null
+    books?: BookUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type AuthorUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    books?: BookUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type AuthorUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    books?: BookUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type AuthorCreateManyInput = {
+    id?: number
+    name: string
+    bio?: string | null
+    createdAt?: Date | string
+    country?: string | null
+  }
+
+  export type AuthorUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AuthorUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BookCreateInput = {
+    title: string
+    createdAt?: Date | string
+    author: AuthorCreateNestedOneWithoutBooksInput
+  }
+
+  export type BookUncheckedCreateInput = {
+    id?: number
+    title: string
+    authorId: number
+    createdAt?: Date | string
+  }
+
+  export type BookUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUpdateOneRequiredWithoutBooksNestedInput
+  }
+
+  export type BookUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    authorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookCreateManyInput = {
+    id?: number
+    title: string
+    authorId: number
+    createdAt?: Date | string
+  }
+
+  export type BookUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    authorId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AccountCreateInput = {
     id?: string
     type: string
@@ -16201,9 +18862,9 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    Post?: PostCreateNestedManyWithoutUserInput
     Comment?: CommentCreateNestedManyWithoutUserInput
+    Post?: PostCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16213,9 +18874,9 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Post?: PostUncheckedCreateNestedManyWithoutUserInput
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    Post?: PostUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -16225,9 +18886,9 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    Post?: PostUpdateManyWithoutUserNestedInput
     Comment?: CommentUpdateManyWithoutUserNestedInput
+    Post?: PostUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16237,9 +18898,9 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -16313,7 +18974,7 @@ export namespace Prisma {
     slug: string
     title: string
     img?: string | null
-    Posts?: PostCreateNestedManyWithoutCatInput
+    Posts?: PostCreateNestedManyWithoutCategoriesInput
   }
 
   export type CategoryUncheckedCreateInput = {
@@ -16321,7 +18982,7 @@ export namespace Prisma {
     slug: string
     title: string
     img?: string | null
-    Posts?: PostUncheckedCreateNestedManyWithoutCatInput
+    Posts?: PostUncheckedCreateNestedManyWithoutCategoriesInput
   }
 
   export type CategoryUpdateInput = {
@@ -16329,7 +18990,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
-    Posts?: PostUpdateManyWithoutCatNestedInput
+    Posts?: PostUpdateManyWithoutCategoriesNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
@@ -16337,7 +18998,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
-    Posts?: PostUncheckedUpdateManyWithoutCatNestedInput
+    Posts?: PostUncheckedUpdateManyWithoutCategoriesNestedInput
   }
 
   export type CategoryCreateManyInput = {
@@ -16369,9 +19030,10 @@ export namespace Prisma {
     desc: string
     img?: string | null
     views?: number
-    cat: CategoryCreateNestedOneWithoutPostsInput
-    user: UserCreateNestedOneWithoutPostInput
+    catSlug: string
     comments?: CommentCreateNestedManyWithoutPostInput
+    categories?: CategoryCreateNestedManyWithoutPostsInput
+    user: UserCreateNestedOneWithoutPostInput
   }
 
   export type PostUncheckedCreateInput = {
@@ -16385,6 +19047,7 @@ export namespace Prisma {
     catSlug: string
     userEmail: string
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput
   }
 
   export type PostUpdateInput = {
@@ -16395,9 +19058,10 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
-    cat?: CategoryUpdateOneRequiredWithoutPostsNestedInput
-    user?: UserUpdateOneRequiredWithoutPostNestedInput
+    catSlug?: StringFieldUpdateOperationsInput | string
     comments?: CommentUpdateManyWithoutPostNestedInput
+    categories?: CategoryUpdateManyWithoutPostsNestedInput
+    user?: UserUpdateOneRequiredWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
@@ -16411,6 +19075,7 @@ export namespace Prisma {
     catSlug?: StringFieldUpdateOperationsInput | string
     userEmail?: StringFieldUpdateOperationsInput | string
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutPostsNestedInput
   }
 
   export type PostCreateManyInput = {
@@ -16433,6 +19098,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
+    catSlug?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -16451,8 +19117,8 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     desc: string
-    user: UserCreateNestedOneWithoutCommentInput
     post: PostCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentInput
   }
 
   export type CommentUncheckedCreateInput = {
@@ -16467,8 +19133,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     desc?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutCommentNestedInput
     post?: PostUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentNestedInput
   }
 
   export type CommentUncheckedUpdateInput = {
@@ -16821,6 +19487,84 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type BookListRelationFilter = {
+    every?: BookWhereInput
+    some?: BookWhereInput
+    none?: BookWhereInput
+  }
+
+  export type BookOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AuthorCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    bio?: SortOrder
+    createdAt?: SortOrder
+    country?: SortOrder
+  }
+
+  export type AuthorAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type AuthorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    bio?: SortOrder
+    createdAt?: SortOrder
+    country?: SortOrder
+  }
+
+  export type AuthorMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    bio?: SortOrder
+    createdAt?: SortOrder
+    country?: SortOrder
+  }
+
+  export type AuthorSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type AuthorScalarRelationFilter = {
+    is?: AuthorWhereInput
+    isNot?: AuthorWhereInput
+  }
+
+  export type BookCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookAvgOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type BookMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookSumOrderByAggregateInput = {
+    id?: SortOrder
+    authorId?: SortOrder
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -16949,10 +19693,10 @@ export namespace Prisma {
     none?: AccountWhereInput
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
+  export type CommentListRelationFilter = {
+    every?: CommentWhereInput
+    some?: CommentWhereInput
+    none?: CommentWhereInput
   }
 
   export type PostListRelationFilter = {
@@ -16961,17 +19705,17 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
-  export type CommentListRelationFilter = {
-    every?: CommentWhereInput
-    some?: CommentWhereInput
-    none?: CommentWhereInput
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
   }
 
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type SessionOrderByRelationAggregateInput = {
+  export type CommentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16979,7 +19723,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type CommentOrderByRelationAggregateInput = {
+  export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17065,9 +19809,14 @@ export namespace Prisma {
     img?: SortOrder
   }
 
-  export type CategoryScalarRelationFilter = {
-    is?: CategoryWhereInput
-    isNot?: CategoryWhereInput
+  export type CategoryListRelationFilter = {
+    every?: CategoryWhereInput
+    some?: CategoryWhereInput
+    none?: CategoryWhereInput
+  }
+
+  export type CategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type PostCountOrderByAggregateInput = {
@@ -17167,6 +19916,62 @@ export namespace Prisma {
     set?: Uint8Array | null
   }
 
+  export type BookCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
+    createMany?: BookCreateManyAuthorInputEnvelope
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+  }
+
+  export type BookUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
+    createMany?: BookCreateManyAuthorInputEnvelope
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+  }
+
+  export type BookUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutAuthorInput | BookUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: BookCreateManyAuthorInputEnvelope
+    set?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    update?: BookUpdateWithWhereUniqueWithoutAuthorInput | BookUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutAuthorInput | BookUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
+  }
+
+  export type BookUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput> | BookCreateWithoutAuthorInput[] | BookUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BookCreateOrConnectWithoutAuthorInput | BookCreateOrConnectWithoutAuthorInput[]
+    upsert?: BookUpsertWithWhereUniqueWithoutAuthorInput | BookUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: BookCreateManyAuthorInputEnvelope
+    set?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    disconnect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    delete?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    connect?: BookWhereUniqueInput | BookWhereUniqueInput[]
+    update?: BookUpdateWithWhereUniqueWithoutAuthorInput | BookUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: BookUpdateManyWithWhereWithoutAuthorInput | BookUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: BookScalarWhereInput | BookScalarWhereInput[]
+  }
+
+  export type AuthorCreateNestedOneWithoutBooksInput = {
+    create?: XOR<AuthorCreateWithoutBooksInput, AuthorUncheckedCreateWithoutBooksInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutBooksInput
+    connect?: AuthorWhereUniqueInput
+  }
+
+  export type AuthorUpdateOneRequiredWithoutBooksNestedInput = {
+    create?: XOR<AuthorCreateWithoutBooksInput, AuthorUncheckedCreateWithoutBooksInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutBooksInput
+    upsert?: AuthorUpsertWithoutBooksInput
+    connect?: AuthorWhereUniqueInput
+    update?: XOR<XOR<AuthorUpdateToOneWithWhereWithoutBooksInput, AuthorUpdateWithoutBooksInput>, AuthorUncheckedUpdateWithoutBooksInput>
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -17210,11 +20015,11 @@ export namespace Prisma {
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  export type CommentCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
+    createMany?: CommentCreateManyUserInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
   export type PostCreateNestedManyWithoutUserInput = {
@@ -17224,11 +20029,11 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type CommentCreateNestedManyWithoutUserInput = {
-    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
-    createMany?: CommentCreateManyUserInputEnvelope
-    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -17238,11 +20043,11 @@ export namespace Prisma {
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  export type CommentUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
+    createMany?: CommentCreateManyUserInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
   export type PostUncheckedCreateNestedManyWithoutUserInput = {
@@ -17252,11 +20057,11 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type CommentUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
-    createMany?: CommentCreateManyUserInputEnvelope
-    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -17277,18 +20082,18 @@ export namespace Prisma {
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
   }
 
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  export type CommentUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutUserInput | CommentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CommentCreateManyUserInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutUserInput | CommentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutUserInput | CommentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type PostUpdateManyWithoutUserNestedInput = {
@@ -17305,18 +20110,18 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type CommentUpdateManyWithoutUserNestedInput = {
-    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
-    upsert?: CommentUpsertWithWhereUniqueWithoutUserInput | CommentUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: CommentCreateManyUserInputEnvelope
-    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    update?: CommentUpdateWithWhereUniqueWithoutUserInput | CommentUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: CommentUpdateManyWithWhereWithoutUserInput | CommentUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
@@ -17333,18 +20138,18 @@ export namespace Prisma {
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
   }
 
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  export type CommentUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutUserInput | CommentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CommentCreateManyUserInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutUserInput | CommentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutUserInput | CommentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type PostUncheckedUpdateManyWithoutUserNestedInput = {
@@ -17361,72 +20166,56 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type CommentUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
-    upsert?: CommentUpsertWithWhereUniqueWithoutUserInput | CommentUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: CommentCreateManyUserInputEnvelope
-    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
-    update?: CommentUpdateWithWhereUniqueWithoutUserInput | CommentUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: CommentUpdateManyWithWhereWithoutUserInput | CommentUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type PostCreateNestedManyWithoutCatInput = {
-    create?: XOR<PostCreateWithoutCatInput, PostUncheckedCreateWithoutCatInput> | PostCreateWithoutCatInput[] | PostUncheckedCreateWithoutCatInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutCatInput | PostCreateOrConnectWithoutCatInput[]
-    createMany?: PostCreateManyCatInputEnvelope
+  export type PostCreateNestedManyWithoutCategoriesInput = {
+    create?: XOR<PostCreateWithoutCategoriesInput, PostUncheckedCreateWithoutCategoriesInput> | PostCreateWithoutCategoriesInput[] | PostUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutCategoriesInput | PostCreateOrConnectWithoutCategoriesInput[]
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type PostUncheckedCreateNestedManyWithoutCatInput = {
-    create?: XOR<PostCreateWithoutCatInput, PostUncheckedCreateWithoutCatInput> | PostCreateWithoutCatInput[] | PostUncheckedCreateWithoutCatInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutCatInput | PostCreateOrConnectWithoutCatInput[]
-    createMany?: PostCreateManyCatInputEnvelope
+  export type PostUncheckedCreateNestedManyWithoutCategoriesInput = {
+    create?: XOR<PostCreateWithoutCategoriesInput, PostUncheckedCreateWithoutCategoriesInput> | PostCreateWithoutCategoriesInput[] | PostUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutCategoriesInput | PostCreateOrConnectWithoutCategoriesInput[]
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type PostUpdateManyWithoutCatNestedInput = {
-    create?: XOR<PostCreateWithoutCatInput, PostUncheckedCreateWithoutCatInput> | PostCreateWithoutCatInput[] | PostUncheckedCreateWithoutCatInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutCatInput | PostCreateOrConnectWithoutCatInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutCatInput | PostUpsertWithWhereUniqueWithoutCatInput[]
-    createMany?: PostCreateManyCatInputEnvelope
+  export type PostUpdateManyWithoutCategoriesNestedInput = {
+    create?: XOR<PostCreateWithoutCategoriesInput, PostUncheckedCreateWithoutCategoriesInput> | PostCreateWithoutCategoriesInput[] | PostUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutCategoriesInput | PostCreateOrConnectWithoutCategoriesInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutCategoriesInput | PostUpsertWithWhereUniqueWithoutCategoriesInput[]
     set?: PostWhereUniqueInput | PostWhereUniqueInput[]
     disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
     delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutCatInput | PostUpdateWithWhereUniqueWithoutCatInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutCatInput | PostUpdateManyWithWhereWithoutCatInput[]
+    update?: PostUpdateWithWhereUniqueWithoutCategoriesInput | PostUpdateWithWhereUniqueWithoutCategoriesInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutCategoriesInput | PostUpdateManyWithWhereWithoutCategoriesInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type PostUncheckedUpdateManyWithoutCatNestedInput = {
-    create?: XOR<PostCreateWithoutCatInput, PostUncheckedCreateWithoutCatInput> | PostCreateWithoutCatInput[] | PostUncheckedCreateWithoutCatInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutCatInput | PostCreateOrConnectWithoutCatInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutCatInput | PostUpsertWithWhereUniqueWithoutCatInput[]
-    createMany?: PostCreateManyCatInputEnvelope
+  export type PostUncheckedUpdateManyWithoutCategoriesNestedInput = {
+    create?: XOR<PostCreateWithoutCategoriesInput, PostUncheckedCreateWithoutCategoriesInput> | PostCreateWithoutCategoriesInput[] | PostUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutCategoriesInput | PostCreateOrConnectWithoutCategoriesInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutCategoriesInput | PostUpsertWithWhereUniqueWithoutCategoriesInput[]
     set?: PostWhereUniqueInput | PostWhereUniqueInput[]
     disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
     delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutCatInput | PostUpdateWithWhereUniqueWithoutCatInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutCatInput | PostUpdateManyWithWhereWithoutCatInput[]
+    update?: PostUpdateWithWhereUniqueWithoutCategoriesInput | PostUpdateWithWhereUniqueWithoutCategoriesInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutCategoriesInput | PostUpdateManyWithWhereWithoutCategoriesInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type CategoryCreateNestedOneWithoutPostsInput = {
-    create?: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: CategoryCreateOrConnectWithoutPostsInput
-    connect?: CategoryWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutPostInput = {
-    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostInput
-    connect?: UserWhereUniqueInput
   }
 
   export type CommentCreateNestedManyWithoutPostInput = {
@@ -17436,6 +20225,18 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+  export type CategoryCreateNestedManyWithoutPostsInput = {
+    create?: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput> | CategoryCreateWithoutPostsInput[] | CategoryUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutPostsInput | CategoryCreateOrConnectWithoutPostsInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutPostInput = {
+    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type CommentUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<CommentCreateWithoutPostInput, CommentUncheckedCreateWithoutPostInput> | CommentCreateWithoutPostInput[] | CommentUncheckedCreateWithoutPostInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutPostInput | CommentCreateOrConnectWithoutPostInput[]
@@ -17443,20 +20244,10 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type CategoryUpdateOneRequiredWithoutPostsNestedInput = {
-    create?: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: CategoryCreateOrConnectWithoutPostsInput
-    upsert?: CategoryUpsertWithoutPostsInput
-    connect?: CategoryWhereUniqueInput
-    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutPostsInput, CategoryUpdateWithoutPostsInput>, CategoryUncheckedUpdateWithoutPostsInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutPostNestedInput = {
-    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostInput
-    upsert?: UserUpsertWithoutPostInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostInput, UserUpdateWithoutPostInput>, UserUncheckedUpdateWithoutPostInput>
+  export type CategoryUncheckedCreateNestedManyWithoutPostsInput = {
+    create?: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput> | CategoryCreateWithoutPostsInput[] | CategoryUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutPostsInput | CategoryCreateOrConnectWithoutPostsInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
   }
 
   export type CommentUpdateManyWithoutPostNestedInput = {
@@ -17473,6 +20264,27 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type CategoryUpdateManyWithoutPostsNestedInput = {
+    create?: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput> | CategoryCreateWithoutPostsInput[] | CategoryUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutPostsInput | CategoryCreateOrConnectWithoutPostsInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutPostsInput | CategoryUpsertWithWhereUniqueWithoutPostsInput[]
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutPostsInput | CategoryUpdateWithWhereUniqueWithoutPostsInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutPostsInput | CategoryUpdateManyWithWhereWithoutPostsInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutPostNestedInput = {
+    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostInput
+    upsert?: UserUpsertWithoutPostInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostInput, UserUpdateWithoutPostInput>, UserUncheckedUpdateWithoutPostInput>
+  }
+
   export type CommentUncheckedUpdateManyWithoutPostNestedInput = {
     create?: XOR<CommentCreateWithoutPostInput, CommentUncheckedCreateWithoutPostInput> | CommentCreateWithoutPostInput[] | CommentUncheckedCreateWithoutPostInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutPostInput | CommentCreateOrConnectWithoutPostInput[]
@@ -17487,10 +20299,17 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutCommentInput = {
-    create?: XOR<UserCreateWithoutCommentInput, UserUncheckedCreateWithoutCommentInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCommentInput
-    connect?: UserWhereUniqueInput
+  export type CategoryUncheckedUpdateManyWithoutPostsNestedInput = {
+    create?: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput> | CategoryCreateWithoutPostsInput[] | CategoryUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutPostsInput | CategoryCreateOrConnectWithoutPostsInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutPostsInput | CategoryUpsertWithWhereUniqueWithoutPostsInput[]
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutPostsInput | CategoryUpdateWithWhereUniqueWithoutPostsInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutPostsInput | CategoryUpdateManyWithWhereWithoutPostsInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type PostCreateNestedOneWithoutCommentsInput = {
@@ -17499,12 +20318,10 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutCommentNestedInput = {
+  export type UserCreateNestedOneWithoutCommentInput = {
     create?: XOR<UserCreateWithoutCommentInput, UserUncheckedCreateWithoutCommentInput>
     connectOrCreate?: UserCreateOrConnectWithoutCommentInput
-    upsert?: UserUpsertWithoutCommentInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentInput, UserUpdateWithoutCommentInput>, UserUncheckedUpdateWithoutCommentInput>
   }
 
   export type PostUpdateOneRequiredWithoutCommentsNestedInput = {
@@ -17513,6 +20330,14 @@ export namespace Prisma {
     upsert?: PostUpsertWithoutCommentsInput
     connect?: PostWhereUniqueInput
     update?: XOR<XOR<PostUpdateToOneWithWhereWithoutCommentsInput, PostUpdateWithoutCommentsInput>, PostUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutCommentNestedInput = {
+    create?: XOR<UserCreateWithoutCommentInput, UserUncheckedCreateWithoutCommentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentInput
+    upsert?: UserUpsertWithoutCommentInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentInput, UserUpdateWithoutCommentInput>, UserUncheckedUpdateWithoutCommentInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -17745,15 +20570,108 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type BookCreateWithoutAuthorInput = {
+    title: string
+    createdAt?: Date | string
+  }
+
+  export type BookUncheckedCreateWithoutAuthorInput = {
+    id?: number
+    title: string
+    createdAt?: Date | string
+  }
+
+  export type BookCreateOrConnectWithoutAuthorInput = {
+    where: BookWhereUniqueInput
+    create: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type BookCreateManyAuthorInputEnvelope = {
+    data: BookCreateManyAuthorInput | BookCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BookUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: BookWhereUniqueInput
+    update: XOR<BookUpdateWithoutAuthorInput, BookUncheckedUpdateWithoutAuthorInput>
+    create: XOR<BookCreateWithoutAuthorInput, BookUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type BookUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: BookWhereUniqueInput
+    data: XOR<BookUpdateWithoutAuthorInput, BookUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type BookUpdateManyWithWhereWithoutAuthorInput = {
+    where: BookScalarWhereInput
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type BookScalarWhereInput = {
+    AND?: BookScalarWhereInput | BookScalarWhereInput[]
+    OR?: BookScalarWhereInput[]
+    NOT?: BookScalarWhereInput | BookScalarWhereInput[]
+    id?: IntFilter<"Book"> | number
+    title?: StringFilter<"Book"> | string
+    authorId?: IntFilter<"Book"> | number
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+  }
+
+  export type AuthorCreateWithoutBooksInput = {
+    name: string
+    bio?: string | null
+    createdAt?: Date | string
+    country?: string | null
+  }
+
+  export type AuthorUncheckedCreateWithoutBooksInput = {
+    id?: number
+    name: string
+    bio?: string | null
+    createdAt?: Date | string
+    country?: string | null
+  }
+
+  export type AuthorCreateOrConnectWithoutBooksInput = {
+    where: AuthorWhereUniqueInput
+    create: XOR<AuthorCreateWithoutBooksInput, AuthorUncheckedCreateWithoutBooksInput>
+  }
+
+  export type AuthorUpsertWithoutBooksInput = {
+    update: XOR<AuthorUpdateWithoutBooksInput, AuthorUncheckedUpdateWithoutBooksInput>
+    create: XOR<AuthorCreateWithoutBooksInput, AuthorUncheckedCreateWithoutBooksInput>
+    where?: AuthorWhereInput
+  }
+
+  export type AuthorUpdateToOneWithWhereWithoutBooksInput = {
+    where?: AuthorWhereInput
+    data: XOR<AuthorUpdateWithoutBooksInput, AuthorUncheckedUpdateWithoutBooksInput>
+  }
+
+  export type AuthorUpdateWithoutBooksInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AuthorUncheckedUpdateWithoutBooksInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    Post?: PostCreateNestedManyWithoutUserInput
     Comment?: CommentCreateNestedManyWithoutUserInput
+    Post?: PostCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -17762,9 +20680,9 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Post?: PostUncheckedCreateNestedManyWithoutUserInput
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    Post?: PostUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -17789,9 +20707,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    Post?: PostUpdateManyWithoutUserNestedInput
     Comment?: CommentUpdateManyWithoutUserNestedInput
+    Post?: PostUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -17800,9 +20718,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -17812,8 +20730,8 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
-    Post?: PostCreateNestedManyWithoutUserInput
     Comment?: CommentCreateNestedManyWithoutUserInput
+    Post?: PostCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -17823,8 +20741,8 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Post?: PostUncheckedCreateNestedManyWithoutUserInput
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    Post?: PostUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -17850,8 +20768,8 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    Post?: PostUpdateManyWithoutUserNestedInput
     Comment?: CommentUpdateManyWithoutUserNestedInput
+    Post?: PostUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -17861,8 +20779,8 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -17903,62 +20821,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SessionCreateWithoutUserInput = {
-    id?: string
-    sessionToken: string
-    expires: Date | string
-  }
-
-  export type SessionUncheckedCreateWithoutUserInput = {
-    id?: string
-    sessionToken: string
-    expires: Date | string
-  }
-
-  export type SessionCreateOrConnectWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionCreateManyUserInputEnvelope = {
-    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PostCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-    slug: string
-    title: string
-    desc: string
-    img?: string | null
-    views?: number
-    cat: CategoryCreateNestedOneWithoutPostsInput
-    comments?: CommentCreateNestedManyWithoutPostInput
-  }
-
-  export type PostUncheckedCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-    slug: string
-    title: string
-    desc: string
-    img?: string | null
-    views?: number
-    catSlug: string
-    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
-  }
-
-  export type PostCreateOrConnectWithoutUserInput = {
-    where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput>
-  }
-
-  export type PostCreateManyUserInputEnvelope = {
-    data: PostCreateManyUserInput | PostCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type CommentCreateWithoutUserInput = {
     id?: string
     createdAt?: Date | string
@@ -17980,6 +20842,64 @@ export namespace Prisma {
 
   export type CommentCreateManyUserInputEnvelope = {
     data: CommentCreateManyUserInput | CommentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PostCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    slug: string
+    title: string
+    desc: string
+    img?: string | null
+    views?: number
+    catSlug: string
+    comments?: CommentCreateNestedManyWithoutPostInput
+    categories?: CategoryCreateNestedManyWithoutPostsInput
+  }
+
+  export type PostUncheckedCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    slug: string
+    title: string
+    desc: string
+    img?: string | null
+    views?: number
+    catSlug: string
+    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput
+  }
+
+  export type PostCreateOrConnectWithoutUserInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput>
+  }
+
+  export type PostCreateManyUserInputEnvelope = {
+    data: PostCreateManyUserInput | PostCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SessionCreateWithoutUserInput = {
+    id?: string
+    sessionToken: string
+    expires: Date | string
+  }
+
+  export type SessionUncheckedCreateWithoutUserInput = {
+    id?: string
+    sessionToken: string
+    expires: Date | string
+  }
+
+  export type SessionCreateOrConnectWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -18017,30 +20937,31 @@ export namespace Prisma {
     session_state?: StringNullableFilter<"Account"> | string | null
   }
 
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  export type CommentUpsertWithWhereUniqueWithoutUserInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutUserInput, CommentUncheckedUpdateWithoutUserInput>
+    create: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  export type CommentUpdateWithWhereUniqueWithoutUserInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutUserInput, CommentUncheckedUpdateWithoutUserInput>
   }
 
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  export type CommentUpdateManyWithWhereWithoutUserInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    sessionToken?: StringFilter<"Session"> | string
-    userId?: StringFilter<"Session"> | string
-    expires?: DateTimeFilter<"Session"> | Date | string
+  export type CommentScalarWhereInput = {
+    AND?: CommentScalarWhereInput | CommentScalarWhereInput[]
+    OR?: CommentScalarWhereInput[]
+    NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
+    id?: StringFilter<"Comment"> | string
+    createdAt?: DateTimeFilter<"Comment"> | Date | string
+    desc?: StringFilter<"Comment"> | string
+    userEmail?: StringFilter<"Comment"> | string
+    postSlug?: StringFilter<"Comment"> | string
   }
 
   export type PostUpsertWithWhereUniqueWithoutUserInput = {
@@ -18074,34 +20995,33 @@ export namespace Prisma {
     userEmail?: StringFilter<"Post"> | string
   }
 
-  export type CommentUpsertWithWhereUniqueWithoutUserInput = {
-    where: CommentWhereUniqueInput
-    update: XOR<CommentUpdateWithoutUserInput, CommentUncheckedUpdateWithoutUserInput>
-    create: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput>
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type CommentUpdateWithWhereUniqueWithoutUserInput = {
-    where: CommentWhereUniqueInput
-    data: XOR<CommentUpdateWithoutUserInput, CommentUncheckedUpdateWithoutUserInput>
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
   }
 
-  export type CommentUpdateManyWithWhereWithoutUserInput = {
-    where: CommentScalarWhereInput
-    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutUserInput>
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type CommentScalarWhereInput = {
-    AND?: CommentScalarWhereInput | CommentScalarWhereInput[]
-    OR?: CommentScalarWhereInput[]
-    NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
-    id?: StringFilter<"Comment"> | string
-    createdAt?: DateTimeFilter<"Comment"> | Date | string
-    desc?: StringFilter<"Comment"> | string
-    userEmail?: StringFilter<"Comment"> | string
-    postSlug?: StringFilter<"Comment"> | string
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    sessionToken?: StringFilter<"Session"> | string
+    userId?: StringFilter<"Session"> | string
+    expires?: DateTimeFilter<"Session"> | Date | string
   }
 
-  export type PostCreateWithoutCatInput = {
+  export type PostCreateWithoutCategoriesInput = {
     id?: string
     createdAt?: Date | string
     slug: string
@@ -18109,11 +21029,12 @@ export namespace Prisma {
     desc: string
     img?: string | null
     views?: number
-    user: UserCreateNestedOneWithoutPostInput
+    catSlug: string
     comments?: CommentCreateNestedManyWithoutPostInput
+    user: UserCreateNestedOneWithoutPostInput
   }
 
-  export type PostUncheckedCreateWithoutCatInput = {
+  export type PostUncheckedCreateWithoutCategoriesInput = {
     id?: string
     createdAt?: Date | string
     slug: string
@@ -18121,34 +21042,54 @@ export namespace Prisma {
     desc: string
     img?: string | null
     views?: number
+    catSlug: string
     userEmail: string
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
   }
 
-  export type PostCreateOrConnectWithoutCatInput = {
+  export type PostCreateOrConnectWithoutCategoriesInput = {
     where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutCatInput, PostUncheckedCreateWithoutCatInput>
+    create: XOR<PostCreateWithoutCategoriesInput, PostUncheckedCreateWithoutCategoriesInput>
   }
 
-  export type PostCreateManyCatInputEnvelope = {
-    data: PostCreateManyCatInput | PostCreateManyCatInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PostUpsertWithWhereUniqueWithoutCatInput = {
+  export type PostUpsertWithWhereUniqueWithoutCategoriesInput = {
     where: PostWhereUniqueInput
-    update: XOR<PostUpdateWithoutCatInput, PostUncheckedUpdateWithoutCatInput>
-    create: XOR<PostCreateWithoutCatInput, PostUncheckedCreateWithoutCatInput>
+    update: XOR<PostUpdateWithoutCategoriesInput, PostUncheckedUpdateWithoutCategoriesInput>
+    create: XOR<PostCreateWithoutCategoriesInput, PostUncheckedCreateWithoutCategoriesInput>
   }
 
-  export type PostUpdateWithWhereUniqueWithoutCatInput = {
+  export type PostUpdateWithWhereUniqueWithoutCategoriesInput = {
     where: PostWhereUniqueInput
-    data: XOR<PostUpdateWithoutCatInput, PostUncheckedUpdateWithoutCatInput>
+    data: XOR<PostUpdateWithoutCategoriesInput, PostUncheckedUpdateWithoutCategoriesInput>
   }
 
-  export type PostUpdateManyWithWhereWithoutCatInput = {
+  export type PostUpdateManyWithWhereWithoutCategoriesInput = {
     where: PostScalarWhereInput
-    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutCatInput>
+    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyWithoutCategoriesInput>
+  }
+
+  export type CommentCreateWithoutPostInput = {
+    id?: string
+    createdAt?: Date | string
+    desc: string
+    user: UserCreateNestedOneWithoutCommentInput
+  }
+
+  export type CommentUncheckedCreateWithoutPostInput = {
+    id?: string
+    createdAt?: Date | string
+    desc: string
+    userEmail: string
+  }
+
+  export type CommentCreateOrConnectWithoutPostInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutPostInput, CommentUncheckedCreateWithoutPostInput>
+  }
+
+  export type CommentCreateManyPostInputEnvelope = {
+    data: CommentCreateManyPostInput | CommentCreateManyPostInput[]
+    skipDuplicates?: boolean
   }
 
   export type CategoryCreateWithoutPostsInput = {
@@ -18177,8 +21118,8 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
     Comment?: CommentCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostInput = {
@@ -18188,8 +21129,8 @@ export namespace Prisma {
     emailVerified?: Date | string | null
     image?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostInput = {
@@ -18197,53 +21138,46 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
   }
 
-  export type CommentCreateWithoutPostInput = {
-    id?: string
-    createdAt?: Date | string
-    desc: string
-    user: UserCreateNestedOneWithoutCommentInput
-  }
-
-  export type CommentUncheckedCreateWithoutPostInput = {
-    id?: string
-    createdAt?: Date | string
-    desc: string
-    userEmail: string
-  }
-
-  export type CommentCreateOrConnectWithoutPostInput = {
+  export type CommentUpsertWithWhereUniqueWithoutPostInput = {
     where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutPostInput, CommentUncheckedUpdateWithoutPostInput>
     create: XOR<CommentCreateWithoutPostInput, CommentUncheckedCreateWithoutPostInput>
   }
 
-  export type CommentCreateManyPostInputEnvelope = {
-    data: CommentCreateManyPostInput | CommentCreateManyPostInput[]
-    skipDuplicates?: boolean
+  export type CommentUpdateWithWhereUniqueWithoutPostInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutPostInput, CommentUncheckedUpdateWithoutPostInput>
   }
 
-  export type CategoryUpsertWithoutPostsInput = {
+  export type CommentUpdateManyWithWhereWithoutPostInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutPostInput>
+  }
+
+  export type CategoryUpsertWithWhereUniqueWithoutPostsInput = {
+    where: CategoryWhereUniqueInput
     update: XOR<CategoryUpdateWithoutPostsInput, CategoryUncheckedUpdateWithoutPostsInput>
     create: XOR<CategoryCreateWithoutPostsInput, CategoryUncheckedCreateWithoutPostsInput>
-    where?: CategoryWhereInput
   }
 
-  export type CategoryUpdateToOneWithWhereWithoutPostsInput = {
-    where?: CategoryWhereInput
+  export type CategoryUpdateWithWhereUniqueWithoutPostsInput = {
+    where: CategoryWhereUniqueInput
     data: XOR<CategoryUpdateWithoutPostsInput, CategoryUncheckedUpdateWithoutPostsInput>
   }
 
-  export type CategoryUpdateWithoutPostsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    img?: NullableStringFieldUpdateOperationsInput | string | null
+  export type CategoryUpdateManyWithWhereWithoutPostsInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutPostsInput>
   }
 
-  export type CategoryUncheckedUpdateWithoutPostsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    img?: NullableStringFieldUpdateOperationsInput | string | null
+  export type CategoryScalarWhereInput = {
+    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    OR?: CategoryScalarWhereInput[]
+    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    id?: StringFilter<"Category"> | string
+    slug?: StringFilter<"Category"> | string
+    title?: StringFilter<"Category"> | string
+    img?: StringNullableFilter<"Category"> | string | null
   }
 
   export type UserUpsertWithoutPostInput = {
@@ -18264,8 +21198,8 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
     Comment?: CommentUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostInput = {
@@ -18275,51 +21209,8 @@ export namespace Prisma {
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type CommentUpsertWithWhereUniqueWithoutPostInput = {
-    where: CommentWhereUniqueInput
-    update: XOR<CommentUpdateWithoutPostInput, CommentUncheckedUpdateWithoutPostInput>
-    create: XOR<CommentCreateWithoutPostInput, CommentUncheckedCreateWithoutPostInput>
-  }
-
-  export type CommentUpdateWithWhereUniqueWithoutPostInput = {
-    where: CommentWhereUniqueInput
-    data: XOR<CommentUpdateWithoutPostInput, CommentUncheckedUpdateWithoutPostInput>
-  }
-
-  export type CommentUpdateManyWithWhereWithoutPostInput = {
-    where: CommentScalarWhereInput
-    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutPostInput>
-  }
-
-  export type UserCreateWithoutCommentInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified?: Date | string | null
-    image?: string | null
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    Post?: PostCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutCommentInput = {
-    id?: string
-    name?: string | null
-    email: string
-    emailVerified?: Date | string | null
-    image?: string | null
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Post?: PostUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutCommentInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutCommentInput, UserUncheckedCreateWithoutCommentInput>
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostCreateWithoutCommentsInput = {
@@ -18330,7 +21221,8 @@ export namespace Prisma {
     desc: string
     img?: string | null
     views?: number
-    cat: CategoryCreateNestedOneWithoutPostsInput
+    catSlug: string
+    categories?: CategoryCreateNestedManyWithoutPostsInput
     user: UserCreateNestedOneWithoutPostInput
   }
 
@@ -18344,6 +21236,7 @@ export namespace Prisma {
     views?: number
     catSlug: string
     userEmail: string
+    categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput
   }
 
   export type PostCreateOrConnectWithoutCommentsInput = {
@@ -18351,37 +21244,31 @@ export namespace Prisma {
     create: XOR<PostCreateWithoutCommentsInput, PostUncheckedCreateWithoutCommentsInput>
   }
 
-  export type UserUpsertWithoutCommentInput = {
-    update: XOR<UserUpdateWithoutCommentInput, UserUncheckedUpdateWithoutCommentInput>
+  export type UserCreateWithoutCommentInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Post?: PostCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCommentInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Post?: PostUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCommentInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutCommentInput, UserUncheckedCreateWithoutCommentInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutCommentInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutCommentInput, UserUncheckedUpdateWithoutCommentInput>
-  }
-
-  export type UserUpdateWithoutCommentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    Post?: PostUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutCommentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostUpsertWithoutCommentsInput = {
@@ -18403,7 +21290,8 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
-    cat?: CategoryUpdateOneRequiredWithoutPostsNestedInput
+    catSlug?: StringFieldUpdateOperationsInput | string
+    categories?: CategoryUpdateManyWithoutPostsNestedInput
     user?: UserUpdateOneRequiredWithoutPostNestedInput
   }
 
@@ -18417,6 +21305,63 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     catSlug?: StringFieldUpdateOperationsInput | string
     userEmail?: StringFieldUpdateOperationsInput | string
+    categories?: CategoryUncheckedUpdateManyWithoutPostsNestedInput
+  }
+
+  export type UserUpsertWithoutCommentInput = {
+    update: XOR<UserUpdateWithoutCommentInput, UserUncheckedUpdateWithoutCommentInput>
+    create: XOR<UserCreateWithoutCommentInput, UserUncheckedCreateWithoutCommentInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCommentInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCommentInput, UserUncheckedUpdateWithoutCommentInput>
+  }
+
+  export type UserUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Post?: PostUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Post?: PostUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type BookCreateManyAuthorInput = {
+    id?: number
+    title: string
+    createdAt?: Date | string
+  }
+
+  export type BookUpdateWithoutAuthorInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookUncheckedUpdateWithoutAuthorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookUncheckedUpdateManyWithoutAuthorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -18433,10 +21378,11 @@ export namespace Prisma {
     session_state?: string | null
   }
 
-  export type SessionCreateManyUserInput = {
+  export type CommentCreateManyUserInput = {
     id?: string
-    sessionToken: string
-    expires: Date | string
+    createdAt?: Date | string
+    desc: string
+    postSlug: string
   }
 
   export type PostCreateManyUserInput = {
@@ -18450,11 +21396,10 @@ export namespace Prisma {
     catSlug: string
   }
 
-  export type CommentCreateManyUserInput = {
+  export type SessionCreateManyUserInput = {
     id?: string
-    createdAt?: Date | string
-    desc: string
-    postSlug: string
+    sessionToken: string
+    expires: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -18499,59 +21444,6 @@ export namespace Prisma {
     session_state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type SessionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sessionToken?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SessionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sessionToken?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sessionToken?: StringFieldUpdateOperationsInput | string
-    expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PostUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: StringFieldUpdateOperationsInput | string
-    img?: NullableStringFieldUpdateOperationsInput | string | null
-    views?: IntFieldUpdateOperationsInput | number
-    cat?: CategoryUpdateOneRequiredWithoutPostsNestedInput
-    comments?: CommentUpdateManyWithoutPostNestedInput
-  }
-
-  export type PostUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: StringFieldUpdateOperationsInput | string
-    img?: NullableStringFieldUpdateOperationsInput | string | null
-    views?: IntFieldUpdateOperationsInput | number
-    catSlug?: StringFieldUpdateOperationsInput | string
-    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
-  }
-
-  export type PostUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: StringFieldUpdateOperationsInput | string
-    img?: NullableStringFieldUpdateOperationsInput | string | null
-    views?: IntFieldUpdateOperationsInput | number
-    catSlug?: StringFieldUpdateOperationsInput | string
-  }
-
   export type CommentUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18573,18 +21465,7 @@ export namespace Prisma {
     postSlug?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PostCreateManyCatInput = {
-    id?: string
-    createdAt?: Date | string
-    slug: string
-    title: string
-    desc: string
-    img?: string | null
-    views?: number
-    userEmail: string
-  }
-
-  export type PostUpdateWithoutCatInput = {
+  export type PostUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -18592,11 +21473,12 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
-    user?: UserUpdateOneRequiredWithoutPostNestedInput
+    catSlug?: StringFieldUpdateOperationsInput | string
     comments?: CommentUpdateManyWithoutPostNestedInput
+    categories?: CategoryUpdateManyWithoutPostsNestedInput
   }
 
-  export type PostUncheckedUpdateWithoutCatInput = {
+  export type PostUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -18604,11 +21486,67 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
+    catSlug?: StringFieldUpdateOperationsInput | string
+    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutPostsNestedInput
+  }
+
+  export type PostUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    catSlug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SessionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SessionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    catSlug?: StringFieldUpdateOperationsInput | string
+    comments?: CommentUpdateManyWithoutPostNestedInput
+    user?: UserUpdateOneRequiredWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    views?: IntFieldUpdateOperationsInput | number
+    catSlug?: StringFieldUpdateOperationsInput | string
     userEmail?: StringFieldUpdateOperationsInput | string
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
   }
 
-  export type PostUncheckedUpdateManyWithoutCatInput = {
+  export type PostUncheckedUpdateManyWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -18616,6 +21554,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     img?: NullableStringFieldUpdateOperationsInput | string | null
     views?: IntFieldUpdateOperationsInput | number
+    catSlug?: StringFieldUpdateOperationsInput | string
     userEmail?: StringFieldUpdateOperationsInput | string
   }
 
@@ -18645,6 +21584,27 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     desc?: StringFieldUpdateOperationsInput | string
     userEmail?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoryUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CategoryUncheckedUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

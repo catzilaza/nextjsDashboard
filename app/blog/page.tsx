@@ -1,9 +1,7 @@
-"use client";
-
 // https://www.youtube.com/watch?v=DpYE5zPDRVQ
 // https://github.com/safak/next-blog/blob/completed/src/components/card/Card.jsx
 
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import CardList from "@/components/blog/cardlist/CardList";
 import Menu from "@/components/blog/Menu/Menu";
 import styles from "./blogPage.module.css";

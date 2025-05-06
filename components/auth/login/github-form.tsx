@@ -6,12 +6,27 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 // import { useActionState } from "react";
 // import { githubAuthenticate } from "@/app/lib/actions/auth/githubAuth-action";
 // import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+// import { useSession } from "next-auth/react";
+// import { useRouter } from "next/navigation";
 
 export default function GithubLoginForm() {
   // const [state, formAction, isPending] = useActionState(
   //   githubAuthenticate,
   //   undefined
   // );
+  // const { data, status } = useSession();
+
+  // console.log("GithubLoginForm", status, data);
+
+  // const router = useRouter();
+
+  // if (status === "loading") {
+  //   return <div className="flex items-center justify-center">Loading...</div>;
+  // }
+  // if (status === "authenticated") {
+  //   router.push("/");
+  // }
+
   return (
     <>
       {/* <form action={formAction} className="space-y-3">

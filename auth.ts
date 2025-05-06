@@ -1,19 +1,18 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
-import type { User } from "@/app/lib/definitions";
 import { authConfig } from "./auth.config";
 import bcrypt from "bcrypt";
+import { PrismaClient } from "@prisma/client";
+import Google from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
+import type { User } from "@/app/lib/definitions";
+import { getUserByEmail } from "./lib/data/auth/users";
+
 // import postgres from "postgres";
 // import prisma from "./lib/prisma";
 // import { adapter } from "next/dist/server/web/adapter";
 // import { Adapter } from "next-auth/adapter";
-// import { PrismaAdapter } from "@next-auth/prisma-adapter";
-
-import Google from "next-auth/providers/google";
-import Github from "next-auth/providers/github";
-
-import { getUserByEmail } from "./lib/data/auth/users";
 
 // const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -42,12 +41,14 @@ import { getUserByEmail } from "./lib/data/auth/users";
 //   }
 // }
 
+// const prisma = new PrismaClient();
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   // session: {
   //   strategy: "jwt",
   // },
-  // adapter: PrismaAdapter(prisma) as Adapter,
+  // adapter: PrismaAdapter(prisma),
   // theme:{
   //   logo:"logo.png"
   // },

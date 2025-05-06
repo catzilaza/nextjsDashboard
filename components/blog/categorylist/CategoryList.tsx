@@ -2,68 +2,68 @@ import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
-// const getData = async () => {
-//   const res = await fetch("http://localhost:3000/api/categories", {
-//     cache: "no-store",
-//   });
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/blog/categories", {
+    cache: "no-store",
+  });
 
-//   if (!res.ok) {
-//     throw new Error("Failed");
-//   }
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
 
-//   return res.json();
-// };
+  return res.json();
+};
 
-const CategoryList = () => {
-  //   const data = await getData();
-  const data = [
-    {
-      _id: "1",
-      title: "Fashion",
-      slug: "fashion",
-      img: "/blog/fashion.png",
-    },
-    {
-      _id: "2",
-      title: "Lifestyle",
-      slug: "lifestyle",
-      img: "/blog/style.png",
-    },
-    {
-      _id: "3",
-      title: "Travel",
-      slug: "travel",
-      img: "/blog/travel.png",
-    },
-    {
-      _id: "4",
-      title: "Food",
-      slug: "food",
-      img: "/blog/food.png",
-    },
-    {
-      _id: "5",
-      title: "Fitness",
-      slug: "fitness",
-      img: "/blog/tiktok.png",
-    },
-    {
-      _id: "6",
-      title: "Technology",
-      slug: "technology",
-      img: "/blog/youtube.png",
-    },
-  ];
+const CategoryList = async () => {
+  const data = await getData();
+  // const data = [
+  //   {
+  //     _id: "1",
+  //     title: "Fashion",
+  //     slug: "fashion",
+  //     img: "/blog/fashion.png",
+  //   },
+  //   {
+  //     _id: "2",
+  //     title: "Lifestyle",
+  //     slug: "lifestyle",
+  //     img: "/blog/style.png",
+  //   },
+  //   {
+  //     _id: "3",
+  //     title: "Travel",
+  //     slug: "travel",
+  //     img: "/blog/travel.png",
+  //   },
+  //   {
+  //     _id: "4",
+  //     title: "Food",
+  //     slug: "food",
+  //     img: "/blog/food.png",
+  //   },
+  //   {
+  //     _id: "5",
+  //     title: "Fitness",
+  //     slug: "fitness",
+  //     img: "/blog/tiktok.png",
+  //   },
+  //   {
+  //     _id: "6",
+  //     title: "Technology",
+  //     slug: "technology",
+  //     img: "/blog/youtube.png",
+  //   },
+  // ];
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Popular Categories</h1>
       <div className={styles.categories}>
-        {data?.map((item) => (
+        {data?.map((item: any) => (
           <Link
             href="/blog?cat=style"
             // href="/"
             className={`${styles.category} ${styles[item.slug]}`}
-            key={item._id}
+            key={item.id}
           >
             {item.img && (
               <Image

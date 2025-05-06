@@ -5,9 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") // uses connection pooling
-  // For uses requiring a connection without pgbouncer
-  //directUrl = env("DATABASE_URL_UNPOOLED") // uses a direct connection
+  url      = env("DATABASE_URL")
 }
 
 model customers {
@@ -53,8 +51,29 @@ model users {
   image_url  String?  @db.VarChar(255)
 }
 
+model Author {
+  id        Int      @id @default(autoincrement())
+  name      String
+  bio       String?
+  createdAt DateTime @default(now()) @map("created_at")
+  country   String?
+  books     Book[]
+
+  @@map("authors")
+}
+
+model Book {
+  id        Int      @id @default(autoincrement())
+  title     String
+  authorId  Int      @map("author_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  author    Author   @relation(fields: [authorId], references: [id])
+
+  @@map("books")
+}
+
 model Account {
-  id                String  @id @default(cuid()) @map("_id")
+  id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
@@ -66,14 +85,13 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid()) @map("_id")
+  id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -81,19 +99,19 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid()) @map("_id")
+  id            String    @id @default(cuid())
   name          String?
   email         String    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
-  sessions      Session[]
-  Post          Post[]
   Comment       Comment[]
+  Post          Post[]
+  sessions      Session[]
 }
 
 model VerificationToken {
-  identifier String   @id @map("_id")
+  identifier String   @id
   token      String   @unique
   expires    DateTime
 
@@ -101,7 +119,7 @@ model VerificationToken {
 }
 
 model Category {
-  id    String  @id @default(cuid()) @map("_id")
+  id    String  @id @default(cuid())
   slug  String  @unique
   title String
   img   String?
@@ -109,26 +127,27 @@ model Category {
 }
 
 model Post {
-  id        String    @id @default(cuid()) @map("_id")
-  createdAt DateTime  @default(now())
-  slug      String    @unique
-  title     String
-  desc      String
-  img       String?
-  views     Int       @default(0)
-  catSlug   String
-  cat       Category  @relation(fields: [catSlug], references: [slug])
-  userEmail String
-  user      User      @relation(fields: [userEmail], references: [email])
-  comments  Comment[]
+  id         String     @id @default(cuid())
+  createdAt  DateTime   @default(now())
+  slug       String     @unique
+  title      String
+  desc       String
+  img        String?
+  views      Int        @default(0)
+  catSlug    String
+  userEmail  String
+  comments   Comment[]
+  categories Category[]
+  // cat       Category  @relation(fields: [catSlug], references: [slug])
+  user       User       @relation(fields: [userEmail], references: [email])
 }
 
 model Comment {
-  id        String   @id @default(cuid()) @map("_id")
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   desc      String
   userEmail String
-  user      User     @relation(fields: [userEmail], references: [email])
   postSlug  String
   post      Post     @relation(fields: [postSlug], references: [slug])
+  user      User     @relation(fields: [userEmail], references: [email])
 }

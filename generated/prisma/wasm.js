@@ -160,6 +160,21 @@ exports.Prisma.UsersScalarFieldEnum = {
   image_url: 'image_url'
 };
 
+exports.Prisma.AuthorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  bio: 'bio',
+  createdAt: 'createdAt',
+  country: 'country'
+};
+
+exports.Prisma.BookScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  authorId: 'authorId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -245,6 +260,8 @@ exports.Prisma.ModelName = {
   products_desserts: 'products_desserts',
   revenue: 'revenue',
   users: 'users',
+  Author: 'Author',
+  Book: 'Book',
   Account: 'Account',
   Session: 'Session',
   User: 'User',
