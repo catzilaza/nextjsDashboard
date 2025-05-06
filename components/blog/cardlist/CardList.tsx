@@ -20,70 +20,72 @@ const getData = async (page: any, cat: any) => {
 };
 
 const CardList = async (params: any) => {
-  const page = parseInt(params.page);
-  const cat = params.cat || "fashion";
+  // const page = parseInt(params.page);
+  // const cat = params.cat || "fashion";
 
-  console.log("++++++ page", page);
-  console.log("++++++ cat", cat);
+  // console.log("++++++ page", page);
+  // console.log("++++++ cat", cat);
 
-  const { posts, count } = await getData(page, cat);
+  // const { posts, count } = await getData(page, cat);
   // console.log("++++++ posts", posts);
-  // const posts = [
-  //   {
-  //     _id: "1",
-  //     title: "Fashion",
-  //     slug: "fashion",
-  //     img: "/blog/fashion.png",
-  //     createdAt: "2023-10-01",
-  //     catSlug: "fashion",
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     _id: "2",
-  //     title: "Lifestyle",
-  //     slug: "lifestyle",
-  //     img: "/blog/style.png",
-  //     createdAt: "2023-10-01",
-  //     catSlug: "lifestyle",
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     _id: "3",
-  //     title: "Travel",
-  //     slug: "travel",
-  //     img: "/blog/travel.png",
-  //     createdAt: "2023-10-01",
-  //     catSlug: "travel",
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     _id: "4",
-  //     title: "Food",
-  //     slug: "food",
-  //     img: "/blog/food.png",
-  //     createdAt: "2023-10-01",
-  //     catSlug: "food",
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     _id: "5",
-  //     title: "Fitness",
-  //     slug: "fitness",
-  //     img: "/blog/tiktok.png",
-  //     createdAt: "2023-10-01",
-  //     catSlug: "fitness",
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     _id: "6",
-  //     title: "Technology",
-  //     slug: "technology",
-  //     img: "/blog/youtube.png",
-  //     createdAt: "2023-10-01",
-  //     catSlug: "technology",
-  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  // ];
+  const count = 9;
+  const page = 1;
+  const posts = [
+    {
+      _id: "1",
+      title: "Fashion",
+      slug: "fashion",
+      img: "/blog/fashion.png",
+      createdAt: "2023-10-01",
+      catSlug: "fashion",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      _id: "2",
+      title: "Lifestyle",
+      slug: "lifestyle",
+      img: "/blog/style.png",
+      createdAt: "2023-10-01",
+      catSlug: "lifestyle",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      _id: "3",
+      title: "Travel",
+      slug: "travel",
+      img: "/blog/travel.png",
+      createdAt: "2023-10-01",
+      catSlug: "travel",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      _id: "4",
+      title: "Food",
+      slug: "food",
+      img: "/blog/food.png",
+      createdAt: "2023-10-01",
+      catSlug: "food",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      _id: "5",
+      title: "Fitness",
+      slug: "fitness",
+      img: "/blog/tiktok.png",
+      createdAt: "2023-10-01",
+      catSlug: "fitness",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      _id: "6",
+      title: "Technology",
+      slug: "technology",
+      img: "/blog/youtube.png",
+      createdAt: "2023-10-01",
+      catSlug: "technology",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+  ];
 
   const POST_PER_PAGE = 2;
 
