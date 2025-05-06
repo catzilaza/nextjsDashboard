@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async (req: NextResponse) => {
+export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page") || 1;
   const cat = searchParams.get("cat") || undefined;
@@ -38,7 +38,7 @@ export const GET = async (req: NextResponse) => {
 };
 
 //CREATE POST
-export const POST = async (req: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const session = await auth();
 
   if (!session) {
