@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   // const { searchParams } = new URL(req.url);
   // const postSlug = searchParams.get("postSlug") as string;
 
@@ -28,7 +28,7 @@ export const GET = async () => {
 };
 
 //CREATE A COMMENT
-export const POST = async (req: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const session = await auth();
 
   if (!session) {
