@@ -1,11 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async (
-  req: NextRequest,
-  { params }: { params: { slug: string } }
-) => {
-  const { slug } = params;
+export const GET = async (req: NextRequest) => {
+  // const { slug } = params;
 
   try {
     const post = await prisma.post.findMany();
