@@ -1,7 +1,11 @@
 "use server";
 
-import prisma from "@/lib/prisma";
+// import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
+import { PrismaClient, Prisma } from "generated/prisma";
+import prisma from "@/lib/prisma";
+
+// const prisma = new PrismaClient();
 
 export async function getDataBlogAction() {
   try {
@@ -42,8 +46,8 @@ export async function getDataPageBlogAction() {
 }
 
 type State = {
-  errors?: string | undefined;
-  message?: string | undefined;
+  errors?: string | undefined | null;
+  message?: string | undefined | null;
 };
 
 export async function postDataBlogAction(
@@ -65,10 +69,62 @@ export async function postDataBlogAction(
   const image = formData.get("image");
   const username = formData.get("username");
 
-  // console.log("Server received data:", { title, desc, image, username });
+  console.log("Server received data:", { title, desc, image, username });
 
   // Perform your server-side logic here (e.g., database operations)
-  return { message: "Post created successfully!" };
+  // return { message: "Post created successfully!" };
+
+  try {
+    const resultCreate = await prisma.user.create({
+      data: {
+        name: username as string,
+        email: `${username}.martinez@x.dummyjson.com`,
+        image: image as string,
+        // Post: {
+        //   create: [
+        //     {
+        //       title: "Lifestyle",
+        //       slug: "Fish",
+        //       img: "/blog/style.png",
+        //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        //       catSlug: "Fish",
+        //       categories: {
+        //         create: [
+        //           {
+        //             title: "Lifestyle",
+        //             img: "/blog/style.png",
+        //             slug: "Fish", // Added the required slug property
+        //           },
+        //         ],
+        //       },
+        //       comments: {
+        //         create: [
+        //           {
+        //             desc: "Great post!",
+        //             user: {
+        //               connect: { email: "ethan.martinez@x.dummyjson.com" }, // Replace with the appropriate user connection logic
+        //             },
+        //           },
+        //         ],
+        //       },
+        //     },
+        //   ],
+        // },
+      },
+    });
+
+    if (resultCreate) {
+      console.log("Create Post Successfully", resultCreate);
+      return { message: "Post created successfully!" };
+    } else {
+      // throw new Error("Create Post Failed!");
+      return { errors: "Post created error!" };
+    }
+  } catch (error) {
+    console.log("Error creating post:", error);
+    //return { message: "", errors: error instanceof Error ? error.message : "An error occurred" };
+    return { errors: "An error occurred" };
+  }
 
   // try {
   //   // const post = await prisma.post.create({

@@ -39,8 +39,8 @@ const formSchema = z.object({
 });
 
 type State = {
-  errors?: string | undefined;
-  message?: string | undefined;
+  errors?: string | undefined | null;
+  message?: string | undefined | null;
 };
 
 //values: z.infer<typeof formSchema>
@@ -102,7 +102,10 @@ export default function WritePage() {
   //   }, [file]);
 
   const initialState: State = { message: "", errors: "" };
-  const [state, formAction] = useActionState(postDataBlogAction, initialState);
+  const [state, formAction] = useActionState<State, FormData>(
+    postDataBlogAction,
+    initialState
+  );
 
   console.log("WritePage ====> state.message : ", state.message);
   console.log("WritePage ====> state.errors : ", state.errors);
