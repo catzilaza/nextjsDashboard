@@ -44,16 +44,16 @@ type State = {
 };
 
 //values: z.infer<typeof formSchema>
-export const postAction = (
-  prevState: { message?: string; errors?: string },
-  formData: FormData
-): State => {
-  alert("handleSubmit");
-  console.log("postAction ====> prevState : ", prevState);
-  console.log("postAction ====> formData : ", formData.get("title"));
+// export const postAction = (
+//   prevState: { message?: string; errors?: string },
+//   formData: FormData
+// ): State => {
+//   alert("handleSubmit");
+//   console.log("postAction ====> prevState : ", prevState);
+//   console.log("postAction ====> formData : ", formData.get("title"));
 
-  return { message: "Post created successfully!" };
-};
+//   return { message: "Post created successfully!" };
+// };
 
 export default function WritePage() {
   //   const { status } = useSession();
