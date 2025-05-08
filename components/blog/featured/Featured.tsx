@@ -12,9 +12,9 @@ const Featured = () => {
         <div className={styles.imgContainer}>
           <Image
             src="/blog/p1.jpeg"
-            alt=""
-            sizes=""
-            priority
+            alt="error"
+            priority={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             fill
             className={styles.image}
           />

@@ -57,7 +57,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
     }),
-    Github,
+    Github({
+      clientId: process.env.AUTH_GITHUB_ID as string,
+      clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+      profile(profile: any) {
+        // console.log("profile", profile);
+        return {
+          id: String(profile.id), // Convert number to string
+          name: profile.name,
+          email: profile.email,
+          image: profile.avatar_url as string, // GitHub profile image field
+          picture: profile.avatar_url as string, // GitHub profile image field
+          role: "user", // Set default role to "user"
+        };
+      },
+    }),
     Credentials({
       async authorize(credentials, req) {
         try {

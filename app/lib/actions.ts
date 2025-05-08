@@ -475,3 +475,34 @@ export async function Login(
 //   revalidatePath("/dashboard/invoices");
 //   redirect("/dashboard/invoices");
 // }
+
+export async function postDataBlogAction(prevState: any, formData: any) {
+  // const session = await auth();
+
+  // if (!session) {
+  //   console.log("Not Authenticated!");
+  //   return null;
+  // }
+
+  // alert("handleSubmit");
+  // console.log("postAction ====> prevState : ", prevState);
+  // console.log("postAction ====> formData : ", formData);
+  const title = formData.get("title");
+  const desc = formData.get("desc");
+  const image = formData.get("image");
+  const username = formData.get("username");
+
+  console.log("Server received data:", { title, desc, image, username });
+
+  // Perform your server-side logic here (e.g., database operations)
+  return { message: "Post created successfully!" };
+
+  // try {
+  //   // const post = await prisma.post.create({
+  //   //   data: { ...body, userEmail: session.user.email },
+  //   // });
+  //   console.log("Create Post Successfully");
+  // } catch (error) {
+  //   console.log(error);
+  // }
+}

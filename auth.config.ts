@@ -32,7 +32,8 @@ export const authConfig = {
       // return true;
     },
     async jwt({ token, trigger, session, account, user, profile }) {
-      // console.log("***** Enter Callbacks : JWT", token);
+      console.log("***** Enter Callbacks : JWT", profile?.name);
+      console.log("***** Enter Callbacks : JWT", profile?.picture as string);
 
       if (trigger === "update") token.name = session.user.name;
       if (account?.provider === "keycloak") {
@@ -53,10 +54,10 @@ export const authConfig = {
           // user,
           accessToken: user?.accessToken,
           refreshToken: user?.refreshToken,
-          name: user?.username,
+          name: user?.username || profile?.name,
           sub: user?.id,
           email: user?.email,
-          picture: user?.image_url,
+          picture: user?.image_url || (profile?.picture as string),
           role: user?.role,
         };
       }
@@ -104,6 +105,7 @@ declare module "next-auth" {
       name: string | null | undefined;
       email: string | null | undefined;
       image: string | null | undefined;
+      picture: string | null | undefined;
       role: string | null | undefined;
     };
   }
@@ -126,6 +128,9 @@ declare module "next-auth" {
     accessToken?: string | null;
     username?: string | null;
     image_url?: string | null;
+    image?: string | null;
+    email?: string | null;
+    naem?: string | null;
     role?: "admin" | "user" | null;
   }
 }

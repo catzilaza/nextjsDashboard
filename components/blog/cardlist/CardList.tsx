@@ -1,24 +1,10 @@
 import styles from "./cardlist.module.css";
 import Card from "@/components/blog/card/Card";
-import { getDataPageBlogAction } from "@/app/actions/blog/blogAction";
+import { getDataPageBlogAction } from "@/app/lib/actions/blog/blogAction";
+import Pagination from "@/components/blog/pagination/Pagination";
 
 //https://nextjs.org/blog/building-apis-with-nextjs
 //https://nextjs.org/docs/app/building-your-application/data-fetching/fetching
-
-// const getData = async (page: any, cat: any) => {
-//   const res = await fetch(
-//     `http://localhost:3000/api/blog/posts?page=${page}&cat=${cat || ""}`,
-//     {
-//       cache: "no-store",
-//     }
-//   );
-
-//   if (!res.ok) {
-//     throw new Error("Failed");
-//   }
-
-//   return res.json();
-// };
 
 const CardList = async () => {
   const data = await getDataPageBlogAction();
@@ -101,7 +87,7 @@ const CardList = async () => {
           <Card item={item} key={index} />
         ))}
       </div>
-      {/* <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} /> */}
+      <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
     </div>
   );
 };

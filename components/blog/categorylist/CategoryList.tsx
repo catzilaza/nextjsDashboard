@@ -1,7 +1,7 @@
 import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { getDataBlogAction } from "@/app/actions/blog/blogAction";
+import { getDataBlogAction } from "@/app/lib/actions/blog/blogAction";
 
 const CategoryList = async () => {
   const data = await getDataBlogAction();
@@ -58,7 +58,7 @@ const CategoryList = async () => {
             {item.img && (
               <Image
                 src={item.img}
-                alt=""
+                alt="error"
                 width={32}
                 height={32}
                 className={styles.image}

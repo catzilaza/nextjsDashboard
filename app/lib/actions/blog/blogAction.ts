@@ -1,6 +1,7 @@
+"use server";
+
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
-import { console } from "inspector";
 
 export async function getDataBlogAction() {
   try {
@@ -40,22 +41,43 @@ export async function getDataPageBlogAction() {
   }
 }
 
-export async function postDataBlogAction(data: any) {
-  const session = await auth();
+type State = {
+  errors?: string | undefined;
+  message?: string | undefined;
+};
 
-  if (!session) {
-    console.log("Not Authenticated!");
-    return null;
-  }
+export async function postDataBlogAction(
+  prevState: State,
+  formData: FormData
+): Promise<State> {
+  // const session = await auth();
 
-  try {
-    // const post = await prisma.post.create({
-    //   data: { ...body, userEmail: session.user.email },
-    // });
-    console.log("Create Post Successfully");
-  } catch (error) {
-    console.log(error);
-  }
+  // if (!session) {
+  //   console.log("Not Authenticated!");
+  //   return null;
+  // }
+
+  // alert("handleSubmit");
+  // console.log("postAction ====> prevState : ", prevState);
+  // console.log("postAction ====> formData : ", formData);
+  const title = formData.get("title");
+  const desc = formData.get("desc");
+  const image = formData.get("image");
+  const username = formData.get("username");
+
+  // console.log("Server received data:", { title, desc, image, username });
+
+  // Perform your server-side logic here (e.g., database operations)
+  return { message: "Post created successfully!" };
+
+  // try {
+  //   // const post = await prisma.post.create({
+  //   //   data: { ...body, userEmail: session.user.email },
+  //   // });
+  //   console.log("Create Post Successfully");
+  // } catch (error) {
+  //   console.log(error);
+  // }
 }
 
 export async function getCommentAction() {

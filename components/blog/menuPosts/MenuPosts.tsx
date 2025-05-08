@@ -8,7 +8,16 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
-            <Image src="/blog/p1.jpeg" alt="" fill className={styles.image} />
+            <Image
+              src="/blog/p1.jpeg"
+              alt=""
+              sizes="(max-width: 768px) 100vw, 33vw"
+              width={500}
+              height={500}
+              priority={true}
+              // fill
+              className={styles.image}
+            />
           </div>
         )}
         <div className={styles.textContainer}>
@@ -25,7 +34,16 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
-            <Image src="/blog/p1.jpeg" alt="" fill className={styles.image} />
+            <Image
+              src="/blog/p1.jpeg"
+              alt="error"
+              sizes="(max-width: 768px) 100vw, 33vw"
+              width={500}
+              height={500}
+              priority={true}
+              // fill
+              className={styles.image}
+            />
           </div>
         )}
         <div className={styles.textContainer}>
@@ -44,7 +62,16 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
-            <Image src="/blog/p1.jpeg" alt="" fill className={styles.image} />
+            <Image
+              src="/blog/p1.jpeg"
+              alt="error"
+              sizes="(max-width: 768px) 100vw, 33vw"
+              width={500}
+              height={500}
+              priority={true}
+              // fill
+              className={styles.image}
+            />
           </div>
         )}
         <div className={styles.textContainer}>
@@ -61,7 +88,16 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
-            <Image src="/blog/p1.jpeg" alt="" fill className={styles.image} />
+            <Image
+              src="/blog/p1.jpeg"
+              alt="error"
+              // sizes="(max-width: 768px) 100vw, 33vw"
+              // width={500}
+              // height={500}
+              // priority={true}
+              fill
+              className={styles.image}
+            />
           </div>
         )}
         <div className={styles.textContainer}>
