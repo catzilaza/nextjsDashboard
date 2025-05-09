@@ -6,17 +6,16 @@ const Card = ({ item }: { item: any }) => {
   return (
     <div className={styles.container} key={item._id}>
       {item.img && (
-        <div className={styles.imageContainer}>
+        <div
+          className={`${styles.imageContainer}`}
+          style={{ position: "relative", width: "300px", height: "400px" }}
+        >
           <Image
             src={item.img}
             alt="error"
-            // sizes="(max-width: 768px) 100vw, 33vw"
-            // width={500}
-            // height={500}
-            // priority={true}
             fill
-            className={styles.image}
-            // style={{ width: "auto" }}
+            priority={true}
+            sizes="(max-width: 768px) 100vw, 300px"
           />
         </div>
       )}

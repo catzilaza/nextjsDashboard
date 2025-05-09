@@ -23,7 +23,13 @@ const Navbar = () => {
       <div className={styles.links}>
         <ThemeToggle />
         <Link href="/" className={styles.link}>
-          Homepage
+          HomePage
+        </Link>
+        <Link href="/blog" className={styles.link}>
+          BlogPage
+        </Link>
+        <Link href="/blog/write" className={styles.link}>
+          WritePage
         </Link>
         <Link href="/" className={styles.link}>
           Contact

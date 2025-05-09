@@ -7,16 +7,17 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
     <div className={styles.items}>
       <Link href="/" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
+          <div
+            className={styles.imageContainer}
+            style={{ position: "relative", width: "300px", height: "200px" }}
+          >
             <Image
               src="/blog/p1.jpeg"
               alt=""
-              sizes="(max-width: 768px) 100vw, 33vw"
-              width={500}
-              height={500}
               priority={true}
-              // fill
+              fill
               className={styles.image}
+              sizes="(max-width: 768px) 100vw, 300px"
             />
           </div>
         )}
@@ -33,16 +34,17 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       </Link>
       <Link href="/" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
+          <div
+            className={styles.imageContainer}
+            style={{ position: "relative", width: "300px", height: "200px" }}
+          >
             <Image
               src="/blog/p1.jpeg"
-              alt="error"
-              sizes="(max-width: 768px) 100vw, 33vw"
-              width={500}
-              height={500}
+              alt=""
               priority={true}
-              // fill
+              fill
               className={styles.image}
+              sizes="(max-width: 768px) 100vw, 300px"
             />
           </div>
         )}
@@ -61,16 +63,17 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       </Link>
       <Link href="/" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
+          <div
+            className={styles.imageContainer}
+            style={{ position: "relative", width: "300px", height: "200px" }}
+          >
             <Image
               src="/blog/p1.jpeg"
-              alt="error"
-              sizes="(max-width: 768px) 100vw, 33vw"
-              width={500}
-              height={500}
+              alt=""
               priority={true}
-              // fill
+              fill
               className={styles.image}
+              sizes="(max-width: 768px) 100vw, 300px"
             />
           </div>
         )}
@@ -87,16 +90,17 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       </Link>
       <Link href="/" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
+          <div
+            className={styles.imageContainer}
+            style={{ position: "relative", width: "300px", height: "200px" }}
+          >
             <Image
               src="/blog/p1.jpeg"
-              alt="error"
-              // sizes="(max-width: 768px) 100vw, 33vw"
-              // width={500}
-              // height={500}
-              // priority={true}
+              alt=""
+              priority={true}
               fill
               className={styles.image}
+              sizes="(max-width: 768px) 100vw, 300px"
             />
           </div>
         )}
