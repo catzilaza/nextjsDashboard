@@ -13,6 +13,7 @@ import Navbar from "@/components/navbar";
 // import HomeNavbar from "@/components/home/home-navbar";
 // import HomeBody from "@/components/home/home-body";
 
+// https://www.youtube.com/watch?v=AH3xlNuui_A
 export default function HomePage() {
   return (
     <main className="flex flex-col min-h-screen p-6">

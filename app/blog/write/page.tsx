@@ -21,7 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { createInvoice } from "@/app/lib/actions";
-import { postDataBlogAction } from "@/app/lib/actions/blog/blogAction";
+import { postDataBlogAction } from "@/lib/actions/blog/blogAction";
 
 const formSchema = z.object({
   username: z.string().min(2, {

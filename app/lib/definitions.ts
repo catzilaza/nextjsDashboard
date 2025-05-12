@@ -3,8 +3,8 @@
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type User = {
-  user_id: string;
-  username: string;
+  id: string;
+  name: string;
   email: string;
   password: string;
   status: boolean;
@@ -55,7 +55,7 @@ export type Customer = {
 
 export type Invoice = {
   id: string;
-  customer_id: string;
+  customerId: string;
   amount: number;
   date: string;
   // In TypeScript, this is called a string union type.
@@ -83,7 +83,7 @@ export type LatestInvoiceRaw = Omit<LatestInvoice, "amount"> & {
 
 export type InvoicesTable = {
   id: string;
-  customer_id: string;
+  customerId: string;
   name: string;
   email: string;
   image_url: string;
@@ -119,7 +119,7 @@ export type CustomerField = {
 
 export type InvoiceForm = {
   id: string;
-  customer_id: string;
+  customerId: string;
   amount: number;
   status: "pending" | "paid";
 };

@@ -1,4 +1,4 @@
-import { executeAction } from "@/app/lib/actions/auth/executeAction";
+import { executeAction } from "@/lib/actions/auth/executeAction";
 import { signIn } from "@/auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";

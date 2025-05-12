@@ -93,14 +93,14 @@ export default async function PostPage({
 
   const post: any = await prisma.post.findUnique({
     where: { slug: slug },
-    include: {
-      user: {
-        select: {
-          name: true,
-          image: true,
-        },
-      },
-    },
+    // include: {
+    //   user: {
+    //     select: {
+    //       name: true,
+    //       image: true,
+    //     },
+    //   },
+    // },
   });
 
   // console.log("PostPage post : ", post);

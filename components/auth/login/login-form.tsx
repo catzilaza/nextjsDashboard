@@ -9,9 +9,10 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "../../../app/ui/button";
 import { useActionState } from "react";
-import { authenticate } from "@/app/lib/actions/auth/auth-action";
+import { authenticate } from "@/lib/actions/auth/auth-action";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Loader2Icon, LoaderCircleIcon } from "lucide-react";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
@@ -76,21 +77,48 @@ export default function LoginForm() {
             </div>
           </div>
           <input type="hidden" name="redirectTo" value={callbackUrl} />
-          <Button className="mt-4 w-full" aria-disabled={isPending}>
-            Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-          </Button>
-          <div
-            className="flex h-6 items-center space-x-1"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {errorMessage && (
-              <>
-                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                <p className="text-sm text-red-500">{errorMessage}</p>
-              </>
-            )}
-          </div>
+          {!isPending ? (
+            <>
+              {" "}
+              <Button className="mt-4 w-full">
+                Log in{" "}
+                <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+              </Button>
+              <div
+                className="flex h-6 items-center space-x-1"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {errorMessage && (
+                  <>
+                    <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+                    <p className="text-sm text-red-500">{errorMessage}</p>
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              {" "}
+              <Button className="mt-4 w-full" aria-disabled={isPending}>
+                Please wait...{" "}
+                <LoaderCircleIcon className="ml-auto h-5 w-5 text-gray-50 animate-spin" />
+              </Button>
+              <div
+                className="flex h-6 items-center space-x-1"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {errorMessage && (
+                  <>
+                    <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+                    <p className="text-sm text-red-500">{errorMessage}</p>
+                  </>
+                )}
+              </div>
+            </>
+          )}
+
           <div className="text-center mb-8 h-4">
             <Link href="/sign-up" style={{ textDecoration: "underline" }}>
               Don&apos;t have an account? Sign up

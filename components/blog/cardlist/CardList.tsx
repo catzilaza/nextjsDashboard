@@ -1,6 +1,6 @@
 import styles from "./cardlist.module.css";
 import Card from "@/components/blog/card/Card";
-import { getDataPageBlogAction } from "@/app/lib/actions/blog/blogAction";
+import { getDataPageBlogAction } from "@/lib/actions/blog/blogAction";
 import Pagination from "@/components/blog/pagination/Pagination";
 
 //https://nextjs.org/blog/building-apis-with-nextjs

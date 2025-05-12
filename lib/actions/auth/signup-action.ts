@@ -41,17 +41,19 @@ export async function SignUp(
   _prevState: SignUpActionState,
   form: FormData
 ): Promise<SignUpActionState> {
-  const user_id = uuidv4();
+  const id = uuidv4();
+  const name = form.get("username") as string;
   const username = form.get("username") as string;
   const password = form.get("password") as string;
   const email = form.get("email") as string;
-  const status = true;
+  // const status = true;
   const role = "user";
   const date = new Date().toISOString().split("T")[0];
   const image_blob = "";
   const image_url = "/customers/balazs-orban.png";
 
   const validatedFields = SignUpSchemaOmit.safeParse({
+    name,
     username,
     password,
     email,
@@ -74,13 +76,25 @@ export async function SignUp(
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
-    await prisma.users.create({
+    // await prisma.users.create({
+    //   data: {
+    //     user_id,
+    //     username,
+    //     email,
+    //     password: hashedPassword,
+    //     status: status.toString(),
+    //     role,
+    //     date: new Date(date), // Ensure `date` is a valid Date object
+    //     image_url,
+    //   },
+    // });
+    await prisma.user.create({
       data: {
-        user_id,
-        username,
+        id,
+        name,
         email,
         password: hashedPassword,
-        status: status.toString(),
+        // status: status.toString(),
         role,
         date: new Date(date), // Ensure `date` is a valid Date object
         image_url,

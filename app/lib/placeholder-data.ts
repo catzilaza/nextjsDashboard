@@ -343,25 +343,105 @@ const products_desserts = [
   },
 ];
 
-const people = [
+const peoples = [
   {
     name: "Calvin Hawkins",
     email: "calvin.hawkins@example.com",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
   {
     name: "Kristen Ramos",
     email: "kristen.ramos@example.com",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
   {
     name: "Ted Fox",
     email: "ted.fox@example.com",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    name: "Evil Rabbit",
+    email: "evil@rabbit.com",
+    image_url: "/customers/evil-rabbit.png",
+  },
+  {
+    name: "Delba de Oliveira",
+    email: "delba@oliveira.com",
+    image_url: "/customers/delba-de-oliveira.png",
+  },
+  {
+    name: "Lee Robinson",
+    email: "lee@robinson.com",
+    image_url: "/customers/lee-robinson.png",
+  },
+  {
+    name: "Michael Novotny",
+    email: "michael@novotny.com",
+    image_url: "/customers/michael-novotny.png",
+  },
+  {
+    name: "Amy Burns",
+    email: "amy@burns.com",
+    image_url: "/customers/amy-burns.png",
+  },
+  {
+    name: "Balazs Orban",
+    email: "balazs@orban.com",
+    image_url: "/customers/balazs-orban.png",
+  },
+  {
+    name: "Emily",
+    email: "emily.johnson@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/emilys/128",
+  },
+  {
+    name: "Michael",
+    email: "michael.williams@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/michaelw/128",
+  },
+  {
+    name: "Sophia",
+    email: "sophia.brown@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/sophiab/128",
+  },
+  {
+    name: "Emily",
+    email: "emily.johnson@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/emilys/128",
+  },
+  {
+    name: "James",
+    email: "james.davis@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/jamesd/128",
+  },
+  {
+    name: "Emily",
+    email: "emily.johnson@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/emilys/128",
+  },
+  {
+    name: "Emma",
+    email: "emma.miller@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/emmaj/128",
+  },
+  {
+    name: "Olivia",
+    email: "olivia.wilson@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/oliviaw/128",
+  },
+  {
+    name: "Ava",
+    email: "ava.taylor@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/avat/128",
+  },
+  {
+    name: "Ethan",
+    email: "ethan.martinez@x.dummyjson.com",
+    image_url: "https://dummyjson.com/icon/ethanm/128",
   },
 ];
 
-export { users, customers, invoices, revenue, products_desserts, people };
+export { users, customers, invoices, revenue, products_desserts, peoples };

@@ -126,75 +126,10 @@ exports.Prisma.CustomersScalarFieldEnum = {
 
 exports.Prisma.InvoicesScalarFieldEnum = {
   id: 'id',
-  customer_id: 'customer_id',
   amount: 'amount',
   status: 'status',
-  date: 'date'
-};
-
-exports.Prisma.Products_dessertsScalarFieldEnum = {
-  dessert_id: 'dessert_id',
-  name_eng: 'name_eng',
-  name: 'name',
-  image_url: 'image_url',
-  price: 'price',
-  amount: 'amount',
-  status: 'status',
-  date: 'date'
-};
-
-exports.Prisma.RevenueScalarFieldEnum = {
-  month: 'month',
-  revenue: 'revenue'
-};
-
-exports.Prisma.UsersScalarFieldEnum = {
-  user_id: 'user_id',
-  username: 'username',
-  email: 'email',
-  password: 'password',
-  status: 'status',
-  role: 'role',
   date: 'date',
-  image_blob: 'image_blob',
-  image_url: 'image_url'
-};
-
-exports.Prisma.AuthorScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  bio: 'bio',
-  createdAt: 'createdAt',
-  country: 'country'
-};
-
-exports.Prisma.BookScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  authorId: 'authorId',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.AccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  type: 'type',
-  provider: 'provider',
-  providerAccountId: 'providerAccountId',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state'
-};
-
-exports.Prisma.SessionScalarFieldEnum = {
-  id: 'id',
-  sessionToken: 'sessionToken',
-  userId: 'userId',
-  expires: 'expires'
+  customerId: 'customerId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -202,40 +137,49 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
-  image: 'image'
+  password: 'password',
+  role: 'role',
+  date: 'date',
+  image_blob: 'image_blob',
+  image_url: 'image_url'
 };
 
-exports.Prisma.VerificationTokenScalarFieldEnum = {
-  identifier: 'identifier',
-  token: 'token',
-  expires: 'expires'
-};
-
-exports.Prisma.CategoryScalarFieldEnum = {
+exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
-  title: 'title',
-  img: 'img'
+  address: 'address',
+  userId: 'userId'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  slug: 'slug',
   title: 'title',
   desc: 'desc',
   img: 'img',
+  createdAt: 'createdAt',
+  slug: 'slug',
   views: 'views',
   catSlug: 'catSlug',
-  userEmail: 'userEmail'
+  authorId: 'authorId'
 };
 
-exports.Prisma.CommentScalarFieldEnum = {
+exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  desc: 'desc',
-  userEmail: 'userEmail',
-  postSlug: 'postSlug'
+  name: 'name',
+  slug: 'slug',
+  title: 'title',
+  imge: 'imge'
+};
+
+exports.Prisma.CategoriesOnPostsScalarFieldEnum = {
+  postId: 'postId',
+  categoryId: 'categoryId',
+  assignedAt: 'assignedAt',
+  assignedBy: 'assignedBy'
+};
+
+exports.Prisma.RevenueScalarFieldEnum = {
+  month: 'month',
+  revenue: 'revenue'
 };
 
 exports.Prisma.SortOrder = {
@@ -255,20 +199,14 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  customers: 'customers',
-  invoices: 'invoices',
-  products_desserts: 'products_desserts',
-  revenue: 'revenue',
-  users: 'users',
-  Author: 'Author',
-  Book: 'Book',
-  Account: 'Account',
-  Session: 'Session',
+  Customers: 'Customers',
+  Invoices: 'Invoices',
   User: 'User',
-  VerificationToken: 'VerificationToken',
-  Category: 'Category',
+  Profile: 'Profile',
   Post: 'Post',
-  Comment: 'Comment'
+  Category: 'Category',
+  CategoriesOnPosts: 'CategoriesOnPosts',
+  Revenue: 'Revenue'
 };
 
 /**

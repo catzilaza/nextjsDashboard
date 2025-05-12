@@ -13,7 +13,7 @@ import Link from "next/link";
 import {
   SignUp,
   SignUpActionState,
-} from "@/app/lib/actions/auth/signup-action";
+} from "@/lib/actions/auth/signup-action";
 import { useToast } from "@/hooks/use-toast";
 
 export default function SignUpForm() {
