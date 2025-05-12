@@ -1,8 +1,8 @@
 "use server";
 
 // import prisma from "@/lib/prisma";
-import { auth } from "@/auth";
-import { PrismaClient, Prisma } from "generated/prisma";
+// import { auth } from "@/auth";
+// import { PrismaClient, Prisma } from "generated/prisma";
 import prisma from "@/lib/prisma";
 
 // const prisma = new PrismaClient();
@@ -67,7 +67,9 @@ export async function postDataBlogAction(
   const title = formData.get("title");
   const desc = formData.get("desc");
   const image = formData.get("image");
+  const image_url = formData.get("image");
   const username = formData.get("username");
+  const name = formData.get("username");
 
   console.log("Server received data:", { title, desc, image, username });
 
@@ -77,9 +79,10 @@ export async function postDataBlogAction(
   try {
     const resultCreate = await prisma.user.create({
       data: {
-        name: username as string,
-        email: `${username}.martinez@x.dummyjson.com`,
-        image: image as string,
+        name: name as string,
+        email: `${name}.martinez@x.dummyjson.com`,
+        image_url: image_url as string,
+        password: "defaultPassword123", // Replace with a secure password or logic to generate one
         // Post: {
         //   create: [
         //     {
@@ -136,40 +139,40 @@ export async function postDataBlogAction(
   // }
 }
 
-export async function getCommentAction() {
-  try {
-    const comments = await prisma.comment.findMany();
-    // const [comments] = await prisma.comment.findMany({
-    //   where: {
-    //     ...(postSlug && { postSlug }),
-    //   },
-    //   include: { user: true },
-    // });
-    // console.log("GET ++++++ comments", comments);
-    return comments;
-  } catch (error) {
-    console.log(error);
-  }
-}
+// export async function getCommentAction() {
+//   try {
+//     const comments = await prisma.comment.findMany();
+//     // const [comments] = await prisma.comment.findMany({
+//     //   where: {
+//     //     ...(postSlug && { postSlug }),
+//     //   },
+//     //   include: { user: true },
+//     // });
+//     // console.log("GET ++++++ comments", comments);
+//     return comments;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 //CREATE A COMMENT
-export async function postCommentAction(bodyData: any) {
-  const session = await auth();
+// export async function postCommentAction(bodyData: any) {
+//   const session = await auth();
 
-  if (!session) {
-    console.log("Not Authenticated!");
-    return null;
-  }
+//   if (!session) {
+//     console.log("Not Authenticated!");
+//     return null;
+//   }
 
-  try {
-    const comment = await prisma.comment.create({
-      data: {
-        ...bodyData,
-        userEmail: session.user.email as string,
-      },
-    });
-    return comment;
-  } catch (error) {
-    console.log(error);
-  }
-}
+//   try {
+//     const comment = await prisma.comment.create({
+//       data: {
+//         ...bodyData,
+//         userEmail: session.user.email as string,
+//       },
+//     });
+//     return comment;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
