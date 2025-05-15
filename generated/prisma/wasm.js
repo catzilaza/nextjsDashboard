@@ -132,31 +132,55 @@ exports.Prisma.InvoicesScalarFieldEnum = {
   customerId: 'customerId'
 };
 
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  refresh_token: 'refresh_token',
+  access_token: 'access_token',
+  expires_at: 'expires_at',
+  token_type: 'token_type',
+  scope: 'scope',
+  id_token: 'id_token',
+  session_state: 'session_state',
+  refresh_token_expires_in: 'refresh_token_expires_in'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  id: 'id',
+  sessionToken: 'sessionToken',
+  userId: 'userId',
+  expires: 'expires'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
   password: 'password',
   role: 'role',
   date: 'date',
   image_blob: 'image_blob',
-  image_url: 'image_url'
+  name: 'name',
+  image_url: 'image_url',
+  image: 'image'
 };
 
 exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
-  address: 'address',
-  userId: 'userId'
+  userId: 'userId',
+  address: 'address'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
+  slug: 'slug',
   title: 'title',
   desc: 'desc',
   img: 'img',
-  createdAt: 'createdAt',
-  slug: 'slug',
   views: 'views',
   catSlug: 'catSlug',
   authorId: 'authorId'
@@ -164,10 +188,10 @@ exports.Prisma.PostScalarFieldEnum = {
 
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   slug: 'slug',
   title: 'title',
-  imge: 'imge'
+  imge: 'imge',
+  name: 'name'
 };
 
 exports.Prisma.CategoriesOnPostsScalarFieldEnum = {
@@ -180,6 +204,17 @@ exports.Prisma.CategoriesOnPostsScalarFieldEnum = {
 exports.Prisma.RevenueScalarFieldEnum = {
   month: 'month',
   revenue: 'revenue'
+};
+
+exports.Prisma.Products_dessertsScalarFieldEnum = {
+  dessert_id: 'dessert_id',
+  name_eng: 'name_eng',
+  name: 'name',
+  image_url: 'image_url',
+  price: 'price',
+  amount: 'amount',
+  status: 'status',
+  date: 'date'
 };
 
 exports.Prisma.SortOrder = {
@@ -201,12 +236,15 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Customers: 'Customers',
   Invoices: 'Invoices',
+  Account: 'Account',
+  Session: 'Session',
   User: 'User',
   Profile: 'Profile',
   Post: 'Post',
   Category: 'Category',
   CategoriesOnPosts: 'CategoriesOnPosts',
-  Revenue: 'Revenue'
+  Revenue: 'Revenue',
+  products_desserts: 'products_desserts'
 };
 
 /**

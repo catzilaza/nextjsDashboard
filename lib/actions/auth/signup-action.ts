@@ -24,14 +24,12 @@ const SignUpSchema = z.object({
 });
 
 export type SignUpActionState = {
-  username?: string;
-  password?: string;
-  email?: string;
   errors?: {
-    username?: string[];
-    password?: string[];
-    email?: string[];
-  };
+    username?: string[] | null;
+    password?: string[] | null;
+    email?: string[] | null;
+    messageError?: string | null;
+  } | null;
   message?: string | null;
 };
 
@@ -41,6 +39,8 @@ export async function SignUp(
   _prevState: SignUpActionState,
   form: FormData
 ): Promise<SignUpActionState> {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
+
   const id = uuidv4();
   const name = form.get("username") as string;
   const username = form.get("username") as string;
@@ -60,11 +60,16 @@ export async function SignUp(
   });
 
   if (!validatedFields.success) {
-    console.log("ERROR : ", validatedFields.error.flatten().fieldErrors);
+    // console.log("ERROR : ", validatedFields.error.flatten().fieldErrors);
+    console.log("ERROR : ", "validatedFields.error.flatten().fieldErrors");
     return {
-      username,
-      password,
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: {
+        username: validatedFields.error.flatten().fieldErrors.username,
+        password: validatedFields.error.flatten().fieldErrors.password,
+        email: validatedFields.error.flatten().fieldErrors.email,
+        messageError: "ERROR!!!",
+      },
+      message: null,
     };
   }
 
@@ -76,18 +81,6 @@ export async function SignUp(
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
-    // await prisma.users.create({
-    //   data: {
-    //     user_id,
-    //     username,
-    //     email,
-    //     password: hashedPassword,
-    //     status: status.toString(),
-    //     role,
-    //     date: new Date(date), // Ensure `date` is a valid Date object
-    //     image_url,
-    //   },
-    // });
     await prisma.user.create({
       data: {
         id,
@@ -101,13 +94,15 @@ export async function SignUp(
       },
     });
 
-    console.log("INSERT INTO users: success!!!");
+    console.log("INSERT INTO users: success!!! : ");
+    return { errors: null, message: "successfully" };
   } catch (error) {
-    console.error(error);
+    console.log("Database Error!!!");
+    return { errors: { messageError: "error" }, message: null };
   }
 
-  revalidatePath("/");
-  redirect("/");
+  // revalidatePath("/");
+  // redirect("/");
 
   // return { username, password };
 }

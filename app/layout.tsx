@@ -15,8 +15,8 @@ export default function RootLayout({
         {children}
         <Toaster
           toastOptions={{
-            className: "bg-white text-black",
-            duration: 3000,
+            className: "bg-white text-black w-[50px] h-[80px]",
+            duration: 4000,
             style: {
               background: "#fff",
               color: "#000",

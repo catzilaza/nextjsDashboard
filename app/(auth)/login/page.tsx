@@ -1,16 +1,6 @@
-import { executeAction } from "@/lib/actions/auth/executeAction";
-import { signIn } from "@/auth";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import GithubLoginForm from "@/components/auth/login/github-form";
 import { Suspense } from "react";
 import AcmeLogo from "@/app/ui/acme-logo";
-import {
-  AtSymbolIcon,
-  KeyIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/react/24/outline";
 import LoginForm from "@/components/auth/login/login-form";
 
 export default function LoginPage() {
@@ -39,45 +29,7 @@ export default function LoginPage() {
               </div>
             </div>
             <Suspense>
-              {/* Email/Password Sign In */}
               <LoginForm />
-              {/* <form
-                className="space-y-4"
-                action={async (formData) => {
-                  "use server";
-                  await executeAction({
-                    actionFn: async () => {
-                      await signIn("credentials", formData);
-                    },
-                  });
-                }}
-              >
-                <Input
-                  name="email"
-                  placeholder="Email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                />
-                <Input
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  required
-                  autoComplete="current-password"
-                />
-                <Button className="w-full bg-blue-500" type="submit">
-                  Log In
-                </Button>
-              </form>
-
-              <div className="text-center">
-                <Button asChild variant="link">
-                  <Link href="/signup">
-                    Don&apos;t have an account? Sign up
-                  </Link>
-                </Button>
-              </div> */}
             </Suspense>
             {/* <Link
               href={"/"}

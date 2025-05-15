@@ -18,34 +18,39 @@ const seedUser = async () => {
   const users = [
     {
       name: "Admin",
-      email: "admin@admin.com",
+      email: "admin@nextmail.com",
       image_url: "/customers/evil-rabbit.png",
+      image: "/customers/evil-rabbit.png",
       password: await bcrypt.hash("123456admin!", 10),
       role: "admin",
     },
     {
       name: "User",
-      email: "user@user.com",
+      email: "user@nextmail.com",
       image_url: "/customers/evil-rabbit.png",
-      password: "123456user!",
+      image: "/customers/evil-rabbit.png",
+      password: await bcrypt.hash("123456user!", 10),
     },
     {
       name: "Emily",
       email: "emily.johnson@x.dummyjson.com",
       image_url: "https://dummyjson.com/icon/emilys/128",
-      password: "123456emily!",
+      image: "https://dummyjson.com/icon/emilys/128",
+      password: await bcrypt.hash("123456emily!", 10),
     },
     {
       name: "Michael",
       email: "michael.williams@x.dummyjson.com",
       image_url: "https://dummyjson.com/icon/michaelw/128",
-      password: "123456michael!",
+      image: "https://dummyjson.com/icon/michaelw/128",
+      password: await bcrypt.hash("123456michael!", 10),
     },
     {
       name: "Sophia",
       email: "sophia.brown@x.dummyjson.com",
       image_url: "https://dummyjson.com/icon/sophiab/128",
-      password: "123456sophia!",
+      image: "https://dummyjson.com/icon/sophiab/128",
+      password: await bcrypt.hash("123456sophia!", 10),
     },
   ];
   for (const user of users) {

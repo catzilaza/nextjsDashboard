@@ -4,9 +4,17 @@ import { getLoginSession } from "@/app/lib/data";
 
 export default async function Page() {
   const session: any = await getLoginSession();
-  console.log("Page session", session);
-  // const session = await auth();
-  // console.log("Page session : ", session);
+  console.log("+++++++Page session", session);
+  const session1 = await auth();
+  console.log("-------Page session : ", session1);
+
+  /* <Image
+    src={session.user.image || ""}
+    alt={session.user.name || ""}
+    className="rounded-full w-4 h-4 object-cover"
+    width={12}
+    height={12}
+    /> */
 
   return (
     <>
