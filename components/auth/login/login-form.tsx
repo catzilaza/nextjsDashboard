@@ -10,7 +10,7 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "../../../app/ui/button";
 import { useActionState } from "react";
 import { authenticate } from "@/lib/actions/auth/auth-action";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Loader2Icon, LoaderCircleIcon } from "lucide-react";
 
@@ -124,12 +124,21 @@ export default function LoginForm() {
               Don&apos;t have an account? Sign up
             </Link>
           </div>
-          <Link
+          <Button
+            disabled={isPending}
+            onClick={() => {
+              redirect("/");
+            }}
+            className="mt-4 w-full flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          >
+            Cancle
+          </Button>
+          {/* <Link
             href={"/"}
             className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           >
             Cancle
-          </Link>
+          </Link> */}
         </div>
       </form>
     </>

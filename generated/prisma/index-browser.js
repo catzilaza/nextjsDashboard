@@ -151,47 +151,51 @@ exports.Prisma.AccountScalarFieldEnum = {
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
   sessionToken: 'sessionToken',
-  userId: 'userId',
-  expires: 'expires'
+  expires: 'expires',
+  userId: 'userId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
   emailVerified: 'emailVerified',
   password: 'password',
   role: 'role',
   date: 'date',
   image_blob: 'image_blob',
-  name: 'name',
   image_url: 'image_url',
   image: 'image'
 };
 
 exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  address: 'address'
+  address: 'address',
+  userId: 'userId'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  slug: 'slug',
-  title: 'title',
-  desc: 'desc',
   img: 'img',
+  title: 'title',
+  content: 'content',
+  published: 'published',
+  desc: 'desc',
+  createdAt: 'createdAt',
   views: 'views',
+  slug: 'slug',
   catSlug: 'catSlug',
   authorId: 'authorId'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
   title: 'title',
-  imge: 'imge',
-  name: 'name'
+  img: 'img',
+  desc: 'desc',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.CategoriesOnPostsScalarFieldEnum = {

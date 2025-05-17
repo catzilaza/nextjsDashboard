@@ -1,11 +1,10 @@
 "use server";
 
-// import prisma from "@/lib/prisma";
 // import { auth } from "@/auth";
-// import { PrismaClient, Prisma } from "generated/prisma";
 import prisma from "@/lib/prisma";
-
-// const prisma = new PrismaClient();
+import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
 
 export async function getDataBlogAction() {
   try {
@@ -45,15 +44,42 @@ export async function getDataPageBlogAction() {
   }
 }
 
-type State = {
-  errors?: string | undefined | null;
+type PostDataBlogState = {
+  errors?: {
+    name?: string[] | null;
+    title?: string[] | null;
+    // img?: string[] | null;
+    desc?: string[] | null;
+    errMsg?: string | null;
+    imgFile?: string[] | null;
+  } | null;
   message?: string | undefined | null;
 };
 
+const PostDataBlogSchema = z.object({
+  name: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  title: z.string().min(2, {
+    message: "Title must be at least 2 characters.",
+  }),
+  desc: z.string().min(2, {
+    message: "Title must be at least 2 characters.",
+  }),
+  // img: z.string().min(2, {
+  //   message: "Title must be at least 2 characters.",
+  // }),
+  imgFile: z
+    .instanceof(File, {
+      message: "Title must be at least 2 characters.",
+    })
+    .optional(),
+});
+
 export async function postDataBlogAction(
-  prevState: State,
+  prevState: PostDataBlogState,
   formData: FormData
-): Promise<State> {
+): Promise<PostDataBlogState> {
   // const session = await auth();
 
   // if (!session) {
@@ -61,72 +87,91 @@ export async function postDataBlogAction(
   //   return null;
   // }
 
-  // alert("handleSubmit");
-  // console.log("postAction ====> prevState : ", prevState);
-  // console.log("postAction ====> formData : ", formData);
   const title = formData.get("title");
   const desc = formData.get("desc");
-  const image = formData.get("image");
-  const image_url = formData.get("image");
-  const username = formData.get("username");
-  const name = formData.get("username");
+  // const img = formData.get("img");
+  const imgFile = formData.get("imgFile") as File;
+  const name = formData.get("name");
 
-  console.log("Server received data:", { title, desc, image, username });
+  const validatedFields = PostDataBlogSchema.safeParse({
+    name,
+    title,
+    // img,
+    desc,
+    imgFile,
+  });
 
-  // Perform your server-side logic here (e.g., database operations)
-  // return { message: "Post created successfully!" };
+  if (!validatedFields.success) {
+    // console.log("ERROR : ", validatedFields.error.flatten().fieldErrors);
+    console.log("ERROR : ", "validatedFields.error.flatten().fieldErrors");
+    return {
+      errors: {
+        name: validatedFields.error.flatten().fieldErrors.name,
+        title: validatedFields.error.flatten().fieldErrors.title,
+        // img: validatedFields.error.flatten().fieldErrors.img,
+        desc: validatedFields.error.flatten().fieldErrors.desc,
+        imgFile: validatedFields.error.flatten().fieldErrors.imgFile,
+      },
+      message: null,
+    };
+  }
+
+  console.log("Server received data:", { title, desc, name, imgFile });
 
   try {
-    const resultCreate = await prisma.user.create({
-      data: {
-        name: name as string,
-        email: `${name}.martinez@x.dummyjson.com`,
-        image_url: image_url as string,
-        password: "defaultPassword123", // Replace with a secure password or logic to generate one
-        // Post: {
-        //   create: [
-        //     {
-        //       title: "Lifestyle",
-        //       slug: "Fish",
-        //       img: "/blog/style.png",
-        //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        //       catSlug: "Fish",
-        //       categories: {
-        //         create: [
-        //           {
-        //             title: "Lifestyle",
-        //             img: "/blog/style.png",
-        //             slug: "Fish", // Added the required slug property
-        //           },
-        //         ],
-        //       },
-        //       comments: {
-        //         create: [
-        //           {
-        //             desc: "Great post!",
-        //             user: {
-        //               connect: { email: "ethan.martinez@x.dummyjson.com" }, // Replace with the appropriate user connection logic
-        //             },
-        //           },
-        //         ],
-        //       },
-        //     },
-        //   ],
-        // },
-      },
-    });
+    // const resultCreate = await prisma.user.create({
+    //   data: {
+    // name: name as string,
+    // email: `${name}.martinez@x.dummyjson.com`,
+    // image_url: image_url as string,
+    // password: "defaultPassword123",
+    // Post: {
+    //   create: [
+    //     {
+    //       title: "Lifestyle",
+    //       slug: "Fish",
+    //       img: "/blog/style.png",
+    //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    //       catSlug: "Fish",
+    //       categories: {
+    //         create: [
+    //           {
+    //             title: "Lifestyle",
+    //             img: "/blog/style.png",
+    //             slug: "Fish", // Added the required slug property
+    //           },
+    //         ],
+    //       },
+    //       comments: {
+    //         create: [
+    //           {
+    //             desc: "Great post!",
+    //             user: {
+    //               connect: { email: "ethan.martinez@x.dummyjson.com" }, // Replace with the appropriate user connection logic
+    //             },
+    //           },
+    //         ],
+    //       },
+    //     },
+    //   ],
+    // },
+    //   },
+    // });
 
-    if (resultCreate) {
-      console.log("Create Post Successfully", resultCreate);
-      return { message: "Post created successfully!" };
-    } else {
-      // throw new Error("Create Post Failed!");
-      return { errors: "Post created error!" };
-    }
+    console.log("Create Post Successfully");
+    return { message: "Post created successfully!", errors: null };
+
+    // if (resultCreate) {
+    //   console.log("Create Post Successfully", resultCreate);
+    //   return { message: "Post created successfully!" };
+    // } else {
+    //   // throw new Error("Create Post Failed!");
+    //   return { errors: "Post created error!" };
+    // }
   } catch (error) {
     console.log("Error creating post:", error);
     //return { message: "", errors: error instanceof Error ? error.message : "An error occurred" };
-    return { errors: "An error occurred" };
+    return { errors: { errMsg: "An error occurred" } };
   }
 
   // try {

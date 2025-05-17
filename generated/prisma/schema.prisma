@@ -28,6 +28,7 @@ model Invoices {
 model Account {
   id                       String  @id @default(cuid())
   userId                   String
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   type                     String
   provider                 String
   providerAccountId        String
@@ -38,7 +39,6 @@ model Account {
   scope                    String?
   id_token                 String? // @db.Text
   session_state            String?
-  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   refresh_token_expires_in Int?
 
   @@unique([provider, providerAccountId])
@@ -47,56 +47,60 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String
   expires      DateTime
+  userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
   id            String    @id @default(uuid())
+  name          String
   email         String    @unique
   emailVerified DateTime?
   password      String
   role          String?   @default("user")
   date          DateTime  @default(now())
   image_blob    Bytes?
-  name          String
   image_url     String?   @db.VarChar(255)
   image         String?
+  profile       Profile?
   accounts      Account[]
   sessions      Session[]
   post          Post[]
-  profile       Profile?
 }
 
 model Profile {
   id      String  @id @default(uuid())
-  userId  String  @unique
   address String?
+  userId  String  @unique
   user    User    @relation(fields: [userId], references: [id])
 }
 
 model Post {
   id         String              @id @default(cuid())
-  createdAt  DateTime            @default(now())
-  slug       String?             @unique
-  title      String
-  desc       String?
   img        String?
+  title      String
+  content    String?
+  published  Boolean             @default(false)
+  desc       String?
+  createdAt  DateTime            @default(now())
   views      Int                 @default(0)
+  slug       String?             @unique
   catSlug    String?
   authorId   String?
-  categories CategoriesOnPosts[]
   author     User?               @relation(fields: [authorId], references: [id])
+  categories CategoriesOnPosts[]
 }
 
 model Category {
-  id    String              @id @default(cuid())
-  slug  String?             @unique
-  title String?
-  imge  String?
-  name  String
-  posts CategoriesOnPosts[]
+  id        String              @id @default(cuid())
+  title     String?
+  img       String?
+  desc      String?
+  name      String?
+  slug      String?             @unique
+  createdAt DateTime            @default(now())
+  posts     CategoriesOnPosts[]
 }
 
 model CategoriesOnPosts {

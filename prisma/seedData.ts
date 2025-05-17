@@ -60,11 +60,59 @@ const seedUser = async () => {
   }
 };
 
+const seedDataCateBlog = async () => {
+  const cateBlogs = [
+    {
+      title: "Fashion",
+      slug: "fashion",
+      img: "/blog/fashion.png",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      title: "Lifestyle",
+      slug: "lifestyle",
+      img: "/blog/style.png",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      title: "Travel",
+      slug: "travel",
+      img: "/blog/travel.png",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      title: "Food",
+      slug: "food",
+      img: "/blog/food.png",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      title: "Fitness",
+      slug: "fitness",
+      img: "/blog/tiktok.png",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      title: "Technology",
+      slug: "technology",
+      img: "/blog/youtube.png",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+  ];
+
+  for (const cateBlog of cateBlogs) {
+    await prisma.category.create({
+      data: cateBlog,
+    });
+  }
+};
+
 async function main() {
   try {
     console.log("Seeding database...");
 
-    await seedUser();
+    // await seedUser();
+    await seedDataCateBlog();
     await delayWithCountdown(10);
 
     console.log("Seeding completed");

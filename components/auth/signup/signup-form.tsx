@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { lusitana } from "@/app/ui/fonts";
 import {
   AtSymbolIcon,
@@ -9,7 +9,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "../../../app/ui/button";
-import Link from "next/link";
 import { SignUp, SignUpActionState } from "@/lib/actions/auth/signup-action";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -27,7 +26,7 @@ export default function SignUpForm() {
       messageError: "",
     },
   };
-  // const [state, action, isPending] = useActionState(SignUp, initialState);
+
   const [state, formAction, isPending] = useActionState(SignUp, initialState);
 
   // console.log("State : ", state);
@@ -164,6 +163,7 @@ export default function SignUpForm() {
         </div>
 
         <Button
+          disabled={isPending}
           onClick={() => {
             redirect("/");
           }}

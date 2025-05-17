@@ -1,61 +1,13 @@
-"use client";
+"use server";
 
-import Image from "next/image";
-import { useSession } from "next-auth/react";
 import styles from "./writePage.module.css";
-import { useRouter } from "next/navigation";
-import { useEffect, useState, useActionState } from "react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { createInvoice } from "@/app/lib/actions";
-import { postDataBlogAction } from "@/lib/actions/blog/blogAction";
+import WriteForm from "@/components/blog/writepage/write-form";
+import ImageWrapper from "@/components/blog/writepage/image-wrapper";
+import { list } from "@vercel/blob";
+import fs from "fs";
+import path from "path";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  title: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
-  desc: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
-  image: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
-});
-
-type State = {
-  errors?: string | undefined | null;
-  message?: string | undefined | null;
-};
-
-//values: z.infer<typeof formSchema>
-// export const postAction = (
-//   prevState: { message?: string; errors?: string },
-//   formData: FormData
-// ): State => {
-//   alert("handleSubmit");
-//   console.log("postAction ====> prevState : ", prevState);
-//   console.log("postAction ====> formData : ", formData.get("title"));
-
-//   return { message: "Post created successfully!" };
-// };
-
-export default function WritePage() {
+export default async function WritePage() {
   //   const { status } = useSession();
   //   const router = useRouter();
 
@@ -101,125 +53,43 @@ export default function WritePage() {
   //     file && upload();
   //   }, [file]);
 
-  const initialState: State = { message: "", errors: "" };
-  const [state, formAction] = useActionState<State, FormData>(
-    postDataBlogAction,
-    initialState
-  );
+  // async function onSubmit(values: z.infer<typeof PostDataBlogSchema>) {
+  // Do something with the form values.
+  // ✅ This will be type-safe and validated.
+  // const formData = new FormData();
+  // formData.append("name", values.name);
+  // formData.append("title", values.title);
+  // formData.append("desc", values.desc);
+  // formData.append("img", values.img);
+  // let result: any = formAction(formData);
+  // console.log("Result : ", result);
+  // console.log("Result : ", values);
+  // console.log("Result : ", values.title);
+  // console.log("Result : ", values.desc);
+  // }
+  // const response = await list();
+  // console.log("Response from Vercel Blob:", response.blobs);
+  // const productsDir = "E:/Nextjs/nextjs-dashboard/public/products";
+  // const imageFiles = fs.readdirSync(productsDir).filter(
+  //     (file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
+  //   );
+  // const imagePaths = imageFiles.map((file) => `/products/${file}`);
+  // console.log("ImagePaths : ", imagePaths);
 
-  console.log("WritePage ====> state.message : ", state.message);
-  console.log("WritePage ====> state.errors : ", state.errors);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-      title: "",
-      desc: "",
-      image: "",
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
-  //<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
   return (
     <div className={`${styles.container} mt-14 justify-center items-center`}>
       <div className="flex gap-14">
-        <div className="w-[600px]">
-          <Form {...form}>
-            <form action={formAction} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display title.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="image"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Image</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display image.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="desc"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      {/* <Input placeholder="shadcn" {...field} /> */}
-                      <Textarea
-                        placeholder="Type your message here."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display discription.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your public display name.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Submit</Button>
-            </form>
-          </Form>
-        </div>
-        <div className="bg-gray-200 rounded-md justify-center items-center">
-          <Image
-            src={
-              form.getValues("image")
-                ? form.getValues("image")
-                : "/hero-desktop.png"
-            }
-            // src="/hero-desktop.png"
-            alt="err"
-            priority={true}
-            width={400}
-            height={300}
-            style={{ width: "auto", height: "auto" }}
-          />
-        </div>
+        <WriteForm />
+        {/* <div className="w-[600px]">
+          <WriteForm />
+        </div> */}
+        {/* <div className="bg-gray-200 rounded-md justify-center items-center">
+          <ImageWrapper />
+        </div> */}
       </div>
+      {/* <div className="bg-gray-200 rounded-md justify-center items-center">
+        <h1>Image imgUrl</h1>
+      </div> */}
     </div>
   );
 }

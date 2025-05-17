@@ -5282,22 +5282,22 @@ export namespace Prisma {
   export type SessionMinAggregateOutputType = {
     id: string | null
     sessionToken: string | null
-    userId: string | null
     expires: Date | null
+    userId: string | null
   }
 
   export type SessionMaxAggregateOutputType = {
     id: string | null
     sessionToken: string | null
-    userId: string | null
     expires: Date | null
+    userId: string | null
   }
 
   export type SessionCountAggregateOutputType = {
     id: number
     sessionToken: number
-    userId: number
     expires: number
+    userId: number
     _all: number
   }
 
@@ -5305,22 +5305,22 @@ export namespace Prisma {
   export type SessionMinAggregateInputType = {
     id?: true
     sessionToken?: true
-    userId?: true
     expires?: true
+    userId?: true
   }
 
   export type SessionMaxAggregateInputType = {
     id?: true
     sessionToken?: true
-    userId?: true
     expires?: true
+    userId?: true
   }
 
   export type SessionCountAggregateInputType = {
     id?: true
     sessionToken?: true
-    userId?: true
     expires?: true
+    userId?: true
     _all?: true
   }
 
@@ -5399,8 +5399,8 @@ export namespace Prisma {
   export type SessionGroupByOutputType = {
     id: string
     sessionToken: string
-    userId: string
     expires: Date
+    userId: string
     _count: SessionCountAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
@@ -5423,35 +5423,35 @@ export namespace Prisma {
   export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionToken?: boolean
-    userId?: boolean
     expires?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionToken?: boolean
-    userId?: boolean
     expires?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionToken?: boolean
-    userId?: boolean
     expires?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectScalar = {
     id?: boolean
     sessionToken?: boolean
-    userId?: boolean
     expires?: boolean
+    userId?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionToken" | "userId" | "expires", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionToken" | "expires" | "userId", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -5470,8 +5470,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       sessionToken: string
-      userId: string
       expires: Date
+      userId: string
     }, ExtArgs["result"]["session"]>
     composites: {}
   }
@@ -5898,8 +5898,8 @@ export namespace Prisma {
   interface SessionFieldRefs {
     readonly id: FieldRef<"Session", 'String'>
     readonly sessionToken: FieldRef<"Session", 'String'>
-    readonly userId: FieldRef<"Session", 'String'>
     readonly expires: FieldRef<"Session", 'DateTime'>
+    readonly userId: FieldRef<"Session", 'String'>
   }
     
 
@@ -6326,39 +6326,39 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: string | null
+    name: string | null
     email: string | null
     emailVerified: Date | null
     password: string | null
     role: string | null
     date: Date | null
     image_blob: Uint8Array | null
-    name: string | null
     image_url: string | null
     image: string | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
+    name: string | null
     email: string | null
     emailVerified: Date | null
     password: string | null
     role: string | null
     date: Date | null
     image_blob: Uint8Array | null
-    name: string | null
     image_url: string | null
     image: string | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
+    name: number
     email: number
     emailVerified: number
     password: number
     role: number
     date: number
     image_blob: number
-    name: number
     image_url: number
     image: number
     _all: number
@@ -6367,39 +6367,39 @@ export namespace Prisma {
 
   export type UserMinAggregateInputType = {
     id?: true
+    name?: true
     email?: true
     emailVerified?: true
     password?: true
     role?: true
     date?: true
     image_blob?: true
-    name?: true
     image_url?: true
     image?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
+    name?: true
     email?: true
     emailVerified?: true
     password?: true
     role?: true
     date?: true
     image_blob?: true
-    name?: true
     image_url?: true
     image?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
+    name?: true
     email?: true
     emailVerified?: true
     password?: true
     role?: true
     date?: true
     image_blob?: true
-    name?: true
     image_url?: true
     image?: true
     _all?: true
@@ -6479,13 +6479,13 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
+    name: string
     email: string
     emailVerified: Date | null
     password: string
     role: string | null
     date: Date
     image_blob: Uint8Array | null
-    name: string
     image_url: string | null
     image: string | null
     _count: UserCountAggregateOutputType | null
@@ -6509,67 +6509,67 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     email?: boolean
     emailVerified?: boolean
     password?: boolean
     role?: boolean
     date?: boolean
     image_blob?: boolean
-    name?: boolean
     image_url?: boolean
     image?: boolean
+    profile?: boolean | User$profileArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     post?: boolean | User$postArgs<ExtArgs>
-    profile?: boolean | User$profileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     email?: boolean
     emailVerified?: boolean
     password?: boolean
     role?: boolean
     date?: boolean
     image_blob?: boolean
-    name?: boolean
     image_url?: boolean
     image?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     email?: boolean
     emailVerified?: boolean
     password?: boolean
     role?: boolean
     date?: boolean
     image_blob?: boolean
-    name?: boolean
     image_url?: boolean
     image?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
+    name?: boolean
     email?: boolean
     emailVerified?: boolean
     password?: boolean
     role?: boolean
     date?: boolean
     image_blob?: boolean
-    name?: boolean
     image_url?: boolean
     image?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "emailVerified" | "password" | "role" | "date" | "image_blob" | "name" | "image_url" | "image", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "password" | "role" | "date" | "image_blob" | "image_url" | "image", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | User$profileArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     post?: boolean | User$postArgs<ExtArgs>
-    profile?: boolean | User$profileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6578,20 +6578,20 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      profile: Prisma.$ProfilePayload<ExtArgs> | null
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       post: Prisma.$PostPayload<ExtArgs>[]
-      profile: Prisma.$ProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
       email: string
       emailVerified: Date | null
       password: string
       role: string | null
       date: Date
       image_blob: Uint8Array | null
-      name: string
       image_url: string | null
       image: string | null
     }, ExtArgs["result"]["user"]>
@@ -6988,10 +6988,10 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     post<T extends User$postArgs<ExtArgs> = {}>(args?: Subset<T, User$postArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7022,13 +7022,13 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'String'>
     readonly date: FieldRef<"User", 'DateTime'>
     readonly image_blob: FieldRef<"User", 'Bytes'>
-    readonly name: FieldRef<"User", 'String'>
     readonly image_url: FieldRef<"User", 'String'>
     readonly image: FieldRef<"User", 'String'>
   }
@@ -7419,6 +7419,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.profile
+   */
+  export type User$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Profile
+     */
+    select?: ProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Profile
+     */
+    omit?: ProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInclude<ExtArgs> | null
+    where?: ProfileWhereInput
+  }
+
+  /**
    * User.accounts
    */
   export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7491,25 +7510,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.profile
-   */
-  export type User$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Profile
-     */
-    select?: ProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Profile
-     */
-    omit?: ProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProfileInclude<ExtArgs> | null
-    where?: ProfileWhereInput
-  }
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7540,40 +7540,40 @@ export namespace Prisma {
 
   export type ProfileMinAggregateOutputType = {
     id: string | null
-    userId: string | null
     address: string | null
+    userId: string | null
   }
 
   export type ProfileMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
     address: string | null
+    userId: string | null
   }
 
   export type ProfileCountAggregateOutputType = {
     id: number
-    userId: number
     address: number
+    userId: number
     _all: number
   }
 
 
   export type ProfileMinAggregateInputType = {
     id?: true
-    userId?: true
     address?: true
+    userId?: true
   }
 
   export type ProfileMaxAggregateInputType = {
     id?: true
-    userId?: true
     address?: true
+    userId?: true
   }
 
   export type ProfileCountAggregateInputType = {
     id?: true
-    userId?: true
     address?: true
+    userId?: true
     _all?: true
   }
 
@@ -7651,8 +7651,8 @@ export namespace Prisma {
 
   export type ProfileGroupByOutputType = {
     id: string
-    userId: string
     address: string | null
+    userId: string
     _count: ProfileCountAggregateOutputType | null
     _min: ProfileMinAggregateOutputType | null
     _max: ProfileMaxAggregateOutputType | null
@@ -7674,32 +7674,32 @@ export namespace Prisma {
 
   export type ProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
     address?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
     address?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
     address?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectScalar = {
     id?: boolean
-    userId?: boolean
     address?: boolean
+    userId?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "address", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "address" | "userId", ExtArgs["result"]["profile"]>
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -7717,8 +7717,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
       address: string | null
+      userId: string
     }, ExtArgs["result"]["profile"]>
     composites: {}
   }
@@ -8144,8 +8144,8 @@ export namespace Prisma {
    */
   interface ProfileFieldRefs {
     readonly id: FieldRef<"Profile", 'String'>
-    readonly userId: FieldRef<"Profile", 'String'>
     readonly address: FieldRef<"Profile", 'String'>
+    readonly userId: FieldRef<"Profile", 'String'>
   }
     
 
@@ -8582,36 +8582,42 @@ export namespace Prisma {
 
   export type PostMinAggregateOutputType = {
     id: string | null
-    createdAt: Date | null
-    slug: string | null
-    title: string | null
-    desc: string | null
     img: string | null
+    title: string | null
+    content: string | null
+    published: boolean | null
+    desc: string | null
+    createdAt: Date | null
     views: number | null
+    slug: string | null
     catSlug: string | null
     authorId: string | null
   }
 
   export type PostMaxAggregateOutputType = {
     id: string | null
-    createdAt: Date | null
-    slug: string | null
-    title: string | null
-    desc: string | null
     img: string | null
+    title: string | null
+    content: string | null
+    published: boolean | null
+    desc: string | null
+    createdAt: Date | null
     views: number | null
+    slug: string | null
     catSlug: string | null
     authorId: string | null
   }
 
   export type PostCountAggregateOutputType = {
     id: number
-    createdAt: number
-    slug: number
-    title: number
-    desc: number
     img: number
+    title: number
+    content: number
+    published: number
+    desc: number
+    createdAt: number
     views: number
+    slug: number
     catSlug: number
     authorId: number
     _all: number
@@ -8628,36 +8634,42 @@ export namespace Prisma {
 
   export type PostMinAggregateInputType = {
     id?: true
-    createdAt?: true
-    slug?: true
-    title?: true
-    desc?: true
     img?: true
+    title?: true
+    content?: true
+    published?: true
+    desc?: true
+    createdAt?: true
     views?: true
+    slug?: true
     catSlug?: true
     authorId?: true
   }
 
   export type PostMaxAggregateInputType = {
     id?: true
-    createdAt?: true
-    slug?: true
-    title?: true
-    desc?: true
     img?: true
+    title?: true
+    content?: true
+    published?: true
+    desc?: true
+    createdAt?: true
     views?: true
+    slug?: true
     catSlug?: true
     authorId?: true
   }
 
   export type PostCountAggregateInputType = {
     id?: true
-    createdAt?: true
-    slug?: true
-    title?: true
-    desc?: true
     img?: true
+    title?: true
+    content?: true
+    published?: true
+    desc?: true
+    createdAt?: true
     views?: true
+    slug?: true
     catSlug?: true
     authorId?: true
     _all?: true
@@ -8751,12 +8763,14 @@ export namespace Prisma {
 
   export type PostGroupByOutputType = {
     id: string
-    createdAt: Date
-    slug: string | null
-    title: string
-    desc: string | null
     img: string | null
+    title: string
+    content: string | null
+    published: boolean
+    desc: string | null
+    createdAt: Date
     views: number
+    slug: string | null
     catSlug: string | null
     authorId: string | null
     _count: PostCountAggregateOutputType | null
@@ -8782,27 +8796,31 @@ export namespace Prisma {
 
   export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    createdAt?: boolean
-    slug?: boolean
-    title?: boolean
-    desc?: boolean
     img?: boolean
+    title?: boolean
+    content?: boolean
+    published?: boolean
+    desc?: boolean
+    createdAt?: boolean
     views?: boolean
+    slug?: boolean
     catSlug?: boolean
     authorId?: boolean
-    categories?: boolean | Post$categoriesArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
+    categories?: boolean | Post$categoriesArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
   export type PostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    createdAt?: boolean
-    slug?: boolean
-    title?: boolean
-    desc?: boolean
     img?: boolean
+    title?: boolean
+    content?: boolean
+    published?: boolean
+    desc?: boolean
+    createdAt?: boolean
     views?: boolean
+    slug?: boolean
     catSlug?: boolean
     authorId?: boolean
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -8810,12 +8828,14 @@ export namespace Prisma {
 
   export type PostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    createdAt?: boolean
-    slug?: boolean
-    title?: boolean
-    desc?: boolean
     img?: boolean
+    title?: boolean
+    content?: boolean
+    published?: boolean
+    desc?: boolean
+    createdAt?: boolean
     views?: boolean
+    slug?: boolean
     catSlug?: boolean
     authorId?: boolean
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -8823,20 +8843,22 @@ export namespace Prisma {
 
   export type PostSelectScalar = {
     id?: boolean
-    createdAt?: boolean
-    slug?: boolean
-    title?: boolean
-    desc?: boolean
     img?: boolean
+    title?: boolean
+    content?: boolean
+    published?: boolean
+    desc?: boolean
+    createdAt?: boolean
     views?: boolean
+    slug?: boolean
     catSlug?: boolean
     authorId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "slug" | "title" | "desc" | "img" | "views" | "catSlug" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "img" | "title" | "content" | "published" | "desc" | "createdAt" | "views" | "slug" | "catSlug" | "authorId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    categories?: boolean | Post$categoriesArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
+    categories?: boolean | Post$categoriesArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8849,17 +8871,19 @@ export namespace Prisma {
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
-      categories: Prisma.$CategoriesOnPostsPayload<ExtArgs>[]
       author: Prisma.$UserPayload<ExtArgs> | null
+      categories: Prisma.$CategoriesOnPostsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      createdAt: Date
-      slug: string | null
-      title: string
-      desc: string | null
       img: string | null
+      title: string
+      content: string | null
+      published: boolean
+      desc: string | null
+      createdAt: Date
       views: number
+      slug: string | null
       catSlug: string | null
       authorId: string | null
     }, ExtArgs["result"]["post"]>
@@ -9256,8 +9280,8 @@ export namespace Prisma {
    */
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    categories<T extends Post$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Post$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoriesOnPostsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     author<T extends Post$authorArgs<ExtArgs> = {}>(args?: Subset<T, Post$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    categories<T extends Post$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Post$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoriesOnPostsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9288,12 +9312,14 @@ export namespace Prisma {
    */
   interface PostFieldRefs {
     readonly id: FieldRef<"Post", 'String'>
-    readonly createdAt: FieldRef<"Post", 'DateTime'>
-    readonly slug: FieldRef<"Post", 'String'>
-    readonly title: FieldRef<"Post", 'String'>
-    readonly desc: FieldRef<"Post", 'String'>
     readonly img: FieldRef<"Post", 'String'>
+    readonly title: FieldRef<"Post", 'String'>
+    readonly content: FieldRef<"Post", 'String'>
+    readonly published: FieldRef<"Post", 'Boolean'>
+    readonly desc: FieldRef<"Post", 'String'>
+    readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly views: FieldRef<"Post", 'Int'>
+    readonly slug: FieldRef<"Post", 'String'>
     readonly catSlug: FieldRef<"Post", 'String'>
     readonly authorId: FieldRef<"Post", 'String'>
   }
@@ -9692,6 +9718,25 @@ export namespace Prisma {
   }
 
   /**
+   * Post.author
+   */
+  export type Post$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
    * Post.categories
    */
   export type Post$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9713,25 +9758,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CategoriesOnPostsScalarFieldEnum | CategoriesOnPostsScalarFieldEnum[]
-  }
-
-  /**
-   * Post.author
-   */
-  export type Post$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -9765,52 +9791,64 @@ export namespace Prisma {
 
   export type CategoryMinAggregateOutputType = {
     id: string | null
-    slug: string | null
     title: string | null
-    imge: string | null
+    img: string | null
+    desc: string | null
     name: string | null
+    slug: string | null
+    createdAt: Date | null
   }
 
   export type CategoryMaxAggregateOutputType = {
     id: string | null
-    slug: string | null
     title: string | null
-    imge: string | null
+    img: string | null
+    desc: string | null
     name: string | null
+    slug: string | null
+    createdAt: Date | null
   }
 
   export type CategoryCountAggregateOutputType = {
     id: number
-    slug: number
     title: number
-    imge: number
+    img: number
+    desc: number
     name: number
+    slug: number
+    createdAt: number
     _all: number
   }
 
 
   export type CategoryMinAggregateInputType = {
     id?: true
-    slug?: true
     title?: true
-    imge?: true
+    img?: true
+    desc?: true
     name?: true
+    slug?: true
+    createdAt?: true
   }
 
   export type CategoryMaxAggregateInputType = {
     id?: true
-    slug?: true
     title?: true
-    imge?: true
+    img?: true
+    desc?: true
     name?: true
+    slug?: true
+    createdAt?: true
   }
 
   export type CategoryCountAggregateInputType = {
     id?: true
-    slug?: true
     title?: true
-    imge?: true
+    img?: true
+    desc?: true
     name?: true
+    slug?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -9888,10 +9926,12 @@ export namespace Prisma {
 
   export type CategoryGroupByOutputType = {
     id: string
-    slug: string | null
     title: string | null
-    imge: string | null
-    name: string
+    img: string | null
+    desc: string | null
+    name: string | null
+    slug: string | null
+    createdAt: Date
     _count: CategoryCountAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
     _max: CategoryMaxAggregateOutputType | null
@@ -9913,39 +9953,47 @@ export namespace Prisma {
 
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    slug?: boolean
     title?: boolean
-    imge?: boolean
+    img?: boolean
+    desc?: boolean
     name?: boolean
+    slug?: boolean
+    createdAt?: boolean
     posts?: boolean | Category$postsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    slug?: boolean
     title?: boolean
-    imge?: boolean
+    img?: boolean
+    desc?: boolean
     name?: boolean
+    slug?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    slug?: boolean
     title?: boolean
-    imge?: boolean
+    img?: boolean
+    desc?: boolean
     name?: boolean
+    slug?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectScalar = {
     id?: boolean
-    slug?: boolean
     title?: boolean
-    imge?: boolean
+    img?: boolean
+    desc?: boolean
     name?: boolean
+    slug?: boolean
+    createdAt?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "title" | "imge" | "name", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "img" | "desc" | "name" | "slug" | "createdAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | Category$postsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -9960,10 +10008,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      slug: string | null
       title: string | null
-      imge: string | null
-      name: string
+      img: string | null
+      desc: string | null
+      name: string | null
+      slug: string | null
+      createdAt: Date
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -10389,10 +10439,12 @@ export namespace Prisma {
    */
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'String'>
-    readonly slug: FieldRef<"Category", 'String'>
     readonly title: FieldRef<"Category", 'String'>
-    readonly imge: FieldRef<"Category", 'String'>
+    readonly img: FieldRef<"Category", 'String'>
+    readonly desc: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
+    readonly slug: FieldRef<"Category", 'String'>
+    readonly createdAt: FieldRef<"Category", 'DateTime'>
   }
     
 
@@ -10611,7 +10663,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Category.
      */
-    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+    data?: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
   }
 
   /**
@@ -13991,8 +14043,8 @@ export namespace Prisma {
   export const SessionScalarFieldEnum: {
     id: 'id',
     sessionToken: 'sessionToken',
-    userId: 'userId',
-    expires: 'expires'
+    expires: 'expires',
+    userId: 'userId'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -14000,13 +14052,13 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     email: 'email',
     emailVerified: 'emailVerified',
     password: 'password',
     role: 'role',
     date: 'date',
     image_blob: 'image_blob',
-    name: 'name',
     image_url: 'image_url',
     image: 'image'
   };
@@ -14016,8 +14068,8 @@ export namespace Prisma {
 
   export const ProfileScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
-    address: 'address'
+    address: 'address',
+    userId: 'userId'
   };
 
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
@@ -14025,12 +14077,14 @@ export namespace Prisma {
 
   export const PostScalarFieldEnum: {
     id: 'id',
-    createdAt: 'createdAt',
-    slug: 'slug',
-    title: 'title',
-    desc: 'desc',
     img: 'img',
+    title: 'title',
+    content: 'content',
+    published: 'published',
+    desc: 'desc',
+    createdAt: 'createdAt',
     views: 'views',
+    slug: 'slug',
     catSlug: 'catSlug',
     authorId: 'authorId'
   };
@@ -14040,10 +14094,12 @@ export namespace Prisma {
 
   export const CategoryScalarFieldEnum: {
     id: 'id',
-    slug: 'slug',
     title: 'title',
-    imge: 'imge',
-    name: 'name'
+    img: 'img',
+    desc: 'desc',
+    name: 'name',
+    slug: 'slug',
+    createdAt: 'createdAt'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -14163,6 +14219,13 @@ export namespace Prisma {
    * Reference to a field of type 'Bytes[]'
    */
   export type ListBytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -14394,16 +14457,16 @@ export namespace Prisma {
     NOT?: SessionWhereInput | SessionWhereInput[]
     id?: StringFilter<"Session"> | string
     sessionToken?: StringFilter<"Session"> | string
-    userId?: StringFilter<"Session"> | string
     expires?: DateTimeFilter<"Session"> | Date | string
+    userId?: StringFilter<"Session"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type SessionOrderByWithRelationInput = {
     id?: SortOrder
     sessionToken?: SortOrder
-    userId?: SortOrder
     expires?: SortOrder
+    userId?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -14413,16 +14476,16 @@ export namespace Prisma {
     AND?: SessionWhereInput | SessionWhereInput[]
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
-    userId?: StringFilter<"Session"> | string
     expires?: DateTimeFilter<"Session"> | Date | string
+    userId?: StringFilter<"Session"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "sessionToken">
 
   export type SessionOrderByWithAggregationInput = {
     id?: SortOrder
     sessionToken?: SortOrder
-    userId?: SortOrder
     expires?: SortOrder
+    userId?: SortOrder
     _count?: SessionCountOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
@@ -14434,8 +14497,8 @@ export namespace Prisma {
     NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Session"> | string
     sessionToken?: StringWithAggregatesFilter<"Session"> | string
-    userId?: StringWithAggregatesFilter<"Session"> | string
     expires?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    userId?: StringWithAggregatesFilter<"Session"> | string
   }
 
   export type UserWhereInput = {
@@ -14443,36 +14506,36 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     password?: StringFilter<"User"> | string
     role?: StringNullableFilter<"User"> | string | null
     date?: DateTimeFilter<"User"> | Date | string
     image_blob?: BytesNullableFilter<"User"> | Uint8Array | null
-    name?: StringFilter<"User"> | string
     image_url?: StringNullableFilter<"User"> | string | null
     image?: StringNullableFilter<"User"> | string | null
+    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     post?: PostListRelationFilter
-    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     password?: SortOrder
     role?: SortOrderInput | SortOrder
     date?: SortOrder
     image_blob?: SortOrderInput | SortOrder
-    name?: SortOrder
     image_url?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    profile?: ProfileOrderByWithRelationInput
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     post?: PostOrderByRelationAggregateInput
-    profile?: ProfileOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14481,29 +14544,29 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringFilter<"User"> | string
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     password?: StringFilter<"User"> | string
     role?: StringNullableFilter<"User"> | string | null
     date?: DateTimeFilter<"User"> | Date | string
     image_blob?: BytesNullableFilter<"User"> | Uint8Array | null
-    name?: StringFilter<"User"> | string
     image_url?: StringNullableFilter<"User"> | string | null
     image?: StringNullableFilter<"User"> | string | null
+    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     post?: PostListRelationFilter
-    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     password?: SortOrder
     role?: SortOrderInput | SortOrder
     date?: SortOrder
     image_blob?: SortOrderInput | SortOrder
-    name?: SortOrder
     image_url?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -14516,13 +14579,13 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
+    name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     password?: StringWithAggregatesFilter<"User"> | string
     role?: StringNullableWithAggregatesFilter<"User"> | string | null
     date?: DateTimeWithAggregatesFilter<"User"> | Date | string
     image_blob?: BytesNullableWithAggregatesFilter<"User"> | Uint8Array | null
-    name?: StringWithAggregatesFilter<"User"> | string
     image_url?: StringNullableWithAggregatesFilter<"User"> | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
@@ -14532,15 +14595,15 @@ export namespace Prisma {
     OR?: ProfileWhereInput[]
     NOT?: ProfileWhereInput | ProfileWhereInput[]
     id?: StringFilter<"Profile"> | string
-    userId?: StringFilter<"Profile"> | string
     address?: StringNullableFilter<"Profile"> | string | null
+    userId?: StringFilter<"Profile"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ProfileOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
     address?: SortOrderInput | SortOrder
+    userId?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -14556,8 +14619,8 @@ export namespace Prisma {
 
   export type ProfileOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
     address?: SortOrderInput | SortOrder
+    userId?: SortOrder
     _count?: ProfileCountOrderByAggregateInput
     _max?: ProfileMaxOrderByAggregateInput
     _min?: ProfileMinOrderByAggregateInput
@@ -14568,8 +14631,8 @@ export namespace Prisma {
     OR?: ProfileScalarWhereWithAggregatesInput[]
     NOT?: ProfileScalarWhereWithAggregatesInput | ProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Profile"> | string
-    userId?: StringWithAggregatesFilter<"Profile"> | string
     address?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    userId?: StringWithAggregatesFilter<"Profile"> | string
   }
 
   export type PostWhereInput = {
@@ -14577,30 +14640,34 @@ export namespace Prisma {
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
     id?: StringFilter<"Post"> | string
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    slug?: StringNullableFilter<"Post"> | string | null
-    title?: StringFilter<"Post"> | string
-    desc?: StringNullableFilter<"Post"> | string | null
     img?: StringNullableFilter<"Post"> | string | null
+    title?: StringFilter<"Post"> | string
+    content?: StringNullableFilter<"Post"> | string | null
+    published?: BoolFilter<"Post"> | boolean
+    desc?: StringNullableFilter<"Post"> | string | null
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     views?: IntFilter<"Post"> | number
+    slug?: StringNullableFilter<"Post"> | string | null
     catSlug?: StringNullableFilter<"Post"> | string | null
     authorId?: StringNullableFilter<"Post"> | string | null
-    categories?: CategoriesOnPostsListRelationFilter
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    categories?: CategoriesOnPostsListRelationFilter
   }
 
   export type PostOrderByWithRelationInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    slug?: SortOrderInput | SortOrder
-    title?: SortOrder
-    desc?: SortOrderInput | SortOrder
     img?: SortOrderInput | SortOrder
+    title?: SortOrder
+    content?: SortOrderInput | SortOrder
+    published?: SortOrder
+    desc?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     views?: SortOrder
+    slug?: SortOrderInput | SortOrder
     catSlug?: SortOrderInput | SortOrder
     authorId?: SortOrderInput | SortOrder
-    categories?: CategoriesOnPostsOrderByRelationAggregateInput
     author?: UserOrderByWithRelationInput
+    categories?: CategoriesOnPostsOrderByRelationAggregateInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -14609,25 +14676,29 @@ export namespace Prisma {
     AND?: PostWhereInput | PostWhereInput[]
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    title?: StringFilter<"Post"> | string
-    desc?: StringNullableFilter<"Post"> | string | null
     img?: StringNullableFilter<"Post"> | string | null
+    title?: StringFilter<"Post"> | string
+    content?: StringNullableFilter<"Post"> | string | null
+    published?: BoolFilter<"Post"> | boolean
+    desc?: StringNullableFilter<"Post"> | string | null
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     views?: IntFilter<"Post"> | number
     catSlug?: StringNullableFilter<"Post"> | string | null
     authorId?: StringNullableFilter<"Post"> | string | null
-    categories?: CategoriesOnPostsListRelationFilter
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    categories?: CategoriesOnPostsListRelationFilter
   }, "id" | "slug">
 
   export type PostOrderByWithAggregationInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    slug?: SortOrderInput | SortOrder
-    title?: SortOrder
-    desc?: SortOrderInput | SortOrder
     img?: SortOrderInput | SortOrder
+    title?: SortOrder
+    content?: SortOrderInput | SortOrder
+    published?: SortOrder
+    desc?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     views?: SortOrder
+    slug?: SortOrderInput | SortOrder
     catSlug?: SortOrderInput | SortOrder
     authorId?: SortOrderInput | SortOrder
     _count?: PostCountOrderByAggregateInput
@@ -14642,12 +14713,14 @@ export namespace Prisma {
     OR?: PostScalarWhereWithAggregatesInput[]
     NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Post"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
-    slug?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    title?: StringWithAggregatesFilter<"Post"> | string
-    desc?: StringNullableWithAggregatesFilter<"Post"> | string | null
     img?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    title?: StringWithAggregatesFilter<"Post"> | string
+    content?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    published?: BoolWithAggregatesFilter<"Post"> | boolean
+    desc?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     views?: IntWithAggregatesFilter<"Post"> | number
+    slug?: StringNullableWithAggregatesFilter<"Post"> | string | null
     catSlug?: StringNullableWithAggregatesFilter<"Post"> | string | null
     authorId?: StringNullableWithAggregatesFilter<"Post"> | string | null
   }
@@ -14657,19 +14730,23 @@ export namespace Prisma {
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: StringFilter<"Category"> | string
-    slug?: StringNullableFilter<"Category"> | string | null
     title?: StringNullableFilter<"Category"> | string | null
-    imge?: StringNullableFilter<"Category"> | string | null
-    name?: StringFilter<"Category"> | string
+    img?: StringNullableFilter<"Category"> | string | null
+    desc?: StringNullableFilter<"Category"> | string | null
+    name?: StringNullableFilter<"Category"> | string | null
+    slug?: StringNullableFilter<"Category"> | string | null
+    createdAt?: DateTimeFilter<"Category"> | Date | string
     posts?: CategoriesOnPostsListRelationFilter
   }
 
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
-    slug?: SortOrderInput | SortOrder
     title?: SortOrderInput | SortOrder
-    imge?: SortOrderInput | SortOrder
-    name?: SortOrder
+    img?: SortOrderInput | SortOrder
+    desc?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
+    slug?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     posts?: CategoriesOnPostsOrderByRelationAggregateInput
   }
 
@@ -14680,17 +14757,21 @@ export namespace Prisma {
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     title?: StringNullableFilter<"Category"> | string | null
-    imge?: StringNullableFilter<"Category"> | string | null
-    name?: StringFilter<"Category"> | string
+    img?: StringNullableFilter<"Category"> | string | null
+    desc?: StringNullableFilter<"Category"> | string | null
+    name?: StringNullableFilter<"Category"> | string | null
+    createdAt?: DateTimeFilter<"Category"> | Date | string
     posts?: CategoriesOnPostsListRelationFilter
   }, "id" | "slug">
 
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
-    slug?: SortOrderInput | SortOrder
     title?: SortOrderInput | SortOrder
-    imge?: SortOrderInput | SortOrder
-    name?: SortOrder
+    img?: SortOrderInput | SortOrder
+    desc?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
+    slug?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
     _min?: CategoryMinOrderByAggregateInput
@@ -14701,10 +14782,12 @@ export namespace Prisma {
     OR?: CategoryScalarWhereWithAggregatesInput[]
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Category"> | string
-    slug?: StringNullableWithAggregatesFilter<"Category"> | string | null
     title?: StringNullableWithAggregatesFilter<"Category"> | string | null
-    imge?: StringNullableWithAggregatesFilter<"Category"> | string | null
-    name?: StringWithAggregatesFilter<"Category"> | string
+    img?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    desc?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    name?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    slug?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
   }
 
   export type CategoriesOnPostsWhereInput = {
@@ -15098,8 +15181,8 @@ export namespace Prisma {
   export type SessionUncheckedCreateInput = {
     id?: string
     sessionToken: string
-    userId: string
     expires: Date | string
+    userId: string
   }
 
   export type SessionUpdateInput = {
@@ -15112,15 +15195,15 @@ export namespace Prisma {
   export type SessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionToken?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type SessionCreateManyInput = {
     id?: string
     sessionToken: string
-    userId: string
     expires: Date | string
+    userId: string
   }
 
   export type SessionUpdateManyMutationInput = {
@@ -15132,113 +15215,113 @@ export namespace Prisma {
   export type SessionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionToken?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserCreateInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
+    profile?: ProfileCreateNestedOneWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     post?: PostCreateNestedManyWithoutAuthorInput
-    profile?: ProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     post?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUpdateOneWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     post?: PostUpdateManyWithoutAuthorNestedInput
-    profile?: ProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -15251,8 +15334,8 @@ export namespace Prisma {
 
   export type ProfileUncheckedCreateInput = {
     id?: string
-    userId: string
     address?: string | null
+    userId: string
   }
 
   export type ProfileUpdateInput = {
@@ -15263,14 +15346,14 @@ export namespace Prisma {
 
   export type ProfileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileCreateManyInput = {
     id?: string
-    userId: string
     address?: string | null
+    userId: string
   }
 
   export type ProfileUpdateManyMutationInput = {
@@ -15280,31 +15363,35 @@ export namespace Prisma {
 
   export type ProfileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostCreateInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
-    categories?: CategoriesOnPostsCreateNestedManyWithoutPostInput
     author?: UserCreateNestedOneWithoutPostInput
+    categories?: CategoriesOnPostsCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
     authorId?: string | null
     categories?: CategoriesOnPostsUncheckedCreateNestedManyWithoutPostInput
@@ -15312,25 +15399,29 @@ export namespace Prisma {
 
   export type PostUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
-    categories?: CategoriesOnPostsUpdateManyWithoutPostNestedInput
     author?: UserUpdateOneWithoutPostNestedInput
+    categories?: CategoriesOnPostsUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: CategoriesOnPostsUncheckedUpdateManyWithoutPostNestedInput
@@ -15338,97 +15429,117 @@ export namespace Prisma {
 
   export type PostCreateManyInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
     authorId?: string | null
   }
 
   export type PostUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PostUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CategoryCreateInput = {
     id?: string
-    slug?: string | null
     title?: string | null
-    imge?: string | null
-    name: string
+    img?: string | null
+    desc?: string | null
+    name?: string | null
+    slug?: string | null
+    createdAt?: Date | string
     posts?: CategoriesOnPostsCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateInput = {
     id?: string
-    slug?: string | null
     title?: string | null
-    imge?: string | null
-    name: string
+    img?: string | null
+    desc?: string | null
+    name?: string | null
+    slug?: string | null
+    createdAt?: Date | string
     posts?: CategoriesOnPostsUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    imge?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: CategoriesOnPostsUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    imge?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: CategoriesOnPostsUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryCreateManyInput = {
     id?: string
-    slug?: string | null
     title?: string | null
-    imge?: string | null
-    name: string
+    img?: string | null
+    desc?: string | null
+    name?: string | null
+    slug?: string | null
+    createdAt?: Date | string
   }
 
   export type CategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    imge?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    imge?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoriesOnPostsCreateInput = {
@@ -15879,22 +15990,22 @@ export namespace Prisma {
   export type SessionCountOrderByAggregateInput = {
     id?: SortOrder
     sessionToken?: SortOrder
-    userId?: SortOrder
     expires?: SortOrder
+    userId?: SortOrder
   }
 
   export type SessionMaxOrderByAggregateInput = {
     id?: SortOrder
     sessionToken?: SortOrder
-    userId?: SortOrder
     expires?: SortOrder
+    userId?: SortOrder
   }
 
   export type SessionMinOrderByAggregateInput = {
     id?: SortOrder
     sessionToken?: SortOrder
-    userId?: SortOrder
     expires?: SortOrder
+    userId?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -15915,6 +16026,11 @@ export namespace Prisma {
     not?: NestedBytesNullableFilter<$PrismaModel> | Uint8Array | null
   }
 
+  export type ProfileNullableScalarRelationFilter = {
+    is?: ProfileWhereInput | null
+    isNot?: ProfileWhereInput | null
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -15933,11 +16049,6 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
-  export type ProfileNullableScalarRelationFilter = {
-    is?: ProfileWhereInput | null
-    isNot?: ProfileWhereInput | null
-  }
-
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15952,39 +16063,39 @@ export namespace Prisma {
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     password?: SortOrder
     role?: SortOrder
     date?: SortOrder
     image_blob?: SortOrder
-    name?: SortOrder
     image_url?: SortOrder
     image?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     password?: SortOrder
     role?: SortOrder
     date?: SortOrder
     image_blob?: SortOrder
-    name?: SortOrder
     image_url?: SortOrder
     image?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     password?: SortOrder
     role?: SortOrder
     date?: SortOrder
     image_blob?: SortOrder
-    name?: SortOrder
     image_url?: SortOrder
     image?: SortOrder
   }
@@ -16015,20 +16126,30 @@ export namespace Prisma {
 
   export type ProfileCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
     address?: SortOrder
+    userId?: SortOrder
   }
 
   export type ProfileMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
     address?: SortOrder
+    userId?: SortOrder
   }
 
   export type ProfileMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
     address?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
   }
 
   export type CategoriesOnPostsListRelationFilter = {
@@ -16037,23 +16158,20 @@ export namespace Prisma {
     none?: CategoriesOnPostsWhereInput
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type CategoriesOnPostsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    slug?: SortOrder
-    title?: SortOrder
-    desc?: SortOrder
     img?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    desc?: SortOrder
+    createdAt?: SortOrder
     views?: SortOrder
+    slug?: SortOrder
     catSlug?: SortOrder
     authorId?: SortOrder
   }
@@ -16064,24 +16182,28 @@ export namespace Prisma {
 
   export type PostMaxOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    slug?: SortOrder
-    title?: SortOrder
-    desc?: SortOrder
     img?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    desc?: SortOrder
+    createdAt?: SortOrder
     views?: SortOrder
+    slug?: SortOrder
     catSlug?: SortOrder
     authorId?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
-    slug?: SortOrder
-    title?: SortOrder
-    desc?: SortOrder
     img?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    published?: SortOrder
+    desc?: SortOrder
+    createdAt?: SortOrder
     views?: SortOrder
+    slug?: SortOrder
     catSlug?: SortOrder
     authorId?: SortOrder
   }
@@ -16090,28 +16212,42 @@ export namespace Prisma {
     views?: SortOrder
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
-    slug?: SortOrder
     title?: SortOrder
-    imge?: SortOrder
+    img?: SortOrder
+    desc?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
-    slug?: SortOrder
     title?: SortOrder
-    imge?: SortOrder
+    img?: SortOrder
+    desc?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
-    slug?: SortOrder
     title?: SortOrder
-    imge?: SortOrder
+    img?: SortOrder
+    desc?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type CategoryScalarRelationFilter = {
@@ -16353,6 +16489,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
   }
 
+  export type ProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
+    connect?: ProfileWhereUniqueInput
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16374,7 +16516,7 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type ProfileCreateNestedOneWithoutUserInput = {
+  export type ProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
     connect?: ProfileWhereUniqueInput
@@ -16401,18 +16543,22 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type ProfileUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
-    connect?: ProfileWhereUniqueInput
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
 
   export type NullableBytesFieldUpdateOperationsInput = {
     set?: Uint8Array | null
+  }
+
+  export type ProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
+    upsert?: ProfileUpsertWithoutUserInput
+    disconnect?: ProfileWhereInput | boolean
+    delete?: ProfileWhereInput | boolean
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutUserInput, ProfileUpdateWithoutUserInput>, ProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -16457,7 +16603,7 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type ProfileUpdateOneWithoutUserNestedInput = {
+  export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
     upsert?: ProfileUpsertWithoutUserInput
@@ -16509,16 +16655,6 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
-    upsert?: ProfileUpsertWithoutUserInput
-    disconnect?: ProfileWhereInput | boolean
-    delete?: ProfileWhereInput | boolean
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutUserInput, ProfileUpdateWithoutUserInput>, ProfileUncheckedUpdateWithoutUserInput>
-  }
-
   export type UserCreateNestedOneWithoutProfileInput = {
     create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
     connectOrCreate?: UserCreateOrConnectWithoutProfileInput
@@ -16533,6 +16669,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileInput, UserUpdateWithoutProfileInput>, UserUncheckedUpdateWithoutProfileInput>
   }
 
+  export type UserCreateNestedOneWithoutPostInput = {
+    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type CategoriesOnPostsCreateNestedManyWithoutPostInput = {
     create?: XOR<CategoriesOnPostsCreateWithoutPostInput, CategoriesOnPostsUncheckedCreateWithoutPostInput> | CategoriesOnPostsCreateWithoutPostInput[] | CategoriesOnPostsUncheckedCreateWithoutPostInput[]
     connectOrCreate?: CategoriesOnPostsCreateOrConnectWithoutPostInput | CategoriesOnPostsCreateOrConnectWithoutPostInput[]
@@ -16540,17 +16682,25 @@ export namespace Prisma {
     connect?: CategoriesOnPostsWhereUniqueInput | CategoriesOnPostsWhereUniqueInput[]
   }
 
-  export type UserCreateNestedOneWithoutPostInput = {
-    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type CategoriesOnPostsUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<CategoriesOnPostsCreateWithoutPostInput, CategoriesOnPostsUncheckedCreateWithoutPostInput> | CategoriesOnPostsCreateWithoutPostInput[] | CategoriesOnPostsUncheckedCreateWithoutPostInput[]
     connectOrCreate?: CategoriesOnPostsCreateOrConnectWithoutPostInput | CategoriesOnPostsCreateOrConnectWithoutPostInput[]
     createMany?: CategoriesOnPostsCreateManyPostInputEnvelope
     connect?: CategoriesOnPostsWhereUniqueInput | CategoriesOnPostsWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type UserUpdateOneWithoutPostNestedInput = {
+    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostInput
+    upsert?: UserUpsertWithoutPostInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostInput, UserUpdateWithoutPostInput>, UserUncheckedUpdateWithoutPostInput>
   }
 
   export type CategoriesOnPostsUpdateManyWithoutPostNestedInput = {
@@ -16565,16 +16715,6 @@ export namespace Prisma {
     update?: CategoriesOnPostsUpdateWithWhereUniqueWithoutPostInput | CategoriesOnPostsUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: CategoriesOnPostsUpdateManyWithWhereWithoutPostInput | CategoriesOnPostsUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: CategoriesOnPostsScalarWhereInput | CategoriesOnPostsScalarWhereInput[]
-  }
-
-  export type UserUpdateOneWithoutPostNestedInput = {
-    create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostInput
-    upsert?: UserUpsertWithoutPostInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostInput, UserUpdateWithoutPostInput>, UserUncheckedUpdateWithoutPostInput>
   }
 
   export type CategoriesOnPostsUncheckedUpdateManyWithoutPostNestedInput = {
@@ -16866,6 +17006,19 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedUuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -16988,34 +17141,34 @@ export namespace Prisma {
 
   export type UserCreateWithoutAccountsInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
+    profile?: ProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     post?: PostCreateNestedManyWithoutAuthorInput
-    profile?: ProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     post?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -17036,66 +17189,66 @@ export namespace Prisma {
 
   export type UserUpdateWithoutAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     post?: PostUpdateManyWithoutAuthorNestedInput
-    profile?: ProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
+    profile?: ProfileCreateNestedOneWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     post?: PostCreateNestedManyWithoutAuthorInput
-    profile?: ProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     post?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -17116,34 +17269,49 @@ export namespace Prisma {
 
   export type UserUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUpdateOneWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     post?: PostUpdateManyWithoutAuthorNestedInput
-    profile?: ProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type ProfileCreateWithoutUserInput = {
+    id?: string
+    address?: string | null
+  }
+
+  export type ProfileUncheckedCreateWithoutUserInput = {
+    id?: string
+    address?: string | null
+  }
+
+  export type ProfileCreateOrConnectWithoutUserInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -17210,24 +17378,28 @@ export namespace Prisma {
 
   export type PostCreateWithoutAuthorInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
     categories?: CategoriesOnPostsCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutAuthorInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
     categories?: CategoriesOnPostsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -17242,19 +17414,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProfileCreateWithoutUserInput = {
-    id?: string
-    address?: string | null
-  }
-
-  export type ProfileUncheckedCreateWithoutUserInput = {
-    id?: string
-    address?: string | null
-  }
-
-  export type ProfileCreateOrConnectWithoutUserInput = {
-    where: ProfileWhereUniqueInput
+  export type ProfileUpsertWithoutUserInput = {
+    update: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
     create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProfileUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProfileUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -17314,8 +17492,8 @@ export namespace Prisma {
     NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
     id?: StringFilter<"Session"> | string
     sessionToken?: StringFilter<"Session"> | string
-    userId?: StringFilter<"Session"> | string
     expires?: DateTimeFilter<"Session"> | Date | string
+    userId?: StringFilter<"Session"> | string
   }
 
   export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -17339,46 +17517,27 @@ export namespace Prisma {
     OR?: PostScalarWhereInput[]
     NOT?: PostScalarWhereInput | PostScalarWhereInput[]
     id?: StringFilter<"Post"> | string
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    slug?: StringNullableFilter<"Post"> | string | null
-    title?: StringFilter<"Post"> | string
-    desc?: StringNullableFilter<"Post"> | string | null
     img?: StringNullableFilter<"Post"> | string | null
+    title?: StringFilter<"Post"> | string
+    content?: StringNullableFilter<"Post"> | string | null
+    published?: BoolFilter<"Post"> | boolean
+    desc?: StringNullableFilter<"Post"> | string | null
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     views?: IntFilter<"Post"> | number
+    slug?: StringNullableFilter<"Post"> | string | null
     catSlug?: StringNullableFilter<"Post"> | string | null
     authorId?: StringNullableFilter<"Post"> | string | null
   }
 
-  export type ProfileUpsertWithoutUserInput = {
-    update: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
-    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-    where?: ProfileWhereInput
-  }
-
-  export type ProfileUpdateToOneWithWhereWithoutUserInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ProfileUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ProfileUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type UserCreateWithoutProfileInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -17388,13 +17547,13 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutProfileInput = {
     id?: string
+    name: string
     email: string
     emailVerified?: Date | string | null
     password: string
     role?: string | null
     date?: Date | string
     image_blob?: Uint8Array | null
-    name: string
     image_url?: string | null
     image?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -17420,13 +17579,13 @@ export namespace Prisma {
 
   export type UserUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -17436,18 +17595,55 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutProfileInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     password?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserCreateWithoutPostInput = {
+    id?: string
+    name: string
+    email: string
+    emailVerified?: Date | string | null
+    password: string
+    role?: string | null
+    date?: Date | string
+    image_blob?: Uint8Array | null
+    image_url?: string | null
+    image?: string | null
+    profile?: ProfileCreateNestedOneWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPostInput = {
+    id?: string
+    name: string
+    email: string
+    emailVerified?: Date | string | null
+    password: string
+    role?: string | null
+    date?: Date | string
+    image_blob?: Uint8Array | null
+    image_url?: string | null
+    image?: string | null
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPostInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
   }
 
   export type CategoriesOnPostsCreateWithoutPostInput = {
@@ -17472,41 +17668,47 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserCreateWithoutPostInput = {
-    id?: string
-    email: string
-    emailVerified?: Date | string | null
-    password: string
-    role?: string | null
-    date?: Date | string
-    image_blob?: Uint8Array | null
-    name: string
-    image_url?: string | null
-    image?: string | null
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPostInput = {
-    id?: string
-    email: string
-    emailVerified?: Date | string | null
-    password: string
-    role?: string | null
-    date?: Date | string
-    image_blob?: Uint8Array | null
-    name: string
-    image_url?: string | null
-    image?: string | null
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPostInput = {
-    where: UserWhereUniqueInput
+  export type UserUpsertWithoutPostInput = {
+    update: XOR<UserUpdateWithoutPostInput, UserUncheckedUpdateWithoutPostInput>
     create: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPostInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPostInput, UserUncheckedUpdateWithoutPostInput>
+  }
+
+  export type UserUpdateWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUpdateOneWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPostInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CategoriesOnPostsUpsertWithWhereUniqueWithoutPostInput = {
@@ -17533,49 +17735,6 @@ export namespace Prisma {
     categoryId?: StringFilter<"CategoriesOnPosts"> | string
     assignedAt?: DateTimeFilter<"CategoriesOnPosts"> | Date | string
     assignedBy?: StringFilter<"CategoriesOnPosts"> | string
-  }
-
-  export type UserUpsertWithoutPostInput = {
-    update: XOR<UserUpdateWithoutPostInput, UserUncheckedUpdateWithoutPostInput>
-    create: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPostInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPostInput, UserUncheckedUpdateWithoutPostInput>
-  }
-
-  export type UserUpdateWithoutPostInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    password?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPostInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    password?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    image_blob?: NullableBytesFieldUpdateOperationsInput | Uint8Array | null
-    name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type CategoriesOnPostsCreateWithoutCategoryInput = {
@@ -17618,18 +17777,22 @@ export namespace Prisma {
 
   export type CategoryCreateWithoutPostsInput = {
     id?: string
-    slug?: string | null
     title?: string | null
-    imge?: string | null
-    name: string
+    img?: string | null
+    desc?: string | null
+    name?: string | null
+    slug?: string | null
+    createdAt?: Date | string
   }
 
   export type CategoryUncheckedCreateWithoutPostsInput = {
     id?: string
-    slug?: string | null
     title?: string | null
-    imge?: string | null
-    name: string
+    img?: string | null
+    desc?: string | null
+    name?: string | null
+    slug?: string | null
+    createdAt?: Date | string
   }
 
   export type CategoryCreateOrConnectWithoutPostsInput = {
@@ -17639,24 +17802,28 @@ export namespace Prisma {
 
   export type PostCreateWithoutCategoriesInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
     author?: UserCreateNestedOneWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutCategoriesInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
     authorId?: string | null
   }
@@ -17679,18 +17846,22 @@ export namespace Prisma {
 
   export type CategoryUpdateWithoutPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    imge?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryUncheckedUpdateWithoutPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    imge?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    img?: NullableStringFieldUpdateOperationsInput | string | null
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUpsertWithoutCategoriesInput = {
@@ -17706,24 +17877,28 @@ export namespace Prisma {
 
   export type PostUpdateWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
     author?: UserUpdateOneWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -17779,12 +17954,14 @@ export namespace Prisma {
 
   export type PostCreateManyAuthorInput = {
     id?: string
-    createdAt?: Date | string
-    slug?: string | null
-    title: string
-    desc?: string | null
     img?: string | null
+    title: string
+    content?: string | null
+    published?: boolean
+    desc?: string | null
+    createdAt?: Date | string
     views?: number
+    slug?: string | null
     catSlug?: string | null
   }
 
@@ -17853,36 +18030,42 @@ export namespace Prisma {
 
   export type PostUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: CategoriesOnPostsUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: CategoriesOnPostsUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateManyWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    slug?: NullableStringFieldUpdateOperationsInput | string | null
-    title?: StringFieldUpdateOperationsInput | string
-    desc?: NullableStringFieldUpdateOperationsInput | string | null
     img?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: IntFieldUpdateOperationsInput | number
+    slug?: NullableStringFieldUpdateOperationsInput | string | null
     catSlug?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
