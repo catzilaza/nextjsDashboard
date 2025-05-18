@@ -4,16 +4,16 @@ import styles from "./menuPosts.module.css";
 
 const MenuPosts = ({ withImage }: { withImage: any }) => {
   return (
-    <div className={styles.items}>
-      <Link href="/" className={styles.item}>
+    <div className={`${styles.items}`}>
+      <Link href="/" className={`${styles.item}`}>
         {withImage && (
           <div
-            className={styles.imageContainer}
+            className={`${styles.imageContainer}`}
             style={{ position: "relative", width: "300px", height: "200px" }}
           >
             <Image
               src="/blog/p1.jpeg"
-              alt=""
+              alt="err"
               priority={true}
               fill
               className={styles.image}
@@ -35,12 +35,12 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div
-            className={styles.imageContainer}
+            className={`${styles.imageContainer}`}
             style={{ position: "relative", width: "300px", height: "200px" }}
           >
             <Image
               src="/blog/p1.jpeg"
-              alt=""
+              alt="err"
               priority={true}
               fill
               className={styles.image}
@@ -64,12 +64,12 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div
-            className={styles.imageContainer}
+            className={`${styles.imageContainer}`}
             style={{ position: "relative", width: "300px", height: "200px" }}
           >
             <Image
               src="/blog/p1.jpeg"
-              alt=""
+              alt="err"
               priority={true}
               fill
               className={styles.image}
@@ -91,12 +91,12 @@ const MenuPosts = ({ withImage }: { withImage: any }) => {
       <Link href="/" className={styles.item}>
         {withImage && (
           <div
-            className={styles.imageContainer}
+            className={`${styles.imageContainer}`}
             style={{ position: "relative", width: "300px", height: "200px" }}
           >
             <Image
               src="/blog/p1.jpeg"
-              alt=""
+              alt="err"
               priority={true}
               fill
               className={styles.image}

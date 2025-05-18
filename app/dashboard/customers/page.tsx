@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
-import { auth } from "@/auth";
 import { getLoginSession } from "@/app/lib/data";
+// import { auth } from "@/auth";
 
 export default async function Page() {
   const session: any = await getLoginSession();
   console.log("+++++++Page session", session);
-  const session1 = await auth();
-  console.log("-------Page session : ", session1);
+  // const session1 = await auth();
+  // console.log("-------Page session : ", session1);
 
   /* <Image
     src={session.user.image || ""}
@@ -25,7 +25,11 @@ export default async function Page() {
         <li key={session?.user?.id} className="flex py-4">
           <img
             className="size-10 rounded-full"
-            src={session?.user?.image as string}
+            src={`${
+              session?.user?.image
+                ? (session?.user?.image as string)
+                : "https://github.com/shadcn.png"
+            }`}
             alt="Not Found Image"
           />
           <div className="ml-3">

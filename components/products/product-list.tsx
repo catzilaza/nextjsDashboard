@@ -60,7 +60,7 @@ export default function ProductList({
             ))}
           </div> */}
           <div className="hidden min-w-full text-gray-900 md:table">
-            <div className="grid grid-cols-5 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               {products?.map((product) => (
                 <Card key={product.dessert_id}>
                   <CardHeader>

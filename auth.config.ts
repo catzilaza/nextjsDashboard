@@ -13,12 +13,12 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 export const authConfig = {
   pages: {
     signIn: "/login",
-    error: "/error",
+    // error: "/error",
   },
   session: {
     strategy: "jwt",
   },
-  adapter: NeonAdapter(pool),
+  // adapter: NeonAdapter(pool),
   callbacks: {
     async authorized({ auth, request: { nextUrl } }) {
       return true;
@@ -38,7 +38,8 @@ export const authConfig = {
       // } else {
       //   if (isLoggedIn) {
       //     // console.log("Leave Callbacks : Authorized");
-      //     return Response.redirect(new URL("/dashboard", nextUrl));
+      //     // return Response.redirect(new URL("/dashboard", nextUrl));
+      //     return true;
       //   }
       // }
       // // console.log("Leave Callbacks : Authorized");

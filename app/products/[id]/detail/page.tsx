@@ -10,7 +10,7 @@ export default async function DetailProductPage(props: {
 
   return (
     <main className="flex items-center justify-center md:h-screen">
-      <div className="relative mx-auto flex w-full max-w-[600px] flex-col space-y-2.5 p-4 md:-mt-32">
+      <div className="relative mx-auto flex w-full max-w-[720px] flex-col space-y-2.5 p-4 md:-mt-32">
         <ProductCard product={product} />
       </div>
     </main>

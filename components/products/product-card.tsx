@@ -37,7 +37,7 @@ export default function ProductCard({
     removeItem(product.dessert_id);
   };
 
-  console.log("+++++ From ProductCard : ", items);
+  // console.log("+++++ From ProductCard : ", items);
   return (
     <>
       {" "}

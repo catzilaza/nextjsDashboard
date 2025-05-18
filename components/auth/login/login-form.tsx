@@ -31,7 +31,7 @@ export default function LoginForm() {
   return (
     <>
       <form action={formAction} className="space-y-3">
-        <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+        <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-2 pt-2">
           <h1 className={`${lusitana.className} mb-3 text-2xl`}>
             Please log in to continue.
           </h1>
@@ -80,7 +80,7 @@ export default function LoginForm() {
           {!isPending ? (
             <>
               {" "}
-              <Button className="mt-4 w-full">
+              <Button className="mt-8 w-full">
                 Log in{" "}
                 <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
               </Button>
