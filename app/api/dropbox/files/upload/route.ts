@@ -1,6 +1,6 @@
-import React from "react";
+"use server";
 
-export default function POST() {
+export async function POST() {
   console.log("Dropbox/Files/Upload/route.ts");
   return;
 }
