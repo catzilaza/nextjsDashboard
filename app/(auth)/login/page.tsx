@@ -33,6 +33,13 @@ export default function LoginPage() {
             <Suspense>
               <LoginForm />
             </Suspense>
+            <footer className="bg-gray-200 text-white py-4">
+              <div className="container mx-auto px-6 text-center">
+                <p className="text-sm text-black">
+                  &copy; {new Date().getFullYear()} All rights reserved.
+                </p>
+              </div>
+            </footer>
             {/* <Link
               href={"/"}
               className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"

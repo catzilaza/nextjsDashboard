@@ -14,7 +14,13 @@ import {
   Shield,
 } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/dropbox/navbar/Navbar";
+import Navbar from "@/app/ui/dropbox/Navbar";
+import { SignOut } from "@/lib/utils/dropbox/uitls";
+
+const handleSignOut = async () => {
+  alert("handleSignOut");
+  await SignOut();
+};
 
 export default function DropboxPage() {
   return (
@@ -41,19 +47,19 @@ export default function DropboxPage() {
 
                 <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
                   <div className="mr-4">
-                    <Link href="/sign-up" className="mr-4">
+                    <Link href="/signup" className="mr-4">
                       <Button size="lg" variant="default" color="primary">
                         Get Started
                       </Button>
                     </Link>
-                    <Link href="/sign-in">
+                    <Link href="/login">
                       <Button size="lg" variant="default" color="primary">
                         Sign In
                       </Button>
                     </Link>
                   </div>
                   <div>
-                    <Link href="/dashboard">
+                    <Link href="/dashboard/dropbox">
                       <Button size="lg" variant="default" color="primary">
                         Go to Dashboard
                         <ArrowRight className="h-4 w-4 ml-2" />
@@ -130,7 +136,7 @@ export default function DropboxPage() {
             </h2>
             <div>
               <div className="flex flex-wrap justify-center gap-4 mt-8">
-                <Link href="/sign-up" className="mb-4">
+                <Link href="/login" className="mb-4">
                   <Button size="lg" variant="default" color="primary">
                     Let's Go
                     <ArrowRight className="h-4 w-4" />
@@ -139,7 +145,7 @@ export default function DropboxPage() {
               </div>
             </div>
             <div>
-              <Link href="/dashboard">
+              <Link href="/dashboard/dropbox">
                 <Button size="lg" variant="default" color="primary">
                   Dashboard
                   <ArrowRight className="h-4 w-4" />
