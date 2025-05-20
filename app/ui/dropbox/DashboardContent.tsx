@@ -20,22 +20,22 @@ export default function DashboardContent({
 }: DashboardContentProps) {
   // const userName = "Ariya";
 
-  const searchParams = useSearchParams();
-  const tabParam = searchParams.get("tab");
+  // const searchParams = useSearchParams();
+  // const tabParam = searchParams.get("tab");
 
   const [activeTab, setActiveTab] = useState<string>("files");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
 
   // Set the active tab based on URL parameter
-  useEffect(() => {
-    console.log("useEffect ++++ : ", tabParam);
-    if (tabParam === "profile") {
-      setActiveTab("profile");
-    } else {
-      setActiveTab("files");
-    }
-  }, [tabParam]);
+  // useEffect(() => {
+  //   console.log("useEffect ++++ : ", tabParam);
+  //   if (tabParam === "profile") {
+  //     setActiveTab("profile");
+  //   } else {
+  //     setActiveTab("files");
+  //   }
+  // }, [tabParam]);
 
   const handleFileUploadSuccess = useCallback(() => {
     setRefreshTrigger((prev) => prev + 1);
