@@ -1,7 +1,7 @@
 "use client";
 
-// https://www.youtube.com/watch?v=IcOiX-jynfI
-// Learn Next.js by Coding Your Own Dropbox Clone – Full Tutorial
+// Learn Next.js by Coding Your Own Dropbox Clone – Full Tutorial//
+//  https://www.youtube.com/watch?v=IcOiX-jynfI//
 // https://github.com/hiteshchoudhary/droply
 
 import { Button } from "@/components/ui/button";
@@ -173,3 +173,19 @@ export default function DropboxPage() {
     </div>
   );
 }
+
+// Learn Next.js by Coding Your Own Dropbox Clone – Full Tutorial
+// https://www.youtube.com/watch?v=IcOiX-jynfI
+// https://github.com/hiteshchoudhary/droply
+//
+// ===================================================
+//
+// File uploads in next.js using vercel blob
+// https://www.youtube.com/watch?v=t6tSwxIqXao
+// https://github.com/adityasinghcodes/vercel-blob-tutorial
+//
+// ===================================================
+//
+// How to use Vercel blob storage in NextJs
+// https://www.youtube.com/watch?v=-HSFV9ILFuk
+// https://github.com/HamedBahram/next-novel

@@ -92,6 +92,10 @@ export default function Navbar({ user }: NavbarProps) {
     pathname?.startsWith("/dashboard/") ||
     "/dropbox";
 
+  // useEffect(() => {
+  //   alert(`PathName : ${pathname.toString()}`);
+  // }, [pathname]);
+
   // get session
   useEffect(() => {
     hasuser();

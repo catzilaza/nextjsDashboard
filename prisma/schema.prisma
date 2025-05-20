@@ -129,3 +129,26 @@ model products_desserts {
   status     String?  @db.VarChar(15)
   date       DateTime @db.Date
 }
+
+model File {
+  id           String   @id @default(uuid())
+  name         String
+  path         String
+  size         Int
+  type         String
+  fileUrl      String   @map("file_url")
+  thumbnailUrl String?  @map("thumbnail_url")
+  userId       String   @map("user_id")
+  parentId     String?  @map("parent_id")
+  isFolder     Boolean  @default(false) @map("is_folder")
+  isStarred    Boolean  @default(false) @map("is_starred")
+  isTrash      Boolean  @default(false) @map("is_trash")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  // Self-relation for parent/children
+  parent   File?  @relation("FileToFile", fields: [parentId], references: [id])
+  children File[] @relation("FileToFile")
+
+  @@map("files")
+}

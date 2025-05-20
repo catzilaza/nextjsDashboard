@@ -3,7 +3,7 @@
 import { CloudUpload } from "lucide-react";
 import DashboardContent from "@/app/ui/dropbox/DashboardContent";
 
-export default function DropBoxPage() {
+export default function DropBoxDashBoardPage() {
   const userId = "user001";
 
   // const { userId } = await auth();

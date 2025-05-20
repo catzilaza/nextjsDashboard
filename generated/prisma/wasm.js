@@ -221,6 +221,23 @@ exports.Prisma.Products_dessertsScalarFieldEnum = {
   date: 'date'
 };
 
+exports.Prisma.FileScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  path: 'path',
+  size: 'size',
+  type: 'type',
+  fileUrl: 'fileUrl',
+  thumbnailUrl: 'thumbnailUrl',
+  userId: 'userId',
+  parentId: 'parentId',
+  isFolder: 'isFolder',
+  isStarred: 'isStarred',
+  isTrash: 'isTrash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -248,7 +265,8 @@ exports.Prisma.ModelName = {
   Category: 'Category',
   CategoriesOnPosts: 'CategoriesOnPosts',
   Revenue: 'Revenue',
-  products_desserts: 'products_desserts'
+  products_desserts: 'products_desserts',
+  File: 'File'
 };
 
 /**
