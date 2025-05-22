@@ -31,7 +31,7 @@ interface FileUploadFormProps {
 }
 
 export default function FileUploadForm({
-  userId = "user001",
+  userId,
   onUploadSuccess,
   currentFolder,
 }: FileUploadFormProps) {
@@ -215,36 +215,11 @@ export default function FileUploadForm({
 
   return (
     <div className="space-y-4">
-      {/* Action buttons */}
-      <div className="flex gap-2 mb-2">
-        <Button
-          color="primary"
-          variant="default"
-          onClick={() => setFolderModalOpen(true)}
-          className="flex-1"
-        >
-          <FolderPlus className="h-4 w-4" />
-          New Folder
-        </Button>
-        <Button
-          color="primary"
-          variant="default"
-          onClick={() => {
-            fileInputRef.current?.click();
-            // alert("Add Image");
-          }}
-          className="flex-1"
-        >
-          <FileUp className="h-4 w-4" />
-          Add Image
-        </Button>
-      </div>
-
       {/* File drop area */}
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors
+        className={` mt-8 mb-14 border-2 border-dashed rounded-lg p-6 text-center transition-colors
           ${
             error
               ? "border-danger/30 bg-danger/5"
@@ -345,6 +320,87 @@ export default function FileUploadForm({
         )}
       </div>
 
+      {/* Action buttons */}
+      <div className="flex gap-2 mb-2">
+        {/* <Button
+          color="primary"
+          variant="default"
+          onClick={() => {
+            setFolderModalOpen(true);
+          }}
+          className="flex-1"
+        >
+          <FolderPlus className="h-4 w-4" />
+          New Folder
+        </Button> */}
+        {/* Create Folder Modal */}
+        <Dialog>
+          <DialogTrigger className="flex flex-1 gap-4 justify-center items-center border bg-black text-white text-xs px-2 py-2 rounded-md">
+            <FolderPlus className="h-5 w-5 text-white" />
+            New Folder
+          </DialogTrigger>
+          <DialogContent className="border bg-slate-50">
+            <DialogHeader className="border-b flex gap-2 items-center">
+              <DialogTitle className="flex flex-1 gap-4">
+                {" "}
+                <FolderPlus className="h-5 w-5 text-primary" />
+                <span>New Folder</span>
+              </DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              <p className="text-sm text-default-600">
+                Enter a name for your folder:
+              </p>
+              <Input
+                type="text"
+                placeholder="My Images"
+                onChange={(e) => setFolderName(e.target.value)}
+                autoFocus
+                // label="Folder Name"
+                // value={folderName}
+              />
+            </div>
+            <DialogFooter>
+              <Button
+                variant="default"
+                color="default"
+                onClick={(e) => {
+                  setFolderModalOpen(false);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                color="primary"
+                onClick={handleCreateFolder}
+                //   isLoading={creatingFolder}
+                //   isDisabled={!folderName.trim()}
+                //   endContent={!creatingFolder && <ArrowRight className="h-4 w-4" />}
+              >
+                Create
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+        <Button
+          color="primary"
+          variant="default"
+          onClick={() => {
+            fileInputRef.current?.click();
+            // alert("Add Image");
+          }}
+          className="flex-1"
+        >
+          <FileUp className="h-4 w-4" />
+          Add Image
+        </Button>
+      </div>
+
       {/* Upload tips */}
       <div className="bg-default-100/5 p-4 rounded-lg">
         <h4 className="text-sm font-medium mb-2">Tips</h4>
@@ -356,13 +412,14 @@ export default function FileUploadForm({
       </div>
 
       {/* Create Folder Modal */}
-      <Dialog>
-        <DialogTrigger className="border bg-slate-100 text-2xl px-2 py-2 rounded-md">
-          Open
+      {/* <Dialog>
+        <DialogTrigger className="flex gap-4 w-full items-center border bg-slate-100 text-xs px-2 py-2 rounded-md">
+          <FolderPlus className="h-5 w-5 text-primary" />
+          New Folder
         </DialogTrigger>
         <DialogContent className="border bg-slate-50">
           <DialogHeader className="border-b flex gap-2 items-center">
-            <DialogTitle>
+            <DialogTitle className="flex-1">
               {" "}
               <FolderPlus className="h-5 w-5 text-primary" />
               <span>New Folder</span>
@@ -407,7 +464,7 @@ export default function FileUploadForm({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 }

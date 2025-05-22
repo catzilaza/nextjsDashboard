@@ -7,21 +7,58 @@ import React, { useCallback, useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 import FileUploadForm from "./FileUploadForm";
 import FileList from "./FileList";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { auth } from "@/auth";
+import { getSession } from "@/lib/utils/dropbox/uitls";
 
 interface DashboardContentProps {
   userId: string;
   userName: string;
 }
 
-export default function DashboardContent({
-  userId,
-  userName = "Ariya",
-}: DashboardContentProps) {
+type typeUserProfile = {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+  role?: string | null | undefined;
+  expiredAt?: string | null | undefined;
+};
+
+export default function DashboardContent() {
   // const userName = "Ariya";
 
   // const searchParams = useSearchParams();
   // const tabParam = searchParams.get("tab");
+
+  const [isLogedin, setIsLogedin] = useState(false);
+  const [userId, setUserId] = useState<string | null>("user001");
+  const [userName, setUserName] = useState<string | null>("Ariya");
+
+  const [userProfile, setUserProfile] = useState<typeUserProfile>({
+    name: "",
+    email: "",
+    image: "",
+    role: "",
+    expiredAt: "",
+  });
+  const hasuser = async () => {
+    let user = await getSession();
+    if (user) {
+      setIsLogedin(true);
+      setUserProfile({
+        name: user.user.name,
+        email: user.user.email,
+        image: user.user.image,
+        role: user.user.role,
+        expiredAt: user.expires,
+      });
+      setUserId(user.user.id);
+      setUserName(user.user.name ?? null);
+      return user;
+    } else {
+      return null;
+    }
+  };
 
   const [activeTab, setActiveTab] = useState<string>("files");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -45,6 +82,11 @@ export default function DashboardContent({
     setCurrentFolder(folderId);
   }, []);
 
+  // get session
+  useEffect(() => {
+    hasuser();
+  }, []);
+
   return (
     <>
       {" "}
@@ -52,9 +94,9 @@ export default function DashboardContent({
         <h2 className="text-4xl font-bold text-default-900">
           Hi,{" "}
           <span className="text-primary">
-            {userName?.length > 10
-              ? `${userName?.substring(0, 10)}...`
-              : userName?.split(" ")[0] || "there"}
+            {(userName ?? "").length > 10
+              ? `${(userName ?? "").substring(0, 10)}...`
+              : (userName ?? "").split(" ")[0] || "there"}
           </span>
           !
         </h2>
@@ -77,7 +119,7 @@ export default function DashboardContent({
               </CardHeader>
               <CardContent>
                 <FileUploadForm
-                  userId={userId}
+                  userId={userId as string}
                   onUploadSuccess={handleFileUploadSuccess}
                   currentFolder={currentFolder}
                 />
@@ -95,7 +137,7 @@ export default function DashboardContent({
               </CardHeader>
               <CardContent>
                 <FileList
-                  userId={userId}
+                  userId={userId as string}
                   refreshTrigger={refreshTrigger}
                   onFolderChange={handleFolderChange}
                 />

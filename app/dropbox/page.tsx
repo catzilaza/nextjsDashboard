@@ -189,3 +189,8 @@ export default function DropboxPage() {
 // How to use Vercel blob storage in NextJs
 // https://www.youtube.com/watch?v=-HSFV9ILFuk
 // https://github.com/HamedBahram/next-novel
+// ===================================================
+//
+// Data Fetching using React Suspense and Error Boundary - React Data Fetching Patterns.
+// https://www.youtube.com/watch?v=OpHbSHp8PcI
+// https://github.com/atapas/youtube/tree/main/react/23-suspense
