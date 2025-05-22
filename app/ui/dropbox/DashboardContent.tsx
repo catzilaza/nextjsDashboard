@@ -24,41 +24,44 @@ type typeUserProfile = {
   expiredAt?: string | null | undefined;
 };
 
-export default function DashboardContent() {
+export default function DashboardContent({
+  userId,
+  userName,
+}: DashboardContentProps) {
   // const userName = "Ariya";
 
   // const searchParams = useSearchParams();
   // const tabParam = searchParams.get("tab");
 
-  const [isLogedin, setIsLogedin] = useState(false);
-  const [userId, setUserId] = useState<string | null>("user001");
-  const [userName, setUserName] = useState<string | null>("Ariya");
+  // const [isLogedin, setIsLogedin] = useState(false);
+  // const [userId, setUserId] = useState<string | null>("user001");
+  // const [userName, setUserName] = useState<string | null>("Ariya");
 
-  const [userProfile, setUserProfile] = useState<typeUserProfile>({
-    name: "",
-    email: "",
-    image: "",
-    role: "",
-    expiredAt: "",
-  });
-  const hasuser = async () => {
-    let user = await getSession();
-    if (user) {
-      setIsLogedin(true);
-      setUserProfile({
-        name: user.user.name,
-        email: user.user.email,
-        image: user.user.image,
-        role: user.user.role,
-        expiredAt: user.expires,
-      });
-      setUserId(user.user.id);
-      setUserName(user.user.name ?? null);
-      return user;
-    } else {
-      return null;
-    }
-  };
+  // const [userProfile, setUserProfile] = useState<typeUserProfile>({
+  //   name: "",
+  //   email: "",
+  //   image: "",
+  //   role: "",
+  //   expiredAt: "",
+  // });
+  // const hasuser = async () => {
+  //   let user = await getSession();
+  //   if (user) {
+  //     setIsLogedin(true);
+  //     setUserProfile({
+  //       name: user.user.name,
+  //       email: user.user.email,
+  //       image: user.user.image,
+  //       role: user.user.role,
+  //       expiredAt: user.expires,
+  //     });
+  //     setUserId(user.user.id);
+  //     setUserName(user.user.name ?? null);
+  //     return user;
+  //   } else {
+  //     return null;
+  //   }
+  // };
 
   const [activeTab, setActiveTab] = useState<string>("files");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -82,10 +85,10 @@ export default function DashboardContent() {
     setCurrentFolder(folderId);
   }, []);
 
-  // get session
-  useEffect(() => {
-    hasuser();
-  }, []);
+  // // get session
+  // useEffect(() => {
+  //   hasuser();
+  // }, []);
 
   return (
     <>
