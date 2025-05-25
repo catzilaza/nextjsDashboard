@@ -14,6 +14,8 @@ export default function RootLayout({
         {/* <Homeheader /> */}
         {children}
         <Toaster
+          position="top-center"
+          richColors={true}
           toastOptions={{
             className: "bg-white text-black w-[50px] h-[80px]",
             duration: 4000,

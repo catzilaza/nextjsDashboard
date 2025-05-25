@@ -105,7 +105,7 @@ export default function ProductList({
                     <p>Card Footer</p>
                     <div className="card-actions justify-end">
                       <Link
-                        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                        className="animate-jump-in animate-delay-300 animate-once bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                         href={`/products/${product.dessert_id}/detail`}
                       >
                         View Item

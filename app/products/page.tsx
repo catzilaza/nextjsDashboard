@@ -7,6 +7,14 @@ import ProductList from "@/components/products/product-list";
 import { fetchProducts_Dessert } from "@/app/lib/data";
 import { formatDateToLocal } from "@/app/lib/utils";
 import styles from "@/app/ui/home.module.css";
+import { Suspense } from "react";
+import DashboardSkeleton from "../ui/skeletons";
+import { Divide, Loader2 } from "lucide-react";
+import ProductsSkeleton from "./productsSkeleton";
+
+// Build A Complete E-Commerce Website (Next.js 15, React Query, Tailwind CSS, TypeScript, Wix Studio)
+// https://www.youtube.com/watch?v=gr--RC_naa0
+// https://github.com/codinginflow/nextjs-15-wix-store/blob/Final-Project/src/app/page.tsx
 
 export default async function ProductsPage() {
   const products = await fetchProducts_Dessert();

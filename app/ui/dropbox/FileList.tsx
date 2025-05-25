@@ -22,17 +22,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { useEffect, useMemo, useState } from "react";
 import { File as FileType } from "@/schemas/dropbox/definitions";
 import axios from "axios";
@@ -46,14 +35,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  ArrowRight,
-  FolderPlus,
-  FolderMinus,
-  FolderMinusIcon,
-} from "lucide-react";
+import { ArrowRight, FolderMinusIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ArrowBigDownDashIcon } from "lucide-react";
 
 interface FileListProps {
   userId: string;
@@ -134,14 +119,21 @@ export default function FileList({
       }
       const response = await axios.get(url);
       setFiles(response.data);
-      toast("fetchFiles OKkkkkk");
+      toast.success("fetchFiles OKkkkkk");
     } catch (error) {
       console.error("Error fetching files:", error);
-      toast(
-        `title: Error Loading Files,
-        description: We couldn't load your files. Please try again later.,
-        color: danger,`
-      );
+      toast(`Message Error`, {
+        className: "bg-white text-black w-[50px] h-[80px]",
+        description: `title: Error Loading Files,description:
+           We couldn't load your files.
+           Please try again later.,color: danger,`,        
+        duration: 5000,
+        icon: <ArrowBigDownDashIcon />,
+        style: {
+          background: "#d6dbdf",
+          color: " #f04925 ",
+        },
+      });
     } finally {
       setLoading(false);
     }

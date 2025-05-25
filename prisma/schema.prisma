@@ -67,6 +67,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   post          Post[]
+  file          File[]
 }
 
 model Profile {
@@ -138,7 +139,8 @@ model File {
   type         String
   fileUrl      String   @map("file_url")
   thumbnailUrl String?  @map("thumbnail_url")
-  userId       String   @map("user_id")
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
   parentId     String?  @map("parent_id")
   isFolder     Boolean  @default(false) @map("is_folder")
   isStarred    Boolean  @default(false) @map("is_starred")

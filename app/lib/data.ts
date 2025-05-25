@@ -258,6 +258,8 @@ export async function fetchFilteredCustomers(query: string) {
 //================================================================
 
 export async function fetchProducts_Dessert() {
+  // await new Promise((resolve) => setTimeout(resolve, 10000));
+
   try {
     const products = await sql<ProductDessertField[]>`
       SELECT

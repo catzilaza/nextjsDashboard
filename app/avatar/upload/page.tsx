@@ -12,6 +12,9 @@ import {
   MenuIcon,
 } from "lucide-react";
 import NavbarDropdown from "@/components/NavbarDropdown";
+import { DynamicIcon } from 'lucide-react/dynamic';
+import { Button } from "@/components/ui/button";
+
 
 // const SidebarContext = createContext();
 
@@ -172,6 +175,7 @@ export default function AvatarUploadPage() {
 
         <section className="min-h-screen w-full bg-slate-200 flex justify-center items-center">
           SECTION 1
+          <Button> <DynamicIcon name="camera" color="red" size={48} className="animate-spin animate-ease-linear animate-infinite"/>Click!</Button>
         </section>
         <section className="min-h-screen w-full bg-red-200 flex justify-center items-center">
           SECTION 2

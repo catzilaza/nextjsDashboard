@@ -17,11 +17,6 @@ import Link from "next/link";
 import Navbar from "@/app/ui/dropbox/Navbar";
 import { SignOut } from "@/lib/utils/dropbox/uitls";
 
-const handleSignOut = async () => {
-  alert("handleSignOut");
-  await SignOut();
-};
-
 export default function DropboxPage() {
   return (
     <div className="min-h-screen flex flex-col">
