@@ -5,6 +5,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{html,js}",
   ],
   darkMode: ["class"],
   theme: {
@@ -66,9 +67,9 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      //   animation: {
-      //     slowSpin: "spin 2s linear infinite",
-      //   },
+      animation: {
+        slowSpin: "spin 2s linear infinite",
+      },
     },
     keyframes: {
       shimmer: {
@@ -82,7 +83,7 @@ const config: Config = {
     require("@tailwindcss/forms"),
     require("tailwindcss-animated"),
     require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
+    require("@tailwindcss/typography"),   
   ],
 };
 export default config;

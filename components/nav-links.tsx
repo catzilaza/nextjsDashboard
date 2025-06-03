@@ -9,6 +9,7 @@ import {
   ArrowRightIcon,
   DocumentArrowDownIcon,
   NumberedListIcon,
+  MagnifyingGlassCircleIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -84,6 +85,7 @@ const links: LinkItem[] = [
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
   { name: "Blog", href: "/blog", icon: UserGroupIcon },
   { name: "Dropbox", href: "/dropbox", icon: DocumentArrowDownIcon },
+  { name: "AI File Analyzer", href: "/aifileanalyzer", icon: MagnifyingGlassCircleIcon },
   { name: "Avatar", href: "/avatar/upload", icon: ChartBarSquareIcon },
   // {
   //   name: "Invoices",

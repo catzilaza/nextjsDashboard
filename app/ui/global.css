@@ -1,11 +1,11 @@
-/* @import "tailwindcss"; */
-/* @import "tailwindcss-animated"; */
+/* @import "tailwindcss";
+@import "tailwindcss-animated"; */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-input[type="number"] {
+/* input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -18,7 +18,7 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 @layer base {
   :root {
