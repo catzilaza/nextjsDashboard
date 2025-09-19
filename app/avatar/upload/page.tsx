@@ -12,9 +12,10 @@ import {
   MenuIcon,
 } from "lucide-react";
 import NavbarDropdown from "@/components/NavbarDropdown";
-import { DynamicIcon } from 'lucide-react/dynamic';
+import { DynamicIcon } from "lucide-react/dynamic";
 import { Button } from "@/components/ui/button";
 
+import UsersProvider from "./users/components/UsersProvider";
 
 // const SidebarContext = createContext();
 
@@ -173,12 +174,21 @@ export default function AvatarUploadPage() {
         <Navbar isSticky={isSticky} />
         {/* <NavbarDropdown /> */}
 
-        <section className="min-h-screen w-full bg-slate-200 flex justify-center items-center">
-          SECTION 1
-          <Button> <DynamicIcon name="camera" color="red" size={48} className="animate-spin animate-ease-linear animate-infinite"/>Click!</Button>
+        <section className="min-h-screen w-full bg-slate-200 flex justify-center items-center">         
+          <UsersProvider />
         </section>
         <section className="min-h-screen w-full bg-red-200 flex justify-center items-center">
           SECTION 2
+          <Button>
+            {" "}
+            <DynamicIcon
+              name="camera"
+              color="red"
+              size={48}
+              className="animate-spin animate-ease-linear animate-infinite"
+            />
+            Click!
+          </Button>
         </section>
         <section className="min-h-screen w-full bg-blue-200 flex justify-center items-center">
           SECTION 3

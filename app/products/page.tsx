@@ -18,6 +18,7 @@ import ProductsSkeleton from "./productsSkeleton";
 
 export default async function ProductsPage() {
   const products = await fetchProducts_Dessert();
+  //md:flex-row
   return (
     <main className="flex min-h-screen flex-col p-6">
       {/*<div className={styles.shape} />*/}
@@ -46,7 +47,7 @@ export default async function ProductsPage() {
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-4/5 md:px-28 md:py-6">
+        <div className="flex flex-col items-center justify-center p-6 md:w-4/5 md:px-28 md:py-6">
           <ProductList products={products} />
         </div>
       </div>

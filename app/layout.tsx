@@ -1,7 +1,8 @@
+// import { Inter, Lusitana } from "next/font/google";
 import "@/app/ui/global.css";
 import { inter } from "@/app/ui/fonts";
 import { Toaster } from "@/components/ui/sonner";
-// import { Inter, Lusitana } from "next/font/google";
+import { TanStackQueryProviders } from "./provider";
 
 export default function RootLayout({
   children,
@@ -11,20 +12,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        {/* <Homeheader /> */}
-        {children}
-        <Toaster
-          position="top-center"
-          richColors={true}
-          toastOptions={{
-            className: "bg-white text-black w-[50px] h-[80px]",
-            duration: 4000,
-            style: {
-              background: "#fff",
-              color: "#000",
-            },
-          }}
-        />
+        <TanStackQueryProviders>
+          <div className="flex min-h-screen flex-col">
+            <div className="flex-1">{children}</div>
+          </div>
+          {/* {children} */}
+          <Toaster
+            position="top-center"
+            richColors={true}
+            toastOptions={{
+              className: "bg-white text-black w-[50px] h-[80px]",
+              duration: 4000,
+              style: {
+                background: "#fff",
+                color: "#000",
+              },
+            }}
+          />
+        </TanStackQueryProviders>
       </body>
     </html>
   );

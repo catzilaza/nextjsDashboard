@@ -58,6 +58,15 @@ export default async function ProductCard({
                     <p className="text-sm text-gray-500">{product.name}</p>
                   </div>
                 </div>
+                {/* <div className="relative h-64 w-64 overflow-hidden border-2 border-gray-300">
+                  <img
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    // height={"auto"}
+                    // width={"auto"}
+                    src={product.image_url}
+                    alt={`${product.name}'s profile picture`}
+                  />
+                </div> */}
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
                     <p className="text-xl font-medium">
@@ -74,23 +83,25 @@ export default async function ProductCard({
             ))}
           </div>
           <div className="hidden min-w-full text-gray-900 md:table">
-            <div className="grid grid-cols-5 gap-4">
+            <div className="grid lg:grid-cols-5 gap-4">
               {products?.map((product) => (
                 <Card key={product.dessert_id}>
                   <CardHeader>
                     <CardTitle>Card Title</CardTitle>
-                    <Image
-                      src={product.image_url}
-                      priority
-                      className="mr-2"
-                      width={200}
-                      height={150}
-                      alt={`${product.name_eng}'s profile picture`}
-                      style={{
-                        width: "auto",
-                        height: "auto",
-                      }}
-                    />
+                    <div className="relative h-64 w-64 overflow-hidden border-2 border-gray-300">
+                      <Image
+                        src={product.image_url}
+                        priority
+                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                        width={300}
+                        height={100}
+                        alt={`${product.name_eng}'s profile picture`}
+                        // style={{
+                        //   width: "auto",
+                        //   height: "auto",
+                        // }}
+                      />
+                    </div>
                     <CardDescription>
                       Card Description
                       <p className="text-sm text-gray-500">

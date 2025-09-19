@@ -13,6 +13,8 @@ import {
   Folder,
   ImageIcon,
   Shield,
+  QuoteIcon,
+  DamIcon
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,6 +33,7 @@ const links = [
   { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
   { name: "Products", href: "/dashboard/products", icon: GifIcon },
   { name: "Dropbox", href: "/dashboard/dropbox", icon: CloudUpload },
+  { name: "TanstackQuery", href: "/dashboard/tanstackquery", icon: DamIcon },
 ];
 
 export default function NavLinks() {

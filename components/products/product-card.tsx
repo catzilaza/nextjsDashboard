@@ -61,13 +61,22 @@ export default function ProductCard({
           role : <div>{role}</div> */}
           {/* items : <p>{items}</p> */}
           <CardTitle>Card Title</CardTitle>
-          <img
+          <div className="relative h-80 w-full overflow-hidden border-2 border-gray-300">
+            <img
+              className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+              // height={"auto"}
+              // width={"auto"}
+              src={product.image_url}
+              alt={`${product.name}'s profile picture`}
+            />
+          </div>
+          {/* <img
             className="w-100 h-50"
             height={"auto"}
             width={"auto"}
             src={product.image_url}
             alt={`${product.name}'s profile picture`}
-          />
+          /> */}
           <CardDescription>
             Card Description
             <div className="text-sm text-gray-500">Name : {product.name}</div>

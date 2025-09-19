@@ -5,6 +5,16 @@ module.exports = {
   },
 };
 
+// /** @type {import('postcss-load-config').Config} */
+// const config = {
+//   plugins: {
+//     tailwindcss: {},
+//     autoprefixer: {},
+//   },
+// };
+
+// export default config;
+
 // export const plugins = {
 //   tailwindcss: {},
 //   autoprefixer: {},
@@ -17,7 +27,7 @@ module.exports = {
 //     "./components/**/*.{js,ts,jsx,tsx,mdx}",
 //     "./app/**/*.{js,ts,jsx,tsx,mdx}",
 //     "./src/**/*.{html,js}",
-//   ],  
+//   ],
 //   plugins: {
 //     "@tailwindcss/postcss": {},
 //   },

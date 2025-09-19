@@ -7,10 +7,11 @@ import { Loader2, Loader, LoaderIcon } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       {/* <Loader2 className="mx-auto my-16 animate-spin" /> */}
-      <h1>Loading.....</h1>
-      <ProductsSkeleton />
+      <h1 className="mt-12 text-4xl">Loading.....</h1>
+      {/* <Skeleton className="h-10 w-40 mx-auto my-16" /> */}
+      <ProductsSkeleton />      
       {/* <LoadingSkeleton /> */}
     </div>
   );
