@@ -15,7 +15,7 @@ export default async function ProductsPage() {
   const products = await fetchProducts_Dessert();
 
   return (
-    <main className="flex min-h-screen flex-col p-6">
+    <main className="flex min-h-screen flex-col p-4">
       {/*<div className={styles.shape} />*/}
       <div className="flex w-full justify-center mb-4 bg-blue-200">
         <CarouselProduct cproducts={products} />
