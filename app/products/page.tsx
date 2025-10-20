@@ -17,7 +17,7 @@ export default async function ProductsPage() {
   return (
     <main className="flex min-h-screen flex-col p-6">
       {/*<div className={styles.shape} />*/}
-      <div className="flex w-full justify-center mb-4">
+      <div className="flex w-full justify-center mb-4 bg-blue-200">
         <CarouselProduct cproducts={products} />
       </div>
       <div className="flex h-20 justify-center shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-32">
