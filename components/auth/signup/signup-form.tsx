@@ -141,7 +141,7 @@ export default function SignUpForm() {
         </div>
         <p aria-live="polite">{state?.message}</p>
 
-        <Button className="mt-4 w-full" disabled={isPending}>
+        <Button className="justify-center mt-4 w-full" disabled={isPending}>
           {isPending ? (
             <>
               Please wait...{" "}
@@ -150,7 +150,7 @@ export default function SignUpForm() {
           ) : (
             <>
               Sign Up{" "}
-              <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+              <ArrowRightIcon className="ml-4 h-5 w-5 text-gray-50" />
             </>
           )}
         </Button>
@@ -167,7 +167,7 @@ export default function SignUpForm() {
           onClick={() => {
             redirect("/");
           }}
-          className="mt-4 w-full flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          className="justify-center mt-4 w-full flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
         >
           Cancle
         </Button>

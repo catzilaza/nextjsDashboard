@@ -3,15 +3,18 @@
 import { QueryClient, useQuery, queryOptions } from "@tanstack/react-query";
 import TanstackBasic from "@/components/tanstackQuery/tanstackBasic";
 import TanstackGQL from "@/components/tanstackQuery/tanstackGQL";
+import TanStackPlayground from "@/components/tanstackQuery/TanStackPlayground";
 
 export default function page() {
   return (
     <div>
       {" "}
-      <Example />
+      <TanStackPlayground />
+      <br />
+      {/* <Example /> */}
       <br />
       {/* <TanstackBasic /> */}
-      <TanstackGQL />
+      {/* <TanstackGQL /> */}
     </div>
   );
 }

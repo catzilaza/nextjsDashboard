@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "../../store/cart-store";
 import checkoutAction from "../../lib/actions/checkout/checkout-action";
+import { useActionState } from "react";
 
 export default function CheckOutPage() {
   const { items, removeItem, addItem } = useCartStore();
@@ -11,6 +12,7 @@ export default function CheckOutPage() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const [message, formAction, isPending] = useActionState(checkoutAction, 0);
 
   if (items.length === 0) {
     return (
@@ -20,9 +22,9 @@ export default function CheckOutPage() {
     );
   }
 
-  const onProceedToPayment = (form: FormData) => {
-    checkoutAction(form);
-  };
+  // const onProceedToPayment = (form: FormData) => {
+  //   checkoutAction(form);
+  // };
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Checkout</h1>
@@ -65,16 +67,18 @@ export default function CheckOutPage() {
           </div>
         </CardContent>
       </Card>
-      <form action={checkoutAction} className="max-w-md mx-auto">
+      <form action={formAction} className="max-w-md mx-auto">
         <input type="hidden" name="items" value={JSON.stringify(items)} />
         <Button
-          onClick={() => onProceedToPayment}
+          // onClick={() => onProceedToPayment}
           type="submit"
+          formAction={formAction}
           variant="default"
           className="w-full"
         >
           Proceed to Payment
         </Button>
+        {isPending ? "Loading..." : message}
       </form>
     </div>
   );

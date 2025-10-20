@@ -5,12 +5,7 @@ import { lusitana } from "@/app/ui/fonts";
 import Navbar from "../ui/navbar";
 import ProductList from "@/components/products/product-list";
 import { fetchProducts_Dessert } from "@/app/lib/data";
-import { formatDateToLocal } from "@/app/lib/utils";
-import styles from "@/app/ui/home.module.css";
-import { Suspense } from "react";
-import DashboardSkeleton from "../ui/skeletons";
-import { Divide, Loader2 } from "lucide-react";
-import ProductsSkeleton from "./productsSkeleton";
+import CarouselProduct from "./CarouselProduct";
 
 // Build A Complete E-Commerce Website (Next.js 15, React Query, Tailwind CSS, TypeScript, Wix Studio)
 // https://www.youtube.com/watch?v=gr--RC_naa0
@@ -18,14 +13,18 @@ import ProductsSkeleton from "./productsSkeleton";
 
 export default async function ProductsPage() {
   const products = await fetchProducts_Dessert();
-  //md:flex-row
+
   return (
     <main className="flex min-h-screen flex-col p-6">
       {/*<div className={styles.shape} />*/}
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-32">
-        <AcmeLogo />
+      <div className="flex w-full justify-center mb-4">
+        <CarouselProduct cproducts={products} />
+      </div>
+      <div className="flex h-20 justify-center shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-32">
+        {/* <AcmeLogo /> */}
       </div>
       <div className="flex h-20 shrink-0 justify-center rounded-lg bg-slate-200 p-4 md:h-22">
+        <AcmeLogo />
         <Navbar />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
@@ -47,7 +46,7 @@ export default async function ProductsPage() {
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
-        <div className="flex flex-col items-center justify-center p-6 md:w-4/5 md:px-28 md:py-6">
+        <div className="flex flex-col items-center justify-center p-6 md:w-4/5 md:px-18 md:py-2">
           <ProductList products={products} />
         </div>
       </div>

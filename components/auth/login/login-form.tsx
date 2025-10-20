@@ -80,9 +80,9 @@ export default function LoginForm() {
           {!isPending ? (
             <>
               {" "}
-              <Button className="mt-8 w-full">
+              <Button className="justify-center mt-8 w-full">
                 Log in{" "}
-                <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+                <ArrowRightIcon className="ml-4 h-5 w-5 text-gray-50" />
               </Button>
               <div
                 className="flex h-6 items-center space-x-1"
@@ -100,7 +100,10 @@ export default function LoginForm() {
           ) : (
             <>
               {" "}
-              <Button className="mt-4 w-full" aria-disabled={isPending}>
+              <Button
+                className="justify-center mt-4 w-full"
+                aria-disabled={isPending}
+              >
                 Please wait...{" "}
                 <LoaderCircleIcon className="ml-auto h-5 w-5 text-gray-50 animate-spin" />
               </Button>
@@ -119,17 +122,26 @@ export default function LoginForm() {
             </>
           )}
 
-          <div className="text-center mb-8 h-4">
-            <Link href="/sign-up" style={{ textDecoration: "underline" }}>
+          <div className="text-center mb-14 h-4">
+            <Link href="/signup" style={{ textDecoration: "underline" }}>
               Don&apos;t have an account? Sign up
             </Link>
+            <p className="m-2">
+              {" "}
+              <Link
+                href="/forgotpassword"
+                style={{ textDecoration: "underline" }}
+              >
+                Forgot your password?
+              </Link>
+            </p>
           </div>
           <Button
             disabled={isPending}
             onClick={() => {
               redirect("/");
             }}
-            className="mt-4 w-full flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+            className="justify-center mt-4 w-full flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           >
             Cancle
           </Button>

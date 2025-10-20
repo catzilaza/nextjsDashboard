@@ -7,7 +7,7 @@ export default function LoginPage() {
   return (
     <>
       <div className="flex items-center justify-center md:h-screen">
-        <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:mt-22">
+        <div className="relative mx-auto flex w-full max-w-[500px] flex-col space-y-2.5 p-4 md:mt-22">
           <div className="flex h-20 w-full items-end rounded-lg bg-blue-500 p-3 md:h-26">
             <div className="flex flex-row items-baseline gap-8 w-32 text-white md:w-36">
               <div>
@@ -15,9 +15,11 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-          <div className="w-full bg-slate-50 rounded-lg max-w-sm mx-auto space-y-6">
+          <div className="w-full bg-slate-50 rounded-lg max-w-[500px] mx-auto space-y-6">
             {/* <h1 className="text-2xl font-bold text-center mb-6">Log In</h1> */}
-            <Suspense>
+            <Suspense
+              fallback={<p className="text-sm text-gray-600">Loading...</p>}
+            >
               <GithubLoginForm />
             </Suspense>
             <div className="relative">
@@ -30,7 +32,9 @@ export default function LoginPage() {
                 </span>
               </div>
             </div>
-            <Suspense>
+            <Suspense
+              fallback={<p className="text-sm text-gray-600">Loading...</p>}
+            >
               <LoginForm />
             </Suspense>
             <footer className="bg-gray-200 text-white py-4">

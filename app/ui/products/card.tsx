@@ -27,119 +27,106 @@ export default async function ProductCard({
   //[Error: Unable to optimize image and unable to fallback to upstream image]
   //statusCode: 400
 
+  //min-w-full text-gray-900
+
   return (
-    <div className="mt-6 flow-root">
-      <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
-          <div className="md:hidden">
-            {products?.map((product) => (
-              <div
-                key={product.dessert_id}
-                className="mb-2 w-full rounded-md bg-white p-4"
-              >
-                <div className="flex items-center justify-between border-b pb-4">
-                  <div>
-                    <div className="mb-2 flex items-center">
-                      <Image
-                        src={product.image_url}
-                        priority
-                        className="mr-2"
-                        width={100}
-                        height={50}
-                        alt={`${product.name_eng}'s profile picture`}
-                        style={{
-                          width: "auto",
-                          height: "auto",
-                        }}
-                      />
-                      <p>{product.name}</p>
-                      <p>{product.name_eng}</p>
-                    </div>
-                    <p className="text-sm text-gray-500">{product.name}</p>
-                  </div>
-                </div>
-                {/* <div className="relative h-64 w-64 overflow-hidden border-2 border-gray-300">
-                  <img
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                    // height={"auto"}
-                    // width={"auto"}
+    <div className="mt-6 bg-gray-200 p-2 inline-block min-w-full align-middle">
+      <div className="md:hidden">
+        {products?.map((product) => (
+          <div
+            key={product.dessert_id}
+            className="mb-2 w-full rounded-md bg-white p-4"
+          >
+            <div className="flex items-center justify-between border-b pb-4">
+              <div>
+                <div className="mb-2 flex items-center">
+                  <Image
                     src={product.image_url}
-                    alt={`${product.name}'s profile picture`}
+                    priority
+                    className="mr-2"
+                    width={100}
+                    height={50}
+                    alt={`${product.name_eng}'s profile picture`}
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                    }}
                   />
-                </div> */}
+                  <p>{product.name}</p>
+                  <p>{product.name_eng}</p>
+                </div>
+                <p className="text-sm text-gray-500">{product.name}</p>
+              </div>
+            </div>
+            <div className="flex w-full items-center justify-between pt-4">
+              <div>
+                <p className="text-xl font-medium">
+                  {formatCurrency(product.amount)}
+                </p>
+                <p>{formatDateToLocal(product.date)}</p>
+              </div>
+              <div className="flex justify-end gap-2">
+                <UpdateProduct id={product.dessert_id} />
+                <DeleteProduct id={product.dessert_id} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="hidden items-center justify-center min-w-full text-gray-900 md:table">
+        <div className="grid lg:grid-cols-5 gap-4">
+          {products?.map((product) => (
+            <Card key={product.dessert_id} className="md:overflow-hidden">
+              <CardHeader>
+                <CardTitle>Card Title</CardTitle>
+                <div className="relative border-2 lg:w-64 lg:h-64">
+                  <Image
+                    src={product.image_url}
+                    priority
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    width={300}
+                    height={100}
+                    alt={`${product.name_eng}'s profile picture`}
+                    // style={{
+                    //   width: "auto",
+                    //   height: "auto",
+                    // }}
+                  />
+                </div>
+                <CardDescription>
+                  Card Description
+                  <p className="text-sm text-gray-500">Name : {product.name}</p>
+                  <p className="text-sm text-gray-500">
+                    Name_eng : {product.name_eng}
+                  </p>
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Card Content</p>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
                     <p className="text-xl font-medium">
-                      {formatCurrency(product.amount)}
+                      ราคา : {product.price}
                     </p>
-                    <p>{formatDateToLocal(product.date)}</p>
+                    <p> วันที่ : {formatDateToLocal(product.date)}</p>
+                    <p> จำนวนคงเหลือ : {product.amount}</p>
                   </div>
                   <div className="flex justify-end gap-2">
                     <UpdateProduct id={product.dessert_id} />
                     <DeleteProduct id={product.dessert_id} />
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div className="hidden min-w-full text-gray-900 md:table">
-            <div className="grid lg:grid-cols-5 gap-4">
-              {products?.map((product) => (
-                <Card key={product.dessert_id}>
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <div className="relative h-64 w-64 overflow-hidden border-2 border-gray-300">
-                      <Image
-                        src={product.image_url}
-                        priority
-                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                        width={300}
-                        height={100}
-                        alt={`${product.name_eng}'s profile picture`}
-                        // style={{
-                        //   width: "auto",
-                        //   height: "auto",
-                        // }}
-                      />
-                    </div>
-                    <CardDescription>
-                      Card Description
-                      <p className="text-sm text-gray-500">
-                        Name : {product.name}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        Name_eng : {product.name_eng}
-                      </p>
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>Card Content</p>
-                    <div className="flex w-full items-center justify-between pt-4">
-                      <div>
-                        <p className="text-xl font-medium">
-                          ราคา : {product.price}
-                        </p>
-                        <p> วันที่ : {formatDateToLocal(product.date)}</p>
-                        <p> จำนวนคงเหลือ : {product.amount}</p>
-                      </div>
-                      <div className="flex justify-end gap-2">
-                        <UpdateProduct id={product.dessert_id} />
-                        <DeleteProduct id={product.dessert_id} />
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <p>Card Footer</p>
-                    <div className="card-actions justify-end">
-                      <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        View
-                      </button>
-                    </div>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
+              </CardContent>
+              <CardFooter>
+                <p>Card Footer</p>
+                <div className="card-actions justify-end">
+                  <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    View
+                  </button>
+                </div>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
@@ -310,3 +297,111 @@ alt={`${product.name}'s profile picture`}
 </div>
 </div> */
 //}
+
+//============================================================
+// <div className="mt-6 flow-root">
+//   <div className="inline-block min-w-full align-middle">
+//     <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
+//       <div className="md:hidden">
+//         {products?.map((product) => (
+//           <div
+//             key={product.dessert_id}
+//             className="mb-2 w-full rounded-md bg-white p-4"
+//           >
+//             <div className="flex items-center justify-between border-b pb-4">
+//               <div>
+//                 <div className="mb-2 flex items-center">
+//                   <Image
+//                     src={product.image_url}
+//                     priority
+//                     className="mr-2"
+//                     width={100}
+//                     height={50}
+//                     alt={`${product.name_eng}'s profile picture`}
+//                     style={{
+//                       width: "auto",
+//                       height: "auto",
+//                     }}
+//                   />
+//                   <p>{product.name}</p>
+//                   <p>{product.name_eng}</p>
+//                 </div>
+//                 <p className="text-sm text-gray-500">{product.name}</p>
+//               </div>
+//             </div>
+//             <div className="flex w-full items-center justify-between pt-4">
+//               <div>
+//                 <p className="text-xl font-medium">
+//                   {formatCurrency(product.amount)}
+//                 </p>
+//                 <p>{formatDateToLocal(product.date)}</p>
+//               </div>
+//               <div className="flex justify-end gap-2">
+//                 <UpdateProduct id={product.dessert_id} />
+//                 <DeleteProduct id={product.dessert_id} />
+//               </div>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//       <div className="hidden min-w-full text-gray-900 md:table">
+//         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+//           {products?.map((product) => (
+//             <Card key={product.dessert_id}>
+//               <CardHeader>
+//                 <CardTitle>Card Title</CardTitle>
+//                 <div className="relative overflow-hidden border-2 lg:w-64 lg:h-64 border-gray-300">
+//                   <Image
+//                     src={product.image_url}
+//                     priority
+//                     className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+//                     width={300}
+//                     height={100}
+//                     alt={`${product.name_eng}'s profile picture`}
+//                     // style={{
+//                     //   width: "auto",
+//                     //   height: "auto",
+//                     // }}
+//                   />
+//                 </div>
+//                 <CardDescription>
+//                   Card Description
+//                   <p className="text-sm text-gray-500">
+//                     Name : {product.name}
+//                   </p>
+//                   <p className="text-sm text-gray-500">
+//                     Name_eng : {product.name_eng}
+//                   </p>
+//                 </CardDescription>
+//               </CardHeader>
+//               <CardContent>
+//                 <p>Card Content</p>
+//                 <div className="flex w-full items-center justify-between pt-4">
+//                   <div>
+//                     <p className="text-xl font-medium">
+//                       ราคา : {product.price}
+//                     </p>
+//                     <p> วันที่ : {formatDateToLocal(product.date)}</p>
+//                     <p> จำนวนคงเหลือ : {product.amount}</p>
+//                   </div>
+//                   <div className="flex justify-end gap-2">
+//                     <UpdateProduct id={product.dessert_id} />
+//                     <DeleteProduct id={product.dessert_id} />
+//                   </div>
+//                 </div>
+//               </CardContent>
+//               <CardFooter>
+//                 <p>Card Footer</p>
+//                 <div className="card-actions justify-end">
+//                   <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+//                     View
+//                   </button>
+//                 </div>
+//               </CardFooter>
+//             </Card>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
