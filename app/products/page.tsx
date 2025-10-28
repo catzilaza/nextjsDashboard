@@ -1,8 +1,7 @@
-import AcmeLogo from "@/app/ui/acme-logo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { lusitana } from "@/app/ui/fonts";
-import Navbar from "../ui/navbar";
+import { lusitana } from "@/app/fonts";
+import Navbar from "@/app/dashboard/ui/navbar";
 // import ProductList from "@/components/products/product-list";
 // import { fetchProducts_Dessert } from "@/app/lib/data";
 import ProductList from "./components-products/ProductList";
@@ -26,7 +25,6 @@ export default async function ProductsPage() {
         <CarouselProduct cproducts={products} />
       </div>
       <div className="flex h-20 justify-center shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-32">
-        {/* <AcmeLogo /> */}
         <LogoProduct />
       </div>
       <div className="flex h-20 shrink-0 justify-center rounded-lg bg-slate-200 p-4 md:h-22">

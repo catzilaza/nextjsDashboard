@@ -5,7 +5,7 @@ import { ChangeEvent, useActionState, useState, useRef } from "react";
 import { postDataBlogAction } from "@/lib/actions/blog/blogAction";
 import { toast } from "sonner";
 import { Form } from "@/components/ui/form";
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from "@/app/fonts";
 import AtSymbolIcon from "@heroicons/react/20/solid/AtSymbolIcon";
 import KeyIcon from "@heroicons/react/20/solid/KeyIcon";
 // import { Button } from "@/components/ui/button";

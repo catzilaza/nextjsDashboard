@@ -1,13 +1,13 @@
 "use client";
 
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from "@/app/dashboard/ui/fonts";
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "../../../app/ui/button";
+import { Button } from "components/ui/button";
 import { useActionState } from "react";
 import { authenticate } from "@/lib/actions/auth/auth-action";
 import { redirect, useSearchParams } from "next/navigation";

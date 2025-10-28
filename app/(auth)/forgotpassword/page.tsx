@@ -4,9 +4,9 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from "@/app/fonts";
 import { AtSymbolIcon, KeyIcon } from "@heroicons/react/24/outline";
-import { Button } from "../../../app/ui/button";
+import { Button } from "components/ui/button";
 import { redirect } from "next/navigation";
 
 export default function ForgotPassword() {

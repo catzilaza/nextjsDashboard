@@ -1,7 +1,11 @@
 "use client";
 
+// import { CloudUpload } from "lucide-react";
+// import DashboardContent from "@/app/ui/dropbox/DashboardContent";
+// import { useEffect, useState } from "react";
+// import { getSession } from "@/lib/utils/dropbox/uitls";
 import { CloudUpload } from "lucide-react";
-import DashboardContent from "@/app/ui/dropbox/DashboardContent";
+import DashboardContent from "@/app/dashboard/ui/dropbox/DashboardContent";
 import { useEffect, useState } from "react";
 import { getSession } from "@/lib/utils/dropbox/uitls";
 

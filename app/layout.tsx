@@ -1,6 +1,6 @@
 // import { Inter, Lusitana } from "next/font/google";
-import "@/app/ui/global.css";
-import { inter } from "@/app/ui/fonts";
+import "@/app/global.css";
+import { inter } from "@/app/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { TanStackQueryProviders } from "./provider";
 

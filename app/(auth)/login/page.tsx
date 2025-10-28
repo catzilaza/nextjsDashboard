@@ -1,6 +1,6 @@
 import GithubLoginForm from "@/components/auth/login/github-form";
 import { Suspense } from "react";
-import AcmeLogo from "@/app/ui/acme-logo";
+import AcmeLogo from "@/app/dashboard/ui/acme-logo";
 import LoginForm from "@/components/auth/login/login-form";
 
 export default function LoginPage() {

@@ -1,5 +1,5 @@
 import { Statususer } from "../statususer";
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from "@/app/fonts";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 

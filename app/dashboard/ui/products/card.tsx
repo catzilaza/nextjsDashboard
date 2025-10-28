@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { UpdateProduct, DeleteProduct } from "@/app/ui/products/button";
+import { UpdateProduct, DeleteProduct } from "@/app/dashboard/ui/products/button";
 // import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
 import { fetchFilteredProducts_Dessert } from "@/app/lib/data";

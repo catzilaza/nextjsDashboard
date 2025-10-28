@@ -1,7 +1,7 @@
 // "use client";
 
 import { signIn } from "@/auth";
-import { Button } from "../../../app/ui/button";
+import { Button } from "components/ui/button";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 // import { useActionState } from "react";
 // import { githubAuthenticate } from "@/app/lib/actions/auth/githubAuth-action";

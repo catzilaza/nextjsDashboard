@@ -1,14 +1,14 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
-import { lusitana } from "@/app/ui/fonts";
+import { lusitana } from "@/app/dashboard/ui/fonts";
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "../../../app/ui/button";
+import { Button } from "components/ui/button";
 import { SignUp, SignUpActionState } from "@/lib/actions/auth/signup-action";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
