@@ -85,8 +85,13 @@ const links: LinkItem[] = [
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
   { name: "Blog", href: "/blog", icon: UserGroupIcon },
   { name: "Dropbox", href: "/dropbox", icon: DocumentArrowDownIcon },
-  { name: "AI File Analyzer", href: "/aifileanalyzer", icon: MagnifyingGlassCircleIcon },
+  {
+    name: "AI File Analyzer",
+    href: "/aifileanalyzer",
+    icon: MagnifyingGlassCircleIcon,
+  },
   { name: "Avatar", href: "/avatar/upload", icon: ChartBarSquareIcon },
+  { name: "BetterAuth", href: "/betterauth", icon: IdentificationIcon },
   // {
   //   name: "Invoices",
   //   href: "/dashboard/invoices",

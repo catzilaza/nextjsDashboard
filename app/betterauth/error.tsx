@@ -2,21 +2,21 @@
 
 import React, { useEffect } from "react";
 
-interface ErrorProductsPageProb {
+interface ErrorBetterAuthPageProb {
   error: Error;
   reset: () => void;
 }
 
-export default function ErrorProductsPage({
+export default function ErrorBetterAuthPage({
   error,
   reset,
-}: ErrorProductsPageProb) {
+}: ErrorBetterAuthPageProb) {
   useEffect(() => {
-    console.error("Error-Products-Page", error);
+    console.error("Error-BetterAuth-Page", error);
   });
   return (
     <div>
-      <h2>IN Error-Products-Page Something went wrong!</h2>
+      <h2>IN Error-BetterAuth-Page Something went wrong!</h2>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment

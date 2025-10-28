@@ -4,15 +4,19 @@ import Link from "next/link";
 import { lusitana } from "@/app/ui/fonts";
 import Navbar from "../ui/navbar";
 import ProductList from "@/components/products/product-list";
-import { fetchProducts_Dessert } from "@/app/lib/data";
-import CarouselProduct from "./CarouselProduct";
+// import { fetchProducts_Dessert } from "@/app/lib/data";
+import { fetchAllProducts_Dessert } from "./lib/lib-products/data-products";
+import CarouselProduct from "./components-products/CarouselProduct";
+import Categories from "./components-products/Categories";
+import LogoProduct from "./components-products/Logo-product";
 
 // Build A Complete E-Commerce Website (Next.js 15, React Query, Tailwind CSS, TypeScript, Wix Studio)
 // https://www.youtube.com/watch?v=gr--RC_naa0
 // https://github.com/codinginflow/nextjs-15-wix-store/blob/Final-Project/src/app/page.tsx
 
 export default async function ProductsPage() {
-  const products = await fetchProducts_Dessert();
+  // const products = await fetchProducts_Dessert();
+  const products = await fetchAllProducts_Dessert();
 
   return (
     <main className="flex min-h-screen flex-col p-4">
@@ -22,10 +26,13 @@ export default async function ProductsPage() {
       </div>
       <div className="flex h-20 justify-center shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-32">
         {/* <AcmeLogo /> */}
+        <LogoProduct />
       </div>
       <div className="flex h-20 shrink-0 justify-center rounded-lg bg-slate-200 p-4 md:h-22">
-        <AcmeLogo />
         <Navbar />
+      </div>
+      <div className="flex h-20 shrink-0 justify-center rounded-lg bg-slate-200 p-4 md:h-22">
+        <Categories />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-1/5 md:px-20">
