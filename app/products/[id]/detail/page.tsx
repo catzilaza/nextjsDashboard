@@ -1,5 +1,6 @@
+// import ProductCard from "@/components/products/product-card";
 import { fetchProducts_DessertById } from "@/app/lib/data";
-import ProductCard from "@/components/products/product-card";
+import ProductCard from "../../components-products/ProductCard";
 
 export default async function DetailProductPage(props: {
   params: Promise<{ id: string }>;

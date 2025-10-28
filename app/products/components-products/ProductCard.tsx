@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -16,8 +17,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ProductDessertSchema } from "@/app/lib/definitions";
 import { useCartStore } from "@/store/cart-store";
@@ -55,7 +54,7 @@ export default function ProductCard({
   // console.log("+++++ From ProductCard : ", items[0]?.name);
   return (
     <div>
-      <Card key={product.dessert_id}>
+      <Card key={product.dessert_id} className="w-[800px]">
         <CardHeader>
           {/* username : <div>{username}</div>
           role : <div>{role}</div> */}
@@ -101,7 +100,7 @@ export default function ProductCard({
         </CardContent>
         <CardFooter>
           <div>Card Footer</div>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-end px-1">
             <Link
               href={"/products"}
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -109,7 +108,7 @@ export default function ProductCard({
               Back
             </Link>
           </div>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-end px-1">
             <Button
               type="button"
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -119,7 +118,7 @@ export default function ProductCard({
               Add to Cart
             </Button>
           </div>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-end px-1">
             <Button
               type="button"
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -128,9 +127,9 @@ export default function ProductCard({
               Remove to Cart
             </Button>
           </div>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-end px-1">
             <Link
-              href={"/checkout"}
+              href={"/products/checkout"}
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
             >
               Check-out page

@@ -3,12 +3,13 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { lusitana } from "@/app/ui/fonts";
 import Navbar from "../ui/navbar";
-import ProductList from "@/components/products/product-list";
+// import ProductList from "@/components/products/product-list";
 // import { fetchProducts_Dessert } from "@/app/lib/data";
-import { fetchAllProducts_Dessert } from "./lib/lib-products/data-products";
+import ProductList from "./components-products/ProductList";
+import { fetchAllProducts_Dessert } from "./lib-products/data-products";
 import CarouselProduct from "./components-products/CarouselProduct";
 import Categories from "./components-products/Categories";
-import LogoProduct from "./components-products/Logo-product";
+import LogoProduct from "./components-products/LogoProduct";
 
 // Build A Complete E-Commerce Website (Next.js 15, React Query, Tailwind CSS, TypeScript, Wix Studio)
 // https://www.youtube.com/watch?v=gr--RC_naa0

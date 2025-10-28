@@ -1,9 +1,12 @@
 "use client";
 
+// import checkoutAction from "../../lib/actions/checkout/checkout-action";
+// import { useCartStore } from "../../store/cart-store";
+// import checkoutAction from "@/lib/actions/checkout/checkout-action";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "../../store/cart-store";
-import checkoutAction from "../../lib/actions/checkout/checkout-action";
+import { useCartStore } from "@/store/cart-store";
+import checkoutAction from "../action-products/checkout-action";
 import { useActionState } from "react";
 
 export default function CheckOutPage() {
@@ -21,10 +24,6 @@ export default function CheckOutPage() {
       </div>
     );
   }
-
-  // const onProceedToPayment = (form: FormData) => {
-  //   checkoutAction(form);
-  // };
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center">Checkout</h1>

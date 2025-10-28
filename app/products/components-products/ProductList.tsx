@@ -1,3 +1,8 @@
+// import { Badge } from "lucide-react";
+// import { formatDateToLocal } from "@/app/lib/utils";
+// import { ProductDessertSchema } from "@/app/lib/definitions";
+import Image from "next/image";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -6,13 +11,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { formatDateToLocal } from "@/app/lib/utils";
-import Link from "next/link";
-import Image from "next/image";
-import { ProductDessertSchema } from "@/app/lib/definitions";
-// import { Badge } from "lucide-react";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
+import { formatDateToLocal } from "../lib-products/utils";
+import { ProductDessertSchema } from "../lib-products/definition-products";
 
 export default function ProductList({
   products,

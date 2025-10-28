@@ -1,8 +1,9 @@
 "use client";
 
+// import { useCartStore } from "../../store/cart-store";
 import Link from "next/link";
+import { useCartStore } from "@/store/cart-store";
 import { useEffect } from "react";
-import { useCartStore } from "../../store/cart-store";
 
 export default function SuccessPage() {
   const { clearCart } = useCartStore();
