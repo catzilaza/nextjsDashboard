@@ -82,6 +82,7 @@ const links: LinkItem[] = [
       },
     ],
   },
+  { name: "Landing Page", href: "/landing", icon: NumberedListIcon },
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
   { name: "Blog", href: "/blog", icon: UserGroupIcon },
   { name: "Dropbox", href: "/dropbox", icon: DocumentArrowDownIcon },

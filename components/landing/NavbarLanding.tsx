@@ -49,7 +49,7 @@ const NavbarLanding = () => {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-4">
-          <Link href="/home" className="mx-2 hover:underline">
+          <Link href="/" className="mx-2 hover:underline">
             Home
           </Link>
           <Link href="/login" className="mx-2 hover:underline">
