@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter, redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
-import {} from "next/navigation";
+// import { revalidatePath } from "next/cache";
+// import {} from "next/navigation";
 import styles from "./pagination.module.css";
 
 const Pagination = ({
