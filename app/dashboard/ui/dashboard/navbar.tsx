@@ -109,7 +109,12 @@ const Navbar = async () => {
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
-                    Your Profile
+                    Name :{" "}
+                    {`${
+                      mysession?.user?.name
+                        ? mysession?.user?.name
+                        : "user.name"
+                    }`}
                   </a>
                 </MenuItem>
                 <MenuItem>
@@ -117,7 +122,12 @@ const Navbar = async () => {
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
-                    Settings
+                    Email :{" "}
+                    {`${
+                      mysession?.user?.email
+                        ? mysession?.user?.email
+                        : "user.name"
+                    }`}
                   </a>
                 </MenuItem>
                 <MenuItem>

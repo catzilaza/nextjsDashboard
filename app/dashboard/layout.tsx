@@ -1,5 +1,5 @@
 import SideNav from "@/app/dashboard/ui/dashboard/sidenav";
-import Navbar from "@/app/dashboard//ui/dashboard/navbar";
+import Navbar from "@/app/dashboard/ui/dashboard/navbar";
 
 export default async function Layout({
   children,

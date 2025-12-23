@@ -32,57 +32,7 @@ const links: LinkItem[] = [
     name: "Home",
     href: "/",
     icon: HomeIcon,
-    children: [
-      {
-        name: "Todo list",
-        href: "/blog",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Calendar",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Reminders",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Planning",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-    ],
   },
-  {
-    name: "Products",
-    href: "/products",
-    icon: DocumentDuplicateIcon,
-    children: [
-      {
-        name: "Todo list",
-        href: "/blog",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Calendar",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Reminders",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Planning",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-    ],
-  },
-  { name: "Landing Page", href: "/landing", icon: NumberedListIcon },
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
   { name: "Blog", href: "/blog", icon: UserGroupIcon },
   { name: "Dropbox", href: "/dropbox", icon: DocumentArrowDownIcon },
@@ -93,12 +43,8 @@ const links: LinkItem[] = [
   },
   { name: "Avatar", href: "/avatar/upload", icon: ChartBarSquareIcon },
   { name: "BetterAuth", href: "/betterauth", icon: IdentificationIcon },
-  // {
-  //   name: "Invoices",
-  //   href: "/dashboard/invoices",
-  //   icon: DocumentDuplicateIcon,
-  // },
-  // { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
+  // { name: "Sign up", href: "/signup", icon: IdentificationIcon },
+  // { name: "Log in", href: "/login", icon: ArrowRightIcon },
 ];
 //"flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
 //"bg-sky-100 text-blue-600": pathname === link.href,
@@ -113,7 +59,7 @@ export default function NavLinks() {
             key={link.name}
             href={link.href || "#"}
             className={clsx(
-              "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+              "flex items-center justify-center p-3 text-sm font-medium md:justify-start md:p-2 md:px-3",
               {
                 "bg-sky-100 text-blue-600": pathname === link.href,
               }
