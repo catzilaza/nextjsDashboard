@@ -1,5 +1,13 @@
 import { create } from "zustand";
 
+export interface DessertProduct {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string | null;
+  quantity: number;
+}
+
 export interface CartItem {
   id: string;
   name: string;

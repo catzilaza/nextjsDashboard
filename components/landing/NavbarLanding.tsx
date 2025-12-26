@@ -9,19 +9,68 @@ import {
 } from "@heroicons/react/24/outline";
 import { lusitana } from "@/app/fonts";
 import Link from "next/link";
-import { useState } from "react";
-import NavLinksLanding from "./NavLinkLanding";
+import { useEffect, useState } from "react";
+import { getSession, SignOut } from "@/lib/actions/auth/getSession-signOut";
+import { Button } from "@/app/dashboard/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
-// export const lusitana = Lusitana({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-//   display: "swap",
-//   variable: "--font-lusitana",
-// });
+interface SerializedUser {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  role?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  imageUrl?: string | null;
+  username?: string | null;
+  emailAddress?: string | null;
+}
 
-//
+interface NavbarProps {
+  user?: SerializedUser | null;
+}
+
+type typeUserProfile = {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+  role?: string | null | undefined;
+  expiredAt?: string | null | undefined;
+};
+
 const NavbarLanding = () => {
   const [open, setOpen] = useState(false);
+
+  const [isLogedin, setIsLogedin] = useState(false);
+  const [userProfile, setUserProfile] = useState<typeUserProfile>({
+    name: "",
+    email: "",
+    image: "",
+    role: "",
+    expiredAt: "",
+  });
+  const hasuser = async () => {
+    let user = await getSession();
+    if (user) {
+      setIsLogedin(true);
+      setUserProfile({
+        name: user.user.name,
+        email: user.user.email,
+        image: user.user.image,
+        role: user.user.role,
+        expiredAt: user.expires,
+      });
+      return user;
+    } else {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    hasuser();
+  }, []);
+
   return (
     <section className="border-b-2 border-white bg-gradient-to-r from-sky-600 to-indigo-600 text-white">
       <div className="flex flex-col md:flex-row items-center md:justify-between mx-auto px-6 py-4 w-full">
@@ -50,7 +99,7 @@ const NavbarLanding = () => {
         </div>
 
         {/* Desktop nav */}
-        {/* <nav className="hidden md:flex md:flex-row items-center bg-yellow">
+        <nav className="hidden md:flex md:flex-row items-center">
           <ul className="md:flex md:flex-row items-center">
             <li>
               <Link href="/" className="mx-2 hover:underline">
@@ -58,40 +107,191 @@ const NavbarLanding = () => {
               </Link>
             </li>
             <li>
-              <Link href="/login" className="mx-2 hover:underline">
-                Log in
-              </Link>
-            </li>
-            <li>
-              <Link href="/register" className="mx-2 hover:underline">
-                Register
-              </Link>
-            </li>
-            <li>
               <Link href="/dashboard" className="mx-2 hover:underline">
                 Dashboard
               </Link>
             </li>
-          </ul>
-        </nav> */}
+            {isLogedin ? (
+              <>
+                {" "}
+                <li>
+                  {userProfile.name && userProfile.name.trim() !== "" ? (
+                    <>
+                      {/* <Button className="mx-2 hover:underline bg-blue-200">
+                        <Avatar>
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt="@shadcn"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                        {userProfile.name}
+                      </Button> */}
+                      <Menu as="div" className="relative ml-3">
+                        <div>
+                          <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                            <span className="absolute -inset-1.5" />
+                            <span className="sr-only">Open user menu</span>
+                            <img
+                              alt=""
+                              src={`${
+                                userProfile?.image
+                                  ? (userProfile?.image as string)
+                                  : "https://github.com/shadcn.png"
+                              }`}
+                              // "https://github.com/shadcn.png"
+                              // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                              className="size-8 rounded-full"
+                            />
+                          </MenuButton>
+                        </div>
+                        <MenuItems
+                          transition
+                          className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                        >
+                          <MenuItem>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                            >
+                              Name :{" "}
+                              {`${
+                                userProfile?.name
+                                  ? userProfile?.name
+                                  : "user.name"
+                              }`}
+                            </a>
+                          </MenuItem>
+                          <MenuItem>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                            >
+                              Email :{" "}
+                              {`${
+                                userProfile?.email
+                                  ? userProfile?.email
+                                  : "user.name"
+                              }`}
+                            </a>
+                          </MenuItem>
+                          <MenuItem>
+                            <Button
+                              className="mx-auto block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                              onClick={() => {
+                                SignOut();
+                              }}
+                            >
+                              Sign out
+                            </Button>
+                          </MenuItem>
+                        </MenuItems>
+                      </Menu>
+                    </>
+                  ) : (
+                    <>
+                      {/* <Button className="mx-2 hover:underline">
+                        <Avatar className="m-2">
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt="@shadcn"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                        {"Someting went wrong"}
+                      </Button> */}
 
-        <div className="hidden md:flex items-center">
-          <NavLinksLanding />
-          <Link
-            href="/signup"
-            className="flex w-auto grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:justify-start md:p-2 md:px-3"
-          >
-            <IdentificationIcon className="w-5 md:w-6" />
-            <span className="hidden md:block">Sign up</span>{" "}
-          </Link>
-          <Link
-            href="/login"
-            className="flex w-auto grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:justify-start md:p-2 md:px-3"
-          >
-            <ArrowRightIcon className="w-5 md:w-6" />
-            <span className="hidden md:block">Log in</span>{" "}
-          </Link>
-        </div>
+                      <Menu as="div" className="relative ml-3 mr-3">
+                        <div>
+                          <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                            <span className="absolute -inset-1.5" />
+                            <span className="sr-only">Open user menu</span>
+                            <img
+                              alt=""
+                              src={`${
+                                userProfile?.image
+                                  ? (userProfile?.image as string)
+                                  : "https://github.com/shadcn.png"
+                              }`}
+                              // "https://github.com/shadcn.png"
+                              // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                              className="size-8 rounded-full"
+                            />
+                          </MenuButton>
+                        </div>
+                        <MenuItems
+                          transition
+                          className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                        >
+                          <MenuItem>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                            >
+                              Name :{" "}
+                              {`${
+                                userProfile?.name
+                                  ? userProfile?.name
+                                  : "user.name"
+                              }`}
+                            </a>
+                          </MenuItem>
+                          <MenuItem>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                            >
+                              Email :{" "}
+                              {`${
+                                userProfile?.email
+                                  ? userProfile?.email
+                                  : "user.name"
+                              }`}
+                            </a>
+                          </MenuItem>
+                          <MenuItem>
+                            <Button
+                              className="mx-auto block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                              onClick={() => {
+                                SignOut();
+                              }}
+                            >
+                              Sign out
+                            </Button>
+                          </MenuItem>
+                        </MenuItems>
+                      </Menu>
+                    </>
+                  )}
+                </li>
+                {/* <li>
+                  <Button
+                    className="mx-2 hover:underline bg-blue-200"
+                    onClick={() => {
+                      SignOut();
+                    }}
+                  >
+                    Log out
+                  </Button>
+                </li> */}
+              </>
+            ) : (
+              <>
+                {" "}
+                <li>
+                  <Link href="/login" className="mx-2 hover:underline">
+                    Log in
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/register" className="mx-2 hover:underline">
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
 
         {/* Mobile dropdown */}
         <div className={`${open ? "block" : "hidden"} md:hidden w-full mt-3`}>
@@ -113,22 +313,60 @@ const NavbarLanding = () => {
                   Dashboard
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/login"
-                  className="block px-2 py-2 rounded hover:bg-white/10"
-                >
-                  Log in
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/register"
-                  className="block px-2 py-2 rounded hover:bg-white/10"
-                >
-                  Register
-                </Link>
-              </li>
+              {isLogedin ? (
+                <>
+                  {" "}
+                  {/* <li>
+                    {userProfile.name && userProfile.name.trim() !== "" ? (
+                      <Button className="mx-2 hover:underline bg-blue-200 text-left">
+                        <Avatar>
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt="@shadcn"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                        {userProfile.name}
+                      </Button>
+                    ) : (
+                      <Button className="mx-2 hover:underline bg-blue-200">
+                        <Avatar className="mx-2">
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt="@shadcn"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                        {"Someting went wrong"}
+                      </Button>
+                    )}
+                  </li> */}
+                  <li>
+                    <Button
+                      className="mx-2 hover:underline bg-blue-200 mt-2"
+                      onClick={() => {
+                        SignOut();
+                      }}
+                    >
+                      Log out
+                    </Button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <li>
+                    <Link href="/login" className="mx-2 hover:underline">
+                      Log in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/register" className="mx-2 hover:underline">
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>
@@ -138,25 +376,3 @@ const NavbarLanding = () => {
 };
 
 export default NavbarLanding;
-
-// <div className="hidden md:flex items-center gap-4 bg-yellow">
-//   <div className="flex flex-row items-center md:px-2 h-20 px-3 py-1 ">
-//     <div className="flex space-x-2">
-//       <NavLinksLanding />
-//       <Link
-//         href="/signup"
-//         className="flex h-[48px] w-auto grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3"
-//       >
-//         <span className="hidden md:block">Sign up</span>{" "}
-//         <IdentificationIcon className="w-5 md:w-6" />
-//       </Link>
-//       <Link
-//         href="/login"
-//         className="flex h-[48px] w-auto grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3"
-//       >
-//         <span className="hidden md:block">Log in</span>{" "}
-//         <ArrowRightIcon className="w-5 md:w-6" />
-//       </Link>
-//     </div>
-//   </div>
-// </div>

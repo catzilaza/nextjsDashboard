@@ -68,6 +68,9 @@ model User {
   sessions      Session[]
   post          Post[]
   file          File[]
+  // order         Order[]
+  // postAs        PostA[]
+  orders        Order[]
 }
 
 model Profile {
@@ -121,14 +124,16 @@ model Revenue {
 }
 
 model products_desserts {
-  dessert_id String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name_eng   String   @db.VarChar(255)
-  name       String   @db.VarChar(255)
-  image_url  String   @db.VarChar(255)
-  price      String   @db.VarChar(255)
+  dessert_id String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name_eng   String      @db.VarChar(255)
+  name       String      @db.VarChar(255)
+  image_url  String      @db.VarChar(255)
+  price      String      @db.VarChar(255)
   amount     Int
-  status     String?  @db.VarChar(15)
-  date       DateTime @db.Date
+  status     String?     @db.VarChar(15)
+  date       DateTime    @db.Date
+  // orderItems OrderItem[]
+  orderItems OrderItem[]
 }
 
 model File {
@@ -153,4 +158,41 @@ model File {
   children File[] @relation("FileToFile")
 
   @@map("files")
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  userId     String
+  user       User        @relation(fields: [userId], references: [id])
+  orderDate  DateTime    @default(now())
+  status     String      @default("pending")
+  orderItems OrderItem[]
+  payment    Payment?
+  shipment   Shipment?
+}
+
+model OrderItem {
+  id               String            @id @default(uuid())
+  quantity         Int
+  price            Decimal
+  orderId          String // ✅ ตรงกับ Order.id
+  order            Order             @relation(fields: [orderId], references: [id])
+  productIdDessert String            @db.Uuid
+  productDesserts  products_desserts @relation(fields: [productIdDessert], references: [dessert_id])
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  amount      Decimal
+  paymentDate DateTime @default(now())
+  orderId     String   @unique
+  order       Order    @relation(fields: [orderId], references: [id])
+}
+
+model Shipment {
+  id             String   @id @default(uuid())
+  shippingDate   DateTime @default(now())
+  trackingNumber String
+  orderId        String   @unique
+  order          Order    @relation(fields: [orderId], references: [id])
 }

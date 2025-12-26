@@ -18,11 +18,11 @@ exports.$Enums = {}
 
 /**
  * Prisma Client JS version: 6.6.0
- * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+ * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
  */
 Prisma.prismaVersion = {
   client: "6.6.0",
-  engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
+  engine: "f676762280b54cd07c770017ed3711ddde35f37a"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -238,6 +238,35 @@ exports.Prisma.FileScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  orderDate: 'orderDate',
+  status: 'status'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
+  price: 'price',
+  orderId: 'orderId',
+  productIdDessert: 'productIdDessert'
+};
+
+exports.Prisma.PaymentScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  paymentDate: 'paymentDate',
+  orderId: 'orderId'
+};
+
+exports.Prisma.ShipmentScalarFieldEnum = {
+  id: 'id',
+  shippingDate: 'shippingDate',
+  trackingNumber: 'trackingNumber',
+  orderId: 'orderId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -266,7 +295,11 @@ exports.Prisma.ModelName = {
   CategoriesOnPosts: 'CategoriesOnPosts',
   Revenue: 'Revenue',
   products_desserts: 'products_desserts',
-  File: 'File'
+  File: 'File',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
+  Payment: 'Payment',
+  Shipment: 'Shipment'
 };
 
 /**

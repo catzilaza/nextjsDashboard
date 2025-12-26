@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 import { ProductDessertSchema } from "@/app/lib/definitions";
 import { useCartStore } from "@/store/cart-store";
 import { ShoppingCartIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ProductCard({
   product,
@@ -29,10 +29,22 @@ export default function ProductCard({
   product: ProductDessertSchema;
 }) {
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [currentDate, setCurrentDate] = useState("");
 
   const { addItem, removeItem, updateUserName } = useCartStore();
   const { username, role } = useCartStore((state: any) => state.user);
   const items = useCartStore((state: any) => state.items);
+
+  useEffect(() => {
+    setCurrentDate(
+      new Date().toLocaleDateString("th-TH", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+      })
+    );
+  }, []);
 
   const onAddItem = () => {
     addItem({
@@ -82,6 +94,7 @@ export default function ProductCard({
             <div className="text-sm text-gray-500">
               Name_eng : {product.name_eng}
             </div>
+            <div className="text-sm text-gray-500">Date : {currentDate}</div>
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -124,7 +137,7 @@ export default function ProductCard({
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               onClick={onRemoveItem}
             >
-              Remove to Cart
+              Remove to Cart Remove from Cart
             </Button>
           </div>
           <div className="card-actions justify-end px-1">

@@ -149,8 +149,7 @@ export default function SignUpForm() {
             </>
           ) : (
             <>
-              Sign Up{" "}
-              <ArrowRightIcon className="ml-4 h-5 w-5 text-gray-50" />
+              Sign Up <ArrowRightIcon className="ml-4 h-5 w-5 text-gray-50" />
             </>
           )}
         </Button>
