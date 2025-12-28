@@ -1,9 +1,8 @@
 "use client";
 
-// import { useCartStore } from "../../store/cart-store";
-import Link from "next/link";
 import { useCartStore } from "@/store/cart-store";
-import { useEffect } from "react";
+import Link from "next/link";
+import React, { useEffect } from "react";
 
 export default function SuccessPage() {
   const { clearCart } = useCartStore();
@@ -16,7 +15,7 @@ export default function SuccessPage() {
       <p className="mb-4">
         Thank you for your purchase. Your order is being processed.
       </p>
-      <Link href="/products" className="text-blue-600 hover:underline">
+      <Link href="/ecommerce" className="text-blue-600 hover:underline">
         Continue Shopping
       </Link>
     </div>

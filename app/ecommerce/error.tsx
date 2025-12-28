@@ -7,7 +7,7 @@ interface ErrorProductsPageProb {
   reset: () => void;
 }
 
-export default function ErrorProductsPage({
+export default function ErrorEcommercePage({
   error,
   reset,
 }: ErrorProductsPageProb) {
@@ -18,6 +18,7 @@ export default function ErrorProductsPage({
     <div>
       <h2>IN Error-Products-Page Something went wrong!</h2>
       <button
+        className="bg-blue-400 rounded-l-md p-2 text-white"
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()

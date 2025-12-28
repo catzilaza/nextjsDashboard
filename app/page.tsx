@@ -4,7 +4,6 @@ import Link from "next/link";
 import { lusitana } from "@/app/dashboard/ui/fonts";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
-import Landing from "@/components/landing/MainLanding";
 import Home from "@/components/home/MainHome";
 
 // import styles from "@/app/ui/home.module.css";

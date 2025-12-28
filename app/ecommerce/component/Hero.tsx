@@ -1,6 +1,6 @@
-import Link from "next/link";
+import React from "react";
 import Image from "next/image";
-import NavbarLanding from "./NavbarLanding";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -40,6 +40,7 @@ export default function Hero() {
               height={480}
               alt="Dashboard screenshot"
               className="rounded-md shadow-lg"
+              loading="eager"
             />
           </div>
         </div>

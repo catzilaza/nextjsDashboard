@@ -14,10 +14,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { navbar_link } from "@/lib/links/navbar-link";
 import { JSX, SVGProps } from "react";
-import todoImage from "@/public/downarrow.svg";
-import Image from "next/image";
 
 type LinkItem = {
   name: string;
@@ -55,34 +52,7 @@ const links: LinkItem[] = [
       },
     ],
   },
-  {
-    name: "Products",
-    href: "/products",
-    icon: DocumentDuplicateIcon,
-    children: [
-      {
-        name: "Todo list",
-        href: "/blog",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Calendar",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Reminders",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-      {
-        name: "Planning",
-        href: "#",
-        icon: ArrowRightIcon,
-      },
-    ],
-  },
-  { name: "Landing Page", href: "/landing", icon: NumberedListIcon },
+  { name: "ecommerce", href: "/ecommerce", icon: NumberedListIcon },
   { name: "Dashboard", href: "/dashboard", icon: ChartBarSquareIcon },
   { name: "Blog", href: "/blog", icon: UserGroupIcon },
   { name: "Dropbox", href: "/dropbox", icon: DocumentArrowDownIcon },
@@ -100,8 +70,7 @@ const links: LinkItem[] = [
   // },
   // { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
 ];
-//"flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
-//"bg-sky-100 text-blue-600": pathname === link.href,
+
 export default function NavLinks() {
   const pathname = usePathname();
   return (

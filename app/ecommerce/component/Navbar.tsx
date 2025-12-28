@@ -1,45 +1,19 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { getSession, SignOut } from "../lib/uitls";
+import { lusitana } from "../font/fonts";
 import {
   Bars3Icon,
   GlobeAltIcon,
   XMarkIcon,
-  ArrowRightIcon,
-  IdentificationIcon,
 } from "@heroicons/react/24/outline";
-import { lusitana } from "@/app/fonts";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { getSession, SignOut } from "@/lib/actions/auth/getSession-signOut";
-import { Button } from "@/app/dashboard/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { Button } from "@/components/ui/button";
+import { typeUserProfile } from "../models/user";
 
-interface SerializedUser {
-  id: string;
-  name?: string | null;
-  email?: string | null;
-  role?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  imageUrl?: string | null;
-  username?: string | null;
-  emailAddress?: string | null;
-}
-
-interface NavbarProps {
-  user?: SerializedUser | null;
-}
-
-type typeUserProfile = {
-  name?: string | null | undefined;
-  email?: string | null | undefined;
-  image?: string | null | undefined;
-  role?: string | null | undefined;
-  expiredAt?: string | null | undefined;
-};
-
-const NavbarLanding = () => {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const [isLogedin, setIsLogedin] = useState(false);
@@ -117,16 +91,6 @@ const NavbarLanding = () => {
                 <li>
                   {userProfile.name && userProfile.name.trim() !== "" ? (
                     <>
-                      {/* <Button className="mx-2 hover:underline bg-blue-200">
-                        <Avatar>
-                          <AvatarImage
-                            src="https://github.com/shadcn.png"
-                            alt="@shadcn"
-                          />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        {userProfile.name}
-                      </Button> */}
                       <Menu as="div" className="relative ml-3">
                         <div>
                           <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
@@ -190,17 +154,6 @@ const NavbarLanding = () => {
                     </>
                   ) : (
                     <>
-                      {/* <Button className="mx-2 hover:underline">
-                        <Avatar className="m-2">
-                          <AvatarImage
-                            src="https://github.com/shadcn.png"
-                            alt="@shadcn"
-                          />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        {"Someting went wrong"}
-                      </Button> */}
-
                       <Menu as="div" className="relative ml-3 mr-3">
                         <div>
                           <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
@@ -264,16 +217,6 @@ const NavbarLanding = () => {
                     </>
                   )}
                 </li>
-                {/* <li>
-                  <Button
-                    className="mx-2 hover:underline bg-blue-200"
-                    onClick={() => {
-                      SignOut();
-                    }}
-                  >
-                    Log out
-                  </Button>
-                </li> */}
               </>
             ) : (
               <>
@@ -316,31 +259,6 @@ const NavbarLanding = () => {
               {isLogedin ? (
                 <>
                   {" "}
-                  {/* <li>
-                    {userProfile.name && userProfile.name.trim() !== "" ? (
-                      <Button className="mx-2 hover:underline bg-blue-200 text-left">
-                        <Avatar>
-                          <AvatarImage
-                            src="https://github.com/shadcn.png"
-                            alt="@shadcn"
-                          />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        {userProfile.name}
-                      </Button>
-                    ) : (
-                      <Button className="mx-2 hover:underline bg-blue-200">
-                        <Avatar className="mx-2">
-                          <AvatarImage
-                            src="https://github.com/shadcn.png"
-                            alt="@shadcn"
-                          />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                        {"Someting went wrong"}
-                      </Button>
-                    )}
-                  </li> */}
                   <li>
                     <Button
                       className="mx-2 hover:underline bg-blue-200 mt-2"
@@ -373,6 +291,4 @@ const NavbarLanding = () => {
       </div>
     </section>
   );
-};
-
-export default NavbarLanding;
+}
