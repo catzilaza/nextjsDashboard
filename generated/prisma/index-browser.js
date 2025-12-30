@@ -256,7 +256,7 @@ exports.Prisma.OrderScalarFieldEnum = {
 
 exports.Prisma.OrderDessertScalarFieldEnum = {
   id: 'id',
-  stripSessionId: 'stripSessionId',
+  stripeSessionId: 'stripeSessionId',
   userName: 'userName',
   userEmail: 'userEmail',
   productId: 'productId',

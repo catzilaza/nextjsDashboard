@@ -202,16 +202,16 @@ model Order {
 }
 
 model OrderDessert {
-  id             String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  stripSessionId String?
-  userName       String?
-  userEmail      String?
-  productId      String?
-  productName    String?
-  price          Int?
-  quantity       Int?
-  totalPrice     Int?
-  createdAt      DateTime @default(now())
+  id              String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  stripeSessionId String?
+  userName        String?
+  userEmail       String?
+  productId       String?
+  productName     String?
+  price           Int?
+  quantity        Int?
+  totalPrice      Int?
+  createdAt       DateTime @default(now())
 }
 
 model OrderItem {

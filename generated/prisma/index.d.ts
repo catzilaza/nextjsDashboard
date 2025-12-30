@@ -17440,7 +17440,7 @@ export namespace Prisma {
 
   export type OrderDessertMinAggregateOutputType = {
     id: string | null
-    stripSessionId: string | null
+    stripeSessionId: string | null
     userName: string | null
     userEmail: string | null
     productId: string | null
@@ -17453,7 +17453,7 @@ export namespace Prisma {
 
   export type OrderDessertMaxAggregateOutputType = {
     id: string | null
-    stripSessionId: string | null
+    stripeSessionId: string | null
     userName: string | null
     userEmail: string | null
     productId: string | null
@@ -17466,7 +17466,7 @@ export namespace Prisma {
 
   export type OrderDessertCountAggregateOutputType = {
     id: number
-    stripSessionId: number
+    stripeSessionId: number
     userName: number
     userEmail: number
     productId: number
@@ -17493,7 +17493,7 @@ export namespace Prisma {
 
   export type OrderDessertMinAggregateInputType = {
     id?: true
-    stripSessionId?: true
+    stripeSessionId?: true
     userName?: true
     userEmail?: true
     productId?: true
@@ -17506,7 +17506,7 @@ export namespace Prisma {
 
   export type OrderDessertMaxAggregateInputType = {
     id?: true
-    stripSessionId?: true
+    stripeSessionId?: true
     userName?: true
     userEmail?: true
     productId?: true
@@ -17519,7 +17519,7 @@ export namespace Prisma {
 
   export type OrderDessertCountAggregateInputType = {
     id?: true
-    stripSessionId?: true
+    stripeSessionId?: true
     userName?: true
     userEmail?: true
     productId?: true
@@ -17619,7 +17619,7 @@ export namespace Prisma {
 
   export type OrderDessertGroupByOutputType = {
     id: string
-    stripSessionId: string | null
+    stripeSessionId: string | null
     userName: string | null
     userEmail: string | null
     productId: string | null
@@ -17651,7 +17651,7 @@ export namespace Prisma {
 
   export type OrderDessertSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    stripSessionId?: boolean
+    stripeSessionId?: boolean
     userName?: boolean
     userEmail?: boolean
     productId?: boolean
@@ -17664,7 +17664,7 @@ export namespace Prisma {
 
   export type OrderDessertSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    stripSessionId?: boolean
+    stripeSessionId?: boolean
     userName?: boolean
     userEmail?: boolean
     productId?: boolean
@@ -17677,7 +17677,7 @@ export namespace Prisma {
 
   export type OrderDessertSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    stripSessionId?: boolean
+    stripeSessionId?: boolean
     userName?: boolean
     userEmail?: boolean
     productId?: boolean
@@ -17690,7 +17690,7 @@ export namespace Prisma {
 
   export type OrderDessertSelectScalar = {
     id?: boolean
-    stripSessionId?: boolean
+    stripeSessionId?: boolean
     userName?: boolean
     userEmail?: boolean
     productId?: boolean
@@ -17701,14 +17701,14 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type OrderDessertOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stripSessionId" | "userName" | "userEmail" | "productId" | "productName" | "price" | "quantity" | "totalPrice" | "createdAt", ExtArgs["result"]["orderDessert"]>
+  export type OrderDessertOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stripeSessionId" | "userName" | "userEmail" | "productId" | "productName" | "price" | "quantity" | "totalPrice" | "createdAt", ExtArgs["result"]["orderDessert"]>
 
   export type $OrderDessertPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OrderDessert"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      stripSessionId: string | null
+      stripeSessionId: string | null
       userName: string | null
       userEmail: string | null
       productId: string | null
@@ -18141,7 +18141,7 @@ export namespace Prisma {
    */
   interface OrderDessertFieldRefs {
     readonly id: FieldRef<"OrderDessert", 'String'>
-    readonly stripSessionId: FieldRef<"OrderDessert", 'String'>
+    readonly stripeSessionId: FieldRef<"OrderDessert", 'String'>
     readonly userName: FieldRef<"OrderDessert", 'String'>
     readonly userEmail: FieldRef<"OrderDessert", 'String'>
     readonly productId: FieldRef<"OrderDessert", 'String'>
@@ -21936,7 +21936,7 @@ export namespace Prisma {
 
   export const OrderDessertScalarFieldEnum: {
     id: 'id',
-    stripSessionId: 'stripSessionId',
+    stripeSessionId: 'stripeSessionId',
     userName: 'userName',
     userEmail: 'userEmail',
     productId: 'productId',
@@ -23044,7 +23044,7 @@ export namespace Prisma {
     OR?: OrderDessertWhereInput[]
     NOT?: OrderDessertWhereInput | OrderDessertWhereInput[]
     id?: UuidFilter<"OrderDessert"> | string
-    stripSessionId?: StringNullableFilter<"OrderDessert"> | string | null
+    stripeSessionId?: StringNullableFilter<"OrderDessert"> | string | null
     userName?: StringNullableFilter<"OrderDessert"> | string | null
     userEmail?: StringNullableFilter<"OrderDessert"> | string | null
     productId?: StringNullableFilter<"OrderDessert"> | string | null
@@ -23057,7 +23057,7 @@ export namespace Prisma {
 
   export type OrderDessertOrderByWithRelationInput = {
     id?: SortOrder
-    stripSessionId?: SortOrderInput | SortOrder
+    stripeSessionId?: SortOrderInput | SortOrder
     userName?: SortOrderInput | SortOrder
     userEmail?: SortOrderInput | SortOrder
     productId?: SortOrderInput | SortOrder
@@ -23073,7 +23073,7 @@ export namespace Prisma {
     AND?: OrderDessertWhereInput | OrderDessertWhereInput[]
     OR?: OrderDessertWhereInput[]
     NOT?: OrderDessertWhereInput | OrderDessertWhereInput[]
-    stripSessionId?: StringNullableFilter<"OrderDessert"> | string | null
+    stripeSessionId?: StringNullableFilter<"OrderDessert"> | string | null
     userName?: StringNullableFilter<"OrderDessert"> | string | null
     userEmail?: StringNullableFilter<"OrderDessert"> | string | null
     productId?: StringNullableFilter<"OrderDessert"> | string | null
@@ -23086,7 +23086,7 @@ export namespace Prisma {
 
   export type OrderDessertOrderByWithAggregationInput = {
     id?: SortOrder
-    stripSessionId?: SortOrderInput | SortOrder
+    stripeSessionId?: SortOrderInput | SortOrder
     userName?: SortOrderInput | SortOrder
     userEmail?: SortOrderInput | SortOrder
     productId?: SortOrderInput | SortOrder
@@ -23107,7 +23107,7 @@ export namespace Prisma {
     OR?: OrderDessertScalarWhereWithAggregatesInput[]
     NOT?: OrderDessertScalarWhereWithAggregatesInput | OrderDessertScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"OrderDessert"> | string
-    stripSessionId?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
+    stripeSessionId?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
     userName?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
     userEmail?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
     productId?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
@@ -24290,7 +24290,7 @@ export namespace Prisma {
 
   export type OrderDessertCreateInput = {
     id?: string
-    stripSessionId?: string | null
+    stripeSessionId?: string | null
     userName?: string | null
     userEmail?: string | null
     productId?: string | null
@@ -24303,7 +24303,7 @@ export namespace Prisma {
 
   export type OrderDessertUncheckedCreateInput = {
     id?: string
-    stripSessionId?: string | null
+    stripeSessionId?: string | null
     userName?: string | null
     userEmail?: string | null
     productId?: string | null
@@ -24316,7 +24316,7 @@ export namespace Prisma {
 
   export type OrderDessertUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     userName?: NullableStringFieldUpdateOperationsInput | string | null
     userEmail?: NullableStringFieldUpdateOperationsInput | string | null
     productId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24329,7 +24329,7 @@ export namespace Prisma {
 
   export type OrderDessertUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     userName?: NullableStringFieldUpdateOperationsInput | string | null
     userEmail?: NullableStringFieldUpdateOperationsInput | string | null
     productId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24342,7 +24342,7 @@ export namespace Prisma {
 
   export type OrderDessertCreateManyInput = {
     id?: string
-    stripSessionId?: string | null
+    stripeSessionId?: string | null
     userName?: string | null
     userEmail?: string | null
     productId?: string | null
@@ -24355,7 +24355,7 @@ export namespace Prisma {
 
   export type OrderDessertUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     userName?: NullableStringFieldUpdateOperationsInput | string | null
     userEmail?: NullableStringFieldUpdateOperationsInput | string | null
     productId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24368,7 +24368,7 @@ export namespace Prisma {
 
   export type OrderDessertUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     userName?: NullableStringFieldUpdateOperationsInput | string | null
     userEmail?: NullableStringFieldUpdateOperationsInput | string | null
     productId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25403,7 +25403,7 @@ export namespace Prisma {
 
   export type OrderDessertCountOrderByAggregateInput = {
     id?: SortOrder
-    stripSessionId?: SortOrder
+    stripeSessionId?: SortOrder
     userName?: SortOrder
     userEmail?: SortOrder
     productId?: SortOrder
@@ -25422,7 +25422,7 @@ export namespace Prisma {
 
   export type OrderDessertMaxOrderByAggregateInput = {
     id?: SortOrder
-    stripSessionId?: SortOrder
+    stripeSessionId?: SortOrder
     userName?: SortOrder
     userEmail?: SortOrder
     productId?: SortOrder
@@ -25435,7 +25435,7 @@ export namespace Prisma {
 
   export type OrderDessertMinOrderByAggregateInput = {
     id?: SortOrder
-    stripSessionId?: SortOrder
+    stripeSessionId?: SortOrder
     userName?: SortOrder
     userEmail?: SortOrder
     productId?: SortOrder

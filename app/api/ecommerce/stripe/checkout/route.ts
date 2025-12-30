@@ -82,39 +82,44 @@ export async function POST(req: Request) {
     // console.log("user : ", user);
     // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่ามี รายการอะไรบ้าง และยังไม่จ่าย
 
-    // const stripCheckoutSession = await (Stripe as any).checkout.sessions.create(
-    //   {
-    //     customer: customerId!,
-    //     payment_method_types: ["card"],
-    //     line_items: [
-    //       {
-    //         price: STRIPE_PRICE_IDS[priceId as keyof typeof STRIPE_PRICE_IDS], // This line is commented out in the original code
-    //         quantity: 1,
-    //       },
-    //     ],
-    //     mode: "subscription",
-    //     success_url: `${process.env.NEXT_PUBLIC_APP_URL}/ecommerce/success`,
+    // const session = await stripe.checkout.sessions.create({
+    // await (Stripe as any).checkout.sessions.create
 
-    //     cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/ecommerce/cancel`,
-    //     metadata: {
-    //       userId: user.id,
-    //       priceId,
-    //     },
-    //     line_items: product_line_items,
-    //     mode: "payment",
-    //     success_url: `${req.headers.get("origin")}/ecommerce/success`,
-    //     cancel_url: `${req.headers.get("origin")}/ecommerce/cancel`,
-    //   }
-    // );
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2025-12-15.clover",
+    });
 
-    //  console.log(stripCheckoutSession.url);
+    const stripCheckoutSession = await stripe.checkout.sessions.create({
+      // customer: customerId!,
+      // payment_method_types: ["card"],
+      // line_items: [
+      //   {
+      //     price: STRIPE_PRICE_IDS[priceId as keyof typeof STRIPE_PRICE_IDS], // This line is commented out in the original code
+      //     quantity: 1,
+      //   },
+      // ],
+      // mode: "subscription",
+      // success_url: `${process.env.NEXT_PUBLIC_APP_URL}/ecommerce/success`,
+
+      // cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/ecommerce/cancel`,
+      // metadata: {
+      //   userId: user.id,
+      //   priceId,
+      // },
+      line_items: product_line_items,
+      mode: "payment",
+      success_url: `${req.headers.get("origin")}/ecommerce/success`,
+      cancel_url: `${req.headers.get("origin")}/ecommerce/cancel`,
+    });
+
+    console.log(stripCheckoutSession.url);
 
     // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่า ซื้อสำเร็จ จ่ายเงินแล้ว
 
     const dataOrder = cartItems.map((item: any) => ({
       // id: item.id as string,
       // stripeSessionId: stripCheckoutSession.id as string,
-      stripSessionId: user.id as string,
+      stripeSessionId: stripCheckoutSession.id as string,
       userName: user.name as string,
       userEmail: user.email as string,
       productId: item.id as string,
@@ -138,7 +143,8 @@ export async function POST(req: Request) {
       {
         headers: corsHeaders,
         message: "success",
-        url: "/ecommerce/success",
+        url: stripCheckoutSession.url,
+        // url: "/ecommerce/success",
       }
     );
   } catch (error: any) {
