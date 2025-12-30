@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCartStore } from "@/store/cart-store";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Error from "next/error";
 
 export default function CheckOutPage() {
   const { items, removeItem, addItem } = useCartStore();
@@ -40,7 +41,7 @@ export default function CheckOutPage() {
 
   const handleCheckout = async () => {
     try {
-      const response = await fetch("/api/ecommerce/checkout", {
+      const response = await fetch("/api/ecommerce/stripe/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,6 +57,8 @@ export default function CheckOutPage() {
       if (!response.ok) {
         const message = await response.text();
         console.error("Checkout failed:", message);
+        setMessage(message);
+        alert(`Error creating checkout session ${message}`);
         return;
       }
 
@@ -69,10 +72,17 @@ export default function CheckOutPage() {
       if (url && typeof url === "string") router.push(url);
 
       // const { url } = await response.json();
-      router.push(url);
+      // router.push(url);
       //   router.push("/ecommerce/error");
+
+      // if (url) {
+      //   window.location.href = url;
+      // } else {
+      //   throw new Error("No checkout url");
+      // }
     } catch (error) {
       console.error("Error during checkout:", error);
+      alert("Error creating checkout session");
     }
   };
   return (
@@ -130,11 +140,13 @@ export default function CheckOutPage() {
         <>
           {message == "success" ? (
             <>
-              <p>{"success"}</p>
+              <p className="text-green-400 text-5xl font-bold mt-3">
+                {"success"}
+              </p>
             </>
           ) : (
             <>
-              <p>{"error"}</p>
+              <p className="text-red-400 text-5xl font-bold mt-3">{"error"}</p>
             </>
           )}
         </>

@@ -24,7 +24,7 @@ export default function ListProduct({
           <CardHeader>
             <CardTitle>Card Title</CardTitle>
             <Link
-              href={`/ecommerce/${product.dessert_id}`}
+              href={`/ecommerce/${product.dessert_id}/detail`}
               className="flex items-center justify-center gap-5 rounded-lg bg-white px-6 py-3  hover:bg-blue-200"
             >
               <div className="relative overflow-hidden border-2 border-gray-300 h-32 w-32 md:h-32 md:w-32 lg:h-64 lg:w-64 ">
@@ -63,7 +63,7 @@ export default function ListProduct({
             <div className="card-actions justify-end">
               <Link
                 className="animate-jump-in animate-delay-300 animate-once bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                href={`/ecommerce/${product.dessert_id}`}
+                href={`/ecommerce/${product.dessert_id}/detail`}
               >
                 View Item
               </Link>

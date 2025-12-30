@@ -61,6 +61,8 @@ export default function CardProduct({
     removeItem(product.dessert_id);
   };
 
+  //  const imageUrlCard = product.image_url && product.image_url.length > 0 ? product.image_url[0] : '/not-found.jpg';
+
   return (
     <div>
       <Card key={product.dessert_id} className="w-[800px]">
@@ -134,7 +136,7 @@ export default function CardProduct({
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               onClick={onRemoveItem}
             >
-              Remove to Cart Remove from Cart
+              Remove from Cart
             </Button>
           </div>
           <div className="card-actions justify-end px-1">

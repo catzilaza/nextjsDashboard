@@ -68,9 +68,28 @@ model User {
   sessions      Session[]
   post          Post[]
   file          File[]
+  orders        Order[]
   // order         Order[]
   // postAs        PostA[]
-  orders        Order[]
+  // role Role @default(Role.USER)
+  // plan Plan @default(Plan.FREE)
+  // createdAt DateTime @default(now())
+  // updatedAt DateTime @updatedAt
+  // stripeCustomerId       String?
+  // stripeSubscriptionId   String?
+  // stripePriceId          String?
+  // stripeCurrentPeriodEnd DateTime?
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Plan {
+  FREE
+  PRO
+  PREMIUM
 }
 
 model Profile {
@@ -134,6 +153,7 @@ model products_desserts {
   date       DateTime    @db.Date
   // orderItems OrderItem[]
   orderItems OrderItem[]
+  order      Order[]
 }
 
 model File {
@@ -161,14 +181,37 @@ model File {
 }
 
 model Order {
-  id         String      @id @default(uuid())
-  userId     String
-  user       User        @relation(fields: [userId], references: [id])
-  orderDate  DateTime    @default(now())
-  status     String      @default("pending")
-  orderItems OrderItem[]
-  payment    Payment?
-  shipment   Shipment?
+  id                String            @id @default(uuid())
+  userId            String
+  user              User              @relation(fields: [userId], references: [id])
+  userName          String?
+  userEmail         String?
+  productId         String            @db.Uuid
+  product           products_desserts @relation(fields: [productId], references: [dessert_id])
+  productName       String?
+  productImage      String?
+  quantity          Int?
+  price             Decimal?
+  totalPrice        Decimal?
+  orderDate         DateTime?         @default(now())
+  status            String?           @default("pending")
+  stripe_session_id String?
+  orderItems        OrderItem[]
+  payment           Payment?
+  shipment          Shipment?
+}
+
+model OrderDessert {
+  id             String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  stripSessionId String?
+  userName       String?
+  userEmail      String?
+  productId      String?
+  productName    String?
+  price          Int?
+  quantity       Int?
+  totalPrice     Int?
+  createdAt      DateTime @default(now())
 }
 
 model OrderItem {

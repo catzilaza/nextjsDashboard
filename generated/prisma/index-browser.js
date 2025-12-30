@@ -241,8 +241,30 @@ exports.Prisma.FileScalarFieldEnum = {
 exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  userName: 'userName',
+  userEmail: 'userEmail',
+  productId: 'productId',
+  productName: 'productName',
+  productImage: 'productImage',
+  quantity: 'quantity',
+  price: 'price',
+  totalPrice: 'totalPrice',
   orderDate: 'orderDate',
-  status: 'status'
+  status: 'status',
+  stripe_session_id: 'stripe_session_id'
+};
+
+exports.Prisma.OrderDessertScalarFieldEnum = {
+  id: 'id',
+  stripSessionId: 'stripSessionId',
+  userName: 'userName',
+  userEmail: 'userEmail',
+  productId: 'productId',
+  productName: 'productName',
+  price: 'price',
+  quantity: 'quantity',
+  totalPrice: 'totalPrice',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.OrderItemScalarFieldEnum = {
@@ -297,6 +319,7 @@ exports.Prisma.ModelName = {
   products_desserts: 'products_desserts',
   File: 'File',
   Order: 'Order',
+  OrderDessert: 'OrderDessert',
   OrderItem: 'OrderItem',
   Payment: 'Payment',
   Shipment: 'Shipment'

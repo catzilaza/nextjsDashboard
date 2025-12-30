@@ -7,14 +7,47 @@ import {
   Bars3Icon,
   GlobeAltIcon,
   XMarkIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Button } from "@/components/ui/button";
 import { typeUserProfile } from "../models/user";
+import Search from "./search";
+
+// const SearchBar: React.FC<{ onSearch: (term: string) => void }> = ({
+//   onSearch,
+// }) => {
+//   const [searchTerm, setSearchTerm] = useState("");
+
+//   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     const term = event.target.value;
+//     setSearchTerm(term);
+//     onSearch(term);
+//   };
+
+//   return (
+//     <div className="relative flex flex-row justify-center items-center mx-auto text-center">
+//       {/* <h2 className="text-2xl font-bold mb-4 animate-slide-in-left">
+//         Search Products
+//       </h2> */}
+//       <input
+//         type="text"
+//         placeholder="Enter product name"
+//         className="relative border p-3 rounded w-full md:w-1/2 animate-slide-in-right"
+//         value={searchTerm}
+//         onChange={handleSearchChange}
+//       />
+//       <div>
+//         <MagnifyingGlassIcon className="h-6 w-6 absolute right-13 top-8 bg-red-300" />
+//       </div>
+//     </div>
+//   );
+// };
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [isLogedin, setIsLogedin] = useState(false);
   const [userProfile, setUserProfile] = useState<typeUserProfile>({
@@ -39,6 +72,10 @@ export default function Navbar() {
     } else {
       return null;
     }
+  };
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
   };
 
   useEffect(() => {
@@ -74,6 +111,10 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex md:flex-row items-center">
+          {/* Search Product Section */}
+          <div className="hidden md:flex md:flex-row items-center">
+            <Search placeholder="Search products..." />
+          </div>
           <ul className="md:flex md:flex-row items-center">
             <li>
               <Link href="/" className="mx-2 hover:underline">
@@ -235,7 +276,6 @@ export default function Navbar() {
             )}
           </ul>
         </nav>
-
         {/* Mobile dropdown */}
         <div className={`${open ? "block" : "hidden"} md:hidden w-full mt-3`}>
           <nav className="flex flex-col gap-2 bg-white/5 rounded-md p-3">

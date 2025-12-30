@@ -149,6 +149,7 @@ declare module "next-auth" {
 
   interface User {
     role?: "admin" | "user" | null | unknown;
+    // id?: string | undefined;
   }
 
   // declare module "next-auth" {

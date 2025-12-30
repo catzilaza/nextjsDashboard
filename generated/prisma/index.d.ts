@@ -79,6 +79,11 @@ export type File = $Result.DefaultSelection<Prisma.$FilePayload>
  */
 export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
 /**
+ * Model OrderDessert
+ * 
+ */
+export type OrderDessert = $Result.DefaultSelection<Prisma.$OrderDessertPayload>
+/**
  * Model OrderItem
  * 
  */
@@ -93,6 +98,36 @@ export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
  * 
  */
 export type Shipment = $Result.DefaultSelection<Prisma.$ShipmentPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const Plan: {
+  FREE: 'FREE',
+  PRO: 'PRO',
+  PREMIUM: 'PREMIUM'
+};
+
+export type Plan = (typeof Plan)[keyof typeof Plan]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
+
+export type Plan = $Enums.Plan
+
+export const Plan: typeof $Enums.Plan
 
 /**
  * ##  Prisma Client ʲˢ
@@ -348,6 +383,16 @@ export class PrismaClient<
     * ```
     */
   get order(): Prisma.OrderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.orderDessert`: Exposes CRUD operations for the **OrderDessert** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OrderDesserts
+    * const orderDesserts = await prisma.orderDessert.findMany()
+    * ```
+    */
+  get orderDessert(): Prisma.OrderDessertDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.orderItem`: Exposes CRUD operations for the **OrderItem** model.
@@ -831,6 +876,7 @@ export namespace Prisma {
     products_desserts: 'products_desserts',
     File: 'File',
     Order: 'Order',
+    OrderDessert: 'OrderDessert',
     OrderItem: 'OrderItem',
     Payment: 'Payment',
     Shipment: 'Shipment'
@@ -852,7 +898,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "customers" | "invoices" | "account" | "session" | "user" | "profile" | "post" | "category" | "categoriesOnPosts" | "revenue" | "products_desserts" | "file" | "order" | "orderItem" | "payment" | "shipment"
+      modelProps: "customers" | "invoices" | "account" | "session" | "user" | "profile" | "post" | "category" | "categoriesOnPosts" | "revenue" | "products_desserts" | "file" | "order" | "orderDessert" | "orderItem" | "payment" | "shipment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1818,6 +1864,80 @@ export namespace Prisma {
           }
         }
       }
+      OrderDessert: {
+        payload: Prisma.$OrderDessertPayload<ExtArgs>
+        fields: Prisma.OrderDessertFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OrderDessertFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OrderDessertFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>
+          }
+          findFirst: {
+            args: Prisma.OrderDessertFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OrderDessertFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>
+          }
+          findMany: {
+            args: Prisma.OrderDessertFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>[]
+          }
+          create: {
+            args: Prisma.OrderDessertCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>
+          }
+          createMany: {
+            args: Prisma.OrderDessertCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OrderDessertCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>[]
+          }
+          delete: {
+            args: Prisma.OrderDessertDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>
+          }
+          update: {
+            args: Prisma.OrderDessertUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>
+          }
+          deleteMany: {
+            args: Prisma.OrderDessertDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OrderDessertUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OrderDessertUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>[]
+          }
+          upsert: {
+            args: Prisma.OrderDessertUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderDessertPayload>
+          }
+          aggregate: {
+            args: Prisma.OrderDessertAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrderDessert>
+          }
+          groupBy: {
+            args: Prisma.OrderDessertGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrderDessertGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OrderDessertCountArgs<ExtArgs>
+            result: $Utils.Optional<OrderDessertCountAggregateOutputType> | number
+          }
+        }
+      }
       OrderItem: {
         payload: Prisma.$OrderItemPayload<ExtArgs>
         fields: Prisma.OrderItemFieldRefs
@@ -2137,6 +2257,7 @@ export namespace Prisma {
     products_desserts?: products_dessertsOmit
     file?: FileOmit
     order?: OrderOmit
+    orderDessert?: OrderDessertOmit
     orderItem?: OrderItemOmit
     payment?: PaymentOmit
     shipment?: ShipmentOmit
@@ -2395,10 +2516,12 @@ export namespace Prisma {
 
   export type Products_dessertsCountOutputType = {
     orderItems: number
+    order: number
   }
 
   export type Products_dessertsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orderItems?: boolean | Products_dessertsCountOutputTypeCountOrderItemsArgs
+    order?: boolean | Products_dessertsCountOutputTypeCountOrderArgs
   }
 
   // Custom InputTypes
@@ -2417,6 +2540,13 @@ export namespace Prisma {
    */
   export type Products_dessertsCountOutputTypeCountOrderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderItemWhereInput
+  }
+
+  /**
+   * Products_dessertsCountOutputType without action
+   */
+  export type Products_dessertsCountOutputTypeCountOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
   }
 
 
@@ -13763,6 +13893,7 @@ export namespace Prisma {
     status?: boolean
     date?: boolean
     orderItems?: boolean | products_desserts$orderItemsArgs<ExtArgs>
+    order?: boolean | products_desserts$orderArgs<ExtArgs>
     _count?: boolean | Products_dessertsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["products_desserts"]>
 
@@ -13802,6 +13933,7 @@ export namespace Prisma {
   export type products_dessertsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"dessert_id" | "name_eng" | "name" | "image_url" | "price" | "amount" | "status" | "date", ExtArgs["result"]["products_desserts"]>
   export type products_dessertsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orderItems?: boolean | products_desserts$orderItemsArgs<ExtArgs>
+    order?: boolean | products_desserts$orderArgs<ExtArgs>
     _count?: boolean | Products_dessertsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type products_dessertsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -13811,6 +13943,7 @@ export namespace Prisma {
     name: "products_desserts"
     objects: {
       orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
+      order: Prisma.$OrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       dessert_id: string
@@ -14216,6 +14349,7 @@ export namespace Prisma {
   export interface Prisma__products_dessertsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     orderItems<T extends products_desserts$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, products_desserts$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    order<T extends products_desserts$orderArgs<ExtArgs> = {}>(args?: Subset<T, products_desserts$orderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14662,6 +14796,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
+  }
+
+  /**
+   * products_desserts.order
+   */
+  export type products_desserts$orderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Order
+     */
+    omit?: OrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    cursor?: OrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
   }
 
   /**
@@ -15974,52 +16132,132 @@ export namespace Prisma {
 
   export type AggregateOrder = {
     _count: OrderCountAggregateOutputType | null
+    _avg: OrderAvgAggregateOutputType | null
+    _sum: OrderSumAggregateOutputType | null
     _min: OrderMinAggregateOutputType | null
     _max: OrderMaxAggregateOutputType | null
+  }
+
+  export type OrderAvgAggregateOutputType = {
+    quantity: number | null
+    price: Decimal | null
+    totalPrice: Decimal | null
+  }
+
+  export type OrderSumAggregateOutputType = {
+    quantity: number | null
+    price: Decimal | null
+    totalPrice: Decimal | null
   }
 
   export type OrderMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    userName: string | null
+    userEmail: string | null
+    productId: string | null
+    productName: string | null
+    productImage: string | null
+    quantity: number | null
+    price: Decimal | null
+    totalPrice: Decimal | null
     orderDate: Date | null
     status: string | null
+    stripe_session_id: string | null
   }
 
   export type OrderMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    userName: string | null
+    userEmail: string | null
+    productId: string | null
+    productName: string | null
+    productImage: string | null
+    quantity: number | null
+    price: Decimal | null
+    totalPrice: Decimal | null
     orderDate: Date | null
     status: string | null
+    stripe_session_id: string | null
   }
 
   export type OrderCountAggregateOutputType = {
     id: number
     userId: number
+    userName: number
+    userEmail: number
+    productId: number
+    productName: number
+    productImage: number
+    quantity: number
+    price: number
+    totalPrice: number
     orderDate: number
     status: number
+    stripe_session_id: number
     _all: number
   }
 
 
+  export type OrderAvgAggregateInputType = {
+    quantity?: true
+    price?: true
+    totalPrice?: true
+  }
+
+  export type OrderSumAggregateInputType = {
+    quantity?: true
+    price?: true
+    totalPrice?: true
+  }
+
   export type OrderMinAggregateInputType = {
     id?: true
     userId?: true
+    userName?: true
+    userEmail?: true
+    productId?: true
+    productName?: true
+    productImage?: true
+    quantity?: true
+    price?: true
+    totalPrice?: true
     orderDate?: true
     status?: true
+    stripe_session_id?: true
   }
 
   export type OrderMaxAggregateInputType = {
     id?: true
     userId?: true
+    userName?: true
+    userEmail?: true
+    productId?: true
+    productName?: true
+    productImage?: true
+    quantity?: true
+    price?: true
+    totalPrice?: true
     orderDate?: true
     status?: true
+    stripe_session_id?: true
   }
 
   export type OrderCountAggregateInputType = {
     id?: true
     userId?: true
+    userName?: true
+    userEmail?: true
+    productId?: true
+    productName?: true
+    productImage?: true
+    quantity?: true
+    price?: true
+    totalPrice?: true
     orderDate?: true
     status?: true
+    stripe_session_id?: true
     _all?: true
   }
 
@@ -16061,6 +16299,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: OrderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: OrderMinAggregateInputType
@@ -16091,6 +16341,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: OrderCountAggregateInputType | true
+    _avg?: OrderAvgAggregateInputType
+    _sum?: OrderSumAggregateInputType
     _min?: OrderMinAggregateInputType
     _max?: OrderMaxAggregateInputType
   }
@@ -16098,9 +16350,20 @@ export namespace Prisma {
   export type OrderGroupByOutputType = {
     id: string
     userId: string
-    orderDate: Date
-    status: string
+    userName: string | null
+    userEmail: string | null
+    productId: string
+    productName: string | null
+    productImage: string | null
+    quantity: number | null
+    price: Decimal | null
+    totalPrice: Decimal | null
+    orderDate: Date | null
+    status: string | null
+    stripe_session_id: string | null
     _count: OrderCountAggregateOutputType | null
+    _avg: OrderAvgAggregateOutputType | null
+    _sum: OrderSumAggregateOutputType | null
     _min: OrderMinAggregateOutputType | null
     _max: OrderMaxAggregateOutputType | null
   }
@@ -16122,9 +16385,19 @@ export namespace Prisma {
   export type OrderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    productImage?: boolean
+    quantity?: boolean
+    price?: boolean
+    totalPrice?: boolean
     orderDate?: boolean
     status?: boolean
+    stripe_session_id?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | products_dessertsDefaultArgs<ExtArgs>
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     payment?: boolean | Order$paymentArgs<ExtArgs>
     shipment?: boolean | Order$shipmentArgs<ExtArgs>
@@ -16134,29 +16407,59 @@ export namespace Prisma {
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    productImage?: boolean
+    quantity?: boolean
+    price?: boolean
+    totalPrice?: boolean
     orderDate?: boolean
     status?: boolean
+    stripe_session_id?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | products_dessertsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    productImage?: boolean
+    quantity?: boolean
+    price?: boolean
+    totalPrice?: boolean
     orderDate?: boolean
     status?: boolean
+    stripe_session_id?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | products_dessertsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
     id?: boolean
     userId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    productImage?: boolean
+    quantity?: boolean
+    price?: boolean
+    totalPrice?: boolean
     orderDate?: boolean
     status?: boolean
+    stripe_session_id?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderDate" | "status", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "userName" | "userEmail" | "productId" | "productName" | "productImage" | "quantity" | "price" | "totalPrice" | "orderDate" | "status" | "stripe_session_id", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | products_dessertsDefaultArgs<ExtArgs>
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     payment?: boolean | Order$paymentArgs<ExtArgs>
     shipment?: boolean | Order$shipmentArgs<ExtArgs>
@@ -16164,15 +16467,18 @@ export namespace Prisma {
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | products_dessertsDefaultArgs<ExtArgs>
   }
   export type OrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | products_dessertsDefaultArgs<ExtArgs>
   }
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Order"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      product: Prisma.$products_dessertsPayload<ExtArgs>
       orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
       payment: Prisma.$PaymentPayload<ExtArgs> | null
       shipment: Prisma.$ShipmentPayload<ExtArgs> | null
@@ -16180,8 +16486,17 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      orderDate: Date
-      status: string
+      userName: string | null
+      userEmail: string | null
+      productId: string
+      productName: string | null
+      productImage: string | null
+      quantity: number | null
+      price: Prisma.Decimal | null
+      totalPrice: Prisma.Decimal | null
+      orderDate: Date | null
+      status: string | null
+      stripe_session_id: string | null
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -16577,6 +16892,7 @@ export namespace Prisma {
   export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends products_dessertsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, products_dessertsDefaultArgs<ExtArgs>>): Prisma__products_dessertsClient<$Result.GetResult<Prisma.$products_dessertsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     orderItems<T extends Order$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Order$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payment<T extends Order$paymentArgs<ExtArgs> = {}>(args?: Subset<T, Order$paymentArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     shipment<T extends Order$shipmentArgs<ExtArgs> = {}>(args?: Subset<T, Order$shipmentArgs<ExtArgs>>): Prisma__ShipmentClient<$Result.GetResult<Prisma.$ShipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -16611,8 +16927,17 @@ export namespace Prisma {
   interface OrderFieldRefs {
     readonly id: FieldRef<"Order", 'String'>
     readonly userId: FieldRef<"Order", 'String'>
+    readonly userName: FieldRef<"Order", 'String'>
+    readonly userEmail: FieldRef<"Order", 'String'>
+    readonly productId: FieldRef<"Order", 'String'>
+    readonly productName: FieldRef<"Order", 'String'>
+    readonly productImage: FieldRef<"Order", 'String'>
+    readonly quantity: FieldRef<"Order", 'Int'>
+    readonly price: FieldRef<"Order", 'Decimal'>
+    readonly totalPrice: FieldRef<"Order", 'Decimal'>
     readonly orderDate: FieldRef<"Order", 'DateTime'>
     readonly status: FieldRef<"Order", 'String'>
+    readonly stripe_session_id: FieldRef<"Order", 'String'>
   }
     
 
@@ -17086,6 +17411,1108 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OrderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model OrderDessert
+   */
+
+  export type AggregateOrderDessert = {
+    _count: OrderDessertCountAggregateOutputType | null
+    _avg: OrderDessertAvgAggregateOutputType | null
+    _sum: OrderDessertSumAggregateOutputType | null
+    _min: OrderDessertMinAggregateOutputType | null
+    _max: OrderDessertMaxAggregateOutputType | null
+  }
+
+  export type OrderDessertAvgAggregateOutputType = {
+    price: number | null
+    quantity: number | null
+    totalPrice: number | null
+  }
+
+  export type OrderDessertSumAggregateOutputType = {
+    price: number | null
+    quantity: number | null
+    totalPrice: number | null
+  }
+
+  export type OrderDessertMinAggregateOutputType = {
+    id: string | null
+    stripSessionId: string | null
+    userName: string | null
+    userEmail: string | null
+    productId: string | null
+    productName: string | null
+    price: number | null
+    quantity: number | null
+    totalPrice: number | null
+    createdAt: Date | null
+  }
+
+  export type OrderDessertMaxAggregateOutputType = {
+    id: string | null
+    stripSessionId: string | null
+    userName: string | null
+    userEmail: string | null
+    productId: string | null
+    productName: string | null
+    price: number | null
+    quantity: number | null
+    totalPrice: number | null
+    createdAt: Date | null
+  }
+
+  export type OrderDessertCountAggregateOutputType = {
+    id: number
+    stripSessionId: number
+    userName: number
+    userEmail: number
+    productId: number
+    productName: number
+    price: number
+    quantity: number
+    totalPrice: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type OrderDessertAvgAggregateInputType = {
+    price?: true
+    quantity?: true
+    totalPrice?: true
+  }
+
+  export type OrderDessertSumAggregateInputType = {
+    price?: true
+    quantity?: true
+    totalPrice?: true
+  }
+
+  export type OrderDessertMinAggregateInputType = {
+    id?: true
+    stripSessionId?: true
+    userName?: true
+    userEmail?: true
+    productId?: true
+    productName?: true
+    price?: true
+    quantity?: true
+    totalPrice?: true
+    createdAt?: true
+  }
+
+  export type OrderDessertMaxAggregateInputType = {
+    id?: true
+    stripSessionId?: true
+    userName?: true
+    userEmail?: true
+    productId?: true
+    productName?: true
+    price?: true
+    quantity?: true
+    totalPrice?: true
+    createdAt?: true
+  }
+
+  export type OrderDessertCountAggregateInputType = {
+    id?: true
+    stripSessionId?: true
+    userName?: true
+    userEmail?: true
+    productId?: true
+    productName?: true
+    price?: true
+    quantity?: true
+    totalPrice?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type OrderDessertAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderDessert to aggregate.
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderDesserts to fetch.
+     */
+    orderBy?: OrderDessertOrderByWithRelationInput | OrderDessertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrderDessertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderDesserts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderDesserts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OrderDesserts
+    **/
+    _count?: true | OrderDessertCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrderDessertAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrderDessertSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrderDessertMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrderDessertMaxAggregateInputType
+  }
+
+  export type GetOrderDessertAggregateType<T extends OrderDessertAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrderDessert]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrderDessert[P]>
+      : GetScalarType<T[P], AggregateOrderDessert[P]>
+  }
+
+
+
+
+  export type OrderDessertGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderDessertWhereInput
+    orderBy?: OrderDessertOrderByWithAggregationInput | OrderDessertOrderByWithAggregationInput[]
+    by: OrderDessertScalarFieldEnum[] | OrderDessertScalarFieldEnum
+    having?: OrderDessertScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrderDessertCountAggregateInputType | true
+    _avg?: OrderDessertAvgAggregateInputType
+    _sum?: OrderDessertSumAggregateInputType
+    _min?: OrderDessertMinAggregateInputType
+    _max?: OrderDessertMaxAggregateInputType
+  }
+
+  export type OrderDessertGroupByOutputType = {
+    id: string
+    stripSessionId: string | null
+    userName: string | null
+    userEmail: string | null
+    productId: string | null
+    productName: string | null
+    price: number | null
+    quantity: number | null
+    totalPrice: number | null
+    createdAt: Date
+    _count: OrderDessertCountAggregateOutputType | null
+    _avg: OrderDessertAvgAggregateOutputType | null
+    _sum: OrderDessertSumAggregateOutputType | null
+    _min: OrderDessertMinAggregateOutputType | null
+    _max: OrderDessertMaxAggregateOutputType | null
+  }
+
+  type GetOrderDessertGroupByPayload<T extends OrderDessertGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrderDessertGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrderDessertGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrderDessertGroupByOutputType[P]>
+            : GetScalarType<T[P], OrderDessertGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrderDessertSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stripSessionId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    price?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["orderDessert"]>
+
+  export type OrderDessertSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stripSessionId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    price?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["orderDessert"]>
+
+  export type OrderDessertSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    stripSessionId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    price?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["orderDessert"]>
+
+  export type OrderDessertSelectScalar = {
+    id?: boolean
+    stripSessionId?: boolean
+    userName?: boolean
+    userEmail?: boolean
+    productId?: boolean
+    productName?: boolean
+    price?: boolean
+    quantity?: boolean
+    totalPrice?: boolean
+    createdAt?: boolean
+  }
+
+  export type OrderDessertOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "stripSessionId" | "userName" | "userEmail" | "productId" | "productName" | "price" | "quantity" | "totalPrice" | "createdAt", ExtArgs["result"]["orderDessert"]>
+
+  export type $OrderDessertPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OrderDessert"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      stripSessionId: string | null
+      userName: string | null
+      userEmail: string | null
+      productId: string | null
+      productName: string | null
+      price: number | null
+      quantity: number | null
+      totalPrice: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["orderDessert"]>
+    composites: {}
+  }
+
+  type OrderDessertGetPayload<S extends boolean | null | undefined | OrderDessertDefaultArgs> = $Result.GetResult<Prisma.$OrderDessertPayload, S>
+
+  type OrderDessertCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OrderDessertFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OrderDessertCountAggregateInputType | true
+    }
+
+  export interface OrderDessertDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OrderDessert'], meta: { name: 'OrderDessert' } }
+    /**
+     * Find zero or one OrderDessert that matches the filter.
+     * @param {OrderDessertFindUniqueArgs} args - Arguments to find a OrderDessert
+     * @example
+     * // Get one OrderDessert
+     * const orderDessert = await prisma.orderDessert.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OrderDessertFindUniqueArgs>(args: SelectSubset<T, OrderDessertFindUniqueArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OrderDessert that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OrderDessertFindUniqueOrThrowArgs} args - Arguments to find a OrderDessert
+     * @example
+     * // Get one OrderDessert
+     * const orderDessert = await prisma.orderDessert.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OrderDessertFindUniqueOrThrowArgs>(args: SelectSubset<T, OrderDessertFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OrderDessert that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertFindFirstArgs} args - Arguments to find a OrderDessert
+     * @example
+     * // Get one OrderDessert
+     * const orderDessert = await prisma.orderDessert.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OrderDessertFindFirstArgs>(args?: SelectSubset<T, OrderDessertFindFirstArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OrderDessert that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertFindFirstOrThrowArgs} args - Arguments to find a OrderDessert
+     * @example
+     * // Get one OrderDessert
+     * const orderDessert = await prisma.orderDessert.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OrderDessertFindFirstOrThrowArgs>(args?: SelectSubset<T, OrderDessertFindFirstOrThrowArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OrderDesserts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OrderDesserts
+     * const orderDesserts = await prisma.orderDessert.findMany()
+     * 
+     * // Get first 10 OrderDesserts
+     * const orderDesserts = await prisma.orderDessert.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const orderDessertWithIdOnly = await prisma.orderDessert.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OrderDessertFindManyArgs>(args?: SelectSubset<T, OrderDessertFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OrderDessert.
+     * @param {OrderDessertCreateArgs} args - Arguments to create a OrderDessert.
+     * @example
+     * // Create one OrderDessert
+     * const OrderDessert = await prisma.orderDessert.create({
+     *   data: {
+     *     // ... data to create a OrderDessert
+     *   }
+     * })
+     * 
+     */
+    create<T extends OrderDessertCreateArgs>(args: SelectSubset<T, OrderDessertCreateArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OrderDesserts.
+     * @param {OrderDessertCreateManyArgs} args - Arguments to create many OrderDesserts.
+     * @example
+     * // Create many OrderDesserts
+     * const orderDessert = await prisma.orderDessert.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OrderDessertCreateManyArgs>(args?: SelectSubset<T, OrderDessertCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OrderDesserts and returns the data saved in the database.
+     * @param {OrderDessertCreateManyAndReturnArgs} args - Arguments to create many OrderDesserts.
+     * @example
+     * // Create many OrderDesserts
+     * const orderDessert = await prisma.orderDessert.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OrderDesserts and only return the `id`
+     * const orderDessertWithIdOnly = await prisma.orderDessert.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OrderDessertCreateManyAndReturnArgs>(args?: SelectSubset<T, OrderDessertCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OrderDessert.
+     * @param {OrderDessertDeleteArgs} args - Arguments to delete one OrderDessert.
+     * @example
+     * // Delete one OrderDessert
+     * const OrderDessert = await prisma.orderDessert.delete({
+     *   where: {
+     *     // ... filter to delete one OrderDessert
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OrderDessertDeleteArgs>(args: SelectSubset<T, OrderDessertDeleteArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OrderDessert.
+     * @param {OrderDessertUpdateArgs} args - Arguments to update one OrderDessert.
+     * @example
+     * // Update one OrderDessert
+     * const orderDessert = await prisma.orderDessert.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OrderDessertUpdateArgs>(args: SelectSubset<T, OrderDessertUpdateArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OrderDesserts.
+     * @param {OrderDessertDeleteManyArgs} args - Arguments to filter OrderDesserts to delete.
+     * @example
+     * // Delete a few OrderDesserts
+     * const { count } = await prisma.orderDessert.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OrderDessertDeleteManyArgs>(args?: SelectSubset<T, OrderDessertDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrderDesserts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OrderDesserts
+     * const orderDessert = await prisma.orderDessert.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OrderDessertUpdateManyArgs>(args: SelectSubset<T, OrderDessertUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrderDesserts and returns the data updated in the database.
+     * @param {OrderDessertUpdateManyAndReturnArgs} args - Arguments to update many OrderDesserts.
+     * @example
+     * // Update many OrderDesserts
+     * const orderDessert = await prisma.orderDessert.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OrderDesserts and only return the `id`
+     * const orderDessertWithIdOnly = await prisma.orderDessert.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OrderDessertUpdateManyAndReturnArgs>(args: SelectSubset<T, OrderDessertUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OrderDessert.
+     * @param {OrderDessertUpsertArgs} args - Arguments to update or create a OrderDessert.
+     * @example
+     * // Update or create a OrderDessert
+     * const orderDessert = await prisma.orderDessert.upsert({
+     *   create: {
+     *     // ... data to create a OrderDessert
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OrderDessert we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OrderDessertUpsertArgs>(args: SelectSubset<T, OrderDessertUpsertArgs<ExtArgs>>): Prisma__OrderDessertClient<$Result.GetResult<Prisma.$OrderDessertPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OrderDesserts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertCountArgs} args - Arguments to filter OrderDesserts to count.
+     * @example
+     * // Count the number of OrderDesserts
+     * const count = await prisma.orderDessert.count({
+     *   where: {
+     *     // ... the filter for the OrderDesserts we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrderDessertCountArgs>(
+      args?: Subset<T, OrderDessertCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrderDessertCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OrderDessert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrderDessertAggregateArgs>(args: Subset<T, OrderDessertAggregateArgs>): Prisma.PrismaPromise<GetOrderDessertAggregateType<T>>
+
+    /**
+     * Group by OrderDessert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderDessertGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrderDessertGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrderDessertGroupByArgs['orderBy'] }
+        : { orderBy?: OrderDessertGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrderDessertGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderDessertGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OrderDessert model
+   */
+  readonly fields: OrderDessertFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OrderDessert.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrderDessertClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OrderDessert model
+   */
+  interface OrderDessertFieldRefs {
+    readonly id: FieldRef<"OrderDessert", 'String'>
+    readonly stripSessionId: FieldRef<"OrderDessert", 'String'>
+    readonly userName: FieldRef<"OrderDessert", 'String'>
+    readonly userEmail: FieldRef<"OrderDessert", 'String'>
+    readonly productId: FieldRef<"OrderDessert", 'String'>
+    readonly productName: FieldRef<"OrderDessert", 'String'>
+    readonly price: FieldRef<"OrderDessert", 'Int'>
+    readonly quantity: FieldRef<"OrderDessert", 'Int'>
+    readonly totalPrice: FieldRef<"OrderDessert", 'Int'>
+    readonly createdAt: FieldRef<"OrderDessert", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OrderDessert findUnique
+   */
+  export type OrderDessertFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * Filter, which OrderDessert to fetch.
+     */
+    where: OrderDessertWhereUniqueInput
+  }
+
+  /**
+   * OrderDessert findUniqueOrThrow
+   */
+  export type OrderDessertFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * Filter, which OrderDessert to fetch.
+     */
+    where: OrderDessertWhereUniqueInput
+  }
+
+  /**
+   * OrderDessert findFirst
+   */
+  export type OrderDessertFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * Filter, which OrderDessert to fetch.
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderDesserts to fetch.
+     */
+    orderBy?: OrderDessertOrderByWithRelationInput | OrderDessertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderDesserts.
+     */
+    cursor?: OrderDessertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderDesserts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderDesserts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderDesserts.
+     */
+    distinct?: OrderDessertScalarFieldEnum | OrderDessertScalarFieldEnum[]
+  }
+
+  /**
+   * OrderDessert findFirstOrThrow
+   */
+  export type OrderDessertFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * Filter, which OrderDessert to fetch.
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderDesserts to fetch.
+     */
+    orderBy?: OrderDessertOrderByWithRelationInput | OrderDessertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderDesserts.
+     */
+    cursor?: OrderDessertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderDesserts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderDesserts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderDesserts.
+     */
+    distinct?: OrderDessertScalarFieldEnum | OrderDessertScalarFieldEnum[]
+  }
+
+  /**
+   * OrderDessert findMany
+   */
+  export type OrderDessertFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * Filter, which OrderDesserts to fetch.
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderDesserts to fetch.
+     */
+    orderBy?: OrderDessertOrderByWithRelationInput | OrderDessertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OrderDesserts.
+     */
+    cursor?: OrderDessertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderDesserts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderDesserts.
+     */
+    skip?: number
+    distinct?: OrderDessertScalarFieldEnum | OrderDessertScalarFieldEnum[]
+  }
+
+  /**
+   * OrderDessert create
+   */
+  export type OrderDessertCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * The data needed to create a OrderDessert.
+     */
+    data?: XOR<OrderDessertCreateInput, OrderDessertUncheckedCreateInput>
+  }
+
+  /**
+   * OrderDessert createMany
+   */
+  export type OrderDessertCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OrderDesserts.
+     */
+    data: OrderDessertCreateManyInput | OrderDessertCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OrderDessert createManyAndReturn
+   */
+  export type OrderDessertCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * The data used to create many OrderDesserts.
+     */
+    data: OrderDessertCreateManyInput | OrderDessertCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OrderDessert update
+   */
+  export type OrderDessertUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * The data needed to update a OrderDessert.
+     */
+    data: XOR<OrderDessertUpdateInput, OrderDessertUncheckedUpdateInput>
+    /**
+     * Choose, which OrderDessert to update.
+     */
+    where: OrderDessertWhereUniqueInput
+  }
+
+  /**
+   * OrderDessert updateMany
+   */
+  export type OrderDessertUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OrderDesserts.
+     */
+    data: XOR<OrderDessertUpdateManyMutationInput, OrderDessertUncheckedUpdateManyInput>
+    /**
+     * Filter which OrderDesserts to update
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * Limit how many OrderDesserts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrderDessert updateManyAndReturn
+   */
+  export type OrderDessertUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * The data used to update OrderDesserts.
+     */
+    data: XOR<OrderDessertUpdateManyMutationInput, OrderDessertUncheckedUpdateManyInput>
+    /**
+     * Filter which OrderDesserts to update
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * Limit how many OrderDesserts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrderDessert upsert
+   */
+  export type OrderDessertUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * The filter to search for the OrderDessert to update in case it exists.
+     */
+    where: OrderDessertWhereUniqueInput
+    /**
+     * In case the OrderDessert found by the `where` argument doesn't exist, create a new OrderDessert with this data.
+     */
+    create: XOR<OrderDessertCreateInput, OrderDessertUncheckedCreateInput>
+    /**
+     * In case the OrderDessert was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrderDessertUpdateInput, OrderDessertUncheckedUpdateInput>
+  }
+
+  /**
+   * OrderDessert delete
+   */
+  export type OrderDessertDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
+    /**
+     * Filter which OrderDessert to delete.
+     */
+    where: OrderDessertWhereUniqueInput
+  }
+
+  /**
+   * OrderDessert deleteMany
+   */
+  export type OrderDessertDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderDesserts to delete
+     */
+    where?: OrderDessertWhereInput
+    /**
+     * Limit how many OrderDesserts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrderDessert without action
+   */
+  export type OrderDessertDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDessert
+     */
+    select?: OrderDessertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDessert
+     */
+    omit?: OrderDessertOmit<ExtArgs> | null
   }
 
 
@@ -20491,11 +21918,36 @@ export namespace Prisma {
   export const OrderScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    userName: 'userName',
+    userEmail: 'userEmail',
+    productId: 'productId',
+    productName: 'productName',
+    productImage: 'productImage',
+    quantity: 'quantity',
+    price: 'price',
+    totalPrice: 'totalPrice',
     orderDate: 'orderDate',
-    status: 'status'
+    status: 'status',
+    stripe_session_id: 'stripe_session_id'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+  export const OrderDessertScalarFieldEnum: {
+    id: 'id',
+    stripSessionId: 'stripSessionId',
+    userName: 'userName',
+    userEmail: 'userEmail',
+    productId: 'productId',
+    productName: 'productName',
+    price: 'price',
+    quantity: 'quantity',
+    totalPrice: 'totalPrice',
+    createdAt: 'createdAt'
+  };
+
+  export type OrderDessertScalarFieldEnum = (typeof OrderDessertScalarFieldEnum)[keyof typeof OrderDessertScalarFieldEnum]
 
 
   export const OrderItemScalarFieldEnum: {
@@ -21308,6 +22760,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"products_desserts"> | string | null
     date?: DateTimeFilter<"products_desserts"> | Date | string
     orderItems?: OrderItemListRelationFilter
+    order?: OrderListRelationFilter
   }
 
   export type products_dessertsOrderByWithRelationInput = {
@@ -21320,6 +22773,7 @@ export namespace Prisma {
     status?: SortOrderInput | SortOrder
     date?: SortOrder
     orderItems?: OrderItemOrderByRelationAggregateInput
+    order?: OrderOrderByRelationAggregateInput
   }
 
   export type products_dessertsWhereUniqueInput = Prisma.AtLeast<{
@@ -21335,6 +22789,7 @@ export namespace Prisma {
     status?: StringNullableFilter<"products_desserts"> | string | null
     date?: DateTimeFilter<"products_desserts"> | Date | string
     orderItems?: OrderItemListRelationFilter
+    order?: OrderListRelationFilter
   }, "dessert_id">
 
   export type products_dessertsOrderByWithAggregationInput = {
@@ -21481,9 +22936,19 @@ export namespace Prisma {
     NOT?: OrderWhereInput | OrderWhereInput[]
     id?: StringFilter<"Order"> | string
     userId?: StringFilter<"Order"> | string
-    orderDate?: DateTimeFilter<"Order"> | Date | string
-    status?: StringFilter<"Order"> | string
+    userName?: StringNullableFilter<"Order"> | string | null
+    userEmail?: StringNullableFilter<"Order"> | string | null
+    productId?: UuidFilter<"Order"> | string
+    productName?: StringNullableFilter<"Order"> | string | null
+    productImage?: StringNullableFilter<"Order"> | string | null
+    quantity?: IntNullableFilter<"Order"> | number | null
+    price?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    orderDate?: DateTimeNullableFilter<"Order"> | Date | string | null
+    status?: StringNullableFilter<"Order"> | string | null
+    stripe_session_id?: StringNullableFilter<"Order"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    product?: XOR<Products_dessertsScalarRelationFilter, products_dessertsWhereInput>
     orderItems?: OrderItemListRelationFilter
     payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
     shipment?: XOR<ShipmentNullableScalarRelationFilter, ShipmentWhereInput> | null
@@ -21492,9 +22957,19 @@ export namespace Prisma {
   export type OrderOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    orderDate?: SortOrder
-    status?: SortOrder
+    userName?: SortOrderInput | SortOrder
+    userEmail?: SortOrderInput | SortOrder
+    productId?: SortOrder
+    productName?: SortOrderInput | SortOrder
+    productImage?: SortOrderInput | SortOrder
+    quantity?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    totalPrice?: SortOrderInput | SortOrder
+    orderDate?: SortOrderInput | SortOrder
+    status?: SortOrderInput | SortOrder
+    stripe_session_id?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
+    product?: products_dessertsOrderByWithRelationInput
     orderItems?: OrderItemOrderByRelationAggregateInput
     payment?: PaymentOrderByWithRelationInput
     shipment?: ShipmentOrderByWithRelationInput
@@ -21506,9 +22981,19 @@ export namespace Prisma {
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
     userId?: StringFilter<"Order"> | string
-    orderDate?: DateTimeFilter<"Order"> | Date | string
-    status?: StringFilter<"Order"> | string
+    userName?: StringNullableFilter<"Order"> | string | null
+    userEmail?: StringNullableFilter<"Order"> | string | null
+    productId?: UuidFilter<"Order"> | string
+    productName?: StringNullableFilter<"Order"> | string | null
+    productImage?: StringNullableFilter<"Order"> | string | null
+    quantity?: IntNullableFilter<"Order"> | number | null
+    price?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    orderDate?: DateTimeNullableFilter<"Order"> | Date | string | null
+    status?: StringNullableFilter<"Order"> | string | null
+    stripe_session_id?: StringNullableFilter<"Order"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    product?: XOR<Products_dessertsScalarRelationFilter, products_dessertsWhereInput>
     orderItems?: OrderItemListRelationFilter
     payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
     shipment?: XOR<ShipmentNullableScalarRelationFilter, ShipmentWhereInput> | null
@@ -21517,11 +23002,22 @@ export namespace Prisma {
   export type OrderOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    orderDate?: SortOrder
-    status?: SortOrder
+    userName?: SortOrderInput | SortOrder
+    userEmail?: SortOrderInput | SortOrder
+    productId?: SortOrder
+    productName?: SortOrderInput | SortOrder
+    productImage?: SortOrderInput | SortOrder
+    quantity?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    totalPrice?: SortOrderInput | SortOrder
+    orderDate?: SortOrderInput | SortOrder
+    status?: SortOrderInput | SortOrder
+    stripe_session_id?: SortOrderInput | SortOrder
     _count?: OrderCountOrderByAggregateInput
+    _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
     _min?: OrderMinOrderByAggregateInput
+    _sum?: OrderSumOrderByAggregateInput
   }
 
   export type OrderScalarWhereWithAggregatesInput = {
@@ -21530,8 +23026,96 @@ export namespace Prisma {
     NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Order"> | string
     userId?: StringWithAggregatesFilter<"Order"> | string
-    orderDate?: DateTimeWithAggregatesFilter<"Order"> | Date | string
-    status?: StringWithAggregatesFilter<"Order"> | string
+    userName?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    userEmail?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    productId?: UuidWithAggregatesFilter<"Order"> | string
+    productName?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    productImage?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    quantity?: IntNullableWithAggregatesFilter<"Order"> | number | null
+    price?: DecimalNullableWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: DecimalNullableWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    orderDate?: DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+    status?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    stripe_session_id?: StringNullableWithAggregatesFilter<"Order"> | string | null
+  }
+
+  export type OrderDessertWhereInput = {
+    AND?: OrderDessertWhereInput | OrderDessertWhereInput[]
+    OR?: OrderDessertWhereInput[]
+    NOT?: OrderDessertWhereInput | OrderDessertWhereInput[]
+    id?: UuidFilter<"OrderDessert"> | string
+    stripSessionId?: StringNullableFilter<"OrderDessert"> | string | null
+    userName?: StringNullableFilter<"OrderDessert"> | string | null
+    userEmail?: StringNullableFilter<"OrderDessert"> | string | null
+    productId?: StringNullableFilter<"OrderDessert"> | string | null
+    productName?: StringNullableFilter<"OrderDessert"> | string | null
+    price?: IntNullableFilter<"OrderDessert"> | number | null
+    quantity?: IntNullableFilter<"OrderDessert"> | number | null
+    totalPrice?: IntNullableFilter<"OrderDessert"> | number | null
+    createdAt?: DateTimeFilter<"OrderDessert"> | Date | string
+  }
+
+  export type OrderDessertOrderByWithRelationInput = {
+    id?: SortOrder
+    stripSessionId?: SortOrderInput | SortOrder
+    userName?: SortOrderInput | SortOrder
+    userEmail?: SortOrderInput | SortOrder
+    productId?: SortOrderInput | SortOrder
+    productName?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    quantity?: SortOrderInput | SortOrder
+    totalPrice?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderDessertWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: OrderDessertWhereInput | OrderDessertWhereInput[]
+    OR?: OrderDessertWhereInput[]
+    NOT?: OrderDessertWhereInput | OrderDessertWhereInput[]
+    stripSessionId?: StringNullableFilter<"OrderDessert"> | string | null
+    userName?: StringNullableFilter<"OrderDessert"> | string | null
+    userEmail?: StringNullableFilter<"OrderDessert"> | string | null
+    productId?: StringNullableFilter<"OrderDessert"> | string | null
+    productName?: StringNullableFilter<"OrderDessert"> | string | null
+    price?: IntNullableFilter<"OrderDessert"> | number | null
+    quantity?: IntNullableFilter<"OrderDessert"> | number | null
+    totalPrice?: IntNullableFilter<"OrderDessert"> | number | null
+    createdAt?: DateTimeFilter<"OrderDessert"> | Date | string
+  }, "id">
+
+  export type OrderDessertOrderByWithAggregationInput = {
+    id?: SortOrder
+    stripSessionId?: SortOrderInput | SortOrder
+    userName?: SortOrderInput | SortOrder
+    userEmail?: SortOrderInput | SortOrder
+    productId?: SortOrderInput | SortOrder
+    productName?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    quantity?: SortOrderInput | SortOrder
+    totalPrice?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: OrderDessertCountOrderByAggregateInput
+    _avg?: OrderDessertAvgOrderByAggregateInput
+    _max?: OrderDessertMaxOrderByAggregateInput
+    _min?: OrderDessertMinOrderByAggregateInput
+    _sum?: OrderDessertSumOrderByAggregateInput
+  }
+
+  export type OrderDessertScalarWhereWithAggregatesInput = {
+    AND?: OrderDessertScalarWhereWithAggregatesInput | OrderDessertScalarWhereWithAggregatesInput[]
+    OR?: OrderDessertScalarWhereWithAggregatesInput[]
+    NOT?: OrderDessertScalarWhereWithAggregatesInput | OrderDessertScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"OrderDessert"> | string
+    stripSessionId?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
+    userName?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
+    userEmail?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
+    productId?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
+    productName?: StringNullableWithAggregatesFilter<"OrderDessert"> | string | null
+    price?: IntNullableWithAggregatesFilter<"OrderDessert"> | number | null
+    quantity?: IntNullableWithAggregatesFilter<"OrderDessert"> | number | null
+    totalPrice?: IntNullableWithAggregatesFilter<"OrderDessert"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"OrderDessert"> | Date | string
   }
 
   export type OrderItemWhereInput = {
@@ -22386,6 +23970,7 @@ export namespace Prisma {
     status?: string | null
     date: Date | string
     orderItems?: OrderItemCreateNestedManyWithoutProductDessertsInput
+    order?: OrderCreateNestedManyWithoutProductInput
   }
 
   export type products_dessertsUncheckedCreateInput = {
@@ -22398,6 +23983,7 @@ export namespace Prisma {
     status?: string | null
     date: Date | string
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductDessertsInput
+    order?: OrderUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type products_dessertsUpdateInput = {
@@ -22410,6 +23996,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     orderItems?: OrderItemUpdateManyWithoutProductDessertsNestedInput
+    order?: OrderUpdateManyWithoutProductNestedInput
   }
 
   export type products_dessertsUncheckedUpdateInput = {
@@ -22422,6 +24009,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductDessertsNestedInput
+    order?: OrderUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type products_dessertsCreateManyInput = {
@@ -22580,9 +24168,18 @@ export namespace Prisma {
 
   export type OrderCreateInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
+    product: products_dessertsCreateNestedOneWithoutOrderInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payment?: PaymentCreateNestedOneWithoutOrderInput
     shipment?: ShipmentCreateNestedOneWithoutOrderInput
@@ -22591,8 +24188,17 @@ export namespace Prisma {
   export type OrderUncheckedCreateInput = {
     id?: string
     userId: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
     payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
     shipment?: ShipmentUncheckedCreateNestedOneWithoutOrderInput
@@ -22600,9 +24206,18 @@ export namespace Prisma {
 
   export type OrderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    product?: products_dessertsUpdateOneRequiredWithoutOrderNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
     shipment?: ShipmentUpdateOneWithoutOrderNestedInput
@@ -22611,8 +24226,17 @@ export namespace Prisma {
   export type OrderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
     shipment?: ShipmentUncheckedUpdateOneWithoutOrderNestedInput
@@ -22621,21 +24245,138 @@ export namespace Prisma {
   export type OrderCreateManyInput = {
     id?: string
     userId: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
   }
 
   export type OrderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderDessertCreateInput = {
+    id?: string
+    stripSessionId?: string | null
+    userName?: string | null
+    userEmail?: string | null
+    productId?: string | null
+    productName?: string | null
+    price?: number | null
+    quantity?: number | null
+    totalPrice?: number | null
+    createdAt?: Date | string
+  }
+
+  export type OrderDessertUncheckedCreateInput = {
+    id?: string
+    stripSessionId?: string | null
+    userName?: string | null
+    userEmail?: string | null
+    productId?: string | null
+    productName?: string | null
+    price?: number | null
+    quantity?: number | null
+    totalPrice?: number | null
+    createdAt?: Date | string
+  }
+
+  export type OrderDessertUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderDessertUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderDessertCreateManyInput = {
+    id?: string
+    stripSessionId?: string | null
+    userName?: string | null
+    userEmail?: string | null
+    productId?: string | null
+    productName?: string | null
+    price?: number | null
+    quantity?: number | null
+    totalPrice?: number | null
+    createdAt?: Date | string
+  }
+
+  export type OrderDessertUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderDessertUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stripSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    totalPrice?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderItemCreateInput = {
@@ -23558,6 +25299,22 @@ export namespace Prisma {
     size?: SortOrder
   }
 
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type Products_dessertsScalarRelationFilter = {
+    is?: products_dessertsWhereInput
+    isNot?: products_dessertsWhereInput
+  }
+
   export type PaymentNullableScalarRelationFilter = {
     is?: PaymentWhereInput | null
     isNot?: PaymentWhereInput | null
@@ -23571,22 +25328,128 @@ export namespace Prisma {
   export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    userName?: SortOrder
+    userEmail?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    productImage?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    totalPrice?: SortOrder
     orderDate?: SortOrder
     status?: SortOrder
+    stripe_session_id?: SortOrder
+  }
+
+  export type OrderAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+    price?: SortOrder
+    totalPrice?: SortOrder
   }
 
   export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    userName?: SortOrder
+    userEmail?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    productImage?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    totalPrice?: SortOrder
     orderDate?: SortOrder
     status?: SortOrder
+    stripe_session_id?: SortOrder
   }
 
   export type OrderMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    userName?: SortOrder
+    userEmail?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    productImage?: SortOrder
+    quantity?: SortOrder
+    price?: SortOrder
+    totalPrice?: SortOrder
     orderDate?: SortOrder
     status?: SortOrder
+    stripe_session_id?: SortOrder
+  }
+
+  export type OrderSumOrderByAggregateInput = {
+    quantity?: SortOrder
+    price?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type OrderDessertCountOrderByAggregateInput = {
+    id?: SortOrder
+    stripSessionId?: SortOrder
+    userName?: SortOrder
+    userEmail?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    price?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderDessertAvgOrderByAggregateInput = {
+    price?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+  }
+
+  export type OrderDessertMaxOrderByAggregateInput = {
+    id?: SortOrder
+    stripSessionId?: SortOrder
+    userName?: SortOrder
+    userEmail?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    price?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderDessertMinOrderByAggregateInput = {
+    id?: SortOrder
+    stripSessionId?: SortOrder
+    userName?: SortOrder
+    userEmail?: SortOrder
+    productId?: SortOrder
+    productName?: SortOrder
+    price?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderDessertSumOrderByAggregateInput = {
+    price?: SortOrder
+    quantity?: SortOrder
+    totalPrice?: SortOrder
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
@@ -23603,11 +25466,6 @@ export namespace Prisma {
   export type OrderScalarRelationFilter = {
     is?: OrderWhereInput
     isNot?: OrderWhereInput
-  }
-
-  export type Products_dessertsScalarRelationFilter = {
-    is?: products_dessertsWhereInput
-    isNot?: products_dessertsWhereInput
   }
 
   export type OrderItemCountOrderByAggregateInput = {
@@ -24225,11 +26083,25 @@ export namespace Prisma {
     connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
   }
 
+  export type OrderCreateNestedManyWithoutProductInput = {
+    create?: XOR<OrderCreateWithoutProductInput, OrderUncheckedCreateWithoutProductInput> | OrderCreateWithoutProductInput[] | OrderUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutProductInput | OrderCreateOrConnectWithoutProductInput[]
+    createMany?: OrderCreateManyProductInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
   export type OrderItemUncheckedCreateNestedManyWithoutProductDessertsInput = {
     create?: XOR<OrderItemCreateWithoutProductDessertsInput, OrderItemUncheckedCreateWithoutProductDessertsInput> | OrderItemCreateWithoutProductDessertsInput[] | OrderItemUncheckedCreateWithoutProductDessertsInput[]
     connectOrCreate?: OrderItemCreateOrConnectWithoutProductDessertsInput | OrderItemCreateOrConnectWithoutProductDessertsInput[]
     createMany?: OrderItemCreateManyProductDessertsInputEnvelope
     connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+  }
+
+  export type OrderUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<OrderCreateWithoutProductInput, OrderUncheckedCreateWithoutProductInput> | OrderCreateWithoutProductInput[] | OrderUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutProductInput | OrderCreateOrConnectWithoutProductInput[]
+    createMany?: OrderCreateManyProductInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
   export type OrderItemUpdateManyWithoutProductDessertsNestedInput = {
@@ -24246,6 +26118,20 @@ export namespace Prisma {
     deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
   }
 
+  export type OrderUpdateManyWithoutProductNestedInput = {
+    create?: XOR<OrderCreateWithoutProductInput, OrderUncheckedCreateWithoutProductInput> | OrderCreateWithoutProductInput[] | OrderUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutProductInput | OrderCreateOrConnectWithoutProductInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutProductInput | OrderUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: OrderCreateManyProductInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutProductInput | OrderUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutProductInput | OrderUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
   export type OrderItemUncheckedUpdateManyWithoutProductDessertsNestedInput = {
     create?: XOR<OrderItemCreateWithoutProductDessertsInput, OrderItemUncheckedCreateWithoutProductDessertsInput> | OrderItemCreateWithoutProductDessertsInput[] | OrderItemUncheckedCreateWithoutProductDessertsInput[]
     connectOrCreate?: OrderItemCreateOrConnectWithoutProductDessertsInput | OrderItemCreateOrConnectWithoutProductDessertsInput[]
@@ -24258,6 +26144,20 @@ export namespace Prisma {
     update?: OrderItemUpdateWithWhereUniqueWithoutProductDessertsInput | OrderItemUpdateWithWhereUniqueWithoutProductDessertsInput[]
     updateMany?: OrderItemUpdateManyWithWhereWithoutProductDessertsInput | OrderItemUpdateManyWithWhereWithoutProductDessertsInput[]
     deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+  }
+
+  export type OrderUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<OrderCreateWithoutProductInput, OrderUncheckedCreateWithoutProductInput> | OrderCreateWithoutProductInput[] | OrderUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutProductInput | OrderCreateOrConnectWithoutProductInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutProductInput | OrderUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: OrderCreateManyProductInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutProductInput | OrderUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutProductInput | OrderUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutFileInput = {
@@ -24340,6 +26240,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type products_dessertsCreateNestedOneWithoutOrderInput = {
+    create?: XOR<products_dessertsCreateWithoutOrderInput, products_dessertsUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: products_dessertsCreateOrConnectWithoutOrderInput
+    connect?: products_dessertsWhereUniqueInput
+  }
+
   export type OrderItemCreateNestedManyWithoutOrderInput = {
     create?: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput> | OrderItemCreateWithoutOrderInput[] | OrderItemUncheckedCreateWithoutOrderInput[]
     connectOrCreate?: OrderItemCreateOrConnectWithoutOrderInput | OrderItemCreateOrConnectWithoutOrderInput[]
@@ -24378,12 +26284,28 @@ export namespace Prisma {
     connect?: ShipmentWhereUniqueInput
   }
 
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
   export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
     create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
     upsert?: UserUpsertWithoutOrdersInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrdersInput, UserUpdateWithoutOrdersInput>, UserUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type products_dessertsUpdateOneRequiredWithoutOrderNestedInput = {
+    create?: XOR<products_dessertsCreateWithoutOrderInput, products_dessertsUncheckedCreateWithoutOrderInput>
+    connectOrCreate?: products_dessertsCreateOrConnectWithoutOrderInput
+    upsert?: products_dessertsUpsertWithoutOrderInput
+    connect?: products_dessertsWhereUniqueInput
+    update?: XOR<XOR<products_dessertsUpdateToOneWithWhereWithoutOrderInput, products_dessertsUpdateWithoutOrderInput>, products_dessertsUncheckedUpdateWithoutOrderInput>
   }
 
   export type OrderItemUpdateManyWithoutOrderNestedInput = {
@@ -24759,6 +26681,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type NestedDecimalFilter<$PrismaModel = never> = {
@@ -25220,8 +27169,17 @@ export namespace Prisma {
 
   export type OrderCreateWithoutUserInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
+    product: products_dessertsCreateNestedOneWithoutOrderInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payment?: PaymentCreateNestedOneWithoutOrderInput
     shipment?: ShipmentCreateNestedOneWithoutOrderInput
@@ -25229,8 +27187,17 @@ export namespace Prisma {
 
   export type OrderUncheckedCreateWithoutUserInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
     payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
     shipment?: ShipmentUncheckedCreateNestedOneWithoutOrderInput
@@ -25419,8 +27386,17 @@ export namespace Prisma {
     NOT?: OrderScalarWhereInput | OrderScalarWhereInput[]
     id?: StringFilter<"Order"> | string
     userId?: StringFilter<"Order"> | string
-    orderDate?: DateTimeFilter<"Order"> | Date | string
-    status?: StringFilter<"Order"> | string
+    userName?: StringNullableFilter<"Order"> | string | null
+    userEmail?: StringNullableFilter<"Order"> | string | null
+    productId?: UuidFilter<"Order"> | string
+    productName?: StringNullableFilter<"Order"> | string | null
+    productImage?: StringNullableFilter<"Order"> | string | null
+    quantity?: IntNullableFilter<"Order"> | number | null
+    price?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: DecimalNullableFilter<"Order"> | Decimal | DecimalJsLike | number | string | null
+    orderDate?: DateTimeNullableFilter<"Order"> | Date | string | null
+    status?: StringNullableFilter<"Order"> | string | null
+    stripe_session_id?: StringNullableFilter<"Order"> | string | null
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -25837,6 +27813,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type OrderCreateWithoutProductInput = {
+    id?: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
+    user: UserCreateNestedOneWithoutOrdersInput
+    orderItems?: OrderItemCreateNestedManyWithoutOrderInput
+    payment?: PaymentCreateNestedOneWithoutOrderInput
+    shipment?: ShipmentCreateNestedOneWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutProductInput = {
+    id?: string
+    userId: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
+    payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
+    shipment?: ShipmentUncheckedCreateNestedOneWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutProductInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutProductInput, OrderUncheckedCreateWithoutProductInput>
+  }
+
+  export type OrderCreateManyProductInputEnvelope = {
+    data: OrderCreateManyProductInput | OrderCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
   export type OrderItemUpsertWithWhereUniqueWithoutProductDessertsInput = {
     where: OrderItemWhereUniqueInput
     update: XOR<OrderItemUpdateWithoutProductDessertsInput, OrderItemUncheckedUpdateWithoutProductDessertsInput>
@@ -25862,6 +27884,22 @@ export namespace Prisma {
     price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     orderId?: StringFilter<"OrderItem"> | string
     productIdDessert?: UuidFilter<"OrderItem"> | string
+  }
+
+  export type OrderUpsertWithWhereUniqueWithoutProductInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutProductInput, OrderUncheckedUpdateWithoutProductInput>
+    create: XOR<OrderCreateWithoutProductInput, OrderUncheckedCreateWithoutProductInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutProductInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutProductInput, OrderUncheckedUpdateWithoutProductInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutProductInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutProductInput>
   }
 
   export type UserCreateWithoutFileInput = {
@@ -26137,6 +28175,35 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
   }
 
+  export type products_dessertsCreateWithoutOrderInput = {
+    dessert_id?: string
+    name_eng: string
+    name: string
+    image_url: string
+    price: string
+    amount: number
+    status?: string | null
+    date: Date | string
+    orderItems?: OrderItemCreateNestedManyWithoutProductDessertsInput
+  }
+
+  export type products_dessertsUncheckedCreateWithoutOrderInput = {
+    dessert_id?: string
+    name_eng: string
+    name: string
+    image_url: string
+    price: string
+    amount: number
+    status?: string | null
+    date: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductDessertsInput
+  }
+
+  export type products_dessertsCreateOrConnectWithoutOrderInput = {
+    where: products_dessertsWhereUniqueInput
+    create: XOR<products_dessertsCreateWithoutOrderInput, products_dessertsUncheckedCreateWithoutOrderInput>
+  }
+
   export type OrderItemCreateWithoutOrderInput = {
     id?: string
     quantity: number
@@ -26242,6 +28309,41 @@ export namespace Prisma {
     file?: FileUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type products_dessertsUpsertWithoutOrderInput = {
+    update: XOR<products_dessertsUpdateWithoutOrderInput, products_dessertsUncheckedUpdateWithoutOrderInput>
+    create: XOR<products_dessertsCreateWithoutOrderInput, products_dessertsUncheckedCreateWithoutOrderInput>
+    where?: products_dessertsWhereInput
+  }
+
+  export type products_dessertsUpdateToOneWithWhereWithoutOrderInput = {
+    where?: products_dessertsWhereInput
+    data: XOR<products_dessertsUpdateWithoutOrderInput, products_dessertsUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type products_dessertsUpdateWithoutOrderInput = {
+    dessert_id?: StringFieldUpdateOperationsInput | string
+    name_eng?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image_url?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUpdateManyWithoutProductDessertsNestedInput
+  }
+
+  export type products_dessertsUncheckedUpdateWithoutOrderInput = {
+    dessert_id?: StringFieldUpdateOperationsInput | string
+    name_eng?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image_url?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutProductDessertsNestedInput
+  }
+
   export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
     where: OrderItemWhereUniqueInput
     update: XOR<OrderItemUpdateWithoutOrderInput, OrderItemUncheckedUpdateWithoutOrderInput>
@@ -26306,9 +28408,18 @@ export namespace Prisma {
 
   export type OrderCreateWithoutOrderItemsInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
+    product: products_dessertsCreateNestedOneWithoutOrderInput
     payment?: PaymentCreateNestedOneWithoutOrderInput
     shipment?: ShipmentCreateNestedOneWithoutOrderInput
   }
@@ -26316,8 +28427,17 @@ export namespace Prisma {
   export type OrderUncheckedCreateWithoutOrderItemsInput = {
     id?: string
     userId: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
     shipment?: ShipmentUncheckedCreateNestedOneWithoutOrderInput
   }
@@ -26336,6 +28456,7 @@ export namespace Prisma {
     amount: number
     status?: string | null
     date: Date | string
+    order?: OrderCreateNestedManyWithoutProductInput
   }
 
   export type products_dessertsUncheckedCreateWithoutOrderItemsInput = {
@@ -26347,6 +28468,7 @@ export namespace Prisma {
     amount: number
     status?: string | null
     date: Date | string
+    order?: OrderUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type products_dessertsCreateOrConnectWithoutOrderItemsInput = {
@@ -26367,9 +28489,18 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    product?: products_dessertsUpdateOneRequiredWithoutOrderNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
     shipment?: ShipmentUpdateOneWithoutOrderNestedInput
   }
@@ -26377,8 +28508,17 @@ export namespace Prisma {
   export type OrderUncheckedUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
     shipment?: ShipmentUncheckedUpdateOneWithoutOrderNestedInput
   }
@@ -26403,6 +28543,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     status?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    order?: OrderUpdateManyWithoutProductNestedInput
   }
 
   export type products_dessertsUncheckedUpdateWithoutOrderItemsInput = {
@@ -26414,13 +28555,23 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     status?: NullableStringFieldUpdateOperationsInput | string | null
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    order?: OrderUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type OrderCreateWithoutPaymentInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
+    product: products_dessertsCreateNestedOneWithoutOrderInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     shipment?: ShipmentCreateNestedOneWithoutOrderInput
   }
@@ -26428,8 +28579,17 @@ export namespace Prisma {
   export type OrderUncheckedCreateWithoutPaymentInput = {
     id?: string
     userId: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
     shipment?: ShipmentUncheckedCreateNestedOneWithoutOrderInput
   }
@@ -26452,9 +28612,18 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    product?: products_dessertsUpdateOneRequiredWithoutOrderNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     shipment?: ShipmentUpdateOneWithoutOrderNestedInput
   }
@@ -26462,17 +28631,35 @@ export namespace Prisma {
   export type OrderUncheckedUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
     shipment?: ShipmentUncheckedUpdateOneWithoutOrderNestedInput
   }
 
   export type OrderCreateWithoutShipmentInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     user: UserCreateNestedOneWithoutOrdersInput
+    product: products_dessertsCreateNestedOneWithoutOrderInput
     orderItems?: OrderItemCreateNestedManyWithoutOrderInput
     payment?: PaymentCreateNestedOneWithoutOrderInput
   }
@@ -26480,8 +28667,17 @@ export namespace Prisma {
   export type OrderUncheckedCreateWithoutShipmentInput = {
     id?: string
     userId: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
     payment?: PaymentUncheckedCreateNestedOneWithoutOrderInput
   }
@@ -26504,9 +28700,18 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutShipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    product?: products_dessertsUpdateOneRequiredWithoutOrderNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
   }
@@ -26514,8 +28719,17 @@ export namespace Prisma {
   export type OrderUncheckedUpdateWithoutShipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
   }
@@ -26600,8 +28814,17 @@ export namespace Prisma {
 
   export type OrderCreateManyUserInput = {
     id?: string
-    orderDate?: Date | string
-    status?: string
+    userName?: string | null
+    userEmail?: string | null
+    productId: string
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -26760,8 +28983,17 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    product?: products_dessertsUpdateOneRequiredWithoutOrderNestedInput
     orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
     payment?: PaymentUpdateOneWithoutOrderNestedInput
     shipment?: ShipmentUpdateOneWithoutOrderNestedInput
@@ -26769,8 +29001,17 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
     shipment?: ShipmentUncheckedUpdateOneWithoutOrderNestedInput
@@ -26778,8 +29019,17 @@ export namespace Prisma {
 
   export type OrderUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    status?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: StringFieldUpdateOperationsInput | string
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CategoriesOnPostsCreateManyPostInput = {
@@ -26837,6 +29087,21 @@ export namespace Prisma {
     orderId: string
   }
 
+  export type OrderCreateManyProductInput = {
+    id?: string
+    userId: string
+    userName?: string | null
+    userEmail?: string | null
+    productName?: string | null
+    productImage?: string | null
+    quantity?: number | null
+    price?: Decimal | DecimalJsLike | number | string | null
+    totalPrice?: Decimal | DecimalJsLike | number | string | null
+    orderDate?: Date | string | null
+    status?: string | null
+    stripe_session_id?: string | null
+  }
+
   export type OrderItemUpdateWithoutProductDessertsInput = {
     id?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
@@ -26856,6 +29121,57 @@ export namespace Prisma {
     quantity?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     orderId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OrderUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
+    payment?: PaymentUpdateOneWithoutOrderNestedInput
+    shipment?: ShipmentUpdateOneWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
+    orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+    payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
+    shipment?: ShipmentUncheckedUpdateOneWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateManyWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    userEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    productName?: NullableStringFieldUpdateOperationsInput | string | null
+    productImage?: NullableStringFieldUpdateOperationsInput | string | null
+    quantity?: NullableIntFieldUpdateOperationsInput | number | null
+    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalPrice?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    orderDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    stripe_session_id?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FileCreateManyParentInput = {
