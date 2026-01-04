@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import type { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import { authConfig } from "./auth.config";
@@ -35,7 +36,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         try {
           const parsedCredentials = z
             .object({ email: z.string().email(), password: z.string().min(6) })
@@ -72,7 +73,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return null;
           }
 
-          return user;
+          const safeUser = {
+            id: String(user.id),
+            name: user.name ?? undefined,
+            email: user.email ?? undefined,
+            image: user.image ?? undefined,
+            image_url: user.image_url ?? undefined,
+            role: user.role ?? undefined,
+          };
+          return safeUser as unknown as User;
         } catch (error) {
           console.error("Error in authorize function:");
           return null;

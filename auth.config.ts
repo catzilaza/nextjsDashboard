@@ -46,7 +46,11 @@ export const authConfig = {
       // return true;
     },
     async jwt({ token, trigger, session, account, user, profile }) {
-      if (user) token.role = user?.role;
+      if (user) {
+        token.role = user?.role;
+        token.picture = user?.image_url;
+        // token.picture_blob = user?.image_blob;
+      }
       return token;
       // if (account && user) {
       //   return {
@@ -100,7 +104,11 @@ export const authConfig = {
     async session({ session, token, user }) {
       // console.log("///// Enter Callbacks : SESSION", session);
 
-      if (session?.user) session.user.role = token?.role as string;
+      if (session?.user) {
+        session.user.role = token?.role as string;
+        session.user.image_url = token?.picture as string;
+        // session.user.image_blob = token?.picture_blob as string;
+      }
       return session;
 
       // if (session) {
@@ -139,17 +147,32 @@ export const authConfig = {
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
-      id: string;
-      role: string;
+      id?: string;
+      name?: string | undefined;
+      email?: string | undefined;
+      image?: string | undefined;
+      image_url?: string | undefined;
+      role?: string | undefined;
+      // id: string;
+      // role: string;
       // image_url: string;
+      // image_blob: string;
       // ...other properties
       // role: UserRole;
     } & DefaultSession["user"];
   }
 
   interface User {
-    role?: "admin" | "user" | null | unknown;
+    id?: string;
+    name?: string | undefined | null;
+    email?: string | undefined | null;
+    image?: string | undefined | null;
+    image_url?: string | undefined | null;
+    role?: string | undefined | null;
+    // role?: "admin" | "user" | null | unknown;
     // id?: string | undefined;
+    // image_url?: string | undefined;
+    // image_blob?: string | undefined;
   }
 
   // declare module "next-auth" {

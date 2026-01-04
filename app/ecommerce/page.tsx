@@ -8,6 +8,7 @@ import Footer from "./component/Footer";
 //https://www.youtube.com/watch?v=H278hWKtCIs&list=PLl6EcvA_AoxGRajEfrzYedWQM-L4EmROQ&index=9
 //https://github.com/stripe-samples/accept-a-payment/blob/main/custom-payment-flow/server/node-typescript/src/server.ts
 //https://github.com/burakorkmez/full-stripe-tutorial,https://www.youtube.com/watch?v=_YCC9Osq6y4
+//https://www.youtube.com/watch?v=HgOyClJlW5E, https://github.com/Devahoy/mini-shop-nextjs-stripe-supabase
 
 export default async function EcommercePage() {
   // const products = await fetchAllProducts_Dessert();

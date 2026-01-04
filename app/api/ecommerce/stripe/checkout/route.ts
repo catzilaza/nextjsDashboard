@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getLoginSession } from "@/app/ecommerce/lib/uitls";
 import prisma from "@/app/ecommerce/lib/prisma";
-// import { stripe } from "@/app/ecommerce/lib/stripe";
 import Stripe from "stripe";
 import Error from "next/error";
 
@@ -78,7 +77,7 @@ export async function POST(req: Request) {
     //   })
     // }
 
-    console.log("login_session : ", login_session);
+    // console.log("login_session : ", login_session);
     // console.log("user : ", user);
     // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่ามี รายการอะไรบ้าง และยังไม่จ่าย
 
@@ -112,7 +111,7 @@ export async function POST(req: Request) {
       cancel_url: `${req.headers.get("origin")}/ecommerce/cancel`,
     });
 
-    console.log(stripCheckoutSession.url);
+    // console.log(stripCheckoutSession.url);
 
     // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่า ซื้อสำเร็จ จ่ายเงินแล้ว
 
@@ -138,13 +137,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       // { url: session.url },
-      // { url: stripCheckoutSession.url },
-
+      { url: stripCheckoutSession.url, message: "success" },
       {
         headers: corsHeaders,
-        message: "success",
-        url: stripCheckoutSession.url,
-        // url: "/ecommerce/success",
+        status: 200,
       }
     );
   } catch (error: any) {

@@ -14,7 +14,8 @@ import {
   Shield,
 } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/app/dashboard/ui/dropbox/Navbar";
+// import Navbar from "@/app/dashboard/ui/dropbox/Navbar";
+import Navbar from "./components/Navbar";
 import { SignOut } from "@/lib/utils/dropbox/uitls";
 
 export default function DropboxPage() {
@@ -189,3 +190,4 @@ export default function DropboxPage() {
 // Data Fetching using React Suspense and Error Boundary - React Data Fetching Patterns.
 // https://www.youtube.com/watch?v=OpHbSHp8PcI
 // https://github.com/atapas/youtube/tree/main/react/23-suspense
+// ===================================================

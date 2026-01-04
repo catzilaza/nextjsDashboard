@@ -50,7 +50,7 @@ export async function SignUp(
   const role = "user";
   const date = new Date().toISOString().split("T")[0];
   const image_blob = "";
-  const image_url = "/customers/balazs-orban.png";
+  const image_url = "/customers/amy-burns.png";
 
   const validatedFields = SignUpSchemaOmit.safeParse({
     name,

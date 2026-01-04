@@ -1,0 +1,38 @@
+Project Report
+==============
+
+Title: Website Development Progress Report
+Date: January 4, 2026
+Author: Ya
+
+1. Introduction
+---------------
+This report summarizes the progress of the website development project during Q4 2025.
+
+2. Objectives
+-------------
+- Build a responsive web application using Next.js
+- Integrate CMS with webhook and ISR
+- Implement user authentication and file storage
+
+3. Progress
+-----------
+- Completed initial design and folder structure
+- Implemented routing and middleware
+- Integrated Prisma with PostgreSQL
+- Created mock data for testing
+
+4. Issues
+---------
+- Schema migration errors with Prisma
+- Need optimization for image handling
+
+5. Next Steps
+-------------
+- Fix schema mapping issues
+- Deploy staging environment
+- Conduct user testing
+
+6. Conclusion
+-------------
+The project is on track for completion in Q1 2026 with minor adjustments required.

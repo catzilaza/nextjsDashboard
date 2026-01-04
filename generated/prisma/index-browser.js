@@ -221,6 +221,18 @@ exports.Prisma.Products_dessertsScalarFieldEnum = {
   date: 'date'
 };
 
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  stripe_product_id: 'stripe_product_id',
+  stripe_price_id: 'stripe_price_id',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FileScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -317,6 +329,7 @@ exports.Prisma.ModelName = {
   CategoriesOnPosts: 'CategoriesOnPosts',
   Revenue: 'Revenue',
   products_desserts: 'products_desserts',
+  Product: 'Product',
   File: 'File',
   Order: 'Order',
   OrderDessert: 'OrderDessert',
