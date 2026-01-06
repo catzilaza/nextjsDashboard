@@ -49,6 +49,7 @@ export const authConfig = {
       if (user) {
         token.role = user?.role;
         token.picture = user?.image_url;
+        token.id = user?.id;
         // token.picture_blob = user?.image_blob;
       }
       return token;
@@ -107,6 +108,7 @@ export const authConfig = {
       if (session?.user) {
         session.user.role = token?.role as string;
         session.user.image_url = token?.picture as string;
+        session.user.id = token?.id as string;
         // session.user.image_blob = token?.picture_blob as string;
       }
       return session;
@@ -147,7 +149,7 @@ export const authConfig = {
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
-      id?: string;
+      id?: string | undefined;
       name?: string | undefined;
       email?: string | undefined;
       image?: string | undefined;
@@ -163,7 +165,7 @@ declare module "next-auth" {
   }
 
   interface User {
-    id?: string;
+    id?: string | undefined;
     name?: string | undefined | null;
     email?: string | undefined | null;
     image?: string | undefined | null;

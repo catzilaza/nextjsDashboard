@@ -17,6 +17,8 @@ import Link from "next/link";
 // import Navbar from "@/app/dashboard/ui/dropbox/Navbar";
 import Navbar from "./components/Navbar";
 import { SignOut } from "@/lib/utils/dropbox/uitls";
+import SignUpFormClerk from "./components/SignUpFormClerk";
+import SignInFormClerk from "./components/SignInFormClerk";
 
 export default function DropboxPage() {
   return (
@@ -166,6 +168,8 @@ export default function DropboxPage() {
           </div>
         </footer>
       </div>
+      {/* <SignInFormClerk />
+      <SignUpFormClerk /> */}
     </div>
   );
 }

@@ -74,7 +74,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           }
 
           const safeUser = {
-            id: String(user.id),
+            id: user.id ?? undefined,
             name: user.name ?? undefined,
             email: user.email ?? undefined,
             image: user.image ?? undefined,

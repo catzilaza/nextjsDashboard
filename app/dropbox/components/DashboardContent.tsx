@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { AppWindowIcon, CodeIcon, FileText, FileUp, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -17,19 +17,27 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FileUploadForm from "./FileUploadForm";
 import FileList from "./FileList";
+import UserProfile from "./UserProfile";
 
 interface DashboardContentProps {
+  userId: string;
   userName: string;
   userEmail: string;
 }
 
 export default function DashboardContent({
+  userId = "user-123",
   userName = "Johnathan Smithwickerson",
   userEmail = "johnathan.smithwickerson@example.com",
 }: DashboardContentProps) {
   const [activeTab, setActiveTab] = useState<string>("files");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
+
+  const handleFolderChange = useCallback((folderId: string | null) => {
+    setCurrentFolder(folderId);
+  }, []);
+
   return (
     <>
       {" "}
@@ -79,39 +87,21 @@ export default function DashboardContent({
                     <h2 className="text-xl font-semibold">Your Files</h2>
                   </CardHeader>
                   <CardContent>
-                    <FileList />
-                    {/* <FileList
-                    userId={userId}
-                    refreshTrigger={refreshTrigger}
-                    onFolderChange={handleFolderChange}
-                  /> */}
+                    {/* <FileList /> */}
+                    <FileList
+                      userId={userId}
+                      refreshTrigger={refreshTrigger}
+                      onFolderChange={handleFolderChange}
+                    />
                   </CardContent>
                 </Card>
               </div>
             </div>
           </TabsContent>
           <TabsContent value="profile">
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  {" "}
-                  <div className="flex items-center gap-3">
-                    <User className="h-5 w-5" />
-                    <span className="font-medium">Profile</span>
-                  </div>
-                </CardTitle>
-                <CardDescription>
-                  Change your profile information here. After saving,
-                  you&apos;ll be logged out.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="grid gap-6">
-                <div className="mt-8">{/* <UserProfile /> */}</div>
-              </CardContent>
-              <CardFooter>
-                <Button>Save password</Button>
-              </CardFooter>
-            </Card>
+            <div className="flex flex-col w-full mt-8">
+              <UserProfile />
+            </div>
           </TabsContent>
         </Tabs>
       </div>

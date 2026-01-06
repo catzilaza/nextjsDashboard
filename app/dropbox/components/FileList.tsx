@@ -3,6 +3,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import FileActions from "./FileActions";
 import FileIcon from "./FileIcon";
+import FileEmptyState from "./FileEmptyState";
+import FileActionButtons from "./FileActionButtons";
+import FolderNavigation from "./FolderNavigation";
 import { formatDistanceToNow, format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
 // import { FileType } from "../lib/db/dataschema";
@@ -47,6 +50,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import FileTabs from "./FileTabs";
 
 const invoices = [
   {
@@ -93,7 +97,17 @@ const invoices = [
   },
 ];
 
-export default function FileList() {
+interface FileListProps {
+  userId: string;
+  refreshTrigger?: number;
+  onFolderChange?: (folderId: string | null) => void;
+}
+
+export default function FileList({
+  userId,
+  refreshTrigger = 0,
+  onFolderChange,
+}: FileListProps) {
   const [files, setFiles] = useState<FileType[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("all");
@@ -169,7 +183,17 @@ export default function FileList() {
   }, [files, activeTab]);
 
   // All files
-  console.log("Files:", files);
+  // console.log("Files:", files);
+
+  // Count files in trash
+  const trashCount = useMemo(() => {
+    return files.filter((file) => file.isTrash).length;
+  }, [files]);
+
+  // Count starred files
+  const starredCount = useMemo(() => {
+    return files.filter((file) => file.isStarred && !file.isTrash).length;
+  }, [files]);
 
   // async function handleStarFile(id: string): Promise<void> {
   //   throw new Error("Function not implemented.");
@@ -193,39 +217,78 @@ export default function FileList() {
     console.log("Download file:", file);
   };
 
+  // Navigate back to parent folder
+  const navigateUp = () => {
+    if (folderPath.length > 0) {
+      const newPath = [...folderPath];
+      newPath.pop();
+      setFolderPath(newPath);
+      const newFolderId =
+        newPath.length > 0 ? newPath[newPath.length - 1].id : null;
+      setCurrentFolder(newFolderId);
+
+      // Notify parent component about folder change
+      if (onFolderChange) {
+        onFolderChange(newFolderId);
+      }
+    }
+  };
+
+  // Navigate to specific folder in path
+  const navigateToPathFolder = (index: number) => {
+    if (index < 0) {
+      setCurrentFolder(null);
+      setFolderPath([]);
+
+      // Notify parent component about folder change
+      if (onFolderChange) {
+        onFolderChange(null);
+      }
+    } else {
+      const newPath = folderPath.slice(0, index + 1);
+      setFolderPath(newPath);
+      const newFolderId = newPath[newPath.length - 1].id;
+      setCurrentFolder(newFolderId);
+
+      // Notify parent component about folder change
+      if (onFolderChange) {
+        onFolderChange(newFolderId);
+      }
+    }
+  };
+
   return (
     <div>
       {" "}
       {/* Tabs for filtering files */}
-      {/* <FileTabs
+      <FileTabs
         activeTab={activeTab}
         onTabChange={setActiveTab}
         files={files}
         starredCount={starredCount}
         trashCount={trashCount}
-      /> */}
+      />
       {/* Folder navigation */}
-      {/* {activeTab === "all" && (
+      {activeTab === "all" && (
         <FolderNavigation
           folderPath={folderPath}
           navigateUp={navigateUp}
           navigateToPathFolder={navigateToPathFolder}
         />
-      )} */}
+      )}
       {/* Action buttons */}
-      {/* <FileActionButtons
+      <FileActionButtons
         activeTab={activeTab}
         trashCount={trashCount}
         folderPath={folderPath}
         onRefresh={fetchFiles}
         onEmptyTrash={() => setEmptyTrashModalOpen(true)}
-      /> */}
+      />
       <Separator className="my-4" />
       {/* Files table */}
       {filteredFiles.length === 0 ? (
         <>
-          {/* <FileEmptyState activeTab={activeTab} /> */}
-          <div>"FileEmptyState activeTab={activeTab}</div>
+          <FileEmptyState activeTab={activeTab} />
         </>
       ) : (
         <>

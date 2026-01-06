@@ -161,7 +161,10 @@ export default function Navbar() {
                           }`}
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => alert("My Files")}>
-                          My Files
+                          My Files :{" "}
+                          {`${
+                            userProfile?.name ? userProfile?.name : "user.name"
+                          }`}
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                       <DropdownMenuSeparator />
