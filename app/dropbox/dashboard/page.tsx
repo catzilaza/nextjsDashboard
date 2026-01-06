@@ -8,6 +8,7 @@ import DashboardContent from "../components/DashboardContent";
 import { CloudUpload } from "lucide-react";
 
 interface SerializedUser {
+  id?: string | null | undefined;
   name?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;
@@ -25,6 +26,7 @@ export default function DropboxPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [userProfile, setUserProfile] = useState<typeUserProfile>({
+    id: "",
     name: "",
     email: "",
     image: "",
@@ -37,6 +39,7 @@ export default function DropboxPage() {
     if (user) {
       setIsLoggedIn(true);
       setUserProfile({
+        id: user.user.id,
         name: user.user.name,
         email: user.user.email,
         image: user.user.image,
@@ -59,6 +62,7 @@ export default function DropboxPage() {
 
       <main className="flex-1 container mx-auto py-8 px-6">
         <DashboardContent
+          userId={userProfile?.id || ""}
           userName={userProfile?.name || ""}
           userEmail={userProfile?.email || ""}
         />
