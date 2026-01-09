@@ -251,3 +251,10 @@ model Shipment {
   orderId        String   @unique
   order          Order    @relation(fields: [orderId], references: [id])
 }
+
+model TestTable {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     String
+  createdAt DateTime @default(now())
+}

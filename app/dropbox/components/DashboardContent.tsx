@@ -26,13 +26,17 @@ interface DashboardContentProps {
 }
 
 export default function DashboardContent({
-  userId = "user-123",
-  userName = "Johnathan Smithwickerson",
-  userEmail = "johnathan.smithwickerson@example.com",
+  userId,
+  userName,
+  userEmail,
 }: DashboardContentProps) {
   const [activeTab, setActiveTab] = useState<string>("files");
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
+
+  const handleFileUploadSuccess = useCallback(() => {
+    setRefreshTrigger((prev) => prev + 1);
+  }, []);
 
   const handleFolderChange = useCallback((folderId: string | null) => {
     setCurrentFolder(folderId);
@@ -70,12 +74,11 @@ export default function DashboardContent({
                     <h2 className="text-xl font-semibold">Upload</h2>
                   </CardHeader>
                   <CardContent>
-                    <FileUploadForm />
-                    {/* <FileUploadForm
-                    userId={userId}
-                    onUploadSuccess={handleFileUploadSuccess}
-                    currentFolder={currentFolder}
-                  /> */}
+                    <FileUploadForm
+                      userId={userId}
+                      onUploadSuccess={handleFileUploadSuccess}
+                      currentFolder={currentFolder}
+                    />
                   </CardContent>
                 </Card>
               </div>
@@ -87,7 +90,6 @@ export default function DashboardContent({
                     <h2 className="text-xl font-semibold">Your Files</h2>
                   </CardHeader>
                   <CardContent>
-                    {/* <FileList /> */}
                     <FileList
                       userId={userId}
                       refreshTrigger={refreshTrigger}

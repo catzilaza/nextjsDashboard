@@ -301,6 +301,13 @@ exports.Prisma.ShipmentScalarFieldEnum = {
   orderId: 'orderId'
 };
 
+exports.Prisma.TestTableScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  value: 'value',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -335,7 +342,8 @@ exports.Prisma.ModelName = {
   OrderDessert: 'OrderDessert',
   OrderItem: 'OrderItem',
   Payment: 'Payment',
-  Shipment: 'Shipment'
+  Shipment: 'Shipment',
+  TestTable: 'TestTable'
 };
 
 /**

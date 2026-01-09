@@ -139,10 +139,11 @@ export default function FileList({
   const fetchFiles = async () => {
     setLoading(true);
     try {
-      let url = `/api/dropbox/files`;
-      //   if (currentFolder) {
-      //     url += `&parentId=${currentFolder}`;
-      //   }
+      let url = `/api/dropbox/files?userId=${userId}`;
+      // let url = `/api/dropbox/files`;
+      if (currentFolder) {
+        url += `&parentId=${currentFolder}`;
+      }
 
       const response = await axios.get(url);
       setFiles(response.data);
@@ -194,14 +195,6 @@ export default function FileList({
   const starredCount = useMemo(() => {
     return files.filter((file) => file.isStarred && !file.isTrash).length;
   }, [files]);
-
-  // async function handleStarFile(id: string): Promise<void> {
-  //   throw new Error("Function not implemented.");
-  // }
-
-  // async function handleDownloadFile(file: File): Promise<void> {
-  //   throw new Error("Function not implemented.");
-  // }
 
   const handleStarFile = async (id: string) => {
     // Implement star file logic here
