@@ -29,7 +29,7 @@ export default function DropboxPage() {
       {/* Main content */}
       <div className="flex-1 bg-slate-200">
         {/* Hero section */}
-        <section className="bg-slate-100 py-12 md:py-20 px-4 md:px-6">
+        <section className="bg-slate-100 py-2 md:py-8 px-4 md:px-6">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className="space-y-6 text-center lg:text-left">
@@ -45,23 +45,28 @@ export default function DropboxPage() {
 
                 <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
                   <div className="mr-4">
-                    <Link href="/signup" className="mr-4">
-                      <Button size="lg" variant="default" color="primary">
-                        Get Started
-                      </Button>
+                    <Link
+                      href="/signup"
+                      className="mr-4 inline-block rounded-lg border border-primary px-6 py-2 text-primary font-semibold hover:bg-primary hover:text-white transition"
+                    >
+                      Get Started
                     </Link>
-                    <Link href="/login">
-                      <Button size="lg" variant="default" color="primary">
-                        Sign In
-                      </Button>
+                    <Link
+                      href="/login"
+                      className="mr-4 inline-block rounded-lg border border-primary px-6 py-2 text-primary font-semibold hover:bg-primary hover:text-white transition"
+                    >
+                      Sign In
                     </Link>
                   </div>
                   <div>
-                    <Link href="/dashboard/dropbox">
-                      <Button size="lg" variant="default" color="primary">
-                        Go to Dashboard
+                    <Link
+                      href="/dashboard/dropbox"
+                      className="mr-4 inline-block rounded-lg border border-primary px-6 py-2 text-primary font-semibold hover:bg-primary hover:text-white transition"
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <span>Go to Dashboard</span>
                         <ArrowRight className="h-4 w-4 ml-2" />
-                      </Button>
+                      </div>
                     </Link>
                   </div>
                 </div>
@@ -80,9 +85,9 @@ export default function DropboxPage() {
         </section>
 
         {/* Features section */}
-        <section className="bg-slate-300 py-12 md:py-16 px-4 md:px-6">
+        <section className="bg-slate-300 py-4 md:py-8 px-4 md:px-6">
           <div className="container mx-auto">
-            <div className="text-center mb-8 md:mb-12">
+            <div className="text-center mb-4 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-4 text-default-900">
                 What You Get
               </h2>
@@ -127,31 +132,37 @@ export default function DropboxPage() {
         </section>
 
         {/* CTA section */}
-        <section className="py-12 md:py-20 px-4 md:px-6">
+        {/* <section className="py-6 md:py-10 px-4 md:px-6">
           <div className="container mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-default-900">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 text-default-900">
               Ready?
             </h2>
             <div>
-              <div className="flex flex-wrap justify-center gap-4 mt-8">
-                <Link href="/login" className="mb-4">
-                  <Button size="lg" variant="default" color="primary">
-                    Let's Go
+              <div className="flex flex-wrap justify-center gap-4 mt-4">
+                <Link
+                  href="/login"
+                  className="mb-2 mr-4 inline-block rounded-lg border border-primary px-6 py-2 text-primary font-semibold hover:bg-primary hover:text-white transition"
+                >
+                  <div className="flex flex-row items-center">
+                    <span>Let's Go</span>
                     <ArrowRight className="h-4 w-4" />
-                  </Button>
+                  </div>
                 </Link>
               </div>
             </div>
             <div>
-              <Link href="/dashboard/dropbox">
-                <Button size="lg" variant="default" color="primary">
-                  Dashboard
+              <Link
+                href="/dashboard/dropbox"
+                className="mr-4 inline-block rounded-lg border border-primary px-6 py-2 text-primary font-semibold hover:bg-primary hover:text-white transition"
+              >
+                <div className="flex flex-row items-center">
+                  <span>Dashboard</span>
                   <ArrowRight className="h-4 w-4" />
-                </Button>
+                </div>
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Simple footer */}
         <footer className="border-t border-default-200 py-4 md:py-6">

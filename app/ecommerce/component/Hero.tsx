@@ -18,13 +18,13 @@ export default function Hero() {
 
           <div className="mt-8 flex gap-4">
             <Link
-              href="/register"
+              href="/"
               className="rounded-md bg-white/90 px-5 py-3 font-medium text-sky-700 hover:bg-white"
             >
               Get started
             </Link>
             <Link
-              href="/landing#features"
+              href="/"
               className="rounded-md border border-white/30 px-5 py-3 text-white/95 hover:bg-white/10"
             >
               Learn more

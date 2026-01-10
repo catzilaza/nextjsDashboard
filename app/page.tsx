@@ -18,7 +18,6 @@ import Home from "@/components/home/MainHome";
 export default function HomePage() {
   return (
     // <Home />
-    // <Landing />
     <main className="flex flex-col min-h-screen p-6">
       <div className="flex shrink-0 md:h-32 h-20 items-end rounded-lg bg-blue-500 p-4 ">
         <AcmeLogo />
