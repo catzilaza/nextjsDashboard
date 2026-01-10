@@ -188,7 +188,7 @@ export default function FileUploadForm({
       toast("Folder Created", {
         description: `Folder "${folderName}" has been created successfully.`,
         action: {
-          label: "Folder Created",
+          label: "Successfully Created",
           onClick: () => console.log("Ok"),
         },
         style: {

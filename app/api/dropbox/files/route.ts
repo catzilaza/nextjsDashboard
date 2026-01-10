@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     // // Get query parameters
     const searchParams = request.nextUrl.searchParams;
     const queryUserId = searchParams.get("userId");
-    // const parentId = searchParams.get("parentId");
+    const parentId = searchParams.get("parentId");
 
     // // Verify the user is requesting their own files
     if (!queryUserId || queryUserId !== userId) {
@@ -29,76 +29,26 @@ export async function GET(request: NextRequest) {
     }
 
     // // Fetch files from database based on parentId
-    // let userFiles;
-    // // const userId = "user001";
-    // // const parentId = "user001";
-    // if (parentId) {
-    //   // Fetch files within a specific folder
-    //   userFiles = await prisma.file.findMany({
-    //     where: {
-    //       userId: userId,
-    //       parentId: parentId,
-    //     },
-    //   });
-    // } else {
-    //   // Fetch root-level files (where parentId is null)
-    //   userFiles = await prisma.file.findMany({
-    //     where: {
-    //       userId: userId,
-    //       parentId: null, // parentId is null for root-level files
-    //     },
-    //   });
-    // }
-    // return NextResponse.json(userFiles);
+    let userFiles;
 
-    // id: `uuid-file-${String(11 + i).padStart(3, "0")}`,
-    // name: `image-${String(11 + i).padStart(3, "0")}`,
-    const response = await list();
-    const tempBlobfiles: FileType[] = response.blobs.map((obj, i) => ({
-      id: `uuid-file-${String(11 + i).padStart(3, "0")}`,
-      name: `image-${String(11 + i).padStart(3, "0")}`,
-      path: obj.pathname ?? "/documents/work/notes.txt",
-      size: obj.size ?? 2048,
-      type: "image/png",
-      fileUrl:
-        obj.downloadUrl ?? "http://localhost:3000/documents/work/notes.txt",
-      thumbnailUrl: obj.url ?? undefined,
-      userId: userId,
-      parentId: "uuid-folder-004",
-      isFolder: false,
-      isStarred: false,
-      isTrash: false,
-      createdAt: obj.uploadedAt,
-      updatedAt: obj.uploadedAt,
-    }));
-
-    const userFiles = await prisma.file.findMany({
-      where: {
-        userId: userId,
-      },
-    });
-
-    const tempUserFiles: FileType[] = userFiles.map((obj, i) => ({
-      id: obj.id ?? `uuid-file-${String(11 + i).padStart(3, "0")}`,
-      name: obj.name ?? `image-${String(11 + i).padStart(3, "0")}`,
-      path: obj.path ?? "/documents/work/notes.txt",
-      size: obj.size ?? 2048,
-      type: "image/png",
-      fileUrl: obj.fileUrl ?? "http://localhost:3000/documents/work/notes.txt",
-      thumbnailUrl: obj.thumbnailUrl ?? undefined,
-      userId: obj.userId ?? userId,
-      parentId: obj.parentId ?? "uuid-folder-004",
-      isFolder: obj.isFolder ?? false,
-      isStarred: obj.isStarred ?? false,
-      isTrash: obj.isTrash ?? false,
-      createdAt: obj.createdAt,
-      updatedAt: obj.updatedAt,
-    }));
-
-    const tempMockfiles: FileType[] = [...tempUserFiles];
-    // const tempMockfiles: FileType[] = [...mockfiles, ...tempBlobfiles, ...tempUserFiles];
-
-    return NextResponse.json(tempMockfiles);
+    if (parentId) {
+      // Fetch files within a specific folder
+      userFiles = await prisma.file.findMany({
+        where: {
+          userId: userId,
+          parentId: parentId,
+        },
+      });
+    } else {
+      // Fetch root-level files (where parentId is null)
+      userFiles = await prisma.file.findMany({
+        where: {
+          userId: userId,
+          parentId: null, // parentId is null for root-level files
+        },
+      });
+    }
+    return NextResponse.json(userFiles);
 
     // return NextResponse.json(
     //   { message: "Successfully to fetch files" },

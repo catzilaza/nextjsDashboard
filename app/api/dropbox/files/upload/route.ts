@@ -25,8 +25,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // const userId = session.user.id;
-    // const userId = "user001";
     const userId = login_session?.user?.id;
 
     const formData = await request.formData();
@@ -49,33 +47,30 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if parent folder exists if parentId is provided
-    // if (parentId) {
-    // const [parentFolder] = await db
-    //   .select()
-    //   .from(files)
-    //   .where(
-    //     and(
-    //       eq(files.id, parentId),
-    //       eq(files.userId, userId),
-    //       eq(files.isFolder, true)
-    //     )
-    //     );
+    if (parentId) {
+      const parentFolder = await prisma.file.findFirst({
+        where: {
+          parentId: parentId,
+          userId: userId,
+          isFolder: true,
+        },
+      });
 
-    //   if (!parentFolder) {
-    //     return NextResponse.json(
-    //       { error: "Parent folder not found" },
-    //       { status: 404 }
-    //     );
-    //   }
-    // }
+      if (!parentFolder) {
+        return NextResponse.json(
+          { error: "Parent folder not found" },
+          { status: 404 }
+        );
+      }
+    }
 
     // Only allow image uploads
-    if (!file.type.startsWith("image/") && file.type !== "application/pdf") {
-      return NextResponse.json(
-        { error: "Only image files are supported" },
-        { status: 400 }
-      );
-    }
+    // if (!file.type.startsWith("image/") && file.type !== "application/pdf") {
+    //   return NextResponse.json(
+    //     { error: "Only image files are supported" },
+    //     { status: 400 }
+    //   );
+    // }
 
     const buffer = await file.arrayBuffer();
     const fileBuffer = Buffer.from(buffer);
@@ -135,7 +130,7 @@ export async function POST(request: NextRequest) {
       fileUrl: uploadResponse.url,
       thumbnailUrl: uploadResponse.downloadUrl,
       userId: userId,
-      parentId: null,
+      parentId: parentId,
       isFolder: false,
       isStarred: false,
       isTrash: false,
