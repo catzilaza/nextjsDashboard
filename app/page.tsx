@@ -60,6 +60,7 @@ export default function HomePage() {
             height={620}
             className="block md:hidden"
             alt="Screenshot of the dashboard project showing mobile version"
+            priority
           />
         </div>
       </div>

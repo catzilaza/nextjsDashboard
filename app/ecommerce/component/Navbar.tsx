@@ -268,7 +268,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/register" className="mx-2 hover:underline">
+                  <Link href="/signup" className="mx-2 hover:underline">
                     Register
                   </Link>
                 </li>

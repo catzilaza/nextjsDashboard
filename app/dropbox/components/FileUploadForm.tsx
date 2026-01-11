@@ -160,7 +160,17 @@ export default function FileUploadForm({
     }
   };
 
+  const handleTest = async () => {
+    try {
+      console.log("Test");
+    } catch (error) {
+      console.error("Error creating folder:", error);
+    }
+  };
+
   const handleCreateFolder = async () => {
+    console.log("Create Folder", folderName);
+
     if (!folderName.trim()) {
       toast("Invalid Folder Name", {
         description: "Please enter a valid folder name.",
@@ -179,7 +189,7 @@ export default function FileUploadForm({
     setCreatingFolder(true);
 
     try {
-      await axios.post("/api/folders/create", {
+      await axios.post("/api/dropbox/folders/create", {
         name: folderName.trim(),
         userId: userId,
         parentId: currentFolder,
@@ -226,21 +236,71 @@ export default function FileUploadForm({
 
   return (
     <div className="space-y-4">
+      {/* Create Folder Modal */}
       <div className="flex gap-2 mb-2">
-        {/* Action buttons */}
+        {/* Create Folder Modal */}
+        <Dialog>
+          <DialogTrigger className="flex flex-1 gap-4 justify-center items-center border bg-black text-white text-xs px-2 py-2 rounded-md">
+            <FolderPlus className="h-5 w-5 text-white" />
+            New Folder
+          </DialogTrigger>
+          <DialogContent className="border bg-slate-50">
+            <DialogHeader className="border-b flex gap-2 items-center">
+              <DialogTitle className="flex flex-1 gap-4">
+                {" "}
+                <FolderPlus className="h-5 w-5 text-primary" />
+                <span>New Folder</span>
+              </DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              <p className="text-sm text-default-600">
+                Enter a name for your folder:
+              </p>
+              <Input
+                type="text"
+                placeholder="My Images"
+                onChange={(e) => setFolderName(e.target.value)}
+                autoFocus
+                value={folderName}
+              />
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button
+                  variant="outline"
+                  color="default"
+                  onClick={() => setFolderModalOpen(false)}
+                >
+                  Cancel
+                </Button>
+              </DialogClose>
+              <Button
+                onClick={handleCreateFolder}
+                disabled={creatingFolder || !folderName.trim()}
+                variant="default"
+                className="w-full flex items-center gap-2"
+              >
+                Create Folder
+                {creatingFolder ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Create"
+                )}
+                {!creatingFolder && <ArrowRight className="h-4 w-4" />}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         <Button
           color="primary"
           variant="default"
-          onClick={() => setFolderModalOpen(true)}
-          className="flex-1"
-        >
-          <FolderPlus className="h-4 w-4" />
-          New Folder
-        </Button>
-        <Button
-          color="primary"
-          variant="default"
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => {
+            fileInputRef.current?.click();
+          }}
           className="flex-1"
         >
           <FileUp className="h-4 w-4" />
@@ -269,7 +329,8 @@ export default function FileUploadForm({
                 <Button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="hover:bg-slate-200 rounded-md transition-colors text-primary cursor-pointer font-medium inline bg-transparent border-1 p-2 m-0"
+                  className="hover:bg-slate-200 rounded-md transition-colors text-emerald-400 cursor-pointer font-medium inline bg-transparent border-1 p-2 m-0"
+                  // className="hover:bg-slate-200 rounded-md transition-colors text-xlcursor-pointer font-medium inline bg-transparent border-1 p-2 m-0"
                 >
                   browse
                 </Button>
@@ -334,7 +395,7 @@ export default function FileUploadForm({
             <Button
               onClick={handleUpload}
               disabled={uploading || !!error}
-              variant="default" // ใช้แทน color="primary"
+              variant="default"
               className="w-full flex items-center gap-2"
             >
               {/* ไอคอนด้านซ้าย */}
@@ -363,70 +424,70 @@ export default function FileUploadForm({
           <li>• Maximum file size: 5MB</li>
         </ul>
       </div>
-
-      {/* Create Folder Modal */}
-      <Dialog>
-        <form>
-          <DialogTrigger asChild>
-            <Button variant="outline">Open Dialog</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>
-                {" "}
-                <FolderPlus className="h-5 w-5 text-primary" />
-                <span>New Folder</span>
-              </DialogTitle>
-              <DialogDescription>
-                Make changes to your profile here. Click save when you&apos;re
-                done.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4">
-              <div className="space-y-4">
-                <p className="text-sm text-default-600">
-                  Enter a name for your folder:
-                </p>
-                <Label htmlFor="name-1">Folder Name</Label>
-                <Input
-                  type="text"
-                  placeholder="My Images"
-                  value={folderName}
-                  onChange={(e) => setFolderName(e.target.value)}
-                  autoFocus
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button
-                  variant="outline"
-                  color="default"
-                  onClick={() => setFolderModalOpen(false)}
-                >
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button
-                onClick={() => handleCreateFolder}
-                disabled={creatingFolder || !folderName.trim()}
-                variant="default" // ใช้แทน color="primary"
-                className="w-full flex items-center gap-2"
-              >
-                {/* ถ้า loading ให้แสดง spinner */}
-                {creatingFolder ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  "Create"
-                )}
-
-                {/* ไอคอนด้านขวา */}
-                {!creatingFolder && <ArrowRight className="h-4 w-4" />}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </form>
-      </Dialog>
     </div>
   );
 }
+
+// {/* Create Folder Modal */}
+// <Dialog>
+//   <form>
+//     <DialogTrigger asChild>
+//       <Button variant="outline">Open Dialog</Button>
+//     </DialogTrigger>
+//     <DialogContent className="sm:max-w-[425px]">
+//       <DialogHeader>
+//         <DialogTitle>
+//           {" "}
+//           <FolderPlus className="h-5 w-5 text-primary" />
+//           <span>New Folder</span>
+//         </DialogTitle>
+//         <DialogDescription>
+//           Make changes to your profile here. Click save when you&apos;re
+//           done.
+//         </DialogDescription>
+//       </DialogHeader>
+//       <div className="grid gap-4">
+//         <div className="space-y-4">
+//           <p className="text-sm text-default-600">
+//             Enter a name for your folder:
+//           </p>
+//           <Label htmlFor="name-1">Folder Name</Label>
+//           <Input
+//             type="text"
+//             placeholder="My Images"
+//             value={folderName}
+//             onChange={(e) => setFolderName(e.target.value)}
+//             autoFocus
+//           />
+//         </div>
+//       </div>
+//       <DialogFooter>
+//         <DialogClose asChild>
+//           <Button
+//             variant="outline"
+//             color="default"
+//             onClick={() => setFolderModalOpen(false)}
+//           >
+//             Cancel
+//           </Button>
+//         </DialogClose>
+//         <Button
+//           onClick={() => handleCreateFolder}
+//           disabled={creatingFolder || !folderName.trim()}
+//           variant="default" // ใช้แทน color="primary"
+//           className="w-full flex items-center gap-2"
+//         >
+//           {/* ถ้า loading ให้แสดง spinner */}
+//           {creatingFolder ? (
+//             <Loader2 className="h-4 w-4 animate-spin" />
+//           ) : (
+//             "Create"
+//           )}
+
+//           {/* ไอคอนด้านขวา */}
+//           {!creatingFolder && <ArrowRight className="h-4 w-4" />}
+//         </Button>
+//       </DialogFooter>
+//     </DialogContent>
+//   </form>
+// </Dialog>
