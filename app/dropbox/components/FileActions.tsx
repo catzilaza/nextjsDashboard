@@ -9,6 +9,7 @@ interface FileActionsProps {
   onStar: (id: string) => void;
   onTrash: (id: string) => void;
   onDelete: (file: FileType) => void;
+  // onDelete: (id: string) => void;
   onDownload: (file: FileType) => void;
 }
 
@@ -53,18 +54,16 @@ export default function FileActions({
         </Button>
       )}
 
-      {/* Trash/Restore button */}
       <Button
-        variant="link"
+        variant="ghost"
         size="sm"
         onClick={() => onTrash(file.id)}
         className="min-w-0 px-2"
-        color={file.isTrash ? "success" : "default"}
       >
         {file.isTrash ? (
-          <ArrowUpFromLine className="h-4 w-4" />
+          <ArrowUpFromLine className="h-4 w-4 mr-2 text-green-600" />
         ) : (
-          <Trash className="h-4 w-4" />
+          <Trash className="h-4 w-4 mr-2 text-gray-600" />
         )}
         <span className="hidden sm:inline">
           {file.isTrash ? "Restore" : "Delete"}

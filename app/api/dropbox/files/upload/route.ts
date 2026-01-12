@@ -1,13 +1,10 @@
 "use server";
 
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { v4 as uuidv4 } from "uuid";
 import prisma from "@/lib/prisma";
 import { put } from "@vercel/blob";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
-import { stat } from "fs";
-// import { File } from "@/app/dropbox/lib/db/dataschema";
 
 // import ImageKit from "imagekit";
 
@@ -31,11 +28,6 @@ export async function POST(request: NextRequest) {
     const file = formData.get("file") as File;
     const formUserId = formData.get("userId") as string;
     const parentId = (formData.get("parentId") as string) || null;
-
-    // console.log(" **** Dropbox/Files/Upload/route.ts ****");
-    // console.log(` **** file : ${file.name} ****`);
-    // console.log(` **** formUserId : ${formUserId} ****`);
-    // console.log(` **** parentId : ${parentId} ****`);
 
     // // Verify the user is uploading to their own account
     if (formUserId !== userId) {
@@ -140,6 +132,12 @@ export async function POST(request: NextRequest) {
     const newFile = await prisma.file.create({
       data: fileData,
     });
+
+    // return NextResponse.json({
+    //   success: true,
+    //   message: "Uploaded file successfully",
+    //   newFile: newFile,
+    // });
 
     return NextResponse.json(newFile);
     // return NextResponse.json({ status: "success" });

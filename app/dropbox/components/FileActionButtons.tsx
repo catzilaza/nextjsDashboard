@@ -36,12 +36,12 @@ export default function FileActionButtons({
         </Button>
         {activeTab === "trash" && trashCount > 0 && (
           <Button
-            color="danger"
-            variant="default"
+            variant="destructive"
             size="sm"
+            // className="min-w-0 px-2 text-red-600 hover:text-red-700"
             onClick={onEmptyTrash}
           >
-            <Trash className="h-4 w-4" />
+            <Trash className="h-4 w-4 mr-2" />
             Empty Trash
           </Button>
         )}

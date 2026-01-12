@@ -160,14 +160,6 @@ export default function FileUploadForm({
     }
   };
 
-  const handleTest = async () => {
-    try {
-      console.log("Test");
-    } catch (error) {
-      console.error("Error creating folder:", error);
-    }
-  };
-
   const handleCreateFolder = async () => {
     console.log("Create Folder", folderName);
 

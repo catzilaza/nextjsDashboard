@@ -48,12 +48,19 @@ export async function GET(request: NextRequest) {
         },
       });
     }
+
     return NextResponse.json(userFiles);
 
     // return NextResponse.json(
     //   { message: "Successfully to fetch files" },
     //   { status: 200 }
     // );
+
+    // return NextResponse.json({
+    //   success: true,
+    //   message: "Fetched files successfully",
+    //   userFiles: userFiles,
+    // });
   } catch (error) {
     console.error("Error fetching files:", error);
     return NextResponse.json(
