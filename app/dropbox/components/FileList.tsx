@@ -404,12 +404,12 @@ export default function FileList({
         // link.download = file.name;
         // document.body.appendChild(link);
 
-        // const link = document.createElement("a");
-        // link.href = blob;
-        // link.download = file.name;
-        // document.body.appendChild(link);
+        const link = document.createElement("a");
+        link.href = blob;
+        link.download = file.name;
+        document.body.appendChild(link);
 
-        // window.open(file.fileUrl, "_blank");
+        window.open(file.fileUrl, "_blank");
 
         toast("Download Ready", {
           description: `"${file.name}" is ready to download.`,
@@ -424,10 +424,10 @@ export default function FileList({
         });
 
         // // Trigger download
-        // link.click();
+        link.click();
 
         // // Clean up
-        // document.body.removeChild(link);
+        document.body.removeChild(link);
         // URL.revokeObjectURL(blobUrl);
       } else {
         throw new Error("File not found");
