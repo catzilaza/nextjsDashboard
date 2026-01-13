@@ -11,3 +11,8 @@ export async function getLoginSession() {
   // console.log("getLoginSession : ", session);
   return session ? session : null;
 }
+
+export async function delayTime(time: number = 3000): Promise<void> {
+  await new Promise((res) => setTimeout(res, time));
+  return;
+}

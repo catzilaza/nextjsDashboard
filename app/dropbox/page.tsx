@@ -22,12 +22,12 @@ import SignInFormClerk from "./components/SignInFormClerk";
 
 export default function DropboxPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col w-full">
       {/* Use the unified Navbar component */}
       <Navbar />
 
       {/* Main content */}
-      <div className="flex-1 bg-slate-200">
+      <div className="flex-1 bg-slate-200 w-full">
         {/* Hero section */}
         <section className="bg-slate-100 py-2 md:py-8 px-4 md:px-6">
           <div className="container mx-auto">

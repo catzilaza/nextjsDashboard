@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import React from "react";
-import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { mockfiles } from "@/app/dropbox/lib/db/dataschema";
-
-import type { File as FileType } from "@/app/dropbox/lib/db/dataschema";
-import { list } from "@vercel/blob";
 import { number } from "better-auth";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
 
@@ -16,14 +11,16 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // console.log("login_session : ", login_session);
+
     const userId = login_session?.user?.id;
 
     // // Get query parameters
     const searchParams = request.nextUrl.searchParams;
-    const queryUserId = searchParams.get("userId");
-    const parentId = searchParams.get("parentId");
+    const queryUserId = searchParams.get("userId") as string;
+    const parentId = searchParams.get("parentId") as string;
 
-    // // Verify the user is requesting their own files
+    // Verify the user is requesting their own files
     if (!queryUserId || queryUserId !== userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

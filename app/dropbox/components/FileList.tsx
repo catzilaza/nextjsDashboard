@@ -63,6 +63,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { set } from "better-auth";
+import { exit } from "process";
 
 const invoices = [
   {
@@ -136,6 +138,7 @@ export default function FileList({
   // Fetch files
   const fetchFiles = async () => {
     setLoading(true);
+
     try {
       let url = `/api/dropbox/files?userId=${userId}`;
 
@@ -165,6 +168,7 @@ export default function FileList({
 
   // Fetch files when userId, refreshTrigger, or currentFolder changes
   useEffect(() => {
+    if (!userId) return; // ถ้า userId ยังว่าง ไม่ต้อง fetch
     fetchFiles();
   }, [userId, refreshTrigger, currentFolder]);
 
