@@ -14,11 +14,9 @@ import {
   Shield,
 } from "lucide-react";
 import Link from "next/link";
-// import Navbar from "@/app/dashboard/ui/dropbox/Navbar";
 import Navbar from "./components/Navbar";
-import { SignOut } from "@/lib/utils/dropbox/uitls";
+import { SignOut } from "./lib/utils";
 import SignUpFormClerk from "./components/SignUpFormClerk";
-import SignInFormClerk from "./components/SignInFormClerk";
 
 export default function DropboxPage() {
   return (
