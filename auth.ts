@@ -6,7 +6,7 @@ import { authConfig } from "./auth.config";
 import bcrypt from "bcrypt";
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
-import { getUserByEmail } from "./lib/actions/auth/users";
+import { getUserByEmail } from "./app/(auth)/actions/auth/users";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,

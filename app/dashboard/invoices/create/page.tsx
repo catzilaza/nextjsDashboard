@@ -1,8 +1,8 @@
 // import Form from "@/app/ui/invoices/create-form";
 // import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 // import { fetchCustomers } from "@/app/lib/data";
-import Form from "@/app/dashboard/ui/invoices/create-form";
-import Breadcrumbs from "@/app/dashboard/ui/invoices/breadcrumbs";
+import Form from "@/app/dashboard/components/invoices/create-form";
+import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
 import { fetchCustomers } from "@/app/lib/data";
 
 export default async function Page() {

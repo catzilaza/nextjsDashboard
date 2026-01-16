@@ -6,6 +6,9 @@ import type { NextRequest } from "next/server";
 export default NextAuth(authConfig).auth;
 // export default NextAuth(authConfig).auth(async () => {});
 export function poxy(request: NextRequest) {
+  console.log("Poxy............");
+  console.log("Poxy............");
+  console.log("Poxy............");
   return NextResponse.redirect(new URL("/", request.url));
 }
 

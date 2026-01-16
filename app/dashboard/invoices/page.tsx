@@ -6,12 +6,12 @@
 // import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 // import { Suspense } from "react";
 // import { fetchInvoicesPages } from "@/app/lib/data";
-import Pagination from "@/app/dashboard/ui/invoices/pagination";
-import Search from "@/app/dashboard/ui/search";
-import Table from "@/app/dashboard/ui/invoices/table";
-import { CreateInvoice } from "@/app/dashboard/ui/invoices/buttons";
-import { lusitana } from "@/app/dashboard/ui/fonts";
-import { InvoicesTableSkeleton } from "@/app/dashboard/ui/skeletons";
+import Pagination from "@/app/dashboard/components/invoices/pagination";
+import Search from "@/app/dashboard/components/search";
+import Table from "@/app/dashboard/components/invoices/table";
+import { CreateInvoice } from "@/app/dashboard/components/invoices/buttons";
+import { lusitana } from "@/app/dashboard/components/fonts";
+import { InvoicesTableSkeleton } from "@/app/dashboard/components/skeletons";
 import { Suspense } from "react";
 import { fetchInvoicesPages } from "@/app/lib/data";
 

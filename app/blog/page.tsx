@@ -2,11 +2,11 @@
 // https://github.com/safak/next-blog/blob/completed/src/components/card/Card.jsx
 
 // import { useSearchParams } from "next/navigation";
-import CardList from "@/components/blog/cardlist/CardList";
-import Menu from "@/components/blog/Menu/Menu";
+import CardList from "@/app/blog/components/cardlist/CardList";
+import Menu from "@/app/blog/components/Menu/Menu";
 import styles from "./blogPage.module.css";
-import Featured from "@/components/blog/featured/Featured";
-import Categorylist from "@/components/blog/categorylist/CategoryList";
+import Featured from "@/app/blog/components/featured/Featured";
+import Categorylist from "@/app/blog/components/categorylist/CategoryList";
 
 export default function BlogPage() {
   return (

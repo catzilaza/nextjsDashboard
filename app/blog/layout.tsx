@@ -1,6 +1,6 @@
 // import { Toaster } from "@/components/ui/sonner";
-import Navbar from "@/components/blog/navbar/Navbar";
-import Footer from "@/components/blog/footer/Footer";
+import Navbar from "@/app/blog/components/navbar/Navbar";
+import Footer from "@/app/blog/components/footer/Footer";
 import styles from "./blogPage.module.css";
 import ThemeProvider from "@/providers/ThemeProvider";
 import { ThemeContextProvider } from "@/context/ThemeContext";

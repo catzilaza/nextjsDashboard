@@ -2,8 +2,8 @@
 // import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 // import { fetchInvoiceById, fetchCustomers } from "@/app/lib/data";
 // import { notFound } from "next/navigation";
-import Form from "@/app/dashboard/ui/invoices/edit-form";
-import Breadcrumbs from "@/app/dashboard/ui/invoices/breadcrumbs";
+import Form from "@/app/dashboard/components/invoices/edit-form";
+import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
 import { fetchInvoiceById, fetchCustomers } from "@/app/lib/data";
 import { notFound } from "next/navigation";
 

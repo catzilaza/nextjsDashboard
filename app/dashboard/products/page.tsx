@@ -1,12 +1,12 @@
-import { lusitana } from "@/app/dashboard/ui/fonts";
+import { lusitana } from "@/app/dashboard/components/fonts";
 import { Suspense } from "react";
-import Search from "@/app/dashboard/ui/search";
-import { CreateProduct } from "@/app/dashboard/ui/products/button";
-import { ProductsCardSkeleton } from "@/app/dashboard/ui/skeletons";
+import Search from "@/app/dashboard/components/search";
+import { CreateProduct } from "@/app/dashboard/components/products/button";
+import { ProductsCardSkeleton } from "@/app/dashboard/components/skeletons";
 import { fetchProducts_DessertPages } from "@/app/lib/data";
-import Pagination from "@/app/dashboard/ui/invoices/pagination";
+import Pagination from "@/app/dashboard/components/invoices/pagination";
 // import Card from "@/app/ui/products/card";
-import ProductCard from "@/app/dashboard/ui/products/card";
+import ProductCard from "@/app/dashboard/components/products/card";
 
 export default async function Page(props: {
   searchParams?: Promise<{

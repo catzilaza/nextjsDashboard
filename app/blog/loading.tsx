@@ -1,5 +1,5 @@
-import DashboardSkeleton from "@/app/dashboard/ui/skeletons";
-import BlogSkeleton from "@/components/blog/blogSkeleton";
+import DashboardSkeleton from "@/app/dashboard/components/skeletons";
+import BlogSkeleton from "@/app/blog/components/blogSkeleton";
 
 export default function Loading() {
   // return <DashboardSkeleton />;

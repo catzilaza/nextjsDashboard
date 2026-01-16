@@ -1,5 +1,5 @@
-import Form from "@/app/dashboard/ui/products/create-form";
-import Breadcrumbs from "@/app/dashboard/ui/invoices/breadcrumbs";
+import Form from "@/app/dashboard/components/products/create-form";
+import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
 import { fetchProducts_Dessert } from "@/app/lib/data";
 
 export default async function Page() {

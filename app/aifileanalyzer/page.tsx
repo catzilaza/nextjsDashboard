@@ -1,7 +1,7 @@
 import React from "react";
 // import FileUpload from "@/components/aifileanalyzer/file-upload";
 import { FileUpload } from "./components/file-upload";
-import AiForm from "@/components/aifileanalyzer/aiform";
+import AiForm from "@/app/aifileanalyzer/components/aiform";
 // This is a page component for the AI File Analyzer feature.
 
 // Build Your Own AI File Analyzer in 10 Minutes (Next.js 15, v0, Shadcn)

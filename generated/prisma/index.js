@@ -338,7 +338,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\Nextjs\\nextjs-dashboard\\generated\\prisma",
+      "value": "E:\\Nextjs\\nextjsDashboard\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -352,7 +352,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\Nextjs\\nextjs-dashboard\\prisma\\schema.prisma",
+    "sourceFilePath": "E:\\Nextjs\\nextjsDashboard\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -366,11 +366,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgres://neondb_owner:npg_vH1sjhyn9zfA@ep-noisy-waterfall-a1ivq1r8-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+        "value": null
       }
     }
   },

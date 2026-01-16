@@ -1,4 +1,4 @@
-import Menu from "@/components/blog/Menu/Menu";
+import Menu from "@/app/blog/components/Menu/Menu";
 import styles from "./postPage.module.css";
 import Image from "next/image";
 import prisma from "@/lib/prisma";

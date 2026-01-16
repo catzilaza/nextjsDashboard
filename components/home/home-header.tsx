@@ -1,4 +1,4 @@
-import AcmeLogo from "@/app/dashboard/ui/acme-logo";
+import AcmeLogo from "@/app/dashboard/components/acme-logo";
 import Carousel from "../carousel";
 
 const homeheader = () => {

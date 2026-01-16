@@ -1,9 +1,9 @@
 "use client";
 
 import { QueryClient, useQuery, queryOptions } from "@tanstack/react-query";
-import TanstackBasic from "@/components/tanstackQuery/tanstackBasic";
-import TanstackGQL from "@/components/tanstackQuery/tanstackGQL";
-import TanStackPlayground from "@/components/tanstackQuery/TanStackPlayground";
+import TanstackBasic from "@/app/dashboard/components/tanstackQuery/tanstackBasic";
+import TanstackGQL from "@/app/dashboard/components/tanstackQuery/tanstackGQL";
+import TanStackPlayground from "@/app/dashboard/components/tanstackQuery/TanStackPlayground";
 
 export default function page() {
   return (

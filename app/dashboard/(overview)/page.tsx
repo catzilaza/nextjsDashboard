@@ -8,16 +8,16 @@
 //   LatestInvoicesSkeleton,
 //   CardsSkeleton,
 // } from "@/app/ui/skeletons";
-import CardWrapper from "@/app/dashboard/ui/dashboard/cards";
-import RevenueChart from "@/app/dashboard/ui/dashboard/revenue-chart";
-import LatestInvoices from "@/app/dashboard/ui/dashboard/latest-invoices";
-import { lusitana } from "@/app/dashboard/ui/fonts";
+import CardWrapper from "@/app/dashboard/components/dashboard/cards";
+import RevenueChart from "@/app/dashboard/components/dashboard/revenue-chart";
+import LatestInvoices from "@/app/dashboard/components/dashboard/latest-invoices";
+import { lusitana } from "@/app/dashboard/components/fonts";
 import { Suspense } from "react";
 import {
   RevenueChartSkeleton,
   LatestInvoicesSkeleton,
   CardsSkeleton,
-} from "@/app/dashboard/ui/skeletons";
+} from "@/app/dashboard/components/skeletons";
 
 export default async function Page() {
   return (

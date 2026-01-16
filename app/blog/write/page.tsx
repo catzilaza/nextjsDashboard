@@ -1,8 +1,8 @@
 "use server";
 
 import styles from "./writePage.module.css";
-import WriteForm from "@/components/blog/writepage/write-form";
-import ImageWrapper from "@/components/blog/writepage/image-wrapper";
+import WriteForm from "@/app/blog/components/writepage/write-form";
+import ImageWrapper from "@/app/blog/components/writepage/image-wrapper";
 import { list } from "@vercel/blob";
 import fs from "fs";
 import path from "path";

@@ -1,5 +1,5 @@
-import Form from "@/app/dashboard/ui/products/edit-form";
-import Breadcrumbs from "@/app/dashboard/ui/invoices/breadcrumbs";
+import Form from "@/app/dashboard/components/products/edit-form";
+import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
 import { fetchProducts_DessertById } from "@/app/lib/data";
 import { notFound } from "next/navigation";
 
