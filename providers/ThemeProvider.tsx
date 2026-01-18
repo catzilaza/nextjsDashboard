@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { ThemeContext } from "@/context/ThemeContext";
 import React, { useContext, useEffect, useState } from "react";
