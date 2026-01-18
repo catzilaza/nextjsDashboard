@@ -10,4 +10,5 @@ export async function PATH(request: NextRequest) {
   //     );
   //   }
   //   return NextResponse.json({ message: "success" }, { status: 200 });
+  return NextResponse.json({});
 }

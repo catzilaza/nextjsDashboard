@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 // import {checkUserPermission, getCurrentUser } from "@/app/(auth)/lib/apiClient/apiAuth"
 export async function PATH(
-  request: NextRequest
+  request: NextRequest,
   //   context: { params: Promise<{ userId: string }> }
 ) {
   //   try {
@@ -61,4 +61,5 @@ export async function PATH(
   //     }
   //     return NextResponse.json({});
   //   }
+  return NextResponse.json({});
 }

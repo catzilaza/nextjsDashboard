@@ -52,19 +52,19 @@ class ApiAuth {
   }
 
   //Auth Methods
-  async register(userData: unknown) {
-    return this.request("/api/auth/register", {
-      method: "POST",
-      body: JSON.stringify({}),
-    });
-  }
+  // async register(userData: unknown) {
+  //   return this.request("/api/auth/register", {
+  //     method: "POST",
+  //     body: JSON.stringify({}),
+  //   });
+  // }
 
-  async login(email: string, password: string) {
-    return this.request("/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
-  }
+  // async login(email: string, password: string) {
+  //   return this.request("/api/auth/login", {
+  //     method: "POST",
+  //     body: JSON.stringify({ email, password }),
+  //   });
+  // }
 
   //   async function login(email: string, password: string) {
   //   try {
@@ -88,33 +88,33 @@ class ApiAuth {
   //   }
   // }
 
-  async logout() {
-    return this.request("/api/auth/logout", {
-      method: "POST",
-    });
-  }
-  async getCurrentUser() {
-    return this.request("/api/auth/current_user");
-  }
+  // async logout() {
+  //   return this.request("/api/auth/logout", {
+  //     method: "POST",
+  //   });
+  // }
+  // async getCurrentUser() {
+  //   return this.request("/api/auth/current_user");
+  // }
 
   // User Methods
-  async gettUser() {
-    return this.request("/api/user");
-  }
+  // async gettUser() {
+  //   return this.request("/api/user");
+  // }
 
   // Admin Methods
-  async updateUserRole(userId: string, role: string) {
-    return this.request(`/api/user/${userId}/role`, {
-      method: "PATH",
-      body: JSON.stringify({ role }),
-    });
-  }
-  async assignUserToTeam(userId: string, teamId: string) {
-    return this.request(`/api/user/${userId}/team`, {
-      method: "PATH",
-      body: JSON.stringify({ teamId }),
-    });
-  }
+  // async updateUserRole(userId: string, role: string) {
+  //   return this.request(`/api/user/${userId}/role`, {
+  //     method: "PATH",
+  //     body: JSON.stringify({ role }),
+  //   });
+  // }
+  // async assignUserToTeam(userId: string, teamId: string) {
+  //   return this.request(`/api/user/${userId}/team`, {
+  //     method: "PATH",
+  //     body: JSON.stringify({ teamId }),
+  //   });
+  // }
 }
 
 export const apiAuth = new ApiAuth();
