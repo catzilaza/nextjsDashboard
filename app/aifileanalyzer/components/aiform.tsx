@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { getAIResponse } from "@/server/openai";
+import { getAIResponse } from "@/app/aifileanalyzer/server/openai";
 import { Textarea } from "../../../components/ui/textarea";
 
 const formSchema = z.object({

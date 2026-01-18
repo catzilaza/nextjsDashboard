@@ -2,14 +2,53 @@ import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { auth } from "./auth";
+import { getLoginSession } from "./app/lib/data";
 
-export default NextAuth(authConfig).auth;
+// export default NextAuth(authConfig).auth;
 // export default NextAuth(authConfig).auth(async () => {});
-export function poxy(request: NextRequest) {
-  console.log("Poxy............");
-  console.log("Poxy............");
-  console.log("Poxy............");
-  return NextResponse.redirect(new URL("/", request.url));
+export default async function poxy(request: NextRequest) {
+  // console.log("Poxy............", request.credentials);
+  // console.log("Poxy............", request.url);
+  // console.log("Poxy............", request.nextUrl);
+
+  // let user = await auth();
+  // if (!user) {
+  //   if (request.nextUrl.pathname === "/")
+  //     return NextResponse.redirect(new URL("/", request.url));
+  // }
+  // console.log("USER : ----------", user);
+
+  // if (request.nextUrl.pathname === "/") {
+  //   return NextResponse.next();
+  // }
+
+  // return NextResponse.redirect(new URL("/", request.url));
+  // return NextResponse.next();
+  //=======================================
+
+  // console.log("----- Enter Callbacks : Authorized");
+
+  // const isLoggedIn = !!auth?.user;
+
+  // const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+
+  // if (isOnDashboard) {
+  //   if (isLoggedIn) {
+  //     // console.log("Leave Callbacks : Authorized");
+  //     return true;
+  //   }
+  //   // console.log("Leave Callbacks : Authorized");
+  //   return false;
+  // } else {
+  //   if (isLoggedIn) {
+  //     // console.log("Leave Callbacks : Authorized");
+  //     // return Response.redirect(new URL("/dashboard", nextUrl));
+  //     return true;
+  //   }
+  // }
+  // // console.log("Leave Callbacks : Authorized");
+  // return true;
 }
 
 export const config = {
