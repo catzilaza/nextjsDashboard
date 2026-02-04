@@ -91,17 +91,17 @@ export default async function PostPage({
 }) {
   const { slug } = await params;
 
-  const post: any = await prisma.post.findUnique({
-    where: { slug: slug },
-    // include: {
-    //   user: {
-    //     select: {
-    //       name: true,
-    //       image: true,
-    //     },
-    //   },
-    // },
-  });
+  // const post: any = await prisma.post.findUnique({
+  //   where: { slug: slug },
+  // include: {
+  //   user: {
+  //     select: {
+  //       name: true,
+  //       image: true,
+  //     },
+  //   },
+  // },
+  // });
 
   // console.log("PostPage post : ", post);
 
@@ -109,15 +109,15 @@ export default async function PostPage({
     <>
       <p>PostPage Slug : {slug} </p>
       <div>
-        <p>{post?.slug}</p>
+        {/* <p>{post?.slug}</p> */}
         <div style={{ position: "relative", width: "300px", height: "400px" }}>
-          <Image
+          {/* <Image
             src={post?.img}
             alt="error"
             fill
             priority={true}
             sizes="(max-width: 768px) 100vw, 300px"
-          />
+          /> */}
         </div>
       </div>
     </>
