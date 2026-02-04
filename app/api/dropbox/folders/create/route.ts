@@ -1,5 +1,6 @@
 "use server";
 
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
@@ -9,7 +10,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: NextRequest) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -29,7 +31,7 @@ export async function POST(request: NextRequest) {
     if (!name || typeof name !== "string" || name.trim() === "") {
       return NextResponse.json(
         { error: "Folder name is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -46,7 +48,7 @@ export async function POST(request: NextRequest) {
       if (!parentFolder) {
         return NextResponse.json(
           { error: "Parent folder not found" },
-          { status: 404 }
+          { status: 404 },
         );
       }
     }
@@ -83,7 +85,7 @@ export async function POST(request: NextRequest) {
     console.error("Error creating folder:", error);
     return NextResponse.json(
       { error: "Failed to create folder" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

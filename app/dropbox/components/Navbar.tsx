@@ -3,7 +3,11 @@
 // Learn Next.js by Coding Your Own Dropbox Clone – Full Tutorial//
 //  https://www.youtube.com/watch?v=IcOiX-jynfI//
 //
-
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { set } from "better-auth";
+import { ChevronDown, CloudUpload, Menu, User, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,12 +19,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, CloudUpload, Menu, User, X } from "lucide-react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
 import { getLoginSession, SignOut } from "../lib/utils";
-import { set } from "better-auth";
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 
 interface SerializedUser {
   name?: string | null | undefined;
@@ -58,16 +58,18 @@ export default function Navbar() {
     role: "",
     expiredAt: "",
   });
+  //"/customers/amy-burns.png"
   const hasuser = async () => {
-    let user = await getLoginSession();
+    // let user = await getLoginSession();
+    let user = await getCurrentUser();
     if (user) {
       setIsLoggedIn(true);
       setUserProfile({
         name: user.user.name,
         email: user.user.email,
         image: user.user.image,
-        role: user.user.role,
-        expiredAt: user.expires,
+        role: user.currentUser.role,
+        expiredAt: user.session.expiresAt.toDateString(),
       });
       return user;
     } else {
@@ -184,7 +186,7 @@ export default function Navbar() {
                   Sign In
                 </Link>
                 <Link
-                  href="/signup"
+                  href="/betterauth/signup"
                   className="p-2 hover:bg-slate-200 rounded-md transition-colors"
                 >
                   Sign Up

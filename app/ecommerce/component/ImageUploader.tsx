@@ -7,7 +7,7 @@ interface ImageUploaderProps {
 
 export default function ImageUploader() {
   const [images, setImages] = useState<Array<{ file: File; preview: string }>>(
-    []
+    [],
   );
   const [loading, setLoading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState<string>("");
@@ -40,7 +40,7 @@ export default function ImageUploader() {
         setUploadMessage("Images uploaded successfully!");
         const data = await response.json();
         const uploadedImageUrls = data.fileIds.map(
-          (fileId: number) => `/api/retrieve?fileId=${fileId}`
+          (fileId: number) => `/api/retrieve?fileId=${fileId}`,
         );
 
         // onUpload(uploadedImageUrls);

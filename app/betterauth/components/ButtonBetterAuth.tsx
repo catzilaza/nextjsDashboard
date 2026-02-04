@@ -1,15 +1,12 @@
 "use server";
 
-import { signOutAction } from "../actions/actionsBetterAuth/betterAuthActions";
+import { signOutAction } from "../actions/betterAuthActions";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default async function ButtonBetterAuth({
-  session = false,
-}: {
-  session?: undefined | boolean;
-}) {
-  console.log("Session ButtonBetterAuth :", session);
+export default async function ButtonBetterAuth() {
+  const session: boolean = false;
+  // console.log("Session ButtonBetterAuth :", session);
 
   if (!session) {
     return (
@@ -30,7 +27,7 @@ export default async function ButtonBetterAuth({
     <div className="flex flex-col items-center justify-center h-screen gap-4">
       <h1 className="text-4xl font-bold">{String(session)}</h1>
       <div className="mt-8 text-center">
-        {/* <p className="text-lg mb-4">User ID: {session.user.id}</p> */}
+        <p className="text-lg mb-4">User ID: {session}</p>
         <form action={signOutAction}>
           <Button
             type="submit"

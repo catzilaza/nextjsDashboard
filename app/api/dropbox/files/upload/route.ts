@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import prisma from "@/lib/prisma";
 import { put } from "@vercel/blob";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 
 // import ImageKit from "imagekit";
 
@@ -17,7 +18,8 @@ import { getLoginSession } from "@/app/dropbox/lib/utils";
 
 export async function POST(request: NextRequest) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -51,7 +53,7 @@ export async function POST(request: NextRequest) {
       if (!parentFolder) {
         return NextResponse.json(
           { error: "Parent folder not found" },
-          { status: 404 }
+          { status: 404 },
         );
       }
     }
@@ -81,7 +83,7 @@ export async function POST(request: NextRequest) {
         "Missing BLOB_READ_WRITE_TOKEN. Don't forget to add that to your .env file.",
         {
           status: 401,
-        }
+        },
       );
     }
 
@@ -145,7 +147,7 @@ export async function POST(request: NextRequest) {
     console.error("Error uploading file:", error);
     return NextResponse.json(
       { error: "Failed to upload file" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

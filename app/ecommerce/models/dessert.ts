@@ -19,3 +19,28 @@ export type ProductDessertSchema = {
   status: "avialable" | "unavialable";
   date: string;
 };
+
+// model Product {
+//   id                String   @id @default(uuid())
+//   name              String
+//   description       String?
+//   price             Decimal
+//   stripe_product_id String   @map("stripe_product_id")
+//   stripe_price_id   String   @map("stripe_price_id")
+//   imageUrl          String   @map("image_url")
+//   createdAt         DateTime @default(now()) @map("created_at")
+//   updatedAt         DateTime @updatedAt @map("updated_at")
+// }
+
+// model OrderDessert {
+//   id              String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+//   stripeSessionId String?
+//   userName        String?
+//   userEmail       String?
+//   productId       String?
+//   productName     String?
+//   price           Int?
+//   quantity        Int?
+//   totalPrice      Int?
+//   createdAt       DateTime @default(now())
+// }

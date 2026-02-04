@@ -106,7 +106,7 @@ export default function FileUploadForm({
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
             const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
+              (progressEvent.loaded * 100) / progressEvent.total,
             );
             setProgress(percentCompleted);
           }
@@ -308,8 +308,8 @@ export default function FileUploadForm({
           error
             ? "border-danger/30 bg-danger/5"
             : file
-            ? "border-primary/30 bg-primary/5"
-            : "border-default-300 hover:border-primary/5"
+              ? "border-primary/30 bg-primary/5"
+              : "border-default-300 hover:border-primary/5"
         }`}
       >
         {!file ? (
@@ -352,8 +352,8 @@ export default function FileUploadForm({
                     {file.size < 1024
                       ? `${file.size} B`
                       : file.size < 1024 * 1024
-                      ? `${(file.size / 1024).toFixed(1)} KB`
-                      : `${(file.size / (1024 * 1024)).toFixed(1)} MB`}
+                        ? `${(file.size / 1024).toFixed(1)} KB`
+                        : `${(file.size / (1024 * 1024)).toFixed(1)} MB`}
                   </p>
                 </div>
               </div>

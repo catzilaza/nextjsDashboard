@@ -6,6 +6,7 @@ import { getLoginSession } from "../lib/utils";
 import Navbar from "../components/Navbar";
 import DashboardContent from "../components/DashboardContent";
 import { CloudUpload } from "lucide-react";
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 
 interface SerializedUser {
   id?: string | null | undefined;
@@ -35,7 +36,8 @@ export default function DropboxPage() {
   });
 
   const hasuser = async () => {
-    let user = await getLoginSession();
+    // let user = await getLoginSession();
+    let user = await getCurrentUser()
     if (user) {
       setIsLoggedIn(true);
       setUserProfile({
@@ -43,8 +45,8 @@ export default function DropboxPage() {
         name: user.user.name,
         email: user.user.email,
         image: user.user.image,
-        role: user.user.role,
-        expiredAt: user.expires,
+        role: user.currentUser.role,
+        expiredAt: user.session.expiresAt.toDateString(),
       });
       return user;
     } else {

@@ -1,13 +1,15 @@
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
   request: NextRequest,
-  props: { params: Promise<{ fileId: string }> }
+  props: { params: Promise<{ fileId: string }> },
 ) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();
 
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -20,7 +22,7 @@ export async function PATCH(
     if (!fileId) {
       return NextResponse.json(
         { error: "File ID is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -49,7 +51,7 @@ export async function PATCH(
     console.error("Error starring file:", error);
     return NextResponse.json(
       { error: "Failed to update file" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

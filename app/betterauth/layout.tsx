@@ -5,10 +5,5 @@ export default function BetterAuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>
-      <h1>BetterAuthLayout</h1>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

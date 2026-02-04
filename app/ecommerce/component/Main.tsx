@@ -1,13 +1,13 @@
 import React from "react";
+import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { ProductDessertSchema } from "../models/dessert";
+import { lusitana } from "../font/fonts";
+import { fetchAllProducts_Dessert } from "../lib/uitls";
 import CarouselEcommerce from "./CarouselEcommerce";
 import Logo from "./Logo";
 import Categories from "./Categories";
 import ListProduct from "./ListProduct";
-import Link from "next/link";
-import { ProductDessertSchema } from "../models/dessert";
-import { lusitana } from "../font/fonts";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { fetchAllProducts_Dessert } from "../lib/uitls";
 
 // {
 //   products,

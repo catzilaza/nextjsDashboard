@@ -1,19 +1,23 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Search from "./search";
+import { typeUserProfile } from "../models/user";
 import { getSession, SignOut } from "../lib/uitls";
 import { lusitana } from "../font/fonts";
+import {
+  getCurrentSession,
+  getCurrentUser,
+} from "@/app/betterauth/actions/users";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   Bars3Icon,
   GlobeAltIcon,
   XMarkIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Button } from "@/components/ui/button";
-import { typeUserProfile } from "../models/user";
-import Search from "./search";
 
 // const SearchBar: React.FC<{ onSearch: (term: string) => void }> = ({
 //   onSearch,
@@ -58,15 +62,17 @@ export default function Navbar() {
     expiredAt: "",
   });
   const hasuser = async () => {
-    let user = await getSession();
-    if (user) {
+    // let user = await getSession();
+    let session = await getCurrentSession();
+    if (session) {
       setIsLogedin(true);
+      let user = await getCurrentUser();
       setUserProfile({
         name: user.user.name,
         email: user.user.email,
         image: user.user.image,
-        role: user.user.role,
-        expiredAt: user.expires,
+        role: user.currentUser.role,
+        expiredAt: user.session.expiresAt.toDateString(),
       });
       return user;
     } else {
@@ -263,13 +269,19 @@ export default function Navbar() {
               <>
                 {" "}
                 <li>
-                  <Link href="/login" className="mx-2 hover:underline">
+                  <Link
+                    href="/betterauth/signin"
+                    className="mx-2 hover:underline"
+                  >
                     Log in
                   </Link>
                 </li>
                 <li>
-                  <Link href="/signup" className="mx-2 hover:underline">
-                    Register
+                  <Link
+                    href="/betterauth/signup"
+                    className="mx-2 hover:underline"
+                  >
+                    Sign up
                   </Link>
                 </li>
               </>

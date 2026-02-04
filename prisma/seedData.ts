@@ -14,95 +14,211 @@ async function delayWithCountdown(seconds: number): Promise<void> {
 
 // const hashedPassword = await bcrypt.hash(user.password, 10);
 // const hashedPassword = await bcrypt.hash("123456admin!", 10);
-const seedUser = async () => {
-  const users = [
+// const seedUser = async () => {
+//   const users = [
+//     {
+//       name: "Admin",
+//       email: "admin@nextmail.com",
+//       image_url: "/customers/evil-rabbit.png",
+//       image: "/customers/evil-rabbit.png",
+//       password: await bcrypt.hash("123456admin!", 10),
+//       role: "admin",
+//     },
+//     {
+//       name: "User",
+//       email: "user@nextmail.com",
+//       image_url: "/customers/evil-rabbit.png",
+//       image: "/customers/evil-rabbit.png",
+//       password: await bcrypt.hash("123456user!", 10),
+//     },
+//     {
+//       name: "Emily",
+//       email: "emily.johnson@x.dummyjson.com",
+//       image_url: "https://dummyjson.com/icon/emilys/128",
+//       image: "https://dummyjson.com/icon/emilys/128",
+//       password: await bcrypt.hash("123456emily!", 10),
+//     },
+//     {
+//       name: "Michael",
+//       email: "michael.williams@x.dummyjson.com",
+//       image_url: "https://dummyjson.com/icon/michaelw/128",
+//       image: "https://dummyjson.com/icon/michaelw/128",
+//       password: await bcrypt.hash("123456michael!", 10),
+//     },
+//     {
+//       name: "Sophia",
+//       email: "sophia.brown@x.dummyjson.com",
+//       image_url: "https://dummyjson.com/icon/sophiab/128",
+//       image: "https://dummyjson.com/icon/sophiab/128",
+//       password: await bcrypt.hash("123456sophia!", 10),
+//     },
+//   ];
+//   for (const user of users) {
+//     await prisma.user.create({
+//       data: user,
+//     });
+//   }
+// };
+
+// const seedDataCateBlog = async () => {
+//   const cateBlogs = [
+//     {
+//       title: "Fashion",
+//       slug: "fashion",
+//       img: "/blog/fashion.png",
+//       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     },
+//     {
+//       title: "Lifestyle",
+//       slug: "lifestyle",
+//       img: "/blog/style.png",
+//       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     },
+//     {
+//       title: "Travel",
+//       slug: "travel",
+//       img: "/blog/travel.png",
+//       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     },
+//     {
+//       title: "Food",
+//       slug: "food",
+//       img: "/blog/food.png",
+//       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     },
+//     {
+//       title: "Fitness",
+//       slug: "fitness",
+//       img: "/blog/tiktok.png",
+//       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     },
+//     {
+//       title: "Technology",
+//       slug: "technology",
+//       img: "/blog/youtube.png",
+//       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     },
+//   ];
+
+//   for (const cateBlog of cateBlogs) {
+//     await prisma.category.create({
+//       data: cateBlog,
+//     });
+//   }
+// };
+
+const seedCustomers = async () => {
+  const customers = [
     {
-      name: "Admin",
-      email: "admin@nextmail.com",
+      name: "Evil Rabbit",
+      email: "evil@rabbit.com",
       image_url: "/customers/evil-rabbit.png",
-      image: "/customers/evil-rabbit.png",
-      password: await bcrypt.hash("123456admin!", 10),
-      role: "admin",
+      invoices: {
+        create: [
+          {
+            amount: 15795,
+            status: "pending",
+          },
+          {
+            amount: 666,
+            status: "pending",
+          },
+        ],
+      },
     },
     {
-      name: "User",
-      email: "user@nextmail.com",
-      image_url: "/customers/evil-rabbit.png",
-      image: "/customers/evil-rabbit.png",
-      password: await bcrypt.hash("123456user!", 10),
+      name: "Delba de Oliveira",
+      email: "delba@oliveira.com",
+      image_url: "/customers/delba-de-oliveira.png",
+      invoices: {
+        create: [
+          {
+            amount: 20348,
+            status: "pending",
+          },
+          {
+            amount: 32545,
+            status: "paid",
+          },
+        ],
+      },
     },
     {
-      name: "Emily",
-      email: "emily.johnson@x.dummyjson.com",
-      image_url: "https://dummyjson.com/icon/emilys/128",
-      image: "https://dummyjson.com/icon/emilys/128",
-      password: await bcrypt.hash("123456emily!", 10),
+      name: "Lee Robinson",
+      email: "lee@robinson.com",
+      image_url: "/customers/lee-robinson.png",
+      invoices: {
+        create: [
+          {
+            amount: 3040,
+            status: "paid",
+          },
+          {
+            amount: 1250,
+            status: "paid",
+          },
+        ],
+      },
     },
     {
-      name: "Michael",
-      email: "michael.williams@x.dummyjson.com",
-      image_url: "https://dummyjson.com/icon/michaelw/128",
-      image: "https://dummyjson.com/icon/michaelw/128",
-      password: await bcrypt.hash("123456michael!", 10),
+      name: "Michael Novotny",
+      email: "michael@novotny.com",
+      image_url: "/customers/michael-novotny.png",
+      invoices: {
+        create: [
+          {
+            amount: 44800,
+            status: "paid",
+          },
+          {
+            amount: 8546,
+            status: "paid",
+          },
+        ],
+      },
     },
     {
-      name: "Sophia",
-      email: "sophia.brown@x.dummyjson.com",
-      image_url: "https://dummyjson.com/icon/sophiab/128",
-      image: "https://dummyjson.com/icon/sophiab/128",
-      password: await bcrypt.hash("123456sophia!", 10),
+      name: "Amy Burns",
+      email: "amy@burns.com",
+      image_url: "/customers/amy-burns.png",
+      invoices: {
+        create: [
+          {
+            amount: 34577,
+            status: "pending",
+          },
+        ],
+      },
+    },
+    {
+      name: "Balazs Orban",
+      email: "balazs@orban.com",
+      image_url: "/customers/balazs-orban.png",
+      invoices: {
+        create: [
+          {
+            amount: 54246,
+            status: "pending",
+          },
+          {
+            amount: 1000,
+            status: "paid",
+          },
+          {
+            amount: 500,
+            status: "paid",
+          },
+          {
+            amount: 8945,
+            status: "paid",
+          },
+        ],
+      },
     },
   ];
-  for (const user of users) {
-    await prisma.user.create({
-      data: user,
-    });
-  }
-};
-
-const seedDataCateBlog = async () => {
-  const cateBlogs = [
-    {
-      title: "Fashion",
-      slug: "fashion",
-      img: "/blog/fashion.png",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "Lifestyle",
-      slug: "lifestyle",
-      img: "/blog/style.png",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "Travel",
-      slug: "travel",
-      img: "/blog/travel.png",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "Food",
-      slug: "food",
-      img: "/blog/food.png",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "Fitness",
-      slug: "fitness",
-      img: "/blog/tiktok.png",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      title: "Technology",
-      slug: "technology",
-      img: "/blog/youtube.png",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ];
-
-  for (const cateBlog of cateBlogs) {
-    await prisma.category.create({
-      data: cateBlog,
+  for (const customer of customers) {
+    await prisma.customers.create({
+      data: customer,
     });
   }
 };
@@ -112,8 +228,10 @@ async function main() {
     console.log("Seeding database...");
 
     // await seedUser();
-    await seedDataCateBlog();
-    await delayWithCountdown(10);
+    // await seedDataCateBlog();
+    // await delayWithCountdown(10);
+    // await seedRevenes();
+    await seedCustomers();
 
     console.log("Seeding completed");
   } catch (error) {

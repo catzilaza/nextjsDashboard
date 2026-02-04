@@ -1,19 +1,24 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import { formatDistanceToNow, format } from "date-fns";
+import axios from "axios";
+import { toast } from "sonner";
+import { set } from "better-auth";
+import { exit } from "process";
+import { ExternalLink, Folder, Star, Trash, X } from "lucide-react";
+import FileTabs from "./FileTabs";
+import FileLoadingState from "./FileLoadingState";
 import FileActions from "./FileActions";
 import FileIcon from "./FileIcon";
 import FileEmptyState from "./FileEmptyState";
 import FileActionButtons from "./FileActionButtons";
 import FolderNavigation from "./FolderNavigation";
-import { formatDistanceToNow, format } from "date-fns";
-import { Separator } from "@/components/ui/separator";
 // import { FileType } from "../lib/db/dataschema";
 import type { File as FileType } from "../lib/db/dataschema";
 import { mockfiles } from "../lib/db/dataschema";
-import axios from "axios";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Card,
   CardContent,
@@ -39,7 +44,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ExternalLink, Folder, Star, Trash, X } from "lucide-react";
+
 import {
   Dialog,
   DialogClose,
@@ -50,8 +55,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import FileTabs from "./FileTabs";
-import FileLoadingState from "./FileLoadingState";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -63,8 +66,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { set } from "better-auth";
-import { exit } from "process";
 
 const invoices = [
   {
@@ -208,8 +209,8 @@ export default function FileList({
       // Update local state
       setFiles(
         files.map((file) =>
-          file.id === fileId ? { ...file, isStarred: !file.isStarred } : file
-        )
+          file.id === fileId ? { ...file, isStarred: !file.isStarred } : file,
+        ),
       );
 
       // Show toast
@@ -229,7 +230,7 @@ export default function FileList({
             background: "#fff",
             color: "green",
           },
-        }
+        },
       );
     } catch (error) {
       console.error("Error starring file:", error);
@@ -257,8 +258,8 @@ export default function FileList({
       // Update local state
       setFiles(
         files.map((file) =>
-          file.id === fileId ? { ...file, isTrash: !file.isTrash } : file
-        )
+          file.id === fileId ? { ...file, isTrash: !file.isTrash } : file,
+        ),
       );
 
       // Show toast
@@ -277,7 +278,7 @@ export default function FileList({
             background: "#fff",
             color: "green",
           },
-        }
+        },
       );
     } catch (error) {
       console.error("Error trashing file:", error);
@@ -305,7 +306,7 @@ export default function FileList({
 
       // Send delete request
       const response = await axios.delete(
-        `/api/dropbox/files/${fileId}/delete`
+        `/api/dropbox/files/${fileId}/delete`,
       );
       if (response.data.success) {
         // Remove file from local state
@@ -650,10 +651,10 @@ export default function FileList({
                             {file.isFolder
                               ? "-"
                               : file.size < 1024
-                              ? `${file.size} B`
-                              : file.size < 1024 * 1024
-                              ? `${(file.size / 1024).toFixed(1)} KB`
-                              : `${(file.size / (1024 * 1024)).toFixed(1)} MB`}
+                                ? `${file.size} B`
+                                : file.size < 1024 * 1024
+                                  ? `${(file.size / 1024).toFixed(1)} KB`
+                                  : `${(file.size / (1024 * 1024)).toFixed(1)} MB`}
                           </div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">

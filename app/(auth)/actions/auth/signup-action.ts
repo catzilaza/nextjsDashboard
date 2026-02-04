@@ -7,6 +7,13 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+interface IRoleBetterAuth {
+  MEMBER: "member";
+  ADMIN: "admin";
+  OWNER: "owner";
+}
+type RoleBetterAuth = IRoleBetterAuth[keyof IRoleBetterAuth];
+
 const SignUpSchema = z.object({
   username: z.string().min(4, { message: "Be at least 4 characters long" }),
   password: z
@@ -37,7 +44,7 @@ const SignUpSchemaOmit = SignUpSchema.omit({});
 
 export async function SignUp(
   _prevState: SignUpActionState,
-  form: FormData
+  form: FormData,
 ): Promise<SignUpActionState> {
   // await new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -47,10 +54,11 @@ export async function SignUp(
   const password = form.get("password") as string;
   const email = form.get("email") as string;
   // const status = true;
-  const role = "user";
+  const role: RoleBetterAuth = "member";
   const date = new Date().toISOString().split("T")[0];
   const image_blob = "";
   const image_url = "/customers/amy-burns.png";
+  const image = "/customers/amy-burns.png";
 
   const validatedFields = SignUpSchemaOmit.safeParse({
     name,
@@ -81,16 +89,26 @@ export async function SignUp(
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
+    // await prisma.user.create({
+    //   data: {
+    //     id,
+    //     name,
+    //     email,
+    //     role,
+    //     image,
+    //     password: hashedPassword,
+    //     // status: status.toString(),
+    //     // date: new Date(date), // Ensure `date` is a valid Date object        // image_url,
+    //   },
+    // });
     await prisma.user.create({
       data: {
         id,
         name,
         email,
-        password: hashedPassword,
-        // status: status.toString(),
         role,
-        date: new Date(date), // Ensure `date` is a valid Date object
-        image_url,
+        image,
+        password: hashedPassword,
       },
     });
 

@@ -2,6 +2,7 @@ import { getLoginSession } from "@/app/dropbox/lib/utils";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { put, list, del } from "@vercel/blob";
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 // import ImageKit from "imagekit";
 // Initialize ImageKit with your credentials
 // const imagekit = new ImageKit({
@@ -12,10 +13,11 @@ import { put, list, del } from "@vercel/blob";
 
 export async function DELETE(
   request: NextRequest,
-  props: { params: Promise<{ fileId: string }> }
+  props: { params: Promise<{ fileId: string }> },
 ) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();
 
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -28,7 +30,7 @@ export async function DELETE(
     if (!fileId) {
       return NextResponse.json(
         { error: "File ID is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -119,7 +121,7 @@ export async function DELETE(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete file" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

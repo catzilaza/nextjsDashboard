@@ -3,6 +3,10 @@ import { getLoginSession } from "@/app/ecommerce/lib/uitls";
 import prisma from "@/app/ecommerce/lib/prisma";
 import Stripe from "stripe";
 import Error from "next/error";
+import {
+  getCurrentSession,
+  getCurrentUser,
+} from "@/app/betterauth/actions/users";
 
 const db = prisma;
 
@@ -22,7 +26,13 @@ export interface CartItem {
 
 export async function POST(req: Request) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session1 = await getCurrentSession();
+    let login_session = undefined;
+
+    if (login_session1) {
+      login_session = await getCurrentUser();
+    }
 
     if (!login_session) {
       console.log("message: Unauthorized status: 401");
@@ -115,10 +125,24 @@ export async function POST(req: Request) {
 
     // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่า ซื้อสำเร็จ จ่ายเงินแล้ว
 
+    // const dataOrder = cartItems.map((item: any) => ({
+    //   // id: item.id as string,
+    //   // stripeSessionId: stripCheckoutSession.id as string,
+    //   stripeSessionId: stripCheckoutSession.id as string,
+    //   userName: user.name as string,
+    //   userEmail: user.email as string,
+    //   productId: item.id as string,
+    //   productName: item.name as string,
+    //   price: item.price,
+    //   quantity: item.quantity,
+    //   totalPrice: item.price * item.quantity,
+    // }));
+
     const dataOrder = cartItems.map((item: any) => ({
       // id: item.id as string,
       // stripeSessionId: stripCheckoutSession.id as string,
-      stripeSessionId: stripCheckoutSession.id as string,
+      userId: user.id as string,
+      stripe_session_id: stripCheckoutSession.id as string,
       userName: user.name as string,
       userEmail: user.email as string,
       productId: item.id as string,
@@ -126,14 +150,22 @@ export async function POST(req: Request) {
       price: item.price,
       quantity: item.quantity,
       totalPrice: item.price * item.quantity,
+      paymentMethod: "STRIPE" as any,
+      storeId: "", // Replace with actual storeId or make it optional in your schema
     }));
 
-    const result = await prisma.orderDessert.createMany({
+    const result = await prisma.order.createMany({
       data: dataOrder,
       skipDuplicates: true,
     });
+    // const result = await prisma.orderDessert.createMany({
+    //   data: dataOrder,
+    //   skipDuplicates: true,
+    // });
 
     // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล จัดส่ง ว่า ซื้อสำเร็จ จ่ายเงินแล้ว กำลังดำเนินการจัดส่ง
+    // Card information : 4111 1111 1111 1111
+    // Expiry date : 03/26 411
 
     return NextResponse.json(
       // { url: session.url },
@@ -141,7 +173,7 @@ export async function POST(req: Request) {
       {
         headers: corsHeaders,
         status: 200,
-      }
+      },
     );
   } catch (error: any) {
     console.error("Error creating checkout session:", error);

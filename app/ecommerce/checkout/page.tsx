@@ -1,44 +1,93 @@
 "use client";
 
-import checkoutAction from "../lib/uitls";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useCartStore } from "@/store/cart-store";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import Error from "next/error";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
 import { Loader2 } from "lucide-react";
-import { set } from "better-auth";
+import { useCartStore } from "@/store/cart-store";
+import { Button } from "@/components/ui/button";
+import { columns, Payment } from "./columns";
+import { DataTable } from "./data-table";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@/components/ui/input-group";
+import { username } from "better-auth/plugins";
+import checkoutAction from "../lib/uitls";
 
-// ------- UI Resources -------
-// const SuccessIcon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-//   <g transform="translate(0,2)">
-//     <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4695 0.232963C15.8241 0.561287 15.8454 1.1149 15.5171 1.46949L6.14206 11.5945C5.97228 11.7778 5.73221 11.8799 5.48237 11.8748C5.23253 11.8698 4.99677 11.7582 4.83452 11.5681L0.459523 6.44311C0.145767 6.07557 0.18937 5.52327 0.556912 5.20951C0.924454 4.89575 1.47676 4.93936 1.79051 5.3069L5.52658 9.68343L14.233 0.280522C14.5613 -0.0740672 15.1149 -0.0953599 15.4695 0.232963Z" fill="white"/>
-//   </g>
-// </svg>`;
-
-// const ErrorIcon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-//   <path fill-rule="evenodd" clip-rule="evenodd" d="M1.25628 1.25628C1.59799 0.914573 2.15201 0.914573 2.49372 1.25628L8 6.76256L13.5063 1.25628C13.848 0.914573 14.402 0.914573 14.7437 1.25628C15.0854 1.59799 15.0854 2.15201 14.7437 2.49372L9.23744 8L14.7437 13.5063C15.0854 13.848 15.0854 14.402 14.7437 14.7437C14.402 15.0854 13.848 15.0854 13.5063 14.7437L8 9.23744L2.49372 14.7437C2.15201 15.0854 1.59799 15.0854 1.25628 14.7437C0.914573 14.402 0.914573 13.848 1.25628 13.5063L6.76256 8L1.25628 2.49372C0.914573 2.15201 0.914573 1.59799 1.25628 1.25628Z" fill="white"/>
-// </svg>`;
-
-// const InfoIcon = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-//   <path fill-rule="evenodd" clip-rule="evenodd" d="M10 1.5H4C2.61929 1.5 1.5 2.61929 1.5 4V10C1.5 11.3807 2.61929 12.5 4 12.5H10C11.3807 12.5 12.5 11.3807 12.5 10V4C12.5 2.61929 11.3807 1.5 10 1.5ZM4 0C1.79086 0 0 1.79086 0 4V10C0 12.2091 1.79086 14 4 14H10C12.2091 14 14 12.2091 14 10V4C14 1.79086 12.2091 0 10 0H4Z" fill="white"/>
-//   <path fill-rule="evenodd" clip-rule="evenodd" d="M5.25 7C5.25 6.58579 5.58579 6.25 6 6.25H7.25C7.66421 6.25 8 6.58579 8 7V10.5C8 10.9142 7.66421 11.25 7.25 11.25C6.83579 11.25 6.5 10.9142 6.5 10.5V7.75H6C5.58579 7.75 5.25 7.41421 5.25 7Z" fill="white"/>
-//   <path d="M5.75 4C5.75 3.31075 6.31075 2.75 7 2.75C7.68925 2.75 8.25 3.31075 8.25 4C8.25 4.68925 7.68925 5.25 7 5.25C6.31075 5.25 5.75 4.68925 5.75 4Z" fill="white"/>
-// </svg>`;
+const formSchema = z.object({
+  name: z
+    .string()
+    .min(5, "Name must be at least 5 characters.")
+    .max(32, "Name must be at most 32 characters."),
+  email: z.string().email("Please enter a valid email address."),
+  street: z
+    .string()
+    .min(5, "Street must be at least 5 characters.")
+    .max(32, "Street must be at most 32 characters."),
+  city: z
+    .string()
+    .min(5, "City must be at least 5 characters.")
+    .max(32, "City must be at most 32 characters."),
+  state: z
+    .string()
+    .min(5, "State must be at least 5 characters.")
+    .max(10, "State must be at most 10 characters."),
+  zipcode: z
+    .string()
+    .min(5, "Zipcode must be at least 5 characters.")
+    .max(32, "Zipcode must be at most 32 characters."),
+  country: z
+    .string()
+    .min(5, "Country must be at least 5 characters.")
+    .max(32, "Country must be at most 32 characters."),
+  phone: z
+    .string()
+    .min(5, "Phone must be at least 5 characters.")
+    .max(32, "Phone must be at most 32 characters."),
+  title: z
+    .string()
+    .min(5, "Bug title must be at least 5 characters.")
+    .max(32, "Bug title must be at most 32 characters."),
+  description: z
+    .string()
+    .min(20, "Description must be at least 20 characters.")
+    .max(100, "Description must be at most 100 characters."),
+});
 
 export default function CheckOutPage() {
-  const { items, removeItem, addItem } = useCartStore();
-  const total = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const { items, removeItem, addItem, getTotalItem } = useCartStore();
+  const [updateItems, setUpdateItems] = useState<any[]>(items);
+  const user = useCartStore((state) => state.user);
+  const total = getTotalItem();
   const [message, setMessage] = useState("");
   // const [message, formAction, isPending] = useActionState(checkoutAction, 0);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // เพิ่มสำหรับ Submit button
 
-  if (items.length === 0) {
+  if (updateItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
         <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
@@ -48,17 +97,17 @@ export default function CheckOutPage() {
 
   const router = useRouter();
 
-  const handleCheckoutAction = async () => {
-    // const cbody = JSON.stringify({
-    //   cartItems: items.map((item) => ({
-    //     ...item,
-    //     quantity: item.quantity,
-    //   })),
-    // });
-    // console.log("cbody : ", cbody);
-    console.log("items : ", items);
-    await checkoutAction(items as any);
-  };
+  // const handleCheckoutAction = async () => {
+  // const cbody = JSON.stringify({
+  //   cartItems: items.map((item) => ({
+  //     ...item,
+  //     quantity: item.quantity,
+  //   })),
+  // });
+  // console.log("cbody : ", cbody);
+  // console.log("items : ", items);
+  //   await checkoutAction(items as any);
+  // };
 
   const handleCheckout = async () => {
     setIsLoading(true);
@@ -85,10 +134,6 @@ export default function CheckOutPage() {
         return;
       }
 
-      // const data = await response.json();
-      // const message = data?.message; // ใช้ optional chaining
-      // const url = data?.url as string; // ใช้ optional chaining
-
       const { url, message }: { url: string; message: string } =
         await response.json();
 
@@ -111,83 +156,545 @@ export default function CheckOutPage() {
       alert("Error creating checkout session");
     }
   };
+  const [data, setData] = useState<Payment[]>([
+    {
+      id: "728ed52f",
+      item: "Product 1",
+      price: 100,
+      quantity: 1,
+      amount: 100,
+      status: "pending",
+      email: "m@example.com",
+    },
+  ]);
+  useEffect(() => {
+    setUpdateItems(items);
+  }, []);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      street: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      country: "",
+      phone: "",
+      title: "",
+      description: "",
+    },
+  });
+
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsSubmitting(true); // เริ่ม loading
+    try {
+      const response = await fetch("/api/ecommerce/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        toast.error("Failed to submit address");
+        throw new Error(message);
+        // return;
+      }
+      toast.success("Address submitted successfully");
+      form.reset(); // reset form หลังสำเร็จ
+    } catch (error) {
+      toast.error("Failed to submit address");
+      return;
+    } finally {
+      setIsSubmitting(false); // จบ loading
+    }
+
+    // toast("You submitted the following values:", {
+    //   description: (
+    //     <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
+    //       <code>{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    //   position: "bottom-right",
+    //   classNames: {
+    //     content: "flex flex-col gap-2",
+    //   },
+    //   style: {
+    //     "--border-radius": "calc(var(--radius)  + 4px)",
+    //   } as React.CSSProperties,
+    // });
+  }
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Checkout</h1>
-      <Card className="max-w-md mx-auto mb-8">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold">Order Summary</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-4">
-            {items.map((item) => (
-              <li key={item.id} className="flex flex-col gap-2 border-b pb-2">
-                <div className="flex justify-between">
-                  <span className="font-medium">{item.name}</span>
-                  <span className="font-semibold">
-                    ${((item.price * item.quantity) / 100).toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {/* <span dangerouslySetInnerHTML={{ __html: SuccessIcon }} /> */}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => removeItem(item.id)}
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-6xl justify-center mx-auto p-10 gap-6">
+        <div>
+          <Card className="w-full sm:max-w-md">
+            <CardHeader>
+              <CardTitle>User Information</CardTitle>
+              <CardDescription>Name : {user.name}</CardDescription>
+              <CardDescription>Email : {user.email}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
+                <FieldGroup>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <Controller
+                      name="name"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-name">
+                            Name
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-name"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your name"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="email"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-email">
+                            Email
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-email"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your email"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="street"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-street">
+                            Street Address
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-street"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your street address"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="city"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-city">
+                            City
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-city"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Login button not working on mobile"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="state"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-state">
+                            State
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-state"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your state"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="zipcode"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-zipcode">
+                            Zip Code
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-zipcode"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your zip code"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="country"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-country">
+                            Country
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-country"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your country"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="phone"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-phone">
+                            Phone Number
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-phone"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Enter your phone number"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="title"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-title">
+                            Bug Title
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-title"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Login button not working on mobile"
+                            autoComplete="off"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="description"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-description">
+                            Description
+                          </FieldLabel>
+                          <InputGroup>
+                            <InputGroupTextarea
+                              {...field}
+                              id="form-rhf-demo-description"
+                              placeholder="I'm having an issue with the login button on mobile."
+                              rows={6}
+                              className="min-h-24 resize-none"
+                              aria-invalid={fieldState.invalid}
+                            />
+                            <InputGroupAddon align="block-end">
+                              <InputGroupText className="tabular-nums">
+                                {field.value.length}/100 characters
+                              </InputGroupText>
+                            </InputGroupAddon>
+                          </InputGroup>
+                          <FieldDescription>
+                            Include steps to reproduce, expected behavior, and
+                            what actually happened.
+                          </FieldDescription>
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                  </div>
+                </FieldGroup>
+              </form>
+            </CardContent>
+            <CardFooter>
+              <Field orientation="horizontal">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => form.reset()}
+                >
+                  Reset
+                </Button>
+                <Button
+                  type="submit"
+                  form="form-rhf-demo"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
+                </Button>
+              </Field>
+            </CardFooter>
+          </Card>
+        </div>
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-3xl font-bold mb-8 text-center">Checkout</h1>
+          <Card className="max-w-md mx-auto mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold">Order Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div>
+                <h1>Infomation User orders</h1>
+                <h1>{user.name}</h1>
+                <h1>{user.email}</h1>
+              </div>
+              <ul className="space-y-4">
+                {items.map((item) => (
+                  <li
+                    key={item.id}
+                    className="flex flex-col gap-2 border-b pb-2"
                   >
-                    –
-                  </Button>
-                  <span className="text-lg font-semibold">{item.quantity}</span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => addItem({ ...item, quantity: 1 })}
-                  >
-                    +
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 border-t pt-2 text-lg font-semibold">
-            Total: ${(total / 100).toFixed(2)}
+                    <div className="flex justify-between">
+                      <span className="font-medium">{item.name}</span>
+                      <span>
+                        {" "}
+                        <div className="flex items-center gap-2">
+                          {/* <span dangerouslySetInnerHTML={{ __html: SuccessIcon }} /> */}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => removeItem(item.id)}
+                          >
+                            –
+                          </Button>
+                          <span className="text-lg font-semibold">
+                            {item.quantity}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => addItem({ ...item, quantity: 1 })}
+                          >
+                            +
+                          </Button>
+                        </div>
+                      </span>
+                      <span className="font-semibold">
+                        ${((item.price * item.quantity) / 100).toFixed(2)}
+                      </span>
+                    </div>
+                    {/* <div className="flex items-center gap-2">
+                      <span dangerouslySetInnerHTML={{ __html: SuccessIcon }} />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => removeItem(item.id)}
+                      >
+                        –
+                      </Button>
+                      <span className="text-lg font-semibold">
+                        {item.quantity}
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => addItem({ ...item, quantity: 1 })}
+                      >
+                        +
+                      </Button>
+                    </div> */}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 border-t pt-2 text-lg font-semibold">
+                Total: ${(total / 100).toFixed(2)}
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="container mx-auto py-10">
+            <DataTable columns={columns} data={data} />
           </div>
-        </CardContent>
-      </Card>
-      <Button
-        onClick={handleCheckout}
-        disabled={isLoading}
-        type="submit"
-        // formAction={formAction}
-        variant="default"
-        className="w-full"
-      >
-        {isLoading ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin " />
-            Processing...
-          </>
-        ) : (
-          <>"Proceed to Payment"</>
-        )}
-      </Button>
-      {message.trim() !== "" ? (
-        <>
-          {message == "success" ? (
+          <Button
+            onClick={handleCheckout}
+            disabled={isLoading}
+            type="submit"
+            // formAction={formAction}
+            variant="default"
+            className="w-full"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin " />
+                Processing...
+              </>
+            ) : (
+              <>"Proceed to Payment"</>
+            )}
+          </Button>
+          {message.trim() !== "" ? (
             <>
-              <p className="text-green-400 text-5xl font-bold mt-3">
-                {"success"}
-              </p>
+              {message == "success" ? (
+                <>
+                  <p className="text-green-400 text-5xl font-bold mt-3">
+                    {"success"}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-red-400 text-5xl font-bold mt-3">
+                    {"error"}
+                  </p>
+                </>
+              )}
             </>
           ) : (
-            <>
-              <p className="text-red-400 text-5xl font-bold mt-3">{"error"}</p>
-            </>
+            <></>
           )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+{
+  /* <div className="container mx-auto px-4 py-8">
+  <h1 className="text-3xl font-bold mb-8 text-center">Checkout</h1>
+  <Card className="max-w-md mx-auto mb-8">
+    <CardHeader>
+      <CardTitle className="text-xl font-bold">Order Summary</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <div>
+        <h1>Infomation User orders</h1>
+        <h1>{user.userId}</h1>
+        <h1>{user.username}</h1>
+        <h1>{user.role}</h1>
+      </div>
+      <ul className="space-y-4">
+        {items.map((item) => (
+          <li key={item.id} className="flex flex-col gap-2 border-b pb-2">
+            <div className="flex justify-between">
+              <span className="font-medium">{item.name}</span>
+              <span className="font-semibold">
+                ${((item.price * item.quantity) / 100).toFixed(2)}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span dangerouslySetInnerHTML={{ __html: SuccessIcon }} />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => removeItem(item.id)}
+              >
+                –
+              </Button>
+              <span className="text-lg font-semibold">{item.quantity}</span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => addItem({ ...item, quantity: 1 })}
+              >
+                +
+              </Button>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-4 border-t pt-2 text-lg font-semibold">
+        Total: ${(total / 100).toFixed(2)}
+      </div>
+    </CardContent>
+  </Card>
+  <Button
+    onClick={handleCheckout}
+    disabled={isLoading}
+    type="submit"
+    // formAction={formAction}
+    variant="default"
+    className="w-full"
+  >
+    {isLoading ? (
+      <>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin " />
+        Processing...
+      </>
+    ) : (
+      <>"Proceed to Payment"</>
+    )}
+  </Button>
+  {message.trim() !== "" ? (
+    <>
+      {message == "success" ? (
+        <>
+          <p className="text-green-400 text-5xl font-bold mt-3">{"success"}</p>
         </>
       ) : (
-        <></>
+        <>
+          <p className="text-red-400 text-5xl font-bold mt-3">{"error"}</p>
+        </>
       )}
-    </div>
-  );
+    </>
+  ) : (
+    <></>
+  )}
+</div>; */
 }

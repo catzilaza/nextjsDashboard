@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { ProductDessertSchema } from "../models/dessert";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 
 export default function CarouselEcommerce({
   products,

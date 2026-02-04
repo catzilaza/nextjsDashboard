@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import { fetchUser } from "./data";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import prisma from "@/lib/prisma";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -59,13 +60,26 @@ export async function createInvoice(prevState: State, formData: FormData) {
 
   // console.log("Amount : ",amount);
 
+  // try {
+  //   await sql`
+  //     INSERT INTO Invoices (customerId, amount, status, date)
+  //     VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+  //   `;
+  // } catch (error) {
+  //   // We'll log the error to the console for now
+  //   console.error(error);
+  // }
+
   try {
-    await sql`
-      INSERT INTO Invoices (customerId, amount, status, date)
-      VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
-    `;
+    await prisma.invoices.create({
+      data: {
+        customerId: customerId,
+        amount: amountInCents,
+        status: status,
+        date: date,
+      },
+    });
   } catch (error) {
-    // We'll log the error to the console for now
     console.error(error);
   }
 
@@ -79,7 +93,7 @@ const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 export async function updateInvoice(
   id: string,
   prevState: State,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = UpdateInvoice.safeParse({
     customerId: formData.get("customerId"),
@@ -99,14 +113,29 @@ export async function updateInvoice(
 
   console.log("function updateInvoice amount ==> : ", amount);
 
+  // try {
+  //   await sql`
+  //       UPDATE Invoices
+  //       SET customerId = ${customerId}, amount = ${amountInCents}, status = ${status}
+  //       WHERE id = ${id}
+  //     `;
+  // } catch (error) {
+  //   // We'll log the error to the console for now
+  //   console.error(error);
+  // }
+
   try {
-    await sql`
-        UPDATE Invoices
-        SET customerId = ${customerId}, amount = ${amountInCents}, status = ${status}
-        WHERE id = ${id}
-      `;
+    await prisma.invoices.update({
+      where: {
+        id: id, // ระบุ record ที่ต้องการแก้ไข
+      },
+      data: {
+        customerId: customerId,
+        amount: amountInCents,
+        status: status,
+      },
+    });
   } catch (error) {
-    // We'll log the error to the console for now
     console.error(error);
   }
 
@@ -165,7 +194,7 @@ const CreateProductDessert = FormSchemaProductDessert.omit({
 
 export async function createProductDessert(
   prevState: StateProductDessert,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = CreateProductDessert.safeParse({
     productId: formData.get("productId"),
@@ -180,7 +209,7 @@ export async function createProductDessert(
   if (!validatedFields.success) {
     console.log(
       "validatedFields Error",
-      validatedFields.error.flatten().fieldErrors
+      validatedFields.error.flatten().fieldErrors,
     );
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -224,7 +253,7 @@ const UpdateProductDessert = FormSchemaProductDessert.omit({
 export async function updateProductDessert(
   id: string,
   prevState: StateProductDessert,
-  formData: FormData
+  formData: FormData,
 ) {
   const validatedFields = UpdateProductDessert.safeParse({
     productId: formData.get("productId"),
@@ -238,7 +267,7 @@ export async function updateProductDessert(
   if (!validatedFields.success) {
     console.log(
       "validatedFields Error",
-      validatedFields.error.flatten().fieldErrors
+      validatedFields.error.flatten().fieldErrors,
     );
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -392,7 +421,7 @@ const LogInSchemaOmit = LogInSchema.omit({});
 
 export async function Login(
   prevState: LogInActionState,
-  formData: FormData
+  formData: FormData,
 ): Promise<LogInActionState> {
   const validatedFields = LogInSchemaOmit.safeParse({
     password: formData.get("password"),
@@ -402,7 +431,7 @@ export async function Login(
   if (!validatedFields.success) {
     console.log(
       "validatedFields Error",
-      validatedFields.error.flatten().fieldErrors
+      validatedFields.error.flatten().fieldErrors,
     );
     return {
       errors: validatedFields.error.flatten().fieldErrors,

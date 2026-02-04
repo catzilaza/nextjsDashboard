@@ -1,15 +1,13 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
+import { Suspense } from "react";
 import { FileText, FileUp } from "lucide-react";
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FileUploadForm from "./FileUploadForm";
 import FileList from "./FileList";
 import UserProfile from "./UserProfile";
-import { Suspense } from "react";
 import { delayTime } from "../lib/utils";
 
 interface DashboardContentProps {

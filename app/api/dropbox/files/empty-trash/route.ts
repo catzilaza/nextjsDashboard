@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
 import prisma from "@/lib/prisma";
 import { del, list } from "@vercel/blob";
@@ -5,8 +6,8 @@ import { NextResponse } from "next/server";
 
 export async function DELETE() {
   try {
-    const login_session = await getLoginSession();
-
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -26,7 +27,7 @@ export async function DELETE() {
     if (trashedFiles.length === 0) {
       return NextResponse.json(
         { message: "No files in trash" },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
@@ -61,7 +62,7 @@ export async function DELETE() {
             } catch (searchError) {
               console.error(
                 `Error searching for file in ImageKit:`,
-                searchError
+                searchError,
               );
               await del(vercelFileId);
             }
@@ -89,7 +90,7 @@ export async function DELETE() {
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to empty trash" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

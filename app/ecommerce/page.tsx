@@ -10,6 +10,9 @@ import Footer from "./component/Footer";
 //https://github.com/burakorkmez/full-stripe-tutorial,https://www.youtube.com/watch?v=_YCC9Osq6y4
 //https://www.youtube.com/watch?v=HgOyClJlW5E, https://github.com/Devahoy/mini-shop-nextjs-stripe-supabase
 
+//Build and Deploy Full Stack AI Multi-Vendor E-Commerce App using Next js | PERN Stack Project 2025
+//https://www.youtube.com/watch?v=aYu4xkBdkNA
+//https://github.com/GreatStackDev/gocart/blob/main/prisma/schema.prisma
 export default async function EcommercePage() {
   // const products = await fetchAllProducts_Dessert();
   return (

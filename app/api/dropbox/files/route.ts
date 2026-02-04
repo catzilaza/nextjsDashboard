@@ -3,10 +3,12 @@ import prisma from "@/lib/prisma";
 import { mockfiles } from "@/app/dropbox/lib/db/dataschema";
 import { number } from "better-auth";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 
 export async function GET(request: NextRequest) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -62,7 +64,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching files:", error);
     return NextResponse.json(
       { error: "Failed to fetch files" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

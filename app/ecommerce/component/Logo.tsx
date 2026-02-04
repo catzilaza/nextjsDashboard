@@ -1,6 +1,6 @@
 import React from "react";
-import { lusitana } from "../font/fonts";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
+import { lusitana } from "../font/fonts";
 
 export default function Logo() {
   return (

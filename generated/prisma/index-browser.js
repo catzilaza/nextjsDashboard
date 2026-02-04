@@ -117,97 +117,34 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CustomersScalarFieldEnum = {
+exports.Prisma.StoreScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  email: 'email',
-  image_url: 'image_url'
-};
-
-exports.Prisma.InvoicesScalarFieldEnum = {
-  id: 'id',
-  amount: 'amount',
-  status: 'status',
-  date: 'date',
-  customerId: 'customerId'
-};
-
-exports.Prisma.AccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  type: 'type',
-  provider: 'provider',
-  providerAccountId: 'providerAccountId',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state',
-  refresh_token_expires_in: 'refresh_token_expires_in'
-};
-
-exports.Prisma.SessionScalarFieldEnum = {
-  id: 'id',
-  sessionToken: 'sessionToken',
-  expires: 'expires',
-  userId: 'userId'
-};
-
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  emailVerified: 'emailVerified',
-  password: 'password',
-  role: 'role',
-  date: 'date',
-  image_blob: 'image_blob',
-  image_url: 'image_url',
-  image: 'image'
-};
-
-exports.Prisma.ProfileScalarFieldEnum = {
-  id: 'id',
+  description: 'description',
+  username: 'username',
   address: 'address',
+  status: 'status',
+  isActive: 'isActive',
+  logo: 'logo',
+  email: 'email',
+  contact: 'contact',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   userId: 'userId'
 };
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
-  img: 'img',
-  title: 'title',
-  content: 'content',
-  published: 'published',
-  desc: 'desc',
-  createdAt: 'createdAt',
-  views: 'views',
-  slug: 'slug',
-  catSlug: 'catSlug',
-  authorId: 'authorId'
-};
-
-exports.Prisma.CategoryScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  img: 'img',
-  desc: 'desc',
   name: 'name',
-  slug: 'slug',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.CategoriesOnPostsScalarFieldEnum = {
-  postId: 'postId',
-  categoryId: 'categoryId',
-  assignedAt: 'assignedAt',
-  assignedBy: 'assignedBy'
-};
-
-exports.Prisma.RevenueScalarFieldEnum = {
-  month: 'month',
-  revenue: 'revenue'
+  description: 'description',
+  mrp: 'mrp',
+  price: 'price',
+  images: 'images',
+  category: 'category',
+  inStock: 'inStock',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  storeId: 'storeId'
 };
 
 exports.Prisma.Products_dessertsScalarFieldEnum = {
@@ -221,70 +158,35 @@ exports.Prisma.Products_dessertsScalarFieldEnum = {
   date: 'date'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.OrderItemScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  description: 'description',
+  quantity: 'quantity',
   price: 'price',
-  stripe_product_id: 'stripe_product_id',
-  stripe_price_id: 'stripe_price_id',
-  imageUrl: 'imageUrl',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.FileScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  path: 'path',
-  size: 'size',
-  type: 'type',
-  fileUrl: 'fileUrl',
-  thumbnailUrl: 'thumbnailUrl',
-  userId: 'userId',
-  parentId: 'parentId',
-  isFolder: 'isFolder',
-  isStarred: 'isStarred',
-  isTrash: 'isTrash',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  orderId: 'orderId',
+  productIdDessert: 'productIdDessert',
+  productId: 'productId'
 };
 
 exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   userName: 'userName',
   userEmail: 'userEmail',
-  productId: 'productId',
   productName: 'productName',
   productImage: 'productImage',
   quantity: 'quantity',
   price: 'price',
   totalPrice: 'totalPrice',
   orderDate: 'orderDate',
+  isPaid: 'isPaid',
+  paymentMethod: 'paymentMethod',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   status: 'status',
-  stripe_session_id: 'stripe_session_id'
-};
-
-exports.Prisma.OrderDessertScalarFieldEnum = {
-  id: 'id',
-  stripeSessionId: 'stripeSessionId',
-  userName: 'userName',
-  userEmail: 'userEmail',
+  stripe_session_id: 'stripe_session_id',
   productId: 'productId',
-  productName: 'productName',
-  price: 'price',
-  quantity: 'quantity',
-  totalPrice: 'totalPrice',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.OrderItemScalarFieldEnum = {
-  id: 'id',
-  quantity: 'quantity',
-  price: 'price',
-  orderId: 'orderId',
-  productIdDessert: 'productIdDessert'
+  userId: 'userId',
+  addressId: 'addressId',
+  storeId: 'storeId'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {
@@ -301,11 +203,163 @@ exports.Prisma.ShipmentScalarFieldEnum = {
   orderId: 'orderId'
 };
 
-exports.Prisma.TestTableScalarFieldEnum = {
+exports.Prisma.AddressScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  email: 'email',
+  street: 'street',
+  city: 'city',
+  state: 'state',
+  zip: 'zip',
+  country: 'country',
+  phone: 'phone',
+  description: 'description',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.ProfileScalarFieldEnum = {
+  id: 'id',
+  address: 'address',
+  userId: 'userId'
+};
+
+exports.Prisma.FileScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  path: 'path',
+  size: 'size',
+  type: 'type',
+  fileUrl: 'fileUrl',
+  thumbnailUrl: 'thumbnailUrl',
+  parentId: 'parentId',
+  isFolder: 'isFolder',
+  isStarred: 'isStarred',
+  isTrash: 'isTrash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.CustomersScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  image_url: 'image_url'
+};
+
+exports.Prisma.InvoicesScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  status: 'status',
+  date: 'date',
+  customerId: 'customerId'
+};
+
+exports.Prisma.RevenueScalarFieldEnum = {
+  month: 'month',
+  revenue: 'revenue'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  password: 'password',
+  email: 'email',
+  emailVerified: 'emailVerified',
+  image: 'image',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  emailVerifiedAuthjs: 'emailVerifiedAuthjs'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  activeOrganizationId: 'activeOrganizationId',
+  sessionToken: 'sessionToken',
+  expires: 'expires',
+  userId: 'userId'
+};
+
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  providerId: 'providerId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  accessTokenExpiresAt: 'accessTokenExpiresAt',
+  refreshTokenExpiresAt: 'refreshTokenExpiresAt',
+  scope: 'scope',
+  idToken: 'idToken',
+  password: 'password',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  type: 'type',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  refresh_token: 'refresh_token',
+  access_token: 'access_token',
+  expires_at: 'expires_at',
+  token_type: 'token_type',
+  id_token: 'id_token',
+  session_state: 'session_state',
+  userId: 'userId'
+};
+
+exports.Prisma.VerificationScalarFieldEnum = {
+  id: 'id',
+  identifier: 'identifier',
   value: 'value',
-  createdAt: 'createdAt'
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  token: 'token',
+  expires: 'expires'
+};
+
+exports.Prisma.InvitationScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  role: 'role',
+  status: 'status',
+  expiresAt: 'expiresAt',
+  organizationId: 'organizationId',
+  inviterId: 'inviterId'
+};
+
+exports.Prisma.AuthenticatorAuthjsScalarFieldEnum = {
+  credentialID: 'credentialID',
+  providerAccountId: 'providerAccountId',
+  credentialPublicKey: 'credentialPublicKey',
+  counter: 'counter',
+  credentialDeviceType: 'credentialDeviceType',
+  credentialBackedUp: 'credentialBackedUp',
+  transports: 'transports',
+  userId: 'userId'
+};
+
+exports.Prisma.MemberScalarFieldEnum = {
+  id: 'id',
+  role: 'role',
+  createdAt: 'createdAt',
+  organizationId: 'organizationId',
+  userId: 'userId'
+};
+
+exports.Prisma.OrganizationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  logo: 'logo',
+  createdAt: 'createdAt',
+  metadata: 'metadata'
 };
 
 exports.Prisma.SortOrder = {
@@ -322,28 +376,48 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.PaymentMethod = exports.$Enums.PaymentMethod = {
+  COD: 'COD',
+  STRIPE: 'STRIPE'
+};
 
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  ORDER_PLACED: 'ORDER_PLACED',
+  PROCESSING: 'PROCESSING',
+  SHIPPED: 'SHIPPED',
+  DELIVERED: 'DELIVERED'
+};
+
+exports.Role = exports.$Enums.Role = {
+  member: 'member',
+  admin: 'admin',
+  owner: 'owner',
+  guest: 'guest',
+  user: 'user'
+};
 
 exports.Prisma.ModelName = {
-  Customers: 'Customers',
-  Invoices: 'Invoices',
-  Account: 'Account',
-  Session: 'Session',
-  User: 'User',
-  Profile: 'Profile',
-  Post: 'Post',
-  Category: 'Category',
-  CategoriesOnPosts: 'CategoriesOnPosts',
-  Revenue: 'Revenue',
-  products_desserts: 'products_desserts',
+  Store: 'Store',
   Product: 'Product',
-  File: 'File',
-  Order: 'Order',
-  OrderDessert: 'OrderDessert',
+  products_desserts: 'products_desserts',
   OrderItem: 'OrderItem',
+  Order: 'Order',
   Payment: 'Payment',
   Shipment: 'Shipment',
-  TestTable: 'TestTable'
+  Address: 'Address',
+  Profile: 'Profile',
+  File: 'File',
+  Customers: 'Customers',
+  Invoices: 'Invoices',
+  Revenue: 'Revenue',
+  User: 'User',
+  Session: 'Session',
+  Account: 'Account',
+  Verification: 'Verification',
+  Invitation: 'Invitation',
+  AuthenticatorAuthjs: 'AuthenticatorAuthjs',
+  Member: 'Member',
+  Organization: 'Organization'
 };
 
 /**

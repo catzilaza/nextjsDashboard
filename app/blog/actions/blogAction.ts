@@ -8,9 +8,9 @@ import { z } from "zod";
 
 export async function getDataBlogAction() {
   try {
-    const categories = await prisma.category.findMany();
+    // const categories = await prisma.category.findMany();
     // console.log("GET ++++++ categories", categories);
-    return categories;
+    // return categories;
   } catch (error) {
     console.log(error);
   }
@@ -31,14 +31,14 @@ export async function getDataPageBlogAction() {
   // };
 
   try {
-    const posts = await prisma.post.findMany();
-    const count = await prisma.post.count();
+    // const posts = await prisma.post.findMany();
+    // const count = await prisma.post.count();
     // const [posts, count] = await prisma.$transaction([
     //   prisma.post.findMany(query),
     //   prisma.post.count({ where: query.where }),
     // ]);
     // console.log("GET ++++++ posts", posts, count);
-    return { posts, count };
+    // return { posts, count };
   } catch (error) {
     console.log(error);
   }
@@ -78,7 +78,7 @@ const PostDataBlogSchema = z.object({
 
 export async function postDataBlogAction(
   prevState: PostDataBlogState,
-  formData: FormData
+  formData: FormData,
 ): Promise<PostDataBlogState> {
   // const session = await auth();
 

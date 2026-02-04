@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { auth, signOut } from "@/auth";
 import NavbarDropdown from "./NavbarDropdown";
+import { getCurrentUser, getUsers } from "@/app/betterauth/actions/users";
 
 const Navbar = async () => {
   const session = await auth();

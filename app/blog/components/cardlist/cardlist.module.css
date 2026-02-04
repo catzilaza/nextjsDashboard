@@ -5,3 +5,11 @@
 .title {
   margin: 50px 0px;
 }
+
+.image {
+  border-radius: 50%;
+  width: auto;
+  height: auto;
+  max-width: 50px;
+  max-height: 50px;
+}

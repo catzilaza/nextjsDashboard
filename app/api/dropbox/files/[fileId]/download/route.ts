@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/app/betterauth/actions/users";
 import { getLoginSession } from "@/app/dropbox/lib/utils";
 import prisma from "@/lib/prisma";
 import { list, put, del } from "@vercel/blob";
@@ -5,10 +6,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  props: { params: Promise<{ fileId: string }> }
+  props: { params: Promise<{ fileId: string }> },
 ) {
   try {
-    const login_session = await getLoginSession();
+    // const login_session = await getLoginSession();
+    const login_session = await getCurrentUser();    
     if (!login_session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -20,7 +22,7 @@ export async function GET(
     if (!fileId) {
       return NextResponse.json(
         { error: "File ID is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 

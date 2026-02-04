@@ -2,17 +2,19 @@ import styles from "./cardlist.module.css";
 import Card from "@/app/blog/components/card/Card";
 import { getDataPageBlogAction } from "@/app/blog/actions/blogAction";
 import Pagination from "@/app/blog/components/pagination/Pagination";
+import { list } from "@vercel/blob";
+import Image from "next/image";
 
 //https://nextjs.org/blog/building-apis-with-nextjs
 //https://nextjs.org/docs/app/building-your-application/data-fetching/fetching
 
 const CardList = async () => {
-  const data = await getDataPageBlogAction();
-  if (!data) {
-    throw new Error("Failed to fetch data");
-  }
-  const { posts, count } = data;
-  const page = 1;
+  // const data = await getDataPageBlogAction();
+  // if (!data) {
+  //   throw new Error("Failed to fetch data");
+  // }
+  // const { posts, count } = data;
+  // const page = 1;
 
   // console.log("++++++ posts", posts);
   // console.log("++++++ count", count);
@@ -74,20 +76,42 @@ const CardList = async () => {
   //   },
   // ];
 
-  const POST_PER_PAGE = 2;
+  // const POST_PER_PAGE = 2;
 
-  const hasPrev = POST_PER_PAGE * (page - 1) > 0;
-  const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
+  // const hasPrev = POST_PER_PAGE * (page - 1) > 0;
+  // const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
+
+  // const blobs = await list();
+  // console.log("Response from Vercel Blob:", blobs.blobs);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Recent Posts</h1>
-      <div className={styles.posts}>
+      {/* <div className={styles.posts}>
         {posts?.map((item: any, index: any) => (
           <Card item={item} key={index} />
         ))}
-      </div>
-      <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
+      </div> */}
+      {/* <div className={styles.posts}>
+        {blobs.blobs
+          .filter((blob) =>
+            /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(blob.pathname),
+          )
+          .map((image) => (
+            <div key={image.pathname}>
+              <Image
+                priority
+                // key={image.pathname}
+                src={image.url}
+                alt="Image"
+                width={64}
+                height={64}
+                className={styles.image}
+              />
+            </div>
+          ))}
+      </div> */}
+      {/* <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} /> */}
     </div>
   );
 };

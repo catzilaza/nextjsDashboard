@@ -5,167 +5,221 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // url      = env("DATABASE_URL")
 }
 
-model Customers {
-  id        String     @id @default(uuid())
-  name      String
-  email     String     @unique
-  image_url String
-  invoice   Invoices[]
+// enum Role {
+//   USER
+//   ADMIN
+// }
+
+// enum Plan {
+//   FREE
+//   PRO
+//   PREMIUM
+// }
+
+// model Post {
+//   id         String              @id @default(cuid())
+//   img        String?
+//   title      String
+//   content    String?
+//   published  Boolean             @default(false)
+//   desc       String?
+//   createdAt  DateTime            @default(now())
+//   views      Int                 @default(0)
+//   slug       String?             @unique
+//   catSlug    String?
+//   // authorId   String?
+//   // author     User?               @relation(fields: [authorId], references: [id])
+//   categories CategoriesOnPosts[]
+// }
+
+// model Category {
+//   id        String              @id @default(cuid())
+//   title     String?
+//   img       String?
+//   desc      String?
+//   name      String?
+//   slug      String?             @unique
+//   createdAt DateTime            @default(now())
+//   posts     CategoriesOnPosts[]
+// }
+
+// model CategoriesOnPosts {
+//   postId     String
+//   categoryId String
+//   assignedAt DateTime @default(now())
+//   assignedBy String
+//   category   Category @relation(fields: [categoryId], references: [id])
+//   post       Post     @relation(fields: [postId], references: [id])
+
+//   @@id([postId, categoryId])
+// }
+
+// Required for creating a Store: userId, name, username, email, contact, logo, description, address (optional: , status, isActive)
+model Store {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  username    String   @unique
+  address     String
+  status      String   @default("pending")
+  isActive    Boolean  @default(false)
+  logo        String
+  email       String
+  contact     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String @unique
+  users  User   @relation(fields: [userId], references: [id])
+
+  Product Product[]
+  Order   Order[]
 }
 
-model Invoices {
-  id         String    @id @default(uuid())
-  amount     Int
-  status     String
-  date       DateTime  @default(now())
-  customerId String
-  customer   Customers @relation(fields: [customerId], references: [id])
+// Required for creating a Product: name, description, mrp, price, images, category, storeId
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  mrp         Float
+  price       Float
+  images      String[]
+  category    String
+  inStock     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  storeId    String
+  store      Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
 }
 
-model Account {
-  id                       String  @id @default(cuid())
-  userId                   String
-  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type                     String
-  provider                 String
-  providerAccountId        String
-  refresh_token            String? // @db.Text
-  access_token             String? // @db.Text
-  expires_at               Int?
-  token_type               String?
-  scope                    String?
-  id_token                 String? // @db.Text
-  session_state            String?
-  refresh_token_expires_in Int?
-
-  @@unique([provider, providerAccountId])
+enum OrderStatus {
+  ORDER_PLACED
+  PROCESSING
+  SHIPPED
+  DELIVERED
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  expires      DateTime
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model User {
-  id            String    @id @default(uuid())
-  name          String
-  email         String    @unique
-  emailVerified DateTime?
-  password      String
-  role          String?   @default("user")
-  date          DateTime  @default(now())
-  image_blob    Bytes?
-  image_url     String?   @db.VarChar(255)
-  image         String?
-  profile       Profile?
-  accounts      Account[]
-  sessions      Session[]
-  post          Post[]
-  file          File[]
-  orders        Order[]
-  // order         Order[]
-  // postAs        PostA[]
-  // role Role @default(Role.USER)
-  // plan Plan @default(Plan.FREE)
-  // createdAt DateTime @default(now())
-  // updatedAt DateTime @updatedAt
-  // stripeCustomerId       String?
-  // stripeSubscriptionId   String?
-  // stripePriceId          String?
-  // stripeCurrentPeriodEnd DateTime?
-}
-
-enum Role {
-  USER
-  ADMIN
-}
-
-enum Plan {
-  FREE
-  PRO
-  PREMIUM
-}
-
-model Profile {
-  id      String  @id @default(uuid())
-  address String?
-  userId  String  @unique
-  user    User    @relation(fields: [userId], references: [id])
-}
-
-model Post {
-  id         String              @id @default(cuid())
-  img        String?
-  title      String
-  content    String?
-  published  Boolean             @default(false)
-  desc       String?
-  createdAt  DateTime            @default(now())
-  views      Int                 @default(0)
-  slug       String?             @unique
-  catSlug    String?
-  authorId   String?
-  author     User?               @relation(fields: [authorId], references: [id])
-  categories CategoriesOnPosts[]
-}
-
-model Category {
-  id        String              @id @default(cuid())
-  title     String?
-  img       String?
-  desc      String?
-  name      String?
-  slug      String?             @unique
-  createdAt DateTime            @default(now())
-  posts     CategoriesOnPosts[]
-}
-
-model CategoriesOnPosts {
-  postId     String
-  categoryId String
-  assignedAt DateTime @default(now())
-  assignedBy String
-  category   Category @relation(fields: [categoryId], references: [id])
-  post       Post     @relation(fields: [postId], references: [id])
-
-  @@id([postId, categoryId])
-}
-
-model Revenue {
-  month   String @unique @db.VarChar(4)
-  revenue Int
+enum PaymentMethod {
+  COD
+  STRIPE
 }
 
 model products_desserts {
-  dessert_id String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name_eng   String      @db.VarChar(255)
-  name       String      @db.VarChar(255)
-  image_url  String      @db.VarChar(255)
-  price      String      @db.VarChar(255)
+  dessert_id String   @id @default(uuid())
+  name_eng   String   @db.VarChar(255)
+  name       String   @db.VarChar(255)
+  image_url  String   @db.VarChar(255)
+  price      String   @db.VarChar(255)
   amount     Int
-  status     String?     @db.VarChar(15)
-  date       DateTime    @db.Date
-  // orderItems OrderItem[]
+  status     String?  @db.VarChar(15)
+  date       DateTime @db.Date
+
+  //Relation
   orderItems OrderItem[]
   order      Order[]
 }
 
-model Product {
-  id                String   @id @default(uuid())
-  name              String
-  description       String?
-  price             Decimal
-  stripe_product_id String   @map("stripe_product_id")
-  stripe_price_id   String   @map("stripe_price_id")
-  imageUrl          String   @map("image_url")
-  createdAt         DateTime @default(now()) @map("created_at")
-  updatedAt         DateTime @updatedAt @map("updated_at")
+model OrderItem {
+  id       String @id @default(uuid())
+  quantity Int
+  price    Float
+
+  //Relation
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productIdDessert String
+  productDesserts  products_desserts @relation(fields: [productIdDessert], references: [dessert_id])
+  product          Product?          @relation(fields: [productId], references: [id])
+  productId        String?
+}
+
+model Order {
+  id                String         @id @default(uuid())
+  userName          String?
+  userEmail         String?
+  productName       String?
+  productImage      String?
+  quantity          Int?
+  price             Decimal?
+  totalPrice        Decimal?
+  orderDate         DateTime?      @default(now())
+  isPaid            Boolean?       @default(false)
+  paymentMethod     PaymentMethod?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  // status            String?   @default("pending")
+  status            OrderStatus?   @default(ORDER_PLACED)
+  stripe_session_id String?
+
+  //Relation
+  productId  String
+  product    products_desserts @relation(fields: [productId], references: [dessert_id])
+  userId     String
+  users      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  addressId  String?
+  address    Address?          @relation(fields: [addressId], references: [id], onDelete: Cascade)
+  storeId    String
+  stores     Store             @relation(fields: [storeId], references: [id])
+  orderItems OrderItem[]
+  payment    Payment?
+  shipment   Shipment?
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  amount      Decimal
+  paymentDate DateTime @default(now())
+
+  //Relation
+  orderId String @unique
+  order   Order  @relation(fields: [orderId], references: [id])
+}
+
+model Shipment {
+  id             String   @id @default(uuid())
+  shippingDate   DateTime @default(now())
+  trackingNumber String
+  //Relation
+  orderId        String   @unique
+  order          Order    @relation(fields: [orderId], references: [id])
+}
+
+// Required for creating an Address: userId, name, email, street, city, state, zip, country, phone
+model Address {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  street      String
+  city        String
+  state       String
+  zip         String
+  country     String
+  phone       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  Order  Order[]
+  userId String
+  users  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+//===================================================================
+
+model Profile {
+  id      String  @id @default(uuid())
+  address String?
+
+  //Relation
+  userId String @unique
+  users  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model File {
@@ -176,14 +230,16 @@ model File {
   type         String
   fileUrl      String   @map("file_url")
   thumbnailUrl String?  @map("thumbnail_url")
-  userId       String?
-  user         User?    @relation(fields: [userId], references: [id])
   parentId     String?  @map("parent_id")
   isFolder     Boolean  @default(false) @map("is_folder")
   isStarred    Boolean  @default(false) @map("is_starred")
   isTrash      Boolean  @default(false) @map("is_trash")
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
+
+  //Relation
+  userId String?
+  users  User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Self-relation for parent/children
   parent   File?  @relation("FileToFile", fields: [parentId], references: [id])
@@ -192,69 +248,198 @@ model File {
   @@map("files")
 }
 
-model Order {
-  id                String            @id @default(uuid())
-  userId            String
-  user              User              @relation(fields: [userId], references: [id])
-  userName          String?
-  userEmail         String?
-  productId         String            @db.Uuid
-  product           products_desserts @relation(fields: [productId], references: [dessert_id])
-  productName       String?
-  productImage      String?
-  quantity          Int?
-  price             Decimal?
-  totalPrice        Decimal?
-  orderDate         DateTime?         @default(now())
-  status            String?           @default("pending")
-  stripe_session_id String?
-  orderItems        OrderItem[]
-  payment           Payment?
-  shipment          Shipment?
-}
+//==========================================================================
 
-model OrderDessert {
-  id              String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  stripeSessionId String?
-  userName        String?
-  userEmail       String?
-  productId       String?
-  productName     String?
-  price           Int?
-  quantity        Int?
-  totalPrice      Int?
-  createdAt       DateTime @default(now())
-}
-
-model OrderItem {
-  id               String            @id @default(uuid())
-  quantity         Int
-  price            Decimal
-  orderId          String // ✅ ตรงกับ Order.id
-  order            Order             @relation(fields: [orderId], references: [id])
-  productIdDessert String            @db.Uuid
-  productDesserts  products_desserts @relation(fields: [productIdDessert], references: [dessert_id])
-}
-
-model Payment {
-  id          String   @id @default(uuid())
-  amount      Decimal
-  paymentDate DateTime @default(now())
-  orderId     String   @unique
-  order       Order    @relation(fields: [orderId], references: [id])
-}
-
-model Shipment {
-  id             String   @id @default(uuid())
-  shippingDate   DateTime @default(now())
-  trackingNumber String
-  orderId        String   @unique
-  order          Order    @relation(fields: [orderId], references: [id])
-}
-
-model TestTable {
-  id        Int      @id @default(autoincrement())
+model Customers {
+  id        String     @id @default(uuid())
   name      String
-  value     String
-  createdAt DateTime @default(now())
+  email     String     @unique
+  image_url String
+  invoices  Invoices[]
 }
+
+model Invoices {
+  id     String   @id @default(uuid())
+  amount Int
+  status String
+  date   DateTime @default(now())
+
+  //Relation
+  customerId String
+  customers  Customers @relation(fields: [customerId], references: [id])
+}
+
+model Revenue {
+  month   String @unique @db.VarChar(4)
+  revenue Int
+}
+
+//===========================================================================
+enum Role {
+  member
+  admin
+  owner
+  guest
+  user
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  password      String?
+  email         String    @unique
+  emailVerified Boolean?  @default(false)
+  image         String?
+  role          Role?     @default(member)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
+
+  // ของ Authjs
+  emailVerifiedAuthjs DateTime? @map("email_verified")
+
+  // Relations 
+  sessions    Session[]
+  accounts    Account[]
+  invitations Invitation[]
+  members     Member[]
+  files       File[]
+  profile     Profile?
+  orders      Order[]
+  Address     Address[]
+  store       Store?
+  // post    Post[]
+  // profile Profile[]
+  // file    File[]
+  // orders  Order[]
+
+  // accountAuthjs AccountAuthjs[]
+  // sessionAuthjs SessionAuthjs[]
+
+  //   // Optional for WebAuthn support
+  authenticatorAuthjs AuthenticatorAuthjs[]
+}
+
+model Session {
+  id                   String    @id @default(uuid()) // Unique identifier for each session 
+  token                String?   @unique // Unique session token 
+  expiresAt            DateTime? // Expiration time of the session 
+  ipAddress            String? // IP address of the device (optional)
+  userAgent            String? // User agent information (optional)
+  createdAt            DateTime? @default(now()) // Timestamp when session was created
+  updatedAt            DateTime? @updatedAt // Timestamp when session was updated
+  activeOrganizationId String?
+
+  //ของ Authjs
+  sessionToken String?
+  expires      DateTime?
+  // Relation: เชื่อมกับ User table
+  userId       String // The ID of the user
+  users        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    String    @id @default(uuid()) // Unique identifier for each account ของเก่าเป็น @default(cuid())
+  accountId             String? // Account ID from SSO or equal to userId for credentials
+  providerId            String? // Provider ID (e.g. google, github, etc.) 
+  accessToken           String? // Access token returned by provider
+  refreshToken          String? // Refresh token returned by provider ของเก่า refresh_token
+  accessTokenExpiresAt  DateTime? // Expiration time of access token
+  refreshTokenExpiresAt DateTime? // Expiration time of refresh token refresh_token_expires_in Int?
+  scope                 String? // Scope returned by provider
+  idToken               String? // ID token returned by provider ของเก่า id_token
+  password              String? // Password (for email/password auth)
+  createdAt             DateTime? @default(now()) // Timestamp when account was created
+  updatedAt             DateTime? @updatedAt // Timestamp when account was updated
+  //ของ Authjs
+  type                  String?
+  provider              String?
+  providerAccountId     String?
+  refresh_token         String?   @db.Text
+  access_token          String?   @db.Text
+  expires_at            Int?
+  token_type            String?
+  id_token              String?   @db.Text
+  session_state         String?
+
+  // Relation: เชื่อมกับ User table
+  userId String // The ID of the user
+  users  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  //ของ Authjs
+  // @@unique([providerId, accountId]) // ป้องกันไม่ให้มี account ซ้ำจาก provider เดียวกัน
+}
+
+model Verification {
+  id         String    @id @default(uuid()) // Unique identifier for each verification
+  identifier String? // Identifier for the verification request (เช่น email หรือ phone)
+  value      String? // Value ที่ต้องการตรวจสอบ (เช่น code หรือ token)
+  expiresAt  DateTime? // เวลาหมดอายุของ verification request
+  createdAt  DateTime? @default(now()) // เวลาที่สร้าง request
+  updatedAt  DateTime? @updatedAt // เวลาที่แก้ไขล่าสุด
+  //ของ Authjs
+  token      String?
+  expires    DateTime?
+
+  //ของ Authjs
+  // @@unique([identifier, token])
+}
+
+model Invitation {
+  id        String   @id @default(uuid()) // Primary key
+  email     String
+  role      Role?
+  status    String   @default("pending")
+  expiresAt DateTime
+
+  // Relations
+  organizationId String
+  organizations  Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  inviterId      String
+  inviter        User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+}
+
+//Optional for WebAuthn support
+model AuthenticatorAuthjs {
+  credentialID         String  @unique
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  //Relation
+  userId String
+  users  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+//=============================================================================
+model Member {
+  id        String   @id @default(uuid())
+  role      Role     @default(member) // ใช้ enum Role
+  createdAt DateTime @default(now())
+
+  // Relations
+  organizationId String
+  organizations  Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  userId String
+  users  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Organization {
+  id        String   @id @default(uuid()) // Primary key
+  name      String // ชื่อองค์กร
+  slug      String?  @unique // slug ต้อง unique และเป็น optional
+  logo      String? // โลโก้ (optional)
+  createdAt DateTime @default(now()) // เวลาสร้าง
+  metadata  String? // metadata (optional)
+
+  // Relations
+  members     Member[] // 1 Organization → หลาย Member
+  invitations Invitation[]
+}
+
+//============================================================================
