@@ -1,6 +1,6 @@
 "use server";
 
-import { type RoleBetterAuth as Role } from "../lib/db/schema";
+import { type Role } from "../lib/db/schema";
 import { isAdmin } from "./permissions";
 import prisma from "@/lib/prisma";
 import { auth } from "@/app/betterauth/lib/betterauth/auth";
