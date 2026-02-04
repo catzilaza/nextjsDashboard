@@ -10,8 +10,15 @@ import OrganizationInvitationEmail from "../../components/emails/OrganizationInv
 import VerifyEmail from "@/app/betterauth/components/emails/VerifyEmail";
 import ForgotPasswordEmail from "@/app/betterauth/components/emails/ResetPassword";
 
-const resend = new Resend(process.env.RESEND_API_KEY as string);
+// const resend = new Resend(process.env.RESEND_API_KEY as string);
+let resendInstance: Resend | null = null;
 
+const getResend = () => {
+  if (!resendInstance && process.env.RESEND_API_KEY) {
+    resendInstance = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendInstance;
+};
 const prisma = new PrismaClient();
 export const auth = betterAuth({
   role: {
