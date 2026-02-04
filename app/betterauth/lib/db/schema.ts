@@ -183,8 +183,8 @@ export interface IMember {
   createdAt: Date; // Timestamp ตอนสร้าง
 
   // Relations
-  organization?: Organization | null;
-  users?: User | null;
+  organization?: IOrganization | null;
+  users?: IUser | null;
 }
 
 export type Member = IMember;
