@@ -7,11 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type {
-  Member,
-  RoleBetterAuth as Role,
-  User,
-} from "../lib/db/schema";
+import type { Member, Role, User } from "../lib/db/schema";
 import MembersTableAction from "./MembersTableAction";
 
 interface MembersTableProps {
@@ -36,9 +32,7 @@ export default function MembersTable({ members }: MembersTableProps) {
       <TableBody>
         {members.map((member) => (
           <TableRow key={member.id}>
-            <TableCell className="font-medium">
-              {member.users?.name}
-            </TableCell>
+            <TableCell className="font-medium">{member.users?.name}</TableCell>
             <TableCell>{member.users?.email}</TableCell>
             <TableCell>{member.role}</TableCell>
             <TableCell className="text-right">
