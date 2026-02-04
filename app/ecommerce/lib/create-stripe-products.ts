@@ -50,23 +50,23 @@ async function main() {
       }
 
       // 3. insert to supabase database.
-      const data = await prisma.product.create({
-        data: {
-          name: product.name,
-          description: product.name_eng,
-          price: parseInt(product.price),
-          imageUrl: product.image_url,
-          stripe_product_id: stripeProduct.id,
-          stripe_price_id: stripePrice.id,
-        },
-      });
+      // const data = await prisma.product.create({
+      //   data: {
+      //     name: product.name,
+      //     description: product.name_eng,
+      //     price: parseInt(product.price),
+      //     images: product.image_url,
+      //     stripe_product_id: stripeProduct.id,
+      //     stripe_price_id: stripePrice.id,
+      //   },
+      // });
 
-      if (!data) {
-        console.error(
-          "Error inserting product into Prisma in Product Database:"
-        );
-        continue;
-      }
+      // if (!data) {
+      //   console.error(
+      //     "Error inserting product into Prisma in Product Database:"
+      //   );
+      //   continue;
+      // }
     } catch (createError) {
       console.error(createError);
       process.exit(1);

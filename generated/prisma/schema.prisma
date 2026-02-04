@@ -86,7 +86,7 @@ model Product {
   description String
   mrp         Float
   price       Float
-  images      String[]
+  images      String
   category    String
   inStock     Boolean  @default(true)
   createdAt   DateTime @default(now())
