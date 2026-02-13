@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getLoginSession } from "./app/lib/data";
+// import { getLoginSession } from "./app/lib/data";
 import { auth } from "./auth";
 import { getCurrentUser } from "./app/betterauth/actions/users"; //from better-auth
 
