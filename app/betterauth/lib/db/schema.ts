@@ -178,7 +178,8 @@ export interface IMember {
   id: string; // Primary key
   organizationId: string; // FK ไป Organization
   userId: string; // FK ไป User
-  role?: Role | null | undefined; // ใช้ enum Role
+  role?: string | null | undefined; // ใช้ enum Role
+  // role?: Role | null | undefined; // ใช้ enum Role
   createdAt: Date; // Timestamp ตอนสร้าง
 
   // Relations
@@ -208,7 +209,8 @@ export interface IInvitation {
   id: string;
   organizationId: string;
   email: string;
-  role?: Role | null | undefined;
+  role?: string | null | undefined;
+  // role?: Role | null | undefined;
   status: string; // default "pending"
   expiresAt: Date;
   inviterId: string;

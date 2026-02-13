@@ -11,8 +11,8 @@ export const authClient = createAuthClient({
   /** The base URL of the server (optional if you're using the same domain) */
   // แนะนำให้ใช้ Env variable หรือถ้าไม่ใส่ Better Auth มักจะ detect เองได้ถ้าอยู่โดเมนเดียวกัน
   // baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL,
-  // baseURL: "http://localhost:3000",
-  // basePath: "/api/better_auth/",
+  baseURL: "http://localhost:3000",
+  basePath: "/api/better_auth/",
   plugins: [
     organizationClient(),
     lastLoginMethodClient(),
