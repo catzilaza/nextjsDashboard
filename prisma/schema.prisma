@@ -481,7 +481,7 @@ model Invitation {
 //=============================================================================
 model Member {
   id        String   @id @default(uuid())
-  role      Role     @default(member) // ใช้ enum Role
+  role      Role?     @default(member) // ใช้ enum Role
   createdAt DateTime @default(now())
 
   // Relations
