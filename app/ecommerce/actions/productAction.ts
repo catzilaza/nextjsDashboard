@@ -96,8 +96,8 @@ export async function createProduct(
         image_url: blob.url,
       },
     });
-    console.log("Product created:", product);
-    console.log("Creating product:", { name, description, price, stock });
+    // console.log("Product created:", product);
+    // console.log("Creating product:", { name, description, price, stock });
 
     // revalidatePath("/dashboard/products");
     return {

@@ -69,7 +69,7 @@ const ChatWidget = () => {
   };
 
   // Log messages to console for debugging purposes
-  console.log(messages);
+  // console.log(messages);
 
   // Function to send user message and get AI response
   const handleSendMessage = async (e: { preventDefault: () => void }) => {
@@ -134,7 +134,7 @@ const ChatWidget = () => {
       // Update thread ID for future messages in this conversation
       setThreadId(data.threadId);
       // Log updated messages for debugging
-      console.log(messages);
+      // console.log(messages);
     } catch (error) {
       // Log any errors that occur during API call
       console.error("Error:", error);

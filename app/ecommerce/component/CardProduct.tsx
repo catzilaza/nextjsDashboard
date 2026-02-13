@@ -84,7 +84,7 @@ export default function CardProduct({ product }: { product: Product }) {
       id: product.id,
       name: product.name,
       price: product.price as number,
-      image_url: product.image_url ? product.image_url[0] : null,
+      image_url: product.image_url,
       quantity: 1,
       // stock: product.stock,
     });
