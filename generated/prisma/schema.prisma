@@ -499,6 +499,7 @@ model Organization {
   logo      String? // โลโก้ (optional)
   createdAt DateTime @default(now()) // เวลาสร้าง
   metadata  String? // metadata (optional)
+  // role      Role? // ใช้ enum Role
 
   // Relations
   members     Member[] // 1 Organization → หลาย Member

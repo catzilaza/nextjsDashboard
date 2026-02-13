@@ -195,7 +195,7 @@ export interface IOrganization {
   logo?: string | null; // โลโก้ (optional)
   createdAt: Date; // เวลาสร้าง
   metadata?: string | null; // metadata (optional)
-  role?: Role | null | undefined;
+  // role?: Role | null | undefined;
 
   // Relations
   member?: Member[] | null;
