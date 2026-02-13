@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Carousel = () => {
   const [current, setCurrent] = useState<number>(0);

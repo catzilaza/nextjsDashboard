@@ -83,6 +83,20 @@ export const signUp = async (
       },
     });
 
+    if (!result.user) {
+      throw new Error(
+        "From /betterauth/actions/users : SignUp Something Wrong!!!",
+      );
+    } else {
+      await prisma.customer.create({
+        data: {
+          name: result.user.name,
+          email: result.user.email,
+          userId: result.user.id,
+        },
+      });
+    }
+
     return {
       success: true,
       message: "Signed up successfully.",

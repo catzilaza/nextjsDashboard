@@ -1,6 +1,6 @@
 import Form from "@/app/dashboard/components/products/create-form";
 import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
-import { fetchProducts_Dessert } from "@/app/lib/data";
+import { fetchProducts_Dessert } from "@/app/ecommerce/lib/data";
 
 export default async function Page() {
   const products = await fetchProducts_Dessert();

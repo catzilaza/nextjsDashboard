@@ -5,7 +5,7 @@ import {
   InboxIcon,
 } from "@heroicons/react/24/outline";
 import { lusitana } from "@/app/dashboard/components/fonts";
-import { fetchCardData } from "@/app/lib/data";
+import { fetchCardData } from "@/app/ecommerce/lib/data";
 
 const iconMap = {
   collected: BanknotesIcon,

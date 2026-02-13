@@ -1,9 +1,9 @@
-import React from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { ProductDessertSchema } from "../models/dessert";
+// import { ProductDessertSchema } from "../models/dessert";
+import { Product } from "../lib/db/models/product";
 import { lusitana } from "../font/fonts";
-import { fetchAllProducts_Dessert } from "../lib/uitls";
+import { fetchAllProduct } from "../actions/productAction";
 import CarouselEcommerce from "./CarouselEcommerce";
 import Logo from "./Logo";
 import Categories from "./Categories";
@@ -16,7 +16,8 @@ import ListProduct from "./ListProduct";
 // }
 
 export default async function Main() {
-  const products = await fetchAllProducts_Dessert();
+  // const products = await fetchAllProducts_Dessert();
+  const products = (await fetchAllProduct()) as Product[];
   return (
     <main className="flex min-h-screen flex-col p-4">
       <div className="flex w-full justify-center mb-4 bg-blue-200">

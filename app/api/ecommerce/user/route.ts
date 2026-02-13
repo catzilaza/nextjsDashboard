@@ -79,6 +79,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const customer = await db.customer.findUnique({
+      where: {
+        email: login_session.user.email,
+      },
+    });
+
+    if (!customer) {
+      return NextResponse.json(
+        { message: "Customer not found" },
+        { status: 404 },
+      );
+    }
+
     const address = await db.address.create({
       data: {
         name,
@@ -89,7 +102,8 @@ export async function POST(req: NextRequest) {
         zip: zipcode,
         country,
         phone,
-        userId: login_session.user.id,
+        customerId: customer.id,
+        // userId: login_session.user.id,
       },
     });
 

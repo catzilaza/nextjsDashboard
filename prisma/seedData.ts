@@ -223,6 +223,178 @@ const seedCustomers = async () => {
   }
 };
 
+const seedProducts_Dessert = async () => {
+  const products_desserts = [
+    {
+      name_eng: "Banana Egg Cake",
+      name: "ขนมไข่กล้วยหอม",
+      image: "/products/banana-egg-cake.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/banana-egg-cake.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Lamphun Flower Pastry",
+      name: "ขนมดอกลำพูน",
+      image: "/products/lamphun-flower-pastry.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/lamphun-flower-pastry.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Raisin Bread",
+      name: "ขนมปังลูกเกด",
+      image: "/products/raisin-bread.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/raisin-bread.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Pandan Custard Bread",
+      name: "ขนมปังสังขยา",
+      image: "/products/pandan-custard-bread.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/pandan-custard-bread.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Tuna Stuffed Bread",
+      name: "ขนมปังไส้ทูน่า",
+      image: "/products/tuna-stuffed-bread.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/tuna-stuffed-bread.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Mochi",
+      name: "ขนมโมจิ",
+      image: "/products/mochi.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/mochi.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Thai Custard",
+      name: "ขนมหม้อแกง",
+      image: "/products/thai-custard.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/thai-custard.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Eclair",
+      name: "ขนมเอแคล",
+      image: "/products/eclair.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/eclair.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Black Sesame Cookie",
+      name: "ขนมคุ๊กกี้งาดำ",
+      image: "/products/black-sesame-cookie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/banana-egg-cake.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Chocolate Chip Cookie",
+      name: "ขนมคุ๊กกี้ช็อกโกแลตชิฟ",
+      image: "/products/chocolate-chip-cookie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/chocolate-chip-cookie.jpgg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Viennese Cookie",
+      name: "ขนมคุ๊กกี้เวียนนา",
+      image: "/products/viennese-cookie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/viennese-cookie.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Singapore Cookie",
+      name: "ขนมคุ๊กกี้สิงคโปร์",
+      image: "/products/singapore-cookie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/singapore-cookie.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Fortune Cookie",
+      name: "ขนมคุ๊กกี้เสี่ยงทาย",
+      image: "/products/fortune-cookie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/fortune-cookie.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Swiss Roll Cake",
+      name: "ขนมเค้กโรล",
+      image: "/products/swiss-roll-cake.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/swiss-roll-cake.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Young Coconut Chiffon",
+      name: "ขนมชิฟฟรอนมะพร้าวอ่อน",
+      image: "/products/young-coconut-chiffon.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/young-coconut-chiffon.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Brownie",
+      name: "ขนมบราวนี่",
+      image: "/products/brownie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/brownie.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Pineapple Pie",
+      name: "ขนมพายสับปะรด",
+      image: "/products/pineapple-pie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/pineapple-pie.jpg",
+      price: "30",
+      stock: 50,
+    },
+    {
+      name_eng: "Chicken Pie",
+      name: "ขนมพายไส้ไก่",
+      image: "/products/chicken-pie.jpg",
+      image_url:
+        "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/chicken-pie.jpg",
+      price: "30",
+      stock: 50,
+    },
+  ];
+  for (const product_dessert of products_desserts) {
+    await prisma.products_desserts.create({
+      data: product_dessert,
+    });
+  }
+};
+
 async function main() {
   try {
     console.log("Seeding database...");
@@ -231,7 +403,8 @@ async function main() {
     // await seedDataCateBlog();
     // await delayWithCountdown(10);
     // await seedRevenes();
-    await seedCustomers();
+    // await seedCustomers();
+    await seedProducts_Dessert();
 
     console.log("Seeding completed");
   } catch (error) {

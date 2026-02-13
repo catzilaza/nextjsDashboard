@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowUpFromLine } from "lucide-react";
-import React from "react";
 
 interface FolderNavigationProps {
   folderPath: Array<{ id: string; name: string }>;

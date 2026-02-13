@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getLoginSession } from "@/app/ecommerce/lib/uitls";
+import { getSession } from "@/app/(auth)/actions/auth/getSession-signOut";
 import prisma from "@/app/ecommerce/lib/prisma";
 import Stripe from "stripe";
 import Error from "next/error";
@@ -7,6 +7,17 @@ import {
   getCurrentSession,
   getCurrentUser,
 } from "@/app/betterauth/actions/users";
+import { use } from "react";
+import { url } from "inspector";
+
+// - Checkout → หน้าเว็บชำระเงินสำเร็จรูป
+// - Portal → หน้าเว็บสำหรับลูกค้าจัดการ subscription
+// - Webhook → ช่องทางที่ Stripe แจ้ง event กลับไปยังระบบของคุณ
+//  เมื่อ PaymentIntent เปลี่ยนสถานะเป็น succeeded → Stripe ส่ง webhook
+//  ไปยัง API ของคุณ → ระบบอัปเดต order เป็น “Paid”
+// - PaymentIntent → ตัวแทนของการชำระเงินหนึ่งครั้ง ใช้ติดตามสถาน
+//  ระบบสร้าง PaymentIntent สำหรับ order 123 → ลูกค้าใส่บัตร → PaymentIntent
+//  เปลี่ยนสถานะเป็น requires_confirmation → หลังยืนยันสำเร็จเปลี่ยนเป็น succeeded
 
 const db = prisma;
 
@@ -20,13 +31,14 @@ export interface CartItem {
   id: string;
   name: string;
   price: number;
-  imageUrl: string | null;
+  image_url: string | null;
   quantity: number;
+  //   stock: number;
 }
 
 export async function POST(req: Request) {
   try {
-    // const login_session = await getLoginSession();
+    // const login_session = await getSession();
     const login_session1 = await getCurrentSession();
     let login_session = undefined;
 
@@ -37,6 +49,19 @@ export async function POST(req: Request) {
     if (!login_session) {
       console.log("message: Unauthorized status: 401");
       return NextResponse.json({ message: "error" }, { status: 401 });
+    }
+
+    const customer = await db.customer.findUnique({
+      where: {
+        email: login_session.user.email,
+      },
+    });
+
+    if (!customer) {
+      return NextResponse.json(
+        { message: "Customer not found" },
+        { status: 404 },
+      );
     }
 
     const { cartItems }: { cartItems: CartItem[] } = await req.json();
@@ -50,6 +75,7 @@ export async function POST(req: Request) {
         currency: "usd",
         product_data: {
           name: item.name,
+          images: [item.image_url],
         },
         unit_amount: item.price * 100,
       },
@@ -70,33 +96,71 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    //    let customerId = user.stripeCustomerId
+    // const tempData = await db.product.findFirst({
+    //   where: {
+    //     name: cartItems[0].name,
+    //     price: cartItems[0].price,
+    //   },
+    // });
 
-    // if (!customerId) {
-    //   const customer = await stripe.customers.create({
-    //     email: user.email,
-    //     metadata: {
-    //       userId: user.id,
-    //     },
-    //   })
-    //   customerId = customer.id
-
-    //   await db.user.update({
-    //     where: { id: user.id },
-    //     data: { stripeCustomerId: customerId },
-    //   })
+    // if (!tempData) {
+    //   return NextResponse.json({ error: "Product not found" }, { status: 404 });
     // }
 
-    // console.log("login_session : ", login_session);
-    // console.log("user : ", user);
-    // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่ามี รายการอะไรบ้าง และยังไม่จ่าย
-
-    // const session = await stripe.checkout.sessions.create({
-    // await (Stripe as any).checkout.sessions.create
+    //
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: "2025-12-15.clover",
     });
+
+    const origin = req.headers.get("origin") || "http://localhost:3000";
+
+    // Generate a unique order ID (In production, create an Order in DB first and use its ID)
+    const orderCreateKeyPaid = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+    let activeProducts = await stripe.products.list({ active: true });
+    console.log(activeProducts);
+
+    const products = [...cartItems];
+    let stripeProducts = [];
+
+    try {
+      //  1. Find products from stripe that matches products from cart.
+      for (const product of products) {
+        const matchedProducts = activeProducts?.data?.find(
+          (stripeProduct: any) =>
+            stripeProduct.name.toLowerCase() === product.name.toLowerCase(),
+        );
+
+        //  2. If product didn't exist in Stripe, then add this product to stripe.
+        if (matchedProducts == undefined) {
+          // const prod = await stripe.products.create({
+          //   name: product.name,
+          //   default_price_data: {
+          //     currency: "usd",
+          //     unit_amount: product.price * 100,
+          //   },
+          // });
+          console.log(
+            "product didn't exist in Stripe, then add this product to stripe.",
+          );
+        }
+
+        if (matchedProducts) {
+          stripeProducts.push({
+            price: matchedProducts?.default_price,
+            quantity: product.quantity,
+            // url: matchedProducts?.url,
+          });
+        }
+      }
+    } catch (error) {
+      console.log("Error in creating a new product", error);
+      throw error;
+    }
+
+    console.log("");
+    console.log("stripeProducts : ", stripeProducts);
 
     const stripCheckoutSession = await stripe.checkout.sessions.create({
       // customer: customerId!,
@@ -115,57 +179,46 @@ export async function POST(req: Request) {
       //   userId: user.id,
       //   priceId,
       // },
+      // line_items: [
+      //   {
+      //     price: stripePriceId,
+      //     quantity: 1,
+      //   },
+      // ],
+      // line_items: product_line_items,
       line_items: product_line_items,
+      metadata: {
+        orderCreateKeyPaid: orderCreateKeyPaid,
+        userId: user.id,
+        note: "ลูกค้า VIP",
+        cartCount: cartItems.length.toString(), // ต้องเป็น string
+      },
       mode: "payment",
       success_url: `${req.headers.get("origin")}/ecommerce/success`,
       cancel_url: `${req.headers.get("origin")}/ecommerce/cancel`,
+      // success_url: `${req.headers.get("origin")}/ecommerce/success?session_id={CHECKOUT_SESSION_ID}`,
+      // cancel_url: `${req.headers.get("origin")}/ecommerce/?cancel=true`,
     });
 
     // console.log(stripCheckoutSession.url);
 
-    // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล คำสั่งซื้อ ว่า ซื้อสำเร็จ จ่ายเงินแล้ว
-
-    // const dataOrder = cartItems.map((item: any) => ({
-    //   // id: item.id as string,
-    //   // stripeSessionId: stripCheckoutSession.id as string,
-    //   stripeSessionId: stripCheckoutSession.id as string,
-    //   userName: user.name as string,
-    //   userEmail: user.email as string,
-    //   productId: item.id as string,
-    //   productName: item.name as string,
-    //   price: item.price,
-    //   quantity: item.quantity,
-    //   totalPrice: item.price * item.quantity,
-    // }));
-
+    // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล จัดส่ง ว่า ซื้อสำเร็จ จ่ายเงินแล้ว กำลังดำเนินการจัดส่ง
+    // Card information : 4111 1111 1111 1111
+    // Expiry date : 03/26 411
     const dataOrder = cartItems.map((item: any) => ({
-      // id: item.id as string,
-      // stripeSessionId: stripCheckoutSession.id as string,
-      userId: user.id as string,
-      stripe_session_id: stripCheckoutSession.id as string,
-      userName: user.name as string,
-      userEmail: user.email as string,
+      customerId: customer.id as string,
       productId: item.id as string,
-      productName: item.name as string,
+      stripe_session_id: stripCheckoutSession.id as string,
       price: item.price,
       quantity: item.quantity,
-      totalPrice: item.price * item.quantity,
-      paymentMethod: "STRIPE" as any,
-      storeId: "", // Replace with actual storeId or make it optional in your schema
+      paymentMethod: "card",
+      status: "not paid",
     }));
 
     const result = await prisma.order.createMany({
       data: dataOrder,
       skipDuplicates: true,
     });
-    // const result = await prisma.orderDessert.createMany({
-    //   data: dataOrder,
-    //   skipDuplicates: true,
-    // });
-
-    // คิดว่าควรลงบันทึกรายการซื้อไว้ในฐานข้อมูล จัดส่ง ว่า ซื้อสำเร็จ จ่ายเงินแล้ว กำลังดำเนินการจัดส่ง
-    // Card information : 4111 1111 1111 1111
-    // Expiry date : 03/26 411
 
     return NextResponse.json(
       // { url: session.url },

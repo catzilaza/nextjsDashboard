@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import Search from "@/app/dashboard/components/search";
 import { CreateProduct } from "@/app/dashboard/components/products/button";
 import { ProductsCardSkeleton } from "@/app/dashboard/components/skeletons";
-import { fetchProducts_DessertPages } from "@/app/lib/data";
+import { fetchProducts_DessertPages } from "@/app/ecommerce/lib/data";
 import Pagination from "@/app/dashboard/components/invoices/pagination";
 // import Card from "@/app/ui/products/card";
 import ProductCard from "@/app/dashboard/components/products/card";

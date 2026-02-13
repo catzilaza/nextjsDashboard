@@ -84,18 +84,24 @@
 //   // Relations
 //   members MemberBetterAuth[] // 1 Organization → หลาย Member
 // }
+// export interface IRoleAuthjs {
+//   MEMBER: "member";
+//   ADMIN: "admin";
+//   OWNER: "owner";
+// }
+// export type RoleAuthjs = IRoleAuthjs[keyof IRoleAuthjs];
 
-export interface IUserAuthjs {
-  id: string | null;
-  name?: string | null;
-  password?: string | null;
-  email: string;
-  image?: string | null;
-  role?: Role | null;
-  createdAt: Date | null;
-  updatedAt: Date | null;
-}
-export type UserAuthjs = IUserAuthjs;
+// export interface IUserAuthjs {
+//   id: string | null;
+//   name?: string | null;
+//   password?: string | null;
+//   email: string;
+//   image?: string | null;
+//   role?: Role | null;
+//   createdAt: Date | null;
+//   updatedAt: Date | null;
+// }
+// export type UserAuthjs = IUserAuthjs;
 
 export interface IUser {
   id: string | null;
@@ -104,7 +110,7 @@ export interface IUser {
   email: string;
   emailVerified: boolean | null;
   image?: string | null;
-  role?: Role | null;
+  role?: Role | null | undefined;
   createdAt: Date | null;
   updatedAt: Date | null;
 }
@@ -160,13 +166,6 @@ export interface IRole {
 }
 export type Role = IRole[keyof IRole];
 
-export interface IRoleAuthjs {
-  MEMBER: "member";
-  ADMIN: "admin";
-  OWNER: "owner";
-}
-export type RoleAuthjs = IRoleAuthjs[keyof IRoleAuthjs];
-
 // แบบ Object + typeof
 // export enum RoleBetterAuth {
 //   MEMBER = "member",
@@ -179,7 +178,7 @@ export interface IMember {
   id: string; // Primary key
   organizationId: string; // FK ไป Organization
   userId: string; // FK ไป User
-  role: Role; // ใช้ enum Role
+  role?: Role | null | undefined; // ใช้ enum Role
   createdAt: Date; // Timestamp ตอนสร้าง
 
   // Relations
@@ -196,6 +195,7 @@ export interface IOrganization {
   logo?: string | null; // โลโก้ (optional)
   createdAt: Date; // เวลาสร้าง
   metadata?: string | null; // metadata (optional)
+  role?: Role | null | undefined;
 
   // Relations
   member?: Member[] | null;
@@ -208,7 +208,7 @@ export interface IInvitation {
   id: string;
   organizationId: string;
   email: string;
-  role?: Role | null;
+  role?: Role | null | undefined;
   status: string; // default "pending"
   expiresAt: Date;
   inviterId: string;

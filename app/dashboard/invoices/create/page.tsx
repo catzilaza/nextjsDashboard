@@ -3,7 +3,7 @@
 // import { fetchCustomers } from "@/app/lib/data";
 import Form from "@/app/dashboard/components/invoices/create-form";
 import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
-import { fetchCustomers } from "@/app/lib/data";
+import { fetchCustomers } from "@/app/ecommerce/lib/data";
 
 export default async function Page() {
   const customers = await fetchCustomers();

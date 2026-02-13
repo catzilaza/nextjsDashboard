@@ -4,7 +4,7 @@
 // import { notFound } from "next/navigation";
 import Form from "@/app/dashboard/components/invoices/edit-form";
 import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
-import { fetchInvoiceById, fetchCustomers } from "@/app/lib/data";
+import { fetchInvoiceById, fetchCustomers } from "@/app/ecommerce/lib/data";
 import { notFound } from "next/navigation";
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {

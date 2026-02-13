@@ -7,10 +7,9 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import { Loader2 } from "lucide-react";
-import { useCartStore } from "@/store/cart-store";
 import { Button } from "@/components/ui/button";
-import { columns, Payment } from "./columns";
-import { DataTable } from "./data-table";
+// import { columns, Payment } from "./columns";
+// import { DataTable } from "./data-table";
 import {
   Card,
   CardContent,
@@ -34,7 +33,8 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group";
 import { username } from "better-auth/plugins";
-import checkoutAction from "../lib/uitls";
+import { useCartStore } from "@/store/cart-store";
+import { useUserStore } from "@/store/user-stroe";
 
 const formSchema = z.object({
   name: z
@@ -79,7 +79,7 @@ const formSchema = z.object({
 export default function CheckOutPage() {
   const { items, removeItem, addItem, getTotalItem } = useCartStore();
   const [updateItems, setUpdateItems] = useState<any[]>(items);
-  const user = useCartStore((state) => state.user);
+  const user = useUserStore((state) => state.user);
   const total = getTotalItem();
   const [message, setMessage] = useState("");
   // const [message, formAction, isPending] = useActionState(checkoutAction, 0);
@@ -156,17 +156,18 @@ export default function CheckOutPage() {
       alert("Error creating checkout session");
     }
   };
-  const [data, setData] = useState<Payment[]>([
-    {
-      id: "728ed52f",
-      item: "Product 1",
-      price: 100,
-      quantity: 1,
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-  ]);
+  // const [data, setData] = useState<Payment[]>([
+  //   {
+  //     id: "728ed52f",
+  //     item: "Product 1",
+  //     price: 100,
+  //     quantity: 1,
+  //     amount: 100,
+  //     status: "pending",
+  //     email: "m@example.com",
+  //   },
+  // ]);
+
   useEffect(() => {
     setUpdateItems(items);
   }, []);
@@ -229,13 +230,14 @@ export default function CheckOutPage() {
   }
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-6xl justify-center mx-auto p-10 gap-6">
-        <div>
-          <Card className="w-full sm:max-w-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-full justify-center items-center mx-auto p-10 gap-6">
+        <div className="w-full">
+          <Card className="w-full sm:max-w-full">
             <CardHeader>
-              <CardTitle>User Information</CardTitle>
+              <CardTitle>Customer Information</CardTitle>
               <CardDescription>Name : {user.name}</CardDescription>
               <CardDescription>Email : {user.email}</CardDescription>
+              <CardDescription>Address : {user.email}</CardDescription>
             </CardHeader>
             <CardContent>
               <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
@@ -570,9 +572,9 @@ export default function CheckOutPage() {
             </CardContent>
           </Card>
 
-          <div className="container mx-auto py-10">
+          {/* <div className="container mx-auto py-10">
             <DataTable columns={columns} data={data} />
-          </div>
+          </div> */}
           <Button
             onClick={handleCheckout}
             disabled={isLoading}

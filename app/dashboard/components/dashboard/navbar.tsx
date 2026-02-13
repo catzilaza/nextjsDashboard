@@ -1,4 +1,4 @@
-import { getLoginSession } from "@/app/lib/data";
+import { getLoginSession } from "@/app/ecommerce/lib/data";
 
 import {
   Disclosure,

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import ImageUploader from "./ImageUploader";
 // import { Product } from "@/models/product";
-import { ProductDessertSchema } from "../models/dessert";
+import { ProductDessertSchema } from "../lib/db/models/dessert";
 
 interface ProductFormProps {
   initialProduct?: ProductDessertSchema | null;

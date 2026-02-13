@@ -8,8 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { fetchProducts_Dessert } from "@/app/lib/data";
-import { formatDateToLocal } from "@/app/lib/utils";
+import { fetchProducts_Dessert } from "@/app/ecommerce/lib/data";
+import { formatDateToLocal } from "@/app/ecommerce/lib/utils";
 import Link from "next/link";
 
 export default async function AppCard() {

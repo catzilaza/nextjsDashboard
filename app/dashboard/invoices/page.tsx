@@ -13,7 +13,7 @@ import { CreateInvoice } from "@/app/dashboard/components/invoices/buttons";
 import { lusitana } from "@/app/dashboard/components/fonts";
 import { InvoicesTableSkeleton } from "@/app/dashboard/components/skeletons";
 import { Suspense } from "react";
-import { fetchInvoicesPages } from "@/app/lib/data";
+import { fetchInvoicesPages } from "@/app/ecommerce/lib/data";
 
 export default async function Page(props: {
   searchParams?: Promise<{

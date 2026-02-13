@@ -41,12 +41,6 @@ export const removeMember = async (memberId: string) => {
       },
     });
 
-    await prisma.member.deleteMany({
-      where: {
-        id: memberId,
-      },
-    });
-
     return {
       success: true,
       error: null,

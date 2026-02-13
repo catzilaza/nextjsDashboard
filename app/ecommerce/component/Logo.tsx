@@ -1,4 +1,3 @@
-import React from "react";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import { lusitana } from "../font/fonts";
 

@@ -16,7 +16,6 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col">
             <div className="flex-1">{children}</div>
           </div>
-          {/* {children} */}
           <Toaster
             position="top-center"
             richColors={true}

@@ -81,8 +81,11 @@ const CardList = async () => {
   // const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   // const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
 
-  // const blobs = await list();
+  const blobs = await list();
   // console.log("Response from Vercel Blob:", blobs.blobs);
+  if (!blobs) {
+    throw new Error("Failed to fetch blobs");
+  }
 
   return (
     <div className={styles.container}>
@@ -92,7 +95,7 @@ const CardList = async () => {
           <Card item={item} key={index} />
         ))}
       </div> */}
-      {/* <div className={styles.posts}>
+      <div className={styles.posts}>
         {blobs.blobs
           .filter((blob) =>
             /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(blob.pathname),
@@ -110,7 +113,7 @@ const CardList = async () => {
               />
             </div>
           ))}
-      </div> */}
+      </div>
       {/* <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} /> */}
     </div>
   );

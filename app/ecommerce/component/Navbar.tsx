@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Search from "./search";
-import { typeUserProfile } from "../models/user";
-import { getSession, SignOut } from "../lib/uitls";
+import { getSession, SignOut } from "../actions/allactions";
 import { lusitana } from "../font/fonts";
 import {
   getCurrentSession,
   getCurrentUser,
+  signOut as SignOutUser,
 } from "@/app/betterauth/actions/users";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
@@ -18,6 +18,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
+import { User, Role } from "../lib/db/models/user";
 
 // const SearchBar: React.FC<{ onSearch: (term: string) => void }> = ({
 //   onSearch,
@@ -54,12 +55,12 @@ export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [isLogedin, setIsLogedin] = useState(false);
-  const [userProfile, setUserProfile] = useState<typeUserProfile>({
+  const [userProfile, setUserProfile] = useState<User>({
+    id: "",
     name: "",
     email: "",
     image: "",
-    role: "",
-    expiredAt: "",
+    role: undefined,
   });
   const hasuser = async () => {
     // let user = await getSession();
@@ -68,11 +69,11 @@ export default function Navbar() {
       setIsLogedin(true);
       let user = await getCurrentUser();
       setUserProfile({
+        id: user.user.id,
         name: user.user.name,
         email: user.user.email,
         image: user.user.image,
-        role: user.currentUser.role,
-        expiredAt: user.session.expiresAt.toDateString(),
+        role: user.currentUser.role as Role,
       });
       return user;
     } else {
@@ -253,7 +254,8 @@ export default function Navbar() {
                             <Button
                               className="mx-auto block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                               onClick={() => {
-                                SignOut();
+                                // SignOut();
+                                SignOutUser();
                               }}
                             >
                               Sign out

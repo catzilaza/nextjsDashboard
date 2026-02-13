@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCartStore } from "@/store/cart-store";
-import { ProductDessertSchema } from "../models/dessert";
+import { useUserStore } from "@/store/user-stroe";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-
 import {
   Card,
   CardContent,
@@ -26,29 +25,27 @@ import {
   getCurrentSession,
   getCurrentUser,
 } from "@/app/betterauth/actions/users";
-import { typeUserProfile } from "../models/user";
+import { ProductDessertSchema } from "../lib/db/models/dessert";
+import { User, Role } from "../lib/db/models/user";
+import { Product } from "../lib/db/models/product";
 
-export default function CardProduct({
-  product,
-}: {
-  product: ProductDessertSchema;
-}) {
+export default function CardProduct({ product }: { product: Product }) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
 
-  const { addItem, removeItem, updateUser } = useCartStore();
-  const { username, role } = useCartStore((state: any) => state.user);
+  const { addItem, removeItem } = useCartStore();
+  const { updateUser } = useUserStore();
+  const { username, role } = useUserStore((state: any) => state.user);
   const items = useCartStore((state: any) => state.items);
 
   const [open, setOpen] = useState(false);
   const [isLogedin, setIsLogedin] = useState(false);
-  const [userProfile, setUserProfile] = useState<typeUserProfile>({
+  const [userProfile, setUserProfile] = useState<User>({
     id: "",
     name: "",
     email: "",
     image: "",
-    role: "",
-    expiredAt: "",
+    role: undefined,
   });
   const hasuser = async () => {
     // let user = await getSession();
@@ -61,8 +58,8 @@ export default function CardProduct({
         name: user.user.name,
         email: user.user.email,
         image: user.user.image,
-        role: user?.currentUser?.role,
-        expiredAt: user.session.expiresAt.toDateString(),
+        role: user?.currentUser?.role as Role,
+        // role: user?.currentUser?.role?.toLowerCase() as Role,
       });
       return user;
     } else {
@@ -84,24 +81,25 @@ export default function CardProduct({
 
   const onAddItem = () => {
     addItem({
-      id: product.dessert_id,
+      id: product.id,
       name: product.name,
-      price: product.amount as number,
-      imageUrl: product.image_url ? product.image_url[0] : null,
+      price: product.price as number,
+      image_url: product.image_url ? product.image_url[0] : null,
       quantity: 1,
+      // stock: product.stock,
     });
     updateUser(
-      userProfile?.id as string,
+      userProfile.id as string,
       userProfile?.name as string,
-      userProfile?.email as string,
+      userProfile.email as string,
       userProfile?.image as string,
-      userProfile?.role as string,
+      userProfile?.role as Role,
     );
     setSheetOpen(true);
   };
 
   const onRemoveItem = () => {
-    removeItem(product.dessert_id);
+    removeItem(product.id);
   };
 
   // console.log("From /app/ecommerce/components/CardProduct : ");
@@ -166,7 +164,7 @@ export default function CardProduct({
                           ราคา: {product.price}
                         </div>
                         <div className="text-md text-gray-700">
-                          จำนวนคงเหลือ: {product.amount}
+                          จำนวนคงเหลือ: {product.stock}
                         </div>
                       </div>
                     </div>

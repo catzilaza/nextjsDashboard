@@ -1,6 +1,6 @@
 import Form from "@/app/dashboard/components/products/edit-form";
 import Breadcrumbs from "@/app/dashboard/components/invoices/breadcrumbs";
-import { fetchProducts_DessertById } from "@/app/lib/data";
+import { fetchProducts_DessertById } from "@/app/ecommerce/lib/data";
 import { notFound } from "next/navigation";
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {

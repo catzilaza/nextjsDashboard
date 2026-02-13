@@ -11,8 +11,8 @@ import Link from "next/link";
 import { Button } from "@/app/dashboard/components/button";
 import Image from "next/image";
 
-import { ProductDessertField } from "@/app/lib/definitions";
-import { createProductDessert, StateProductDessert } from "@/app/lib/actions";
+import { ProductDessertField } from "@/app/ecommerce/lib/definitions";
+import { createProductDessert, StateProductDessert } from "@/app/ecommerce/lib/actions";
 import { useActionState } from "react";
 
 export default function Form({

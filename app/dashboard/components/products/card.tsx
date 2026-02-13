@@ -1,8 +1,11 @@
 import Image from "next/image";
-import { UpdateProduct, DeleteProduct } from "@/app/dashboard/components/products/button";
+import {
+  UpdateProduct,
+  DeleteProduct,
+} from "@/app/dashboard/components/products/button";
 // import InvoiceStatus from "@/app/ui/invoices/status";
-import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredProducts_Dessert } from "@/app/lib/data";
+import { formatDateToLocal, formatCurrency } from "@/app/ecommerce/lib/utils";
+import { fetchFilteredProducts_Dessert } from "@/app/ecommerce/lib/data";
 import {
   Card,
   CardContent,
@@ -63,7 +66,7 @@ export default async function ProductCard({
                 <p className="text-xl font-medium">
                   {formatCurrency(product.amount)}
                 </p>
-                <p>{formatDateToLocal(product.date)}</p>
+                <p>{"formatDateToLocal(product.date)"}</p>
               </div>
               <div className="flex justify-end gap-2">
                 <UpdateProduct id={product.dessert_id} />
@@ -108,7 +111,7 @@ export default async function ProductCard({
                     <p className="text-xl font-medium">
                       ราคา : {product.price}
                     </p>
-                    <p> วันที่ : {formatDateToLocal(product.date)}</p>
+                    <p> วันที่ : {"formatDateToLocal(product.date)"}</p>
                     <p> จำนวนคงเหลือ : {product.amount}</p>
                   </div>
                   <div className="flex justify-end gap-2">

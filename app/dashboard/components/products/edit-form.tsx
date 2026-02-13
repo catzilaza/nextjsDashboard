@@ -9,8 +9,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/app/dashboard/components/button";
-import { ProductDessertForm, ProductDessertField } from "@/app/lib/definitions";
-import { updateProductDessert, StateProductDessert } from "@/app/lib/actions";
+import { ProductDessertForm, ProductDessertField } from "@/app/ecommerce/lib/definitions";
+import { updateProductDessert, StateProductDessert } from "@/app/ecommerce/lib/actions";
 import { useActionState } from "react";
 
 export default function EditProductForm({

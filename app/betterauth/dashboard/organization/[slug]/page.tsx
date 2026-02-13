@@ -2,7 +2,7 @@ import MembersTable from "@/app/betterauth/components/MembersTable";
 import AllUsers from "@/app/betterauth/components/AllUsers";
 import { getOrganizationBySlug } from "@/app/betterauth/actions/organizations";
 import { getUsers } from "@/app/betterauth/actions/users";
-import type { Member, User} from "@/app/betterauth/lib/db/schema";
+import type { Member, User } from "@/app/betterauth/lib/db/schema";
 
 type Params = Promise<{ slug: string }>;
 
@@ -16,8 +16,11 @@ export default async function OrganizationPage({ params }: { params: Params }) {
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-4 py-10">
       <h1 className="font-bold text-2xl">{organization?.name}</h1>
-      <MembersTable members={(organization?.members as Member[]) || []} />
-      <AllUsers organizationId={organization?.id || ""} users={users as User[]} />
+      <MembersTable members={organization?.members || []} />
+      <AllUsers
+        organizationId={organization?.id || ""}
+        users={users as User[]}
+      />
     </div>
   );
 }

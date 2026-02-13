@@ -1,7 +1,8 @@
-import { getLoginSession } from "@/app/ecommerce/lib/uitls";
+import { getSession } from "@/app/(auth)/actions/auth/getSession-signOut";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/ecommerce/lib/prisma";
 import Stripe from "stripe";
+//https://www.youtube.com/watch?v=HgOyClJlW5E
 
 // const db = prisma;
 
@@ -26,54 +27,83 @@ export async function POST(request: NextRequest) {
 
   // try {
   //   event = Stripe.webhooks.constructEvent(
-  //     // rawbody,
   //     body,
   //     signature,
-  //     STRIPE_WEBHOOK_SECRET
+  //     STRIPE_WEBHOOK_SECRET,
   //   );
   // } catch (error) {
-  //   console.error("Webhook signature verification failed: ", error);
-  //   return NextResponse.json({ error: "Invalid Signature" }, { status: 400 });
+  //   const err = error as Error;
+  //   console.error("Webhook signature verification failed: ", err.message);
+  //   return NextResponse.json(
+  //     { error: `Webhook Error: ${err.message}` },
+  //     { status: 400 },
+  //   );
   // }
 
   // try {
   //   switch (event.type) {
+  //     case "payment_intent.succeeded":
+  //       const piSucceeded = event.data.object as Stripe.PaymentIntent;
+  //       console.log("💰 Payment captured!", piSucceeded.id);
+  //       break;
+  //
+  //     case "payment_intent.payment_failed":
+  //       const piFailed = event.data.object as Stripe.PaymentIntent;
+  //       console.log("❌ Payment failed.", piFailed.id);
+  //       break;
+  //
   //     case "checkout.session.completed": {
   //       const session = event.data.object as Stripe.Checkout.Session;
   //       console.log(`Payment successful for session ID: ${session.id}`);
 
-  //       const totalAmount = session.amount_total ?? 0;
+  //       // ✅ ดึง metadata กลับมาใช้งาน
+  //       const orderCreateKeyPaid = session.metadata?.orderCreateKeyPaid;
+  //       const userId = session.metadata?.userId;
+  //       const note = session.metadata?.note;
 
-  //       try {
-  //         const productId = session.metadata?.productId;
-  //         const quantity = session.metadata?.quantity;
+  //       console.log("Payment completed!");
+  //       console.log("Order Create for KeyPaid:", orderCreateKeyPaid);
+  //       console.log("User ID:", userId);
+  //       console.log("Note:", note);
 
-  //         // 1. Find product in the database using Prisma
-  //         const productData = await prisma.product.findUnique({
-  //           where: {
-  //             id: productId,
-  //           },
-  //           select: {
-  //             id: true,
-  //             price: true,
-  //           },
-  //         });
+  //       // ตัวอย่าง: อัปเดตสถานะ order ใน DB
+  //       // await db.order.update({
+  //       //   where: { id: orderId },
+  //       //   data: { status: "paid" },
+  //       // })
 
-  //         if (!productData) {
-  //           console.error(`Product with ID ${productId} not found.`);
-  //           return NextResponse.json(
-  //             { error: "Webhook Error: Product not found" },
-  //             { status: 404 }
-  //           );
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching product from database:", error);
-  //         const dErr = error as Error;
-  //         return NextResponse.json(
-  //           { error: `Webhook Error ${dErr.message}` },
-  //           { status: 500 }
-  //         );
-  //       }
+  //       // const totalAmount = session.amount_total ?? 0;
+
+  //       // try {
+  //       //   const productId = session.metadata?.productId;
+  //       //   const quantity = session.metadata?.quantity;
+
+  //       //   // 1. Find product in the database using Prisma
+  //       //   const productData = await prisma.product.findUnique({
+  //       //     where: {
+  //       //       id: productId,
+  //       //     },
+  //       //     select: {
+  //       //       id: true,
+  //       //       price: true,
+  //       //     },
+  //       //   });
+
+  //       //   if (!productData) {
+  //       //     console.error(`Product with ID ${productId} not found.`);
+  //       //     return NextResponse.json(
+  //       //       { error: "Webhook Error: Product not found" },
+  //       //       { status: 404 },
+  //       //     );
+  //       //   }
+  //       // } catch (error) {
+  //       //   console.error("Error fetching product from database:", error);
+  //       //   const dErr = error as Error;
+  //       //   return NextResponse.json(
+  //       //     { error: `Webhook Error ${dErr.message}` },
+  //       //     { status: 500 },
+  //       //   );
+  //       // }
   //       break;
 
   //       // const userId = session.metadata?.userId;
@@ -154,7 +184,7 @@ export async function POST(request: NextRequest) {
   //   console.error("Error processing webhook: ", error);
   //   return NextResponse.json(
   //     { error: "Internal Server Error processing webhook" },
-  //     { status: 500 }
+  //     { status: 500 },
   //   );
   // }
   return NextResponse.json({});

@@ -1,55 +1,31 @@
 import { create } from "zustand";
+import { IProduct, Product } from "@/app/ecommerce/lib/db/models/product";
 
-export interface CartItem {
+interface CartItem {
   id: string;
   name: string;
   price: number;
-  imageUrl: string | null;
+  image_url?: string | null | undefined;
   quantity: number;
+  //   stock: number;
 }
 
-interface User {
-  id: string;
-  name: string;
-  email: string | null | undefined;
-  image: string | null | undefined;
-  role: string | null | undefined;
-}
+const emptyCart: CartItem[] = [];
 
 interface CartStore {
-  user: User;
   items: CartItem[];
   total: number;
+  remainStock: number;
   addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
-  updateUser: (
-    id: string,
-    name: string,
-    email: string | null,
-    image: string | null,
-    role: string | null,
-  ) => void;
-  clearUser: () => void;
+
   getTotalItem: () => number;
 }
-
-const emptyUser: User = {
-  id: "",
-  name: "",
-  email: "",
-  image: "",
-  role: "",
-};
-const emptyCart: CartItem[] = [];
-
 export const useCartStore = create<CartStore>((set, get) => ({
-  user: emptyUser,
   items: emptyCart,
   total: 0,
-
-  updateUser: (id, name, email, image, role) =>
-    set(() => ({ user: { id, name, email, image, role } })),
+  remainStock: 0,
 
   addItem: (item) =>
     set((state) => {
@@ -72,7 +48,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 
   removeItem: (id) =>
     set((state) => {
-      const updatedItems = state.items
+      let updatedItems = state.items
         .map((i) => (i.id === id ? { ...i, quantity: i.quantity - 1 } : i))
         .filter((i) => i.quantity > 0);
 
@@ -82,13 +58,15 @@ export const useCartStore = create<CartStore>((set, get) => ({
       };
     }),
 
-  clearCart: () => set(() => ({ items: emptyCart, total: 0 })),
-
-  clearUser: () => set(() => ({ user: emptyUser })),
+  clearCart: () => set(() => ({ items: emptyCart, total: 0, remainStock: 0 })),
 
   getTotalItem: () => {
     const { items } = get();
     return items.reduce((sum, i) => sum + i.quantity * i.price, 0);
+  },
+
+  getRemainStock: () => {
+    return get().remainStock;
   },
 }));
 

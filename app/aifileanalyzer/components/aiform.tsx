@@ -45,14 +45,14 @@ export default function AiForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    // const response = await getAIResponse(values.prompt);
-    // setResponse(response);
-    const response = await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(`AI Result for prompt: "${values.prompt}"`);
-      }, 3000);
-    });
-    setResponse(response as string);
+    const response = await getAIResponse(values.prompt);
+    setResponse(response);
+    // const response = await new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(`AI Result for prompt: "${values.prompt}"`);
+    //   }, 3000);
+    // });
+    // setResponse(response as string);
     setIsLoading(false);
   }
 

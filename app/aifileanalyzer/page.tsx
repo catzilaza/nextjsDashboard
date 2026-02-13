@@ -38,6 +38,9 @@ export default function AiFileAnalyzerPage() {
             }}
           />
         </div>
+        <div className="w-full mx-auto">
+          <AiForm />
+        </div>
       </main>
     </>
   );

@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import Image from "next/image";
-
 import { lusitana } from "@/app/fonts";
 import { AtSymbolIcon, KeyIcon } from "@heroicons/react/24/outline";
 import { Button } from "components/ui/button";

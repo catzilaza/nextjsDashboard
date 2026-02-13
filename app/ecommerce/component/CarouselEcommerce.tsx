@@ -1,7 +1,8 @@
 "use client";
 
 import Autoplay from "embla-carousel-autoplay";
-import { ProductDessertSchema } from "../models/dessert";
+// import { ProductDessertSchema } from "../models/dessert";
+import { Product } from "../lib/db/models/product";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -14,7 +15,7 @@ import {
 export default function CarouselEcommerce({
   products,
 }: {
-  products?: ProductDessertSchema[];
+  products?: Product[];
 }) {
   return (
     <Carousel

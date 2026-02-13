@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { getLoginSession } from "@/app/lib/data";
+import { getLoginSession } from "@/app/ecommerce/lib/data";
 // import { auth } from "@/auth";
 export default async function Page() {
   const session: any = await getLoginSession();

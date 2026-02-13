@@ -13,6 +13,9 @@ import Footer from "./component/Footer";
 //Build and Deploy Full Stack AI Multi-Vendor E-Commerce App using Next js | PERN Stack Project 2025
 //https://www.youtube.com/watch?v=aYu4xkBdkNA
 //https://github.com/GreatStackDev/gocart/blob/main/prisma/schema.prisma
+
+//https://www.youtube.com/watch?v=qSHHOjXouI4
+//https://github.com/Zeeshu911/FULL-STACK-ECOMMERCE-AI-BASED-WEB-APPLICATION-BACKEND-CODE
 export default async function EcommercePage() {
   // const products = await fetchAllProducts_Dessert();
   return (
