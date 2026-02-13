@@ -231,7 +231,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/banana-egg-cake.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/banana-egg-cake.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -240,7 +240,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/lamphun-flower-pastry.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/lamphun-flower-pastry.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -249,7 +249,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/raisin-bread.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/raisin-bread.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -258,7 +258,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/pandan-custard-bread.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/pandan-custard-bread.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -267,7 +267,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/tuna-stuffed-bread.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/tuna-stuffed-bread.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -276,7 +276,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/mochi.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/mochi.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -285,7 +285,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/thai-custard.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/thai-custard.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -294,7 +294,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/eclair.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/eclair.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -303,7 +303,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/black-sesame-cookie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/banana-egg-cake.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -312,7 +312,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/chocolate-chip-cookie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/chocolate-chip-cookie.jpgg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -321,7 +321,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/viennese-cookie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/viennese-cookie.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -330,7 +330,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/singapore-cookie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/singapore-cookie.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -339,7 +339,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/fortune-cookie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/fortune-cookie.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -348,7 +348,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/swiss-roll-cake.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/swiss-roll-cake.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -357,7 +357,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/young-coconut-chiffon.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/young-coconut-chiffon.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -366,7 +366,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/brownie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/brownie.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -375,7 +375,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/pineapple-pie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/pineapple-pie.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
     {
@@ -384,7 +384,7 @@ const seedProducts_Dessert = async () => {
       image: "/products/chicken-pie.jpg",
       image_url:
         "https://mnz3apfibi5uaxad.public.blob.vercel-storage.com/chicken-pie.jpg",
-      price: "30",
+      price: 30,
       stock: 50,
     },
   ];
